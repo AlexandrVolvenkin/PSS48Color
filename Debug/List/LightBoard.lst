@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  07:56:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  18:21:46
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW3D54.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW3F37.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #        --cpu=m128a -ms -o
@@ -540,6 +540,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
           missing return statement at end of non-void function
           "CIsRegularButtonPressedInterface::KEY_PRESSED_TIME"
      11          #include "Dm163.h"
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDm163::PulseDelayLAT_B()
+   \                     ??PulseDelayLAT_B:
+   \   00000000   0000               nop
+   \   00000002   9508               RET
      12          
      13          //-------------------------------------------------------------------------------------------------
      14          // Массив управления драйверами светодиодов на панели.
@@ -573,18 +579,22 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
      25              1, 1, 1, 1,    1, 1, 1, 1,
      26          };
      27          
+
+   \                                 In  segment NEAR_F, align 1, keep-with-next, root
      28          __flash TPixelColorData CLightBoard::m_xPixelColorCorrectionData =
    \                     ??m_xPixelColorCorrectionData:
-   \   00000030   3F3F3F             DC8 63, 63, 63
+   \   00000000   3F3F3F             DC8 63, 63, 63
      29          {
      30              63,
      31              63,
      32              63,
      33          };
      34          
+
+   \                                 In  segment NEAR_F, align 1, keep-with-next, root
      35          __flash TPixelColorData CLightBoard::m_xPixelColorBlack =
    \                     ??m_xPixelColorBlack:
-   \   00000033   000000             DC8 0, 0, 0
+   \   00000000   000000             DC8 0, 0, 0
      36          {
      37              0,
      38              0,
@@ -593,7 +603,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
      41          
      42          __flash TPixelColorData CLightBoard::m_xPixelColorRed =
    \                     ??m_xPixelColorRed:
-   \   00000036   00FF00             DC8 255, 0, 0
+   \   00000003   00FF00             DC8 255, 0, 0
      43          {
      44              255,
      45              0,
@@ -602,7 +612,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
      48          
      49          __flash TPixelColorData CLightBoard::m_xPixelColorGreen =
    \                     ??m_xPixelColorGreen:
-   \   00000039   FF0000             DC8 0, 255, 0
+   \   00000006   FF0000             DC8 0, 255, 0
      50          {
      51              0,
      52              255,
@@ -618,7 +628,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
      62          
      63          __flash TPixelColorData CLightBoard::m_xPixelColorYellow =
    \                     ??m_xPixelColorYellow:
-   \   0000003C   FFFF00             DC8 255, 255, 0
+   \   00000009   FFFF00             DC8 255, 255, 0
 
    \                                 In  segment NEAR_F, align 1, keep-with-next, root
    \                     ??m_xPixelColorBlue:
@@ -704,117 +714,158 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
    \                     ??Set:
     132          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
-   \   00000004   01C8               MOVW    R25:R24, R17:R16
-    133              // передадим данные коррекции - банк0
-    134              for (uint8_t i = 0;
-   \   00000006   E3A0               LDI     R26, 48
-    135                      i < BOARD_LED_NUMBER;
-    136                      i++)
-    137              {
-    138                  CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+    133              CDm163::Reset();
+   \   00000006   ........           CALL    ??Reset
+    134          //    // передадим данные коррекции - банк0
+    135          //    for (uint8_t i = 0;
+    136          //            i < BOARD_LED_NUMBER;
+    137          //            i++)
+    138          //    {
+    139          //        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+    140          //    };
+    141          
+    142              for (uint8_t i = 0;
+   \   0000000A   E080               LDI     R24, 0
+   \   0000000C   E390               LDI     R25, 48
+    143                      i < BOARD_LED_NUMBER;
+    144                      i++)
+    145              {
+    146                  // Окно сигнализации активно?
+    147          //        if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
+    148                  if (pxAlarmWindowControl[i].GetActivityState())
    \                     ??Set_1:
-   \   00000008   ....               LDI     R16, LOW((??m_auiLedMap + 48))
-   \   0000000A   ....               LDI     R17, HIGH((??m_auiLedMap + 48))
-   \   0000000C   E020               LDI     R18, 0
-   \   0000000E   ........           CALL    ??SetCorrection
-    139              };
-   \   00000012   95AA               DEC     R26
-   \   00000014   F7C9               BRNE    ??Set_1
-    140          
-    141              for (uint8_t i = 0;
-   \   00000016   E0A0               LDI     R26, 0
-   \   00000018   E3B0               LDI     R27, 48
-    142                      i < BOARD_LED_NUMBER;
-    143                      i++)
-    144              {
-    145                  // Окно сигнализации активно?
-    146                  if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
-   \                     ??Set_2:
-   \   0000001A   2FEA               MOV     R30, R26
-   \   0000001C   E0F0               LDI     R31, 0
-   \   0000001E   ....               SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
-   \   00000020   ....               SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
-   \   00000022   9104               LPM     R16, Z
-   \   00000024   E010               LDI     R17, 0
-   \   00000026   E046               LDI     R20, 6
-   \   00000028   E050               LDI     R21, 0
-   \   0000002A   ........           CALL    ?S_EC_MUL_L02
-   \   0000002E   01FC               MOVW    R31:R30, R25:R24
-   \   00000030   0FE0               ADD     R30, R16
-   \   00000032   1FF1               ADC     R31, R17
-   \   00000034   8100               LD      R16, Z
-   \   00000036   2300               TST     R16
-   \   00000038   F089               BREQ    ??Set_3
-    147                  {
-    148                      switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
-   \   0000003A   8102               LDD     R16, Z+2
-   \   0000003C   950A               DEC     R16
-   \   0000003E   F029               BREQ    ??Set_4
-   \   00000040   950A               DEC     R16
-   \   00000042   F031               BREQ    ??Set_5
-   \   00000044   950A               DEC     R16
-   \   00000046   F039               BREQ    ??Set_6
-   \   00000048   C009               RJMP    ??Set_3
-    149                      {
-    150                      case INDICATION:
-    151                          CPss48BoardPixel::SetData(&m_xPixelColorGreen);
-   \                     ??Set_4:
-   \   0000004A   ....               LDI     R16, LOW((??m_auiLedMap + 57))
-   \   0000004C   ....               LDI     R17, HIGH((??m_auiLedMap + 57))
-   \   0000004E   C008               RJMP    ??Set_7
-    152                          break;
-    153          
-    154                      case PREVENTIVE:
-    155                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
-   \                     ??Set_5:
-   \   00000050   ....               LDI     R16, LOW((??m_auiLedMap + 60))
-   \   00000052   ....               LDI     R17, HIGH((??m_auiLedMap + 60))
-   \   00000054   C005               RJMP    ??Set_7
-    156                          break;
-    157          
-    158                      case EMERGENCY:
-    159                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
-   \                     ??Set_6:
-   \   00000056   ....               LDI     R16, LOW((??m_auiLedMap + 54))
-   \   00000058   ....               LDI     R17, HIGH((??m_auiLedMap + 54))
-   \   0000005A   C002               RJMP    ??Set_7
-    160                          break;
-    161          
-    162                      default:
-    163                          CPss48BoardPixel::SetData(&m_xPixelColorBlack);
-    164                          break;
-    165                      }
-    166          
-    167                  }
-    168                  else
-    169                  {
-    170                      CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+   \   0000000E   2F08               MOV     R16, R24
+   \   00000010   E010               LDI     R17, 0
+   \   00000012   E046               LDI     R20, 6
+   \   00000014   E050               LDI     R21, 0
+   \   00000016   ........           CALL    ?S_EC_MUL_L02
+   \   0000001A   0198               MOVW    R19:R18, R17:R16
+   \   0000001C   018D               MOVW    R17:R16, R27:R26
+   \   0000001E   0F02               ADD     R16, R18
+   \   00000020   1F13               ADC     R17, R19
+   \   00000022   01F8               MOVW    R31:R30, R17:R16
+   \   00000024   8120               LD      R18, Z
+   \   00000026   2322               TST     R18
+   \   00000028   F111               BREQ    ??Set_2
+    149                  {
+    150                  CPss21::m_aucRtuHoldingRegistersArray[i + 4] = i + 1;
+   \   0000002A   E022               LDI     R18, 2
+   \   0000002C   9F82               MUL     R24, R18
+   \   0000002E   ....               LDI     R18, LOW(??m_aucRtuHoldingRegistersArray)
+   \   00000030   ....               LDI     R19, (??m_aucRtuHoldingRegistersArray) >> 8
+   \   00000032   0D20               ADD     R18, R0
+   \   00000034   1D31               ADC     R19, R1
+   \   00000036   2F48               MOV     R20, R24
+   \   00000038   5F4F               SUBI    R20, 255
+   \   0000003A   4F5F               SBCI    R21, 255
+   \   0000003C   01F9               MOVW    R31:R30, R19:R18
+   \   0000003E   8740               STD     Z+8, R20
+   \   00000040   8751               STD     Z+9, R21
+    151                  CPss21::m_aucRtuHoldingRegistersArray[i + 1] = pxAlarmWindowControl[i].GetAlarmType();
+   \   00000042   01F8               MOVW    R31:R30, R17:R16
+   \   00000044   8142               LDD     R20, Z+2
+   \   00000046   E050               LDI     R21, 0
+   \   00000048   01F9               MOVW    R31:R30, R19:R18
+   \   0000004A   8342               STD     Z+2, R20
+   \   0000004C   8353               STD     Z+3, R21
+    152                      switch (pxAlarmWindowControl[i].GetAlarmType())
+   \   0000004E   01F8               MOVW    R31:R30, R17:R16
+   \   00000050   8102               LDD     R16, Z+2
+   \   00000052   950A               DEC     R16
+   \   00000054   F019               BREQ    ??Set_3
+   \   00000056   5002               SUBI    R16, 2
+   \   00000058   F021               BREQ    ??Set_4
+   \   0000005A   C006               RJMP    ??Set_5
+    153          //            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
+    154                      {
+    155                      case INDICATION:
+    156                          CPss48BoardPixel::SetData(&m_xPixelColorGreen);
    \                     ??Set_3:
-   \   0000005C   ....               LDI     R16, LOW((??m_auiLedMap + 51))
-   \   0000005E   ....               LDI     R17, HIGH((??m_auiLedMap + 51))
-   \                     ??Set_7:
-   \   00000060   E020               LDI     R18, 0
-   \   00000062   ........           CALL    ??SetData
-    171                  }
-    172              };
-   \   00000066   95A3               INC     R26
-   \   00000068   95BA               DEC     R27
-   \   0000006A   F6B9               BRNE    ??Set_2
-    173          }
-   \   0000006C   E0E4               LDI     R30, 4
-   \   0000006E   ........           JMP     ?EPILOGUE_B4_L09
-    174          
-    175          
-    176          //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
+   \   0000005C   ....               LDI     R16, LOW((??m_xPixelColorBlack + 6))
+   \   0000005E   ....               LDI     R17, HIGH((??m_xPixelColorBlack + 6))
+   \   00000060   C008               RJMP    ??Set_6
+    157                          break;
+    158          
+    159                      case PREVENTIVE:
+    160                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+    161                          break;
+    162          
+    163                      case EMERGENCY:
+    164                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
+   \                     ??Set_4:
+   \   00000062   ....               LDI     R16, LOW((??m_xPixelColorBlack + 3))
+   \   00000064   ....               LDI     R17, HIGH((??m_xPixelColorBlack + 3))
+   \   00000066   C005               RJMP    ??Set_6
+    165                          break;
+    166          
+    167                      default:
+    168          //                CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+    169                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+   \                     ??Set_5:
+   \   00000068   ....               LDI     R16, LOW((??m_xPixelColorBlack + 9))
+   \   0000006A   ....               LDI     R17, HIGH((??m_xPixelColorBlack + 9))
+   \   0000006C   C002               RJMP    ??Set_6
+    170                          break;
+    171                      }
+    172          
+    173                  }
+    174                  else
+    175                  {
+    176                      CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+   \                     ??Set_2:
+   \   0000006E   ....               LDI     R16, LOW(??m_xPixelColorBlack)
+   \   00000070   ....               LDI     R17, (??m_xPixelColorBlack) >> 8
+   \                     ??Set_6:
+   \   00000072   E020               LDI     R18, 0
+   \   00000074   ........           CALL    ??SetData
+    177                  }
+    178          
+    179          ////        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+    180          //            CPss48BoardPixel::SetData(&m_xPixelColorWhite);
+    181              };
+   \   00000078   9583               INC     R24
+   \   0000007A   959A               DEC     R25
+   \   0000007C   F641               BRNE    ??Set_1
+    182          
+    183          
+    184              CPins::SetPinLAT_B();
+   \   0000007E   91000062           LDS     R16, 98
+   \   00000082   6004               ORI     R16, 0x04
+   \   00000084   93000062           STS     98, R16
+    185              CDm163::PulseDelayLAT_B();
+   \   00000088   ........           CALL    ??PulseDelayLAT_B
+    186              CPins::ClearPinLAT_B();
+   \   0000008C   91000062           LDS     R16, 98
+   \   00000090   7F0B               ANDI    R16, 0xFB
+   \   00000092   93000062           STS     98, R16
+    187              CPins::ClearPinEN_B();
+   \   00000096   91000062           LDS     R16, 98
+   \   0000009A   7D0F               ANDI    R16, 0xDF
+   \   0000009C   93000062           STS     98, R16
+    188          
+    189          //    SET_PIN_DM163_CONTROL_LAT_B();
+    190          //    LAT_B_PULSE_DURATION_DELAY();
+    191          //    CLEAR_PIN_DM163_CONTROL_LAT_B();
+    192          //    CLEAR_PIN_DM163_CONTROL_EN_B();
+    193          }
+   \   000000A0   E0E4               LDI     R30, 4
+   \   000000A2   ........           JMP     ?EPILOGUE_B4_L09
+   \   000000A6                      REQUIRE _A_PORTF
+    194          
+    195          
+    196          //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
 
    Maximum stack usage in bytes:
 
    CSTACK RSTACK Function
    ------ ------ --------
+      0      2   CDm163::PulseDelayLAT_B()
       0      2   CLightBoard::Init(CAlarmWindow *)
         0      2   -> CDm163::Init()
       4      2   CLightBoard::Set(CAlarmWindow *)
-        4      2   -> CPss48BoardPixel::SetCorrection(TPixelColorData __farflash *)
+        4      2   -> CDm163::PulseDelayLAT_B()
+        4      2   -> CDm163::Reset()
         4      2   -> CPss48BoardPixel::SetData(TPixelColorData __farflash *)
         4      2 ?S_EC_MUL_L02
 
@@ -823,16 +874,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 
    Bytes  Function/Label
    -----  --------------
+       4  CDm163::PulseDelayLAT_B()
        4  CLightBoard::Init(CAlarmWindow *)
-     114  CLightBoard::Set(CAlarmWindow *)
+     166  CLightBoard::Set(CAlarmWindow *)
       64  CLightBoard::m_auiBoardLampsControl
-      63  CLightBoard::m_auiLedMap
-          CLightBoard::m_xPixelColorCorrectionData
-          CLightBoard::m_xPixelColorBlack
+      48  CLightBoard::m_auiLedMap
+      12  CLightBoard::m_xPixelColorBlack
           CLightBoard::m_xPixelColorRed
           CLightBoard::m_xPixelColorGreen
           CLightBoard::m_xPixelColorYellow
        3  CLightBoard::m_xPixelColorBlue
+       3  CLightBoard::m_xPixelColorCorrectionData
        3  CLightBoard::m_xPixelColorWhite
        1  _A_ACSR
        2  _A_ADC
@@ -930,12 +982,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 
  
  105 bytes in segment ABSOLUTE
- 118 bytes in segment CODE
+ 174 bytes in segment CODE
    7 bytes in segment INITTAB
   91 bytes in segment NEAR_F
   64 bytes in segment NEAR_Z
  
- 209 bytes of CODE memory (+   7 bytes shared)
+ 261 bytes of CODE memory (+  11 bytes shared)
   64 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

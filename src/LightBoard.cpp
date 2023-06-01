@@ -130,22 +130,27 @@ void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 //-----------------------------------------------------------------------------------------------------
 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 {
-    // передадим данные коррекции - банк0
-    for (uint8_t i = 0;
-            i < BOARD_LED_NUMBER;
-            i++)
-    {
-        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
-    };
+    CDm163::Reset();
+//    // передадим данные коррекции - банк0
+//    for (uint8_t i = 0;
+//            i < BOARD_LED_NUMBER;
+//            i++)
+//    {
+//        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+//    };
 
     for (uint8_t i = 0;
             i < BOARD_LED_NUMBER;
             i++)
     {
         // Окно сигнализации активно?
-        if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
+//        if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
+        if (pxAlarmWindowControl[i].GetActivityState())
         {
-            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
+        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = i + 1;
+        CPss21::m_aucRtuHoldingRegistersArray[i + 1] = pxAlarmWindowControl[i].GetAlarmType();
+            switch (pxAlarmWindowControl[i].GetAlarmType())
+//            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
             {
             case INDICATION:
                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
@@ -160,7 +165,8 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
                 break;
 
             default:
-                CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+//                CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+                CPss48BoardPixel::SetData(&m_xPixelColorYellow);
                 break;
             }
 
@@ -169,7 +175,21 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
         {
             CPss48BoardPixel::SetData(&m_xPixelColorBlack);
         }
+
+////        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+//            CPss48BoardPixel::SetData(&m_xPixelColorWhite);
     };
+
+
+    CPins::SetPinLAT_B();
+    CDm163::PulseDelayLAT_B();
+    CPins::ClearPinLAT_B();
+    CPins::ClearPinEN_B();
+
+//    SET_PIN_DM163_CONTROL_LAT_B();
+//    LAT_B_PULSE_DURATION_DELAY();
+//    CLEAR_PIN_DM163_CONTROL_LAT_B();
+//    CLEAR_PIN_DM163_CONTROL_EN_B();
 }
 
 

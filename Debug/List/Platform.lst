@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  07:56:24
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  15:39:52
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW408A.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW4135.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #        --cpu=m128a -ms -o
@@ -2783,35 +2783,29 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     896              SystemTickInit();
    \   00000000   ....               RCALL   ??SystemTickInit
     897              StatusLedSetPinOutput();
-   \   00000002   91000061           LDS     R16, 97
-   \   00000006   6800               ORI     R16, 0x80
-   \   00000008   93000061           STS     97, R16
+   \   00000002   9AD4               SBI     0x1A, 0x04
     898              TxLedSetPinOutput();
-   \   0000000C   91000061           LDS     R16, 97
-   \   00000010   6400               ORI     R16, 0x40
-   \   00000012   93000061           STS     97, R16
+   \   00000004   9AD3               SBI     0x1A, 0x03
     899              TxLedOff();
-   \   00000016   91000062           LDS     R16, 98
-   \   0000001A   6400               ORI     R16, 0x40
-   \   0000001C   93000062           STS     98, R16
+   \   00000006   9ADB               SBI     0x1B, 0x03
     900              KeyOneSetPinInput();
-   \   00000020   98A2               CBI     0x14, 0x02
+   \   00000008   98A2               CBI     0x14, 0x02
     901              KeyTwoSetPinInput();
-   \   00000022   98A1               CBI     0x14, 0x01
+   \   0000000A   98A1               CBI     0x14, 0x01
     902              KeyThreeSetPinInput();
-   \   00000024   98A0               CBI     0x14, 0x00
+   \   0000000C   98A0               CBI     0x14, 0x00
     903              ExternalKeySetPinInput();
-   \   00000026   91000064           LDS     R16, 100
-   \   0000002A   7F0E               ANDI    R16, 0xFE
-   \   0000002C   93000064           STS     100, R16
+   \   0000000E   91000064           LDS     R16, 100
+   \   00000012   7F0E               ANDI    R16, 0xFE
+   \   00000014   93000064           STS     100, R16
     904              CPlatform::InterruptEnable();
-   \   00000030   9478               SEI
+   \   00000018   9478               SEI
     905          }
-   \   00000032   9508               RET
-   \   00000034                      REQUIRE _A_DDRF
-   \   00000034                      REQUIRE _A_PORTF
-   \   00000034                      REQUIRE _A_DDRC
-   \   00000034                      REQUIRE _A_DDRG
+   \   0000001A   9508               RET
+   \   0000001C                      REQUIRE _A_DDRA
+   \   0000001C                      REQUIRE _A_PORTA
+   \   0000001C                      REQUIRE _A_DDRC
+   \   0000001C                      REQUIRE _A_DDRG
     906          
     907          // Сирена
     908          ////-----------------------------------------------------------------------------------------------------
@@ -3359,7 +3353,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
       52  CPlatform::BuzzerTimerFrequencySet(uint16_t)
       18  CPlatform::BuzzerTimerStop()
        0  CPlatform::CPlatform()
-      52  CPlatform::Init()
+      28  CPlatform::Init()
       16  CPlatform::SystemTickInit()
        2  CPlatform::m_pxUart1
        2  CPlatform::m_uiSystemTick
@@ -3504,13 +3498,13 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
 
  
    105 bytes in segment ABSOLUTE
- 1 722 bytes in segment CODE
+ 1 698 bytes in segment CODE
      7 bytes in segment INITTAB
     20 bytes in segment INTVEC
    734 bytes in segment NEAR_F
     14 bytes in segment NEAR_Z
  
- 2 448 bytes of CODE memory (+  35 bytes shared)
+ 2 424 bytes of CODE memory (+  35 bytes shared)
     14 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

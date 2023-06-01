@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  07:56:24
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  15:39:50
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW3E14.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW36B5.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #        --cpu=m128a -ms -o
@@ -573,11 +573,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
      16          
      17          }
    \   0000004A   018C               MOVW    R17:R16, R25:R24
-   \   0000004C                      REQUIRE ?Subroutine41
-   \   0000004C                      ;               // Fall through to label ?Subroutine41
+   \   0000004C                      REQUIRE ?Subroutine40
+   \   0000004C                      ;               // Fall through to label ?Subroutine40
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine41:
+   \                     ?Subroutine40:
    \   00000000   E0E6               LDI     R30, 6
    \   00000002   ........           JMP     ?EPILOGUE_B6_L09
      18          
@@ -773,7 +773,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000000AC   8913               LDD     R17, Z+19
    \   000000AE   ....               RCALL   ?Subroutine5
      80              memset(m_puiDiscreteInputs, 0, m_uiDiscreteInputsNumber * sizeof(uint8_t));
-   \                     ??CrossCallReturnLabel_50:
+   \                     ??CrossCallReturnLabel_48:
    \   000000B0   8D44               LDD     R20, Z+28
    \   000000B2   8D55               LDD     R21, Z+29
    \   000000B4   ....               RCALL   ??Subroutine54_0
@@ -782,7 +782,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000000B8   8915               LDD     R17, Z+21
    \   000000BA   ....               RCALL   ?Subroutine5
      81              memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
-   \                     ??CrossCallReturnLabel_51:
+   \                     ??CrossCallReturnLabel_49:
    \   000000BC   8D46               LDD     R20, Z+30
    \   000000BE   8D57               LDD     R21, Z+31
    \   000000C0   ....               RCALL   ?Subroutine12
@@ -791,7 +791,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000000C4   8917               LDD     R17, Z+23
    \   000000C6   ....               RCALL   ?Subroutine5
      82              memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
-   \                     ??CrossCallReturnLabel_52:
+   \                     ??CrossCallReturnLabel_50:
    \   000000C8   A140               LDD     R20, Z+32
    \   000000CA   A151               LDD     R21, Z+33
    \   000000CC   ....               RCALL   ?Subroutine12
@@ -836,11 +836,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \                     ?Subroutine5:
    \   00000000   ........           CALL    memset
    \   00000004   01FC               MOVW    R31:R30, R25:R24
-   \   00000006                      REQUIRE ?Subroutine44
-   \   00000006                      ;               // Fall through to label ?Subroutine44
+   \   00000006                      REQUIRE ?Subroutine43
+   \   00000006                      ;               // Fall through to label ?Subroutine43
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine44:
+   \                     ?Subroutine43:
    \   00000000   8505               LDD     R16, Z+13
    \   00000002   85F6               LDD     R31, Z+14
    \   00000004   2FE0               MOV     R30, R16
@@ -855,12 +855,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
      95              m_pxDevice -> Reset();
    \   00000000   ....               RCALL   ?Subroutine2
    \                     ??CrossCallReturnLabel_0:
-   \   00000002                      REQUIRE ?Subroutine50
-   \   00000002                      ;               // Fall through to label ?Subroutine50
+   \   00000002                      REQUIRE ?Subroutine49
+   \   00000002                      ;               // Fall through to label ?Subroutine49
      96          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine50:
+   \                     ?Subroutine49:
    \   00000000   ........           JMP     ??Reset_1
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -915,12 +915,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     119              m_pxDevice -> Disable();
    \   00000000   ....               RCALL   ?Subroutine2
    \                     ??CrossCallReturnLabel_4:
-   \   00000002                      REQUIRE ?Subroutine51
-   \   00000002                      ;               // Fall through to label ?Subroutine51
+   \   00000002                      REQUIRE ?Subroutine50
+   \   00000002                      ;               // Fall through to label ?Subroutine50
     120          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine51:
+   \                     ?Subroutine50:
    \   00000000   ........           JMP     ??Disable
     121          
     122          //-----------------------------------------------------------------------------------------------------
@@ -932,12 +932,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     125              m_pxDevice -> TransmitEnable();
    \   00000000   ....               RCALL   ?Subroutine2
    \                     ??CrossCallReturnLabel_5:
-   \   00000002                      REQUIRE ?Subroutine52
-   \   00000002                      ;               // Fall through to label ?Subroutine52
+   \   00000002                      REQUIRE ?Subroutine51
+   \   00000002                      ;               // Fall through to label ?Subroutine51
     126          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine52:
+   \                     ?Subroutine51:
    \   00000000   ........           JMP     ??TransmitEnable_1
     127          
     128          //-----------------------------------------------------------------------------------------------------
@@ -949,8 +949,13 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     131              m_pxDevice -> TransmitDisable();
    \   00000000   ....               RCALL   ?Subroutine2
    \                     ??CrossCallReturnLabel_6:
-   \   00000002   ........           JMP     ??TransmitDisable_1
+   \   00000002                      REQUIRE ?Subroutine52
+   \   00000002                      ;               // Fall through to label ?Subroutine52
     132          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine52:
+   \   00000000   ........           JMP     ??TransmitDisable_1
     133          
     134          //-----------------------------------------------------------------------------------------------------
 
@@ -965,9 +970,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     137              uint16_t uiCrc = usCrc16(puiMessage, uiLength);
    \   00000006   019A               MOVW    R19:R18, R21:R20
    \   00000008   018D               MOVW    R17:R16, R27:R26
-   \   0000000A   ....               RCALL   ?Subroutine33
+   \   0000000A   ....               RCALL   ?Subroutine32
     138              puiMessage[uiLength++] = uiCrc & 0x00FF;
-   \                     ??CrossCallReturnLabel_37:
+   \                     ??CrossCallReturnLabel_35:
    \   0000000C   01FD               MOVW    R31:R30, R27:R26
    \   0000000E   0FE8               ADD     R30, R24
    \   00000010   1FF9               ADC     R31, R25
@@ -994,7 +999,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000000   ........           JMP     ?PROLOGUE4_L09
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine33:
+   \                     ?Subroutine32:
    \   00000000   ........           JMP     ??usCrc16
     143          
     144          /* Builds a RTU request header */
@@ -1034,7 +1039,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     161          /* Builds a RTU response header */
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine46:
+   \                     ?Subroutine45:
    \   00000000   E010               LDI     R17, 0
    \   00000002   9508               RET
 
@@ -1052,7 +1057,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     168          
     169              return _MODBUS_RTU_PRESET_RSP_LENGTH;
    \   00000006   E002               LDI     R16, 2
-   \   00000008   ....               RJMP    ?Subroutine46
+   \   00000008   ....               RJMP    ?Subroutine45
     170          }
     171          
     172          //-----------------------------------------------------------------------------------------------------
@@ -1077,11 +1082,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     181              return m_pxDevice -> FrameIsSended();
    \                     ??CrossCallReturnLabel_17:
    \   00000002   969B               ADIW    R27:R26, 43
-   \   00000004                      REQUIRE ?Subroutine45
-   \   00000004                      ;               // Fall through to label ?Subroutine45
+   \   00000004                      REQUIRE ?Subroutine44
+   \   00000004                      ;               // Fall through to label ?Subroutine44
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine45:
+   \                     ?Subroutine44:
    \   00000000   910C               LD      R16, X
    \   00000002                      REQUIRE ??Subroutine55_0
    \   00000002                      ;               // Fall through to label ??Subroutine55_0
@@ -1110,7 +1115,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     187              return m_pxDevice -> ByteIsReceived();
    \                     ??CrossCallReturnLabel_18:
    \   00000002   969A               ADIW    R27:R26, 42
-   \   00000004   ....               RJMP    ?Subroutine45
+   \   00000004   ....               RJMP    ?Subroutine44
     188          }
     189          
     190          //-----------------------------------------------------------------------------------------------------
@@ -1135,7 +1140,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     199              if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
     200                      m_uiGuardTimeout)
    \   00000002   ....               RCALL   ?Subroutine10
-   \                     ??CrossCallReturnLabel_42:
+   \                     ??CrossCallReturnLabel_40:
    \   00000004   914D               LD      R20, X+
    \   00000006   915C               LD      R21, X
    \   00000008   1B24               SUB     R18, R20
@@ -1144,8 +1149,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000000E   8512               LDD     R17, Z+10
    \   00000010   1720               CP      R18, R16
    \   00000012   0731               CPC     R19, R17
-   \   00000014                      REQUIRE ?Subroutine42
-   \   00000014                      ;               // Fall through to label ?Subroutine42
+   \   00000014                      REQUIRE ?Subroutine41
+   \   00000014                      ;               // Fall through to label ?Subroutine41
     201              {
     202                  return 1;
     203              }
@@ -1156,25 +1161,25 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     208          };
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine42:
-   \   00000000   F010               BRCS    ??Subroutine42_0
+   \                     ?Subroutine41:
+   \   00000000   F010               BRCS    ??Subroutine41_0
    \   00000002   E001               LDI     R16, 1
-   \   00000004   C001               RJMP    ??Subroutine42_1
-   \                     ??Subroutine42_0:
+   \   00000004   C001               RJMP    ??Subroutine41_1
+   \                     ??Subroutine41_0:
    \   00000006   E000               LDI     R16, 0
-   \                     ??Subroutine42_1:
+   \                     ??Subroutine41_1:
    \   00000008   01DB               MOVW    R27:R26, R23:R22
    \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine10:
-   \   00000000   ....               RCALL   ?Subroutine34
-   \                     ??CrossCallReturnLabel_39:
-   \   00000002                      REQUIRE ?Subroutine39
-   \   00000002                      ;               // Fall through to label ?Subroutine39
+   \   00000000   ....               RCALL   ?Subroutine33
+   \                     ??CrossCallReturnLabel_37:
+   \   00000002                      REQUIRE ?Subroutine38
+   \   00000002                      ;               // Fall through to label ?Subroutine38
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine39:
+   \                     ?Subroutine38:
    \   00000000   01F8               MOVW    R31:R30, R17:R16
    \   00000002   85A5               LDD     R26, Z+13
    \   00000004   85B6               LDD     R27, Z+14
@@ -1182,7 +1187,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000008   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine34:
+   \                     ?Subroutine33:
    \   00000000   ....               LDI     R30, LOW(??m_uiSystemTick)
    \   00000002   ....               LDI     R31, (??m_uiSystemTick) >> 8
    \   00000004   8120               LD      R18, Z
@@ -1201,46 +1206,46 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \                     ??CrossCallReturnLabel_11:
    \   00000002   3928               CPI     R18, 152
    \   00000004   433A               SBCI    R19, 58
-   \   00000006                      REQUIRE ?Subroutine43
-   \   00000006                      ;               // Fall through to label ?Subroutine43
+   \   00000006                      REQUIRE ?Subroutine42
+   \   00000006                      ;               // Fall through to label ?Subroutine42
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine43:
-   \   00000000   F010               BRCS    ??Subroutine43_1
+   \                     ?Subroutine42:
+   \   00000000   F010               BRCS    ??Subroutine42_1
     215              {
     216                  return 1;
    \   00000002   E001               LDI     R16, 1
-   \   00000004   C001               RJMP    ??Subroutine43_0
+   \   00000004   C001               RJMP    ??Subroutine42_0
     217              }
     218              else
     219              {
     220                  return 0;
-   \                     ??Subroutine43_1:
+   \                     ??Subroutine42_1:
    \   00000006   E000               LDI     R16, 0
-   \                     ??Subroutine43_0:
+   \                     ??Subroutine42_0:
    \   00000008   01DA               MOVW    R27:R26, R21:R20
    \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine4:
    \   00000000   01AD               MOVW    R21:R20, R27:R26
-   \   00000002   ....               RCALL   ?Subroutine34
-   \                     ??CrossCallReturnLabel_38:
-   \   00000004   ....               RCALL   ?Subroutine28
-   \                     ??CrossCallReturnLabel_48:
+   \   00000002   ....               RCALL   ?Subroutine33
+   \                     ??CrossCallReturnLabel_36:
+   \   00000004   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_46:
    \   00000006   1B20               SUB     R18, R16
    \   00000008   0B31               SBC     R19, R17
    \   0000000A   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine28:
-   \   00000000   ....               RCALL   ?Subroutine39
-   \                     ??CrossCallReturnLabel_43:
-   \   00000002                      REQUIRE ?Subroutine40
-   \   00000002                      ;               // Fall through to label ?Subroutine40
+   \                     ?Subroutine27:
+   \   00000000   ....               RCALL   ?Subroutine38
+   \                     ??CrossCallReturnLabel_41:
+   \   00000002                      REQUIRE ?Subroutine39
+   \   00000002                      ;               // Fall through to label ?Subroutine39
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine40:
+   \                     ?Subroutine39:
    \   00000000   910D               LD      R16, X+
    \   00000002   911C               LD      R17, X
    \   00000004   9508               RET
@@ -1259,7 +1264,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \                     ??CrossCallReturnLabel_12:
    \   00000002   3E28               CPI     R18, 232
    \   00000004   4033               SBCI    R19, 3
-   \   00000006   ....               RJMP    ?Subroutine43
+   \   00000006   ....               RJMP    ?Subroutine42
     229              {
     230                  return 1;
     231              }
@@ -1283,8 +1288,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000004   ....               LDI     R31, (??m_uiSystemTick) >> 8
    \   00000006   8180               LD      R24, Z
    \   00000008   8191               LDD     R25, Z+1
-   \   0000000A   ....               RCALL   ?Subroutine28
-   \                     ??CrossCallReturnLabel_46:
+   \   0000000A   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_44:
    \   0000000C   1B80               SUB     R24, R16
    \   0000000E   0B91               SBC     R25, R17
    \   00000010   9705               SBIW    R25:R24, 5
@@ -1317,13 +1322,13 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000004   ....               LDI     R31, (??m_uiSystemTick) >> 8
    \   00000006   8140               LD      R20, Z
    \   00000008   8151               LDD     R21, Z+1
-   \   0000000A   ....               RCALL   ?Subroutine28
-   \                     ??CrossCallReturnLabel_47:
+   \   0000000A   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_45:
    \   0000000C   1B40               SUB     R20, R16
    \   0000000E   0B51               SBC     R21, R17
    \   00000010   1742               CP      R20, R18
    \   00000012   0753               CPC     R21, R19
-   \   00000014   ....               RJMP    ?Subroutine42
+   \   00000014   ....               RJMP    ?Subroutine41
     257              {
     258                  return 1;
     259              }
@@ -1343,8 +1348,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     269              return m_pxDevice -> GetFrameLength();
    \                     ??CrossCallReturnLabel_19:
    \   00000002   9658               ADIW    R27:R26, 24
-   \   00000004   ....               RCALL   ?Subroutine40
-   \                     ??CrossCallReturnLabel_44:
+   \   00000004   ....               RCALL   ?Subroutine39
+   \                     ??CrossCallReturnLabel_42:
    \   00000006   ....               RJMP    ??Subroutine55_0
     270          }
     271          
@@ -1361,7 +1366,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000004   932D               ST      X+, R18
    \   00000006   933C               ST      X, R19
     276          }
-   \   00000008   ....               RJMP    ??Subroutine43_0
+   \   00000008   ....               RJMP    ??Subroutine42_0
     277          
     278          //-----------------------------------------------------------------------------------------------------
 
@@ -1372,16 +1377,16 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000000   ....               RCALL   ?Subroutine17
    \                     ??CrossCallReturnLabel_25:
    \   00000002   01D8               MOVW    R27:R26, R17:R16
-   \   00000004   ....               RCALL   ?Subroutine36
-   \                     ??CrossCallReturnLabel_81:
+   \   00000004   ....               RCALL   ?Subroutine35
+   \                     ??CrossCallReturnLabel_79:
    \   00000006   8D20               LDD     R18, Z+24
    \   00000008   8D31               LDD     R19, Z+25
    \   0000000A   3024               CPI     R18, 4
    \   0000000C   E000               LDI     R16, 0
    \   0000000E   0730               CPC     R19, R16
    \   00000010   F088               BRCS    ??FrameCheck_2
-   \   00000012   ....               RCALL   ?Subroutine29
-   \                     ??CrossCallReturnLabel_53:
+   \   00000012   ....               RCALL   ?Subroutine28
+   \                     ??CrossCallReturnLabel_51:
    \   00000014   8506               LDD     R16, Z+14
    \   00000016   8517               LDD     R17, Z+15
    \   00000018   01F8               MOVW    R31:R30, R17:R16
@@ -1402,8 +1407,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     290                          (m_pxDevice -> GetFrameLength() - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
    \   00000024   5022               SUBI    R18, 2
    \   00000026   4030               SBCI    R19, 0
-   \   00000028   ....               RCALL   ?Subroutine33
-   \                     ??CrossCallReturnLabel_36:
+   \   00000028   ....               RCALL   ?Subroutine32
+   \                     ??CrossCallReturnLabel_34:
    \   0000002A   1708               CP      R16, R24
    \   0000002C   0719               CPC     R17, R25
    \   0000002E   F411               BRNE    ??FrameCheck_2
@@ -1424,21 +1429,21 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     298          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine36:
+   \                     ?Subroutine35:
    \   00000000   91ED               LD      R30, X+
    \   00000002   91FC               LD      R31, X
-   \   00000004                      REQUIRE ?Subroutine49
-   \   00000004                      ;               // Fall through to label ?Subroutine49
+   \   00000004                      REQUIRE ?Subroutine48
+   \   00000004                      ;               // Fall through to label ?Subroutine48
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine49:
+   \                     ?Subroutine48:
    \   00000000   9711               SBIW    R27:R26, 1
    \   00000002   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine29:
+   \                     ?Subroutine28:
    \   00000000   01FD               MOVW    R31:R30, R27:R26
-   \   00000002   ....               RJMP    ?Subroutine44
+   \   00000002   ....               RJMP    ?Subroutine43
     299          
     300          //-----------------------------------------------------------------------------------------------------
 
@@ -1476,10 +1481,10 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000022   ....               RCALL   ?Subroutine11
     312              if (usCrc16(puiSource,
     313                          (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
-   \                     ??CrossCallReturnLabel_34:
+   \                     ??CrossCallReturnLabel_32:
    \   00000024   0192               MOVW    R19:R18, R5:R4
    \   00000026   ....               RCALL   ?Subroutine11
-   \                     ??CrossCallReturnLabel_35:
+   \                     ??CrossCallReturnLabel_33:
    \   00000028   170A               CP      R16, R26
    \   0000002A   071B               CPC     R17, R27
    \   0000002C   F411               BRNE    ??FrameCheck_4
@@ -1495,19 +1500,19 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000032   E000               LDI     R16, 0
     320              }
    \                     ??FrameCheck_5:
-   \   00000034   ....               RJMP    ?Subroutine41
+   \   00000034   ....               RJMP    ?Subroutine40
     321          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine11:
    \   00000000   018C               MOVW    R17:R16, R25:R24
-   \   00000002                      REQUIRE ?Subroutine33
-   \   00000002                      ;               // Fall through to label ?Subroutine33
+   \   00000002                      REQUIRE ?Subroutine32
+   \   00000002                      ;               // Fall through to label ?Subroutine32
     322          
     323          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine47:
+   \                     ?Subroutine46:
    \   00000000   4010               SBCI    R17, 0
    \   00000002   9508               RET
 
@@ -1539,9 +1544,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     334                  GetSystemTime();
    \                     ??Fsm_1:
    \   0000001A   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_108:
+   \                     ??CrossCallReturnLabel_104:
    \   0000001C   E003               LDI     R16, 3
-   \   0000001E   C0A7               RJMP    ??Fsm_2
+   \   0000001E   C0A1               RJMP    ??Fsm_2
     335                  Reset();
     336                  m_uiMessageLength = 0;
     337          //        Open();
@@ -1553,14 +1558,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     343                  if (Select())
    \                     ??Fsm_3:
    \   00000020   ....               RCALL   ?Subroutine22
-   \                     ??CrossCallReturnLabel_71:
+   \                     ??CrossCallReturnLabel_69:
    \   00000022   F059               BREQ    ??Fsm_4
     344                  {
     345                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   00000024   ....               RCALL   ?Subroutine0
     346          
     347                      if (iReceivedCounter > 0)
-   \                     ??CrossCallReturnLabel_55:
+   \                     ??CrossCallReturnLabel_53:
    \   00000026   F024               BRLT    ??Fsm_5
     348                      {
     349                          m_uiMessageLength += iReceivedCounter;
@@ -1568,9 +1573,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     350                          GetSystemTime();
     351                          SetFsmState(RECEIVE_MESSAGE_REQUEST);
    \                     ??CrossCallReturnLabel_9:
-   \   0000002A   ....               RCALL   ?Subroutine37
+   \   0000002A   ....               RCALL   ?Subroutine36
     352                      }
-   \                     ??CrossCallReturnLabel_101:
+   \                     ??CrossCallReturnLabel_97:
    \   0000002C   E004               LDI     R16, 4
    \   0000002E   C004               RJMP    ??Fsm_6
     353                      else if (iReceivedCounter == -1)
@@ -1579,8 +1584,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000032   F419               BRNE    ??Fsm_4
     354                      {
     355                          SetFsmState(START_REQUEST);
-   \   00000034   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_102:
+   \   00000034   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_98:
    \   00000036   E002               LDI     R16, 2
    \                     ??Fsm_6:
    \   00000038   8300               ST      Z, R16
@@ -1591,67 +1596,67 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \                     ??Fsm_4:
    \   0000003A   E928               LDI     R18, 152
    \   0000003C   E33A               LDI     R19, 58
-   \   0000003E   ....               RCALL   ?Subroutine30
-   \                     ??CrossCallReturnLabel_66:
+   \   0000003E   ....               RCALL   ?Subroutine29
+   \                     ??CrossCallReturnLabel_64:
    \   00000040   F409               BRNE    $+2+2
-   \   00000042   C096               RJMP    ??Fsm_7
+   \   00000042   C090               RJMP    ??Fsm_7
     360                  {
     361                      SetFsmState(START_REQUEST);
-   \   00000044   C03B               RJMP    ??CrossCallReturnLabel_96
+   \   00000044   C038               RJMP    ??Fsm_8
     362                  }
     363          
     364                  break;
     365          
     366              case RECEIVE_MESSAGE_REQUEST:
     367                  if (Select())
-   \                     ??Fsm_8:
+   \                     ??Fsm_9:
    \   00000046   ....               RCALL   ?Subroutine22
-   \                     ??CrossCallReturnLabel_72:
-   \   00000048   F049               BREQ    ??Fsm_9
+   \                     ??CrossCallReturnLabel_70:
+   \   00000048   F049               BREQ    ??Fsm_10
     368                  {
     369                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   0000004A   ....               RCALL   ?Subroutine0
     370          
     371                      if (iReceivedCounter > 0)
-   \                     ??CrossCallReturnLabel_56:
-   \   0000004C   F014               BRLT    ??Fsm_10
+   \                     ??CrossCallReturnLabel_54:
+   \   0000004C   F014               BRLT    ??Fsm_11
     372                      {
     373                          m_uiMessageLength += iReceivedCounter;
    \   0000004E   ....               RCALL   ?Subroutine3
     374                          GetSystemTime();
     375                      }
    \                     ??CrossCallReturnLabel_10:
-   \   00000050   C005               RJMP    ??Fsm_9
+   \   00000050   C005               RJMP    ??Fsm_10
     376                      else if (iReceivedCounter == -1)
-   \                     ??Fsm_10:
+   \                     ??Fsm_11:
    \   00000052   9601               ADIW    R25:R24, 1
-   \   00000054   F419               BRNE    ??Fsm_9
+   \   00000054   F419               BRNE    ??Fsm_10
     377                      {
     378                          SetFsmState(START_REQUEST);
-   \   00000056   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_103:
+   \   00000056   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_99:
    \   00000058   E002               LDI     R16, 2
    \   0000005A   8300               ST      Z, R16
     379                      }
     380                  }
     381          
     382                  if (TimeIsOver(m_uiGuardTimeout))
-   \                     ??Fsm_9:
+   \                     ??Fsm_10:
    \   0000005C   ....               RCALL   ?Subroutine7
    \                     ??CrossCallReturnLabel_15:
    \   0000005E   F409               BRNE    $+2+2
-   \   00000060   C087               RJMP    ??Fsm_7
+   \   00000060   C081               RJMP    ??Fsm_7
     383                  {
     384                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
    \   00000062   ....               RCALL   ?Subroutine19
-   \                     ??CrossCallReturnLabel_69:
-   \   00000064   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_110:
-   \   00000066   F159               BREQ    ??CrossCallReturnLabel_114
+   \                     ??CrossCallReturnLabel_67:
+   \   00000064   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_106:
+   \   00000066   F141               BREQ    ??CrossCallReturnLabel_110
     385                      {
     386                          SetFsmState(REPLY_REQUEST);
    \   00000068   E005               LDI     R16, 5
-   \   0000006A   C081               RJMP    ??Fsm_2
+   \   0000006A   C07B               RJMP    ??Fsm_2
     387                      }
     388                      else
     389                      {
@@ -1663,29 +1668,27 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     395          
     396              case REPLY_REQUEST:
     397                  if (Reply(m_puiRxBuffer, m_puiTxBuffer, m_uiMessageLength))
-   \                     ??Fsm_11:
+   \                     ??Fsm_12:
    \   0000006C   01FC               MOVW    R31:R30, R25:R24
    \   0000006E   8564               LDD     R22, Z+12
    \   00000070   8575               LDD     R23, Z+13
    \   00000072   8940               LDD     R20, Z+16
    \   00000074   8951               LDD     R21, Z+17
-   \   00000076   ....               RCALL   ??Subroutine59_0
-   \                     ??CrossCallReturnLabel_122:
+   \   00000076   ....               RCALL   ??Subroutine58_0
+   \                     ??CrossCallReturnLabel_118:
    \   00000078   018C               MOVW    R17:R16, R25:R24
    \   0000007A   ........           CALL    ??Reply
    \   0000007E   2B01               OR      R16, R17
-   \   00000080   91000062           LDS     R16, 98
-   \   00000084   F0C9               BREQ    ??CrossCallReturnLabel_27
+   \   00000080   F0C9               BREQ    ??CrossCallReturnLabel_89
     398                  {
     399                      CPlatform::TxLedOn();
-   \   00000086   ....               RCALL   ?Subroutine27
+   \   00000082   98DB               CBI     0x1B, 0x03
     400                      SetFsmState(FRAME_TRANSMIT_CONFIRMATION);
-   \                     ??CrossCallReturnLabel_98:
-   \   00000088   ....               RCALL   ??Subroutine58_0
+   \   00000084   ....               RCALL   ??Subroutine57_0
     401                  }
-   \                     ??CrossCallReturnLabel_111:
-   \   0000008A   E006               LDI     R16, 6
-   \   0000008C   C070               RJMP    ??Fsm_2
+   \                     ??CrossCallReturnLabel_107:
+   \   00000086   E006               LDI     R16, 6
+   \   00000088   C06C               RJMP    ??Fsm_2
     402                  else
     403                  {
     404                      CPlatform::TxLedOff();
@@ -1695,67 +1698,66 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     408          
     409              case FRAME_TRANSMIT_CONFIRMATION:
     410                  GetSystemTime();
-   \                     ??Fsm_12:
-   \   0000008E   ....               RCALL   ?Subroutine16
+   \                     ??Fsm_13:
+   \   0000008A   ....               RCALL   ?Subroutine16
     411                  Reset();
     412                  ReceiveDisable();
-   \                     ??CrossCallReturnLabel_85:
-   \   00000090   ....               RCALL   ?Subroutine20
+   \                     ??CrossCallReturnLabel_83:
+   \   0000008C   ....               RCALL   ?Subroutine20
     413                  SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
-   \                     ??CrossCallReturnLabel_87:
-   \   00000092   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_112:
-   \   00000094   E007               LDI     R16, 7
-   \   00000096   C06B               RJMP    ??Fsm_2
+   \                     ??CrossCallReturnLabel_85:
+   \   0000008E   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_108:
+   \   00000090   E007               LDI     R16, 7
+   \   00000092   C067               RJMP    ??Fsm_2
     414                  break;
     415          
     416              case WAITING_FRAME_TRANSMIT_CONFIRMATION:
     417                  if (TimeIsOver(m_uiTransmitDelayTimeout))
-   \                     ??Fsm_13:
-   \   00000098   ....               RCALL   ?Subroutine14
-   \                     ??CrossCallReturnLabel_68:
-   \   0000009A   F409               BRNE    $+2+2
-   \   0000009C   C069               RJMP    ??Fsm_7
+   \                     ??Fsm_14:
+   \   00000094   ....               RCALL   ?Subroutine14
+   \                     ??CrossCallReturnLabel_66:
+   \   00000096   F409               BRNE    $+2+2
+   \   00000098   C065               RJMP    ??Fsm_7
     418                  {
     419                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
-   \   0000009E   01FD               MOVW    R31:R30, R27:R26
-   \   000000A0   8505               LDD     R16, Z+13
-   \   000000A2   8516               LDD     R17, Z+14
-   \   000000A4   01F8               MOVW    R31:R30, R17:R16
-   \   000000A6   ....               RCALL   ?Subroutine26
-   \                     ??CrossCallReturnLabel_29:
-   \   000000A8   ....               RCALL   ?Subroutine21
+   \   0000009A   01FD               MOVW    R31:R30, R27:R26
+   \   0000009C   8505               LDD     R16, Z+13
+   \   0000009E   8516               LDD     R17, Z+14
+   \   000000A0   01F8               MOVW    R31:R30, R17:R16
+   \   000000A2   ....               RCALL   ?Subroutine25
+   \                     ??CrossCallReturnLabel_27:
+   \   000000A4   ....               RCALL   ?Subroutine21
     420                      TransmitEnable();
     421                      SetFsmState(END_WAITING_FRAME_TRANSMIT_CONFIRMATION);
-   \                     ??CrossCallReturnLabel_89:
-   \   000000AA   ....               RCALL   ??Subroutine58_0
+   \                     ??CrossCallReturnLabel_87:
+   \   000000A6   ....               RCALL   ??Subroutine57_0
     422                  }
-   \                     ??CrossCallReturnLabel_113:
-   \   000000AC   E008               LDI     R16, 8
-   \   000000AE   C05F               RJMP    ??Fsm_2
+   \                     ??CrossCallReturnLabel_109:
+   \   000000A8   E008               LDI     R16, 8
+   \   000000AA   C05B               RJMP    ??Fsm_2
     423                  break;
     424          
     425              case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
     426                  if (MessageIsSended())
-   \                     ??Fsm_14:
-   \   000000B0   ....               RCALL   ?Subroutine24
-   \                     ??CrossCallReturnLabel_75:
-   \   000000B2   F409               BRNE    $+2+2
-   \   000000B4   C05D               RJMP    ??Fsm_7
+   \                     ??Fsm_15:
+   \   000000AC   ....               RCALL   ?Subroutine24
+   \                     ??CrossCallReturnLabel_73:
+   \   000000AE   F409               BRNE    $+2+2
+   \   000000B0   C059               RJMP    ??Fsm_7
     427                  {
     428                      TransmitDisable();
-   \   000000B6   ....               RCALL   ?Subroutine25
-   \                     ??CrossCallReturnLabel_27:
-   \   000000B8   6400               ORI     R16, 0x40
-   \   000000BA   ....               RCALL   ??Subroutine56_0
+   \   000000B2   ....               RCALL   ?Subroutine26
     429                      CPlatform::TxLedOff();
+   \                     ??CrossCallReturnLabel_89:
+   \   000000B4   9ADB               SBI     0x1B, 0x03
     430                      SetFsmState(START_REQUEST);
-   \                     ??CrossCallReturnLabel_96:
-   \   000000BC   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_114:
-   \   000000BE   E002               LDI     R16, 2
-   \   000000C0   C056               RJMP    ??Fsm_2
     431                  }
+   \                     ??Fsm_8:
+   \   000000B6   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_110:
+   \   000000B8   E002               LDI     R16, 2
+   \   000000BA   C053               RJMP    ??Fsm_2
     432          
     433                  break;
     434          
@@ -1769,11 +1771,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     442          // ModbusMaster
     443              case START_CONFIRMATION:
     444                  GetSystemTime();
-   \                     ??Fsm_15:
-   \   000000C2   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_109:
-   \   000000C4   E00B               LDI     R16, 11
-   \   000000C6   C053               RJMP    ??Fsm_2
+   \                     ??Fsm_16:
+   \   000000BC   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_105:
+   \   000000BE   E00B               LDI     R16, 11
+   \   000000C0   C050               RJMP    ??Fsm_2
     445                  Reset();
     446                  m_uiMessageLength = 0;
     447          //        Open();
@@ -1783,120 +1785,120 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     451          
     452              case WAITING_MESSAGE_CONFIRMATION:
     453                  if (Select())
-   \                     ??Fsm_16:
-   \   000000C8   ....               RCALL   ?Subroutine22
-   \                     ??CrossCallReturnLabel_73:
-   \   000000CA   F081               BREQ    ??Fsm_17
+   \                     ??Fsm_17:
+   \   000000C2   ....               RCALL   ?Subroutine22
+   \                     ??CrossCallReturnLabel_71:
+   \   000000C4   F081               BREQ    ??Fsm_18
     454                  {
     455                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
-   \   000000CC   ....               RCALL   ?Subroutine0
+   \   000000C6   ....               RCALL   ?Subroutine0
     456          
     457                      if (iReceivedCounter > 0)
-   \                     ??CrossCallReturnLabel_57:
-   \   000000CE   F04C               BRLT    ??Fsm_18
+   \                     ??CrossCallReturnLabel_55:
+   \   000000C8   F04C               BRLT    ??Fsm_19
     458                      {
     459                          GetSystemTime();
-   \   000000D0   ....               RCALL   ?Subroutine6
+   \   000000CA   ....               RCALL   ?Subroutine6
    \                     ??CrossCallReturnLabel_14:
-   \   000000D2   8524               LDD     R18, Z+12
-   \   000000D4   8535               LDD     R19, Z+13
-   \   000000D6   0F28               ADD     R18, R24
-   \   000000D8   1F39               ADC     R19, R25
-   \   000000DA   8724               STD     Z+12, R18
-   \   000000DC   8735               STD     Z+13, R19
+   \   000000CC   8524               LDD     R18, Z+12
+   \   000000CE   8535               LDD     R19, Z+13
+   \   000000D0   0F28               ADD     R18, R24
+   \   000000D2   1F39               ADC     R19, R25
+   \   000000D4   8724               STD     Z+12, R18
+   \   000000D6   8735               STD     Z+13, R19
     460                          m_uiMessageLength += iReceivedCounter;
     461                          SetFsmState(RECEIVE_MESSAGE_CONFIRMATION);
-   \   000000DE   E00C               LDI     R16, 12
-   \   000000E0   C004               RJMP    ??Fsm_19
+   \   000000D8   E00C               LDI     R16, 12
+   \   000000DA   C004               RJMP    ??Fsm_20
     462                      }
     463                      else if (iReceivedCounter == -1)
-   \                     ??Fsm_18:
-   \   000000E2   9601               ADIW    R25:R24, 1
-   \   000000E4   F419               BRNE    ??Fsm_17
+   \                     ??Fsm_19:
+   \   000000DC   9601               ADIW    R25:R24, 1
+   \   000000DE   F419               BRNE    ??Fsm_18
     464                      {
     465                          SetFsmState(STOP_CONFIRMATION);
-   \   000000E6   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_104:
-   \   000000E8   E101               LDI     R16, 17
-   \                     ??Fsm_19:
-   \   000000EA   8300               ST      Z, R16
+   \   000000E0   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_100:
+   \   000000E2   E101               LDI     R16, 17
+   \                     ??Fsm_20:
+   \   000000E4   8300               ST      Z, R16
     466                      }
     467                  }
     468          
     469                  if (TimeIsOver(m_uiConfirmationTimeout))
-   \                     ??Fsm_17:
-   \   000000EC   EE28               LDI     R18, 232
-   \   000000EE   E033               LDI     R19, 3
-   \   000000F0   ....               RCALL   ?Subroutine30
-   \                     ??CrossCallReturnLabel_65:
-   \   000000F2   F1F1               BREQ    ??Fsm_7
+   \                     ??Fsm_18:
+   \   000000E6   EE28               LDI     R18, 232
+   \   000000E8   E033               LDI     R19, 3
+   \   000000EA   ....               RCALL   ?Subroutine29
+   \                     ??CrossCallReturnLabel_63:
+   \   000000EC   F1D9               BREQ    ??Fsm_7
     470                  {
     471                      SetFsmState(STOP_CONFIRMATION);
-   \   000000F4   ....               RCALL   ??Subroutine58_0
+   \   000000EE   ....               RCALL   ??Subroutine57_0
     472                  }
-   \                     ??CrossCallReturnLabel_115:
-   \   000000F6   C013               RJMP    ??Fsm_20
+   \                     ??CrossCallReturnLabel_111:
+   \   000000F0   C013               RJMP    ??Fsm_21
     473          
     474                  break;
     475          
     476              case RECEIVE_MESSAGE_CONFIRMATION:
     477                  if (Select())
-   \                     ??Fsm_21:
-   \   000000F8   ....               RCALL   ?Subroutine22
-   \                     ??CrossCallReturnLabel_74:
-   \   000000FA   F051               BREQ    ??Fsm_22
+   \                     ??Fsm_22:
+   \   000000F2   ....               RCALL   ?Subroutine22
+   \                     ??CrossCallReturnLabel_72:
+   \   000000F4   F051               BREQ    ??Fsm_23
     478                  {
     479                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
-   \   000000FC   ....               RCALL   ?Subroutine0
+   \   000000F6   ....               RCALL   ?Subroutine0
     480          
     481                      if (iReceivedCounter > 0)
-   \                     ??CrossCallReturnLabel_58:
-   \   000000FE   F01C               BRLT    ??Fsm_23
+   \                     ??CrossCallReturnLabel_56:
+   \   000000F8   F01C               BRLT    ??Fsm_24
     482                      {
     483                          GetSystemTime();
-   \   00000100   ....               RCALL   ?Subroutine6
+   \   000000FA   ....               RCALL   ?Subroutine6
     484                          m_uiMessageLength += iReceivedCounter;
     485                      }
    \                     ??CrossCallReturnLabel_13:
-   \   00000102   ....               RCALL   ?Subroutine35
-   \                     ??CrossCallReturnLabel_40:
-   \   00000104   C005               RJMP    ??Fsm_22
+   \   000000FC   ....               RCALL   ?Subroutine34
+   \                     ??CrossCallReturnLabel_38:
+   \   000000FE   C005               RJMP    ??Fsm_23
     486                      else if (iReceivedCounter == -1)
-   \                     ??Fsm_23:
-   \   00000106   9601               ADIW    R25:R24, 1
-   \   00000108   F419               BRNE    ??Fsm_22
+   \                     ??Fsm_24:
+   \   00000100   9601               ADIW    R25:R24, 1
+   \   00000102   F419               BRNE    ??Fsm_23
     487                      {
     488                          SetFsmState(STOP_CONFIRMATION);
-   \   0000010A   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_105:
-   \   0000010C   E101               LDI     R16, 17
-   \   0000010E   8300               ST      Z, R16
+   \   00000104   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_101:
+   \   00000106   E101               LDI     R16, 17
+   \   00000108   8300               ST      Z, R16
     489                      }
     490                  }
     491          
     492                  if (TimeIsOver(m_uiGuardTimeout))
-   \                     ??Fsm_22:
-   \   00000110   ....               RCALL   ?Subroutine7
+   \                     ??Fsm_23:
+   \   0000010A   ....               RCALL   ?Subroutine7
    \                     ??CrossCallReturnLabel_16:
-   \   00000112   F171               BREQ    ??Fsm_7
+   \   0000010C   F159               BREQ    ??Fsm_7
     493                  {
     494                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
-   \   00000114   ....               RCALL   ?Subroutine19
-   \                     ??CrossCallReturnLabel_70:
-   \   00000116   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_116:
-   \   00000118   F011               BREQ    ??Fsm_20
+   \   0000010E   ....               RCALL   ?Subroutine19
+   \                     ??CrossCallReturnLabel_68:
+   \   00000110   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_112:
+   \   00000112   F011               BREQ    ??Fsm_21
     495                      {
     496                          SetFsmState(REPLY_CONFIRMATION);
-   \   0000011A   E00D               LDI     R16, 13
-   \   0000011C   C028               RJMP    ??Fsm_2
+   \   00000114   E00D               LDI     R16, 13
+   \   00000116   C025               RJMP    ??Fsm_2
     497                      }
     498                      else
     499                      {
     500                          SetFsmState(STOP_CONFIRMATION);
-   \                     ??Fsm_20:
-   \   0000011E   E101               LDI     R16, 17
-   \   00000120   C026               RJMP    ??Fsm_2
+   \                     ??Fsm_21:
+   \   00000118   E101               LDI     R16, 17
+   \   0000011A   C023               RJMP    ??Fsm_2
     501                      }
     502                  }
     503          
@@ -1904,104 +1906,100 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     505          
     506              case REPLY_CONFIRMATION:
     507                  if (ReceiveMessage(m_puiRxBuffer, m_uiMessageLength))
-   \                     ??Fsm_24:
-   \   00000122   01FC               MOVW    R31:R30, R25:R24
-   \   00000124   ....               RCALL   ?Subroutine38
-   \                     ??CrossCallReturnLabel_124:
-   \   00000126   018C               MOVW    R17:R16, R25:R24
-   \   00000128   ........           CALL    ??ReceiveMessage
-   \   0000012C   2B01               OR      R16, R17
-   \   0000012E   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_117:
-   \   00000130   E101               LDI     R16, 17
-   \   00000132   930C               ST      X, R16
-   \   00000134   F4E9               BRNE    ??Fsm_7
+   \                     ??Fsm_25:
+   \   0000011C   01FC               MOVW    R31:R30, R25:R24
+   \   0000011E   ....               RCALL   ?Subroutine37
+   \                     ??CrossCallReturnLabel_120:
+   \   00000120   018C               MOVW    R17:R16, R25:R24
+   \   00000122   ........           CALL    ??ReceiveMessage
+   \   00000126   2B01               OR      R16, R17
+   \   00000128   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_113:
+   \   0000012A   E101               LDI     R16, 17
+   \   0000012C   930C               ST      X, R16
+   \   0000012E   F4D1               BRNE    ??Fsm_7
     508                  {
     509                      SetFsmState(STOP_CONFIRMATION);
     510                  }
     511                  else
     512                  {
     513                      SetFsmState(STOP_CONFIRMATION);
-   \   00000136   C01C               RJMP    ??Fsm_7
+   \   00000130   C019               RJMP    ??Fsm_7
     514                  }
     515                  break;
     516          
     517              case FRAME_TRANSMIT_REQUEST:
     518                  GetSystemTime();
-   \                     ??Fsm_25:
-   \   00000138   ....               RCALL   ?Subroutine16
+   \                     ??Fsm_26:
+   \   00000132   ....               RCALL   ?Subroutine16
     519                  Reset();
     520                  CPlatform::TxLedOn();
-   \                     ??CrossCallReturnLabel_84:
-   \   0000013A   91000062           LDS     R16, 98
-   \   0000013E   ....               RCALL   ?Subroutine27
+   \                     ??CrossCallReturnLabel_82:
+   \   00000134   98DB               CBI     0x1B, 0x03
     521                  SetFsmState(WAITING_FRAME_TRANSMIT_REQUEST);
-   \                     ??CrossCallReturnLabel_99:
-   \   00000140   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_118:
-   \   00000142   E00F               LDI     R16, 15
-   \   00000144   C014               RJMP    ??Fsm_2
+   \   00000136   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_114:
+   \   00000138   E00F               LDI     R16, 15
+   \   0000013A   C013               RJMP    ??Fsm_2
     522                  break;
     523          
     524              case WAITING_FRAME_TRANSMIT_REQUEST:
     525                  if (TimeIsOver(m_uiTransmitDelayTimeout))
-   \                     ??Fsm_26:
-   \   00000146   ....               RCALL   ?Subroutine14
-   \                     ??CrossCallReturnLabel_67:
-   \   00000148   F099               BREQ    ??Fsm_7
+   \                     ??Fsm_27:
+   \   0000013C   ....               RCALL   ?Subroutine14
+   \                     ??CrossCallReturnLabel_65:
+   \   0000013E   F091               BREQ    ??Fsm_7
     526                  {
     527                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
-   \   0000014A   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_106:
-   \   0000014C   ....               RCALL   ?Subroutine26
-   \                     ??CrossCallReturnLabel_30:
-   \   0000014E   018F               MOVW    R17:R16, R31:R30
-   \   00000150   ....               RCALL   ?Subroutine21
+   \   00000140   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_102:
+   \   00000142   ....               RCALL   ?Subroutine25
+   \                     ??CrossCallReturnLabel_28:
+   \   00000144   018F               MOVW    R17:R16, R31:R30
+   \   00000146   ....               RCALL   ?Subroutine21
     528                      TransmitEnable();
     529                      SetFsmState(END_WAITING_FRAME_TRANSMIT_REQUEST);
-   \                     ??CrossCallReturnLabel_88:
-   \   00000152   ....               RCALL   ??Subroutine58_0
+   \                     ??CrossCallReturnLabel_86:
+   \   00000148   ....               RCALL   ??Subroutine57_0
     530                  }
-   \                     ??CrossCallReturnLabel_119:
-   \   00000154   E100               LDI     R16, 16
-   \   00000156   C00B               RJMP    ??Fsm_2
+   \                     ??CrossCallReturnLabel_115:
+   \   0000014A   E100               LDI     R16, 16
+   \   0000014C   C00A               RJMP    ??Fsm_2
     531                  break;
     532          
     533              case END_WAITING_FRAME_TRANSMIT_REQUEST:
     534                  if (MessageIsSended())
-   \                     ??Fsm_27:
-   \   00000158   ....               RCALL   ?Subroutine24
-   \                     ??CrossCallReturnLabel_76:
-   \   0000015A   F051               BREQ    ??Fsm_7
+   \                     ??Fsm_28:
+   \   0000014E   ....               RCALL   ?Subroutine24
+   \                     ??CrossCallReturnLabel_74:
+   \   00000150   F049               BREQ    ??Fsm_7
     535                  {
     536                      TransmitDisable();
-   \   0000015C   ....               RCALL   ?Subroutine25
-   \                     ??CrossCallReturnLabel_28:
-   \   0000015E   6400               ORI     R16, 0x40
-   \   00000160   ....               RCALL   ??Subroutine56_0
+   \   00000152   ....               RCALL   ?Subroutine26
     537                      CPlatform::TxLedOff();
+   \                     ??CrossCallReturnLabel_88:
+   \   00000154   9ADB               SBI     0x1B, 0x03
     538                      SetFsmState(START_CONFIRMATION);
-   \                     ??CrossCallReturnLabel_97:
-   \   00000162   ....               RCALL   ??Subroutine58_0
+   \   00000156   ....               RCALL   ??Subroutine57_0
     539                  }
-   \                     ??CrossCallReturnLabel_120:
-   \   00000164   E00A               LDI     R16, 10
-   \   00000166   C003               RJMP    ??Fsm_2
+   \                     ??CrossCallReturnLabel_116:
+   \   00000158   E00A               LDI     R16, 10
+   \   0000015A   C003               RJMP    ??Fsm_2
     540          
     541                  break;
     542          
     543              case STOP_CONFIRMATION:
     544                  ReceiveDisable();
-   \                     ??Fsm_28:
-   \   00000168   ....               RCALL   ?Subroutine20
+   \                     ??Fsm_29:
+   \   0000015C   ....               RCALL   ?Subroutine20
     545          //        Close();
     546                  SetFsmState(IDDLE);
-   \                     ??CrossCallReturnLabel_86:
-   \   0000016A   ....               RCALL   ??Subroutine58_0
-   \                     ??CrossCallReturnLabel_121:
-   \   0000016C   E000               LDI     R16, 0
+   \                     ??CrossCallReturnLabel_84:
+   \   0000015E   ....               RCALL   ??Subroutine57_0
+   \                     ??CrossCallReturnLabel_117:
+   \   00000160   E000               LDI     R16, 0
    \                     ??Fsm_2:
-   \   0000016E   930C               ST      X, R16
+   \   00000162   930C               ST      X, R16
     547                  break;
     548          
     549              default:
@@ -2009,11 +2007,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     551              }
     552          }
    \                     ??Fsm_7:
-   \   00000170   ....               RJMP    ?Subroutine53
-   \   00000172                      REQUIRE _A_PORTF
+   \   00000164   ....               RJMP    ?Subroutine53
+   \   00000166                      REQUIRE _A_PORTA
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine26:
+   \                     ?Subroutine25:
    \   00000000   8544               LDD     R20, Z+12
    \   00000002   8555               LDD     R21, Z+13
    \   00000004   8920               LDD     R18, Z+16
@@ -2021,27 +2019,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000008   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine25:
-   \   00000000   018F               MOVW    R17:R16, R31:R30
-   \   00000002   ........           CALL    ??TransmitDisable_1
-   \   00000006   91000062           LDS     R16, 98
-   \   0000000A   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine24:
-   \   00000000   ....               RCALL   ?Subroutine36
-   \                     ??CrossCallReturnLabel_83:
+   \   00000000   ....               RCALL   ?Subroutine35
+   \                     ??CrossCallReturnLabel_81:
    \   00000002   A503               LDD     R16, Z+43
-   \   00000004   ....               RJMP    ?Subroutine48
+   \   00000004   ....               RJMP    ?Subroutine47
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine37:
+   \                     ?Subroutine36:
    \   00000000   961D               ADIW    R27:R26, 13
-   \   00000002                      REQUIRE ??Subroutine57_0
-   \   00000002                      ;               // Fall through to label ??Subroutine57_0
+   \   00000002                      REQUIRE ??Subroutine56_0
+   \   00000002                      ;               // Fall through to label ??Subroutine56_0
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine57_0:
+   \                     ??Subroutine56_0:
    \   00000000   91ED               LD      R30, X+
    \   00000002   91FC               LD      R31, X
    \   00000004   971E               SBIW    R27:R26, 14
@@ -2049,85 +2040,85 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine22:
-   \   00000000   ....               RCALL   ?Subroutine36
-   \                     ??CrossCallReturnLabel_82:
+   \   00000000   ....               RCALL   ?Subroutine35
+   \                     ??CrossCallReturnLabel_80:
    \   00000002   A502               LDD     R16, Z+42
-   \   00000004   ....               RJMP    ?Subroutine48
+   \   00000004   ....               RJMP    ?Subroutine47
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine21:
    \   00000000   ........           CALL    ??SendMessage
-   \   00000004   ....               RCALL   ?Subroutine31
-   \                     ??CrossCallReturnLabel_80:
-   \   00000006   ....               RJMP    ?Subroutine52
+   \   00000004   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_78:
+   \   00000006   ....               RJMP    ?Subroutine51
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine19:
-   \   00000000   ....               RCALL   ?Subroutine37
-   \                     ??CrossCallReturnLabel_107:
-   \   00000002   ....               RCALL   ?Subroutine38
-   \                     ??CrossCallReturnLabel_125:
+   \   00000000   ....               RCALL   ?Subroutine36
+   \                     ??CrossCallReturnLabel_103:
+   \   00000002   ....               RCALL   ?Subroutine37
+   \                     ??CrossCallReturnLabel_121:
    \   00000004   018D               MOVW    R17:R16, R27:R26
    \   00000006   ....               RCALL   ??FrameCheck_1
-   \   00000008                      REQUIRE ?Subroutine48
-   \   00000008                      ;               // Fall through to label ?Subroutine48
+   \   00000008                      REQUIRE ?Subroutine47
+   \   00000008                      ;               // Fall through to label ?Subroutine47
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine48:
+   \                     ?Subroutine47:
    \   00000000   2300               TST     R16
    \   00000002   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine16:
-   \   00000000   ....               RCALL   ?Subroutine32
-   \                     ??CrossCallReturnLabel_33:
-   \   00000002   ....               RCALL   ?Subroutine31
-   \                     ??CrossCallReturnLabel_78:
-   \   00000004   ....               RJMP    ?Subroutine50
+   \   00000000   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_31:
+   \   00000002   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_76:
+   \   00000004   ....               RJMP    ?Subroutine49
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine31:
-   \   00000000   ....               RCALL   ?Subroutine40
-   \                     ??CrossCallReturnLabel_49:
-   \   00000002   ....               RJMP    ?Subroutine49
+   \                     ?Subroutine30:
+   \   00000000   ....               RCALL   ?Subroutine39
+   \                     ??CrossCallReturnLabel_47:
+   \   00000002   ....               RJMP    ?Subroutine48
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine14:
    \   00000000   E025               LDI     R18, 5
    \   00000002   E030               LDI     R19, 0
-   \   00000004                      REQUIRE ?Subroutine30
-   \   00000004                      ;               // Fall through to label ?Subroutine30
+   \   00000004                      REQUIRE ?Subroutine29
+   \   00000004                      ;               // Fall through to label ?Subroutine29
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine30:
+   \                     ?Subroutine29:
    \   00000000   018D               MOVW    R17:R16, R27:R26
    \   00000002   ....               RCALL   ??TimeIsOver
-   \   00000004   ....               RJMP    ?Subroutine48
+   \   00000004   ....               RJMP    ?Subroutine47
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine7:
    \   00000000   01FD               MOVW    R31:R30, R27:R26
    \   00000002   8521               LDD     R18, Z+9
    \   00000004   8532               LDD     R19, Z+10
-   \   00000006   ....               RJMP    ?Subroutine30
+   \   00000006   ....               RJMP    ?Subroutine29
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine6:
-   \   00000000   ....               RCALL   ?Subroutine32
-   \                     ??CrossCallReturnLabel_32:
-   \   00000002                      REQUIRE ?Subroutine29
-   \   00000002                      ;               // Fall through to label ?Subroutine29
+   \   00000000   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_30:
+   \   00000002                      REQUIRE ?Subroutine28
+   \   00000002                      ;               // Fall through to label ?Subroutine28
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine3:
-   \   00000000   ....               RCALL   ?Subroutine29
-   \                     ??CrossCallReturnLabel_54:
-   \   00000002   ....               RCALL   ?Subroutine35
-   \                     ??CrossCallReturnLabel_41:
-   \   00000004   ....               RJMP    ?Subroutine32
+   \   00000000   ....               RCALL   ?Subroutine28
+   \                     ??CrossCallReturnLabel_52:
+   \   00000002   ....               RCALL   ?Subroutine34
+   \                     ??CrossCallReturnLabel_39:
+   \   00000004   ....               RJMP    ?Subroutine31
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine35:
+   \                     ?Subroutine34:
    \   00000000   8504               LDD     R16, Z+12
    \   00000002   8515               LDD     R17, Z+13
    \   00000004   0F08               ADD     R16, R24
@@ -2137,31 +2128,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000000C   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine32:
+   \                     ?Subroutine31:
    \   00000000   018D               MOVW    R17:R16, R27:R26
    \   00000002   ....               RJMP    ??GetSystemTime
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
-   \   00000000   ....               RCALL   ?Subroutine32
-   \                     ??CrossCallReturnLabel_31:
-   \   00000002   ....               RCALL   ?Subroutine40
-   \                     ??CrossCallReturnLabel_45:
+   \   00000000   ....               RCALL   ?Subroutine31
+   \                     ??CrossCallReturnLabel_29:
+   \   00000002   ....               RCALL   ?Subroutine39
+   \                     ??CrossCallReturnLabel_43:
    \   00000004   961C               ADIW    R27:R26, 12
    \   00000006   ........           CALL    ??Reset_1
-   \   0000000A   ....               RCALL   ??Subroutine57_0
-   \                     ??CrossCallReturnLabel_100:
+   \   0000000A   ....               RCALL   ??Subroutine56_0
+   \                     ??CrossCallReturnLabel_96:
    \   0000000C   E000               LDI     R16, 0
    \   0000000E   8704               STD     Z+12, R16
    \   00000010   8705               STD     Z+13, R16
-   \   00000012   ....               RCALL   ?Subroutine31
-   \                     ??CrossCallReturnLabel_77:
+   \   00000012   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_75:
    \   00000014   ........           CALL    ??Enable
-   \   00000018                      REQUIRE ??Subroutine58_0
-   \   00000018                      ;               // Fall through to label ??Subroutine58_0
+   \   00000018                      REQUIRE ??Subroutine57_0
+   \   00000018                      ;               // Fall through to label ??Subroutine57_0
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine58_0:
+   \                     ??Subroutine57_0:
    \   00000000   01FD               MOVW    R31:R30, R27:R26
    \   00000002   85A5               LDD     R26, Z+13
    \   00000004   85B6               LDD     R27, Z+14
@@ -2176,25 +2167,25 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000008   E051               LDI     R21, 1
    \   0000000A   1B40               SUB     R20, R16
    \   0000000C   0B51               SBC     R21, R17
-   \   0000000E   ....               RCALL   ??Subroutine59_0
-   \                     ??CrossCallReturnLabel_123:
+   \   0000000E   ....               RCALL   ??Subroutine58_0
+   \                     ??CrossCallReturnLabel_119:
    \   00000010   0F20               ADD     R18, R16
    \   00000012   1F31               ADC     R19, R17
    \   00000014   018D               MOVW    R17:R16, R27:R26
    \   00000016   ....               RCALL   ??Receive
    \   00000018   01C8               MOVW    R25:R24, R17:R16
    \   0000001A   3001               CPI     R16, 1
-   \   0000001C   ....               RJMP    ?Subroutine47
+   \   0000001C   ....               RJMP    ?Subroutine46
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine38:
+   \                     ?Subroutine37:
    \   00000000   8544               LDD     R20, Z+12
    \   00000002   8555               LDD     R21, Z+13
-   \   00000004                      REQUIRE ??Subroutine59_0
-   \   00000004                      ;               // Fall through to label ??Subroutine59_0
+   \   00000004                      REQUIRE ??Subroutine58_0
+   \   00000004                      ;               // Fall through to label ??Subroutine58_0
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine59_0:
+   \                     ??Subroutine58_0:
    \   00000000   8526               LDD     R18, Z+14
    \   00000002   8537               LDD     R19, Z+15
    \   00000004   9508               RET
@@ -2207,20 +2198,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000004   0010               DW      16
    \   00000006   ....               DW      (??Fsm_1) /2
    \   00000008   ....               DW      (??Fsm_3) /2
-   \   0000000A   ....               DW      (??Fsm_8) /2
-   \   0000000C   ....               DW      (??Fsm_11) /2
-   \   0000000E   ....               DW      (??Fsm_12) /2
-   \   00000010   ....               DW      (??Fsm_13) /2
-   \   00000012   ....               DW      (??Fsm_14) /2
-   \   00000014   ....               DW      (??Fsm_28) /2
-   \   00000016   ....               DW      (??Fsm_15) /2
-   \   00000018   ....               DW      (??Fsm_16) /2
-   \   0000001A   ....               DW      (??Fsm_21) /2
-   \   0000001C   ....               DW      (??Fsm_24) /2
-   \   0000001E   ....               DW      (??Fsm_25) /2
-   \   00000020   ....               DW      (??Fsm_26) /2
-   \   00000022   ....               DW      (??Fsm_27) /2
-   \   00000024   ....               DW      (??Fsm_28) /2
+   \   0000000A   ....               DW      (??Fsm_9) /2
+   \   0000000C   ....               DW      (??Fsm_12) /2
+   \   0000000E   ....               DW      (??Fsm_13) /2
+   \   00000010   ....               DW      (??Fsm_14) /2
+   \   00000012   ....               DW      (??Fsm_15) /2
+   \   00000014   ....               DW      (??Fsm_29) /2
+   \   00000016   ....               DW      (??Fsm_16) /2
+   \   00000018   ....               DW      (??Fsm_17) /2
+   \   0000001A   ....               DW      (??Fsm_22) /2
+   \   0000001C   ....               DW      (??Fsm_25) /2
+   \   0000001E   ....               DW      (??Fsm_26) /2
+   \   00000020   ....               DW      (??Fsm_27) /2
+   \   00000022   ....               DW      (??Fsm_28) /2
+   \   00000024   ....               DW      (??Fsm_29) /2
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CModbusRTU &CModbusRTU::new CModbusRTU()
@@ -2236,72 +2227,66 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000010   ....               RJMP    ??CModbusRTU
    \                     `??new CModbusRTU_1`:
    \   00000012   E000               LDI     R16, 0
-   \   00000014                      REQUIRE ?Subroutine46
-   \   00000014                      ;               // Fall through to label ?Subroutine46
+   \   00000014                      REQUIRE ?Subroutine45
+   \   00000014                      ;               // Fall through to label ?Subroutine45
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CModbusRTU::~CModbusRTU for CDfaLite/-15/()
    \                     `?~CModbusRTU for CDfaLite/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_59:
+   \                     ??CrossCallReturnLabel_57:
    \   00000002   ....               RJMP    `?~CModbusRTU`
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 int16_t CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
    \                     `??Tail for CModbus/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_60:
+   \                     ??CrossCallReturnLabel_58:
    \   00000002   ....               RJMP    ??Tail
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 int16_t CModbusRTU::RequestBasis for CModbus/-15/(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
    \                     `??RequestBasis for CModbus/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_61:
+   \                     ??CrossCallReturnLabel_59:
    \   00000002   ....               RJMP    ??RequestBasis
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 int16_t CModbusRTU::ResponseBasis for CModbus/-15/(uint8_t, uint8_t, uint8_t *)
    \                     `??ResponseBasis for CModbus/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_62:
+   \                     ??CrossCallReturnLabel_60:
    \   00000002   ....               RJMP    ??ResponseBasis
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine13:
    \   00000000   500F               SUBI    R16, 15
-   \   00000002                      REQUIRE ?Subroutine47
-   \   00000002                      ;               // Fall through to label ?Subroutine47
+   \   00000002                      REQUIRE ?Subroutine46
+   \   00000002                      ;               // Fall through to label ?Subroutine46
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 int16_t CModbusRTU::Send for CModbus/-15/(uint8_t *, uint16_t)
    \                     `??Send for CModbus/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_63:
+   \                     ??CrossCallReturnLabel_61:
    \   00000002   ....               RJMP    ??Send
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine27:
-   \   00000000   7B0F               ANDI    R16, 0xBF
-   \   00000002                      REQUIRE ??Subroutine56_0
-   \   00000002                      ;               // Fall through to label ??Subroutine56_0
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine56_0:
-   \   00000000   93000062           STS     98, R16
-   \   00000004   9508               RET
+   \                     ?Subroutine26:
+   \   00000000   018F               MOVW    R17:R16, R31:R30
+   \   00000002   ....               RJMP    ?Subroutine52
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine20:
-   \   00000000   ....               RCALL   ?Subroutine31
-   \                     ??CrossCallReturnLabel_79:
-   \   00000002   ....               RJMP    ?Subroutine51
+   \   00000000   ....               RCALL   ?Subroutine30
+   \                     ??CrossCallReturnLabel_77:
+   \   00000002   ....               RJMP    ?Subroutine50
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CModbusRTU::Fsm for CDfaLite/-15/()
    \                     `??Fsm for CDfaLite/-15/`:
    \   00000000   ....               RCALL   ?Subroutine13
-   \                     ??CrossCallReturnLabel_64:
+   \                     ??CrossCallReturnLabel_62:
    \   00000002   ....               RJMP    ??Fsm
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -2356,7 +2341,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
         4      4   -> CUart::Enable()
         4      2   -> CUart::Reset()
         4      4   -> CUart::Reset()
-        4      4   -> CUart::TransmitDisable()
+        4      2   -> CUart::TransmitDisable()
         4      2   -> CUart::TransmitEnable()
         4      2 ?CV_SWITCH_L06
       0      2   CModbusRTU::GetFrameLength()
@@ -2420,10 +2405,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
       38  ?<Jumptable for Fsm>_0
        6  ??Subroutine54_0
        4  ??Subroutine55_0
-       6  ??Subroutine56_0
+       8  ??Subroutine56_0
        8  ??Subroutine57_0
-       8  ??Subroutine58_0
-       6  ??Subroutine59_0
+       6  ??Subroutine58_0
       30  ?Subroutine0
       24  ?Subroutine1
        2  ?Subroutine10
@@ -2440,29 +2424,29 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
        8  ?Subroutine21
        6  ?Subroutine22
        6  ?Subroutine24
-      12  ?Subroutine25
-      10  ?Subroutine26
+      10  ?Subroutine25
+       4  ?Subroutine26
        2  ?Subroutine27
-       2  ?Subroutine28
-       4  ?Subroutine29
+       4  ?Subroutine28
+       6  ?Subroutine29
        6  ?Subroutine3
-       6  ?Subroutine30
+       4  ?Subroutine30
        4  ?Subroutine31
        4  ?Subroutine32
-       4  ?Subroutine33
-      10  ?Subroutine34
-      14  ?Subroutine35
-       4  ?Subroutine36
-       2  ?Subroutine37
-       4  ?Subroutine38
-      10  ?Subroutine39
+      10  ?Subroutine33
+      14  ?Subroutine34
+       4  ?Subroutine35
+       2  ?Subroutine36
+       4  ?Subroutine37
+      10  ?Subroutine38
+       6  ?Subroutine39
       12  ?Subroutine4
        6  ?Subroutine40
-       6  ?Subroutine41
+      12  ?Subroutine41
       12  ?Subroutine42
-      12  ?Subroutine43
-       8  ?Subroutine44
-       2  ?Subroutine45
+       8  ?Subroutine43
+       2  ?Subroutine44
+       4  ?Subroutine45
        4  ?Subroutine46
        4  ?Subroutine47
        4  ?Subroutine48
@@ -2484,7 +2468,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
       54  CModbusRTU::FrameCheck(uint8_t *, uint16_t)
       20  CModbusRTU::FrameIsReceived()
        4  CModbusRTU::Fsm for CDfaLite/-15/()
-     370  CModbusRTU::Fsm()
+     358  CModbusRTU::Fsm()
        8  CModbusRTU::GetFrameLength()
       10  CModbusRTU::GetSystemTime()
        8  CModbusRTU::HEADER_LENGTH for CModbus/-15/()
@@ -2508,7 +2492,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
       34  CModbusRTU::Tail(uint8_t *, uint16_t)
       22  CModbusRTU::TimeIsOver(uint16_t)
       28  CModbusRTU::TransmitDelayTimeIsOver()
-       6  CModbusRTU::TransmitDisable()
+       2  CModbusRTU::TransmitDisable()
        2  CModbusRTU::TransmitEnable()
       20  CModbusRTU::new CModbusRTU()
        4  CModbusRTU::~CModbusRTU for CDfaLite/-15/()
@@ -2609,11 +2593,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 
  
    105 bytes in segment ABSOLUTE
- 1 526 bytes in segment CODE
+ 1 498 bytes in segment CODE
     36 bytes in segment NEAR_F
     38 bytes in segment SWITCH
  
- 1 556 bytes of CODE memory (+  44 bytes shared)
+ 1 528 bytes of CODE memory (+  44 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

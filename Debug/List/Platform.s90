@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:24
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  15:39:52
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW408A.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW4135.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //        --cpu=m128a -ms -o
@@ -3067,17 +3067,11 @@ _A_PINF:
 //  896     SystemTickInit();
         RCALL   ??SystemTickInit
 //  897     StatusLedSetPinOutput();
-        LDS     R16, 97
-        ORI     R16, 0x80
-        STS     97, R16
+        SBI     0x1A, 0x04
 //  898     TxLedSetPinOutput();
-        LDS     R16, 97
-        ORI     R16, 0x40
-        STS     97, R16
+        SBI     0x1A, 0x03
 //  899     TxLedOff();
-        LDS     R16, 98
-        ORI     R16, 0x40
-        STS     98, R16
+        SBI     0x1B, 0x03
 //  900     KeyOneSetPinInput();
         CBI     0x14, 0x02
 //  901     KeyTwoSetPinInput();
@@ -3092,8 +3086,8 @@ _A_PINF:
         SEI
 //  905 }
         RET
-        REQUIRE _A_DDRF
-        REQUIRE _A_PORTF
+        REQUIRE _A_DDRA
+        REQUIRE _A_PORTA
         REQUIRE _A_DDRC
         REQUIRE _A_DDRG
 //  906 
@@ -3398,13 +3392,13 @@ __?EEARH:
 // 1080 
 // 
 //   105 bytes in segment ABSOLUTE
-// 1 722 bytes in segment CODE
+// 1 698 bytes in segment CODE
 //     7 bytes in segment INITTAB
 //    20 bytes in segment INTVEC
 //   734 bytes in segment NEAR_F
 //    14 bytes in segment NEAR_Z
 // 
-// 2 448 bytes of CODE memory (+  35 bytes shared)
+// 2 424 bytes of CODE memory (+  35 bytes shared)
 //    14 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

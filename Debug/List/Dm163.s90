@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  18:01:28
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW3CE5.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EWAB57.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 //        --cpu=m128a -ms -o
@@ -671,7 +671,7 @@ _A_PINF:
         RCALL   ?Subroutine1
 ??CrossCallReturnLabel_4:
         ANDI    R16, 0xFB
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 //   28     CPins::ClearPinSIN();
 //   29 
 //   30     CPins::SetPinOutputRST_B();
@@ -684,7 +684,7 @@ _A_PINF:
 //   37     CPins::ClearPinLAT_B();
 //   38 
 //   39     CPins::SetPinOutputGCK();
-??CrossCallReturnLabel_20:
+??CrossCallReturnLabel_19:
         SBI     0x17, 0x04
 //   40     CPins::ClearPinGCK();
         CBI     0x18, 0x04
@@ -701,14 +701,14 @@ _A_PINF:
         RCALL   ?Subroutine1
 ??CrossCallReturnLabel_2:
         ORI     R16, 0x20
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 //   43     CPins::ClearPinSELBK();
 //   44 
 //   45     CPins::SetPinOutputEN_B();
 //   46     CPins::SetPinEN_B();
 //   47 
 //   48     SetFrequencyGCK();
-??CrossCallReturnLabel_21:
+??CrossCallReturnLabel_20:
         SBI     0x17, 0x04
         LDI     R16, 2
         OUT     0x31, R16
@@ -725,7 +725,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine2:
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 ??CrossCallReturnLabel_26:
         LDS     R16, 97
         RET
@@ -733,11 +733,11 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine1:
         STS     97, R16
-        REQUIRE ?Subroutine7
-        ;               // Fall through to label ?Subroutine7
+        REQUIRE ?Subroutine4
+        ;               // Fall through to label ?Subroutine4
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine7:
+?Subroutine4:
         LDS     R16, 98
         RET
 //   50 
@@ -748,18 +748,18 @@ _A_PINF:
 ??Reset:
 //   53 {
 //   54     CPins::ClearPinRST_B();
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_14:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_12:
         ANDI    R16, 0xBF
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 //   55     PulseDelayRST_B();
-??CrossCallReturnLabel_22:
+??CrossCallReturnLabel_21:
         CALL    ??PulseDelayRST_B
 //   56     CPins::SetPinRST_B();
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_15:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_13:
         ORI     R16, 0x40
-        RJMP    ??Subroutine9_0
+        RJMP    ?Subroutine5
         REQUIRE _A_PORTF
 //   57 }
 //   58 
@@ -769,11 +769,14 @@ _A_PINF:
 //   60 void CDm163::SetBank0(uint8_t uiData)
 ??SetBank0:
 //   61 {
-        RCALL   ?Subroutine3
+        CALL    ?PROLOGUE3_L09
+        MOV     R26, R16
 //   62     CPins::ClearPinSELBK();
+        RCALL   ?Subroutine3
 //   63 
 //   64     for (uint8_t i = 0;
-??CrossCallReturnLabel_12:
+??CrossCallReturnLabel_27:
+        LDI     R25, 0
         LDI     R24, 6
 //   65             i < DM163_BANK0_BIT_QUANTITY;
 //   66             i++)
@@ -799,15 +802,16 @@ _A_PINF:
         BRNE    ??SetBank0_1
 //   82 
 //   83     CPins::ClearPinSELBK();
-        REQUIRE ?Subroutine8
+        REQUIRE ?Subroutine6
         REQUIRE _A_PORTF
-        ;               // Fall through to label ?Subroutine8
+        ;               // Fall through to label ?Subroutine6
 //   84 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine8:
-        RCALL   ?Subroutine4
-??CrossCallReturnLabel_19:
+?Subroutine6:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_28:
+        LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 //   85 
 //   86 //-----------------------------------------------------------------------------------------------------
@@ -816,11 +820,17 @@ _A_PINF:
 //   87 void CDm163::SetBank1(uint8_t uiData)
 ??SetBank1:
 //   88 {
-        RCALL   ?Subroutine3
-//   89     CPins::ClearPinSELBK();
+        CALL    ?PROLOGUE3_L09
+        MOV     R26, R16
+//   89     CPins::SetPinSELBK();
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_14:
+        ORI     R16, 0x10
+        RCALL   ?Subroutine5
 //   90 
 //   91     for (uint8_t i = 0;
-??CrossCallReturnLabel_13:
+??CrossCallReturnLabel_22:
+        LDI     R25, 0
         LDI     R24, 8
 //   92             i < DM163_BANK1_BIT_QUANTITY;
 //   93             i++)
@@ -846,24 +856,21 @@ _A_PINF:
         BRNE    ??SetBank1_1
 //  109 
 //  110     CPins::ClearPinSELBK();
-        RJMP    ?Subroutine8
+        RJMP    ?Subroutine6
         REQUIRE _A_PORTF
 //  111 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine4:
-        RCALL   ?Subroutine6
-??CrossCallReturnLabel_28:
-        LDI     R30, 3
-        RET
+?Subroutine3:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_18:
+        ANDI    R16, 0xEF
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine3:
-        CALL    ?PROLOGUE3_L09
-        MOV     R26, R16
-        RCALL   ?Subroutine6
-??CrossCallReturnLabel_27:
-        LDI     R25, 0
+?Subroutine5:
+        STS     98, R16
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -873,41 +880,29 @@ _A_PINF:
         CALL    ?SS_SHR_L02
         MOV     R17, R26
         AND     R17, R16
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_16:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_15:
         BREQ    ??Subroutine0_0
         ORI     R16, 0x01
         RJMP    ??Subroutine0_1
 ??Subroutine0_0:
         ANDI    R16, 0xFE
 ??Subroutine0_1:
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 ??CrossCallReturnLabel_23:
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_17:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_16:
         ORI     R16, 0x02
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 ??CrossCallReturnLabel_24:
         CALL    ??PulseDelayDCK
-        RCALL   ?Subroutine7
-??CrossCallReturnLabel_18:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_17:
         ANDI    R16, 0xFD
-        RCALL   ??Subroutine9_0
+        RCALL   ?Subroutine5
 ??CrossCallReturnLabel_25:
         INC     R25
         DEC     R24
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine6:
-        LDS     R16, 98
-        ANDI    R16, 0xEF
-        REQUIRE ??Subroutine9_0
-        ;               // Fall through to label ??Subroutine9_0
-
-        RSEG CODE:CODE:NOROOT(1)
-??Subroutine9_0:
-        STS     98, R16
         RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -935,10 +930,10 @@ __?EEARH:
 //  112 
 // 
 // 105 bytes in segment ABSOLUTE
-// 220 bytes in segment CODE
+// 222 bytes in segment CODE
 //  22 bytes in segment NEAR_F
 // 
-// 232 bytes of CODE memory (+  10 bytes shared)
+// 234 bytes of CODE memory (+  10 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:24
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  15:39:50
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW3E14.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW36B5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 //        --cpu=m128a -ms -o
@@ -739,11 +739,11 @@ _A_PINF:
 //   16 
 //   17 }
         MOVW    R17:R16, R25:R24
-        REQUIRE ?Subroutine41
-        ;               // Fall through to label ?Subroutine41
+        REQUIRE ?Subroutine40
+        ;               // Fall through to label ?Subroutine40
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine41:
+?Subroutine40:
         LDI     R30, 6
         JMP     ?EPILOGUE_B6_L09
 
@@ -777,8 +777,8 @@ _A_PINF:
         RJMP    ??CModbusRTU
 `??new CModbusRTU_1`:
         LDI     R16, 0
-        REQUIRE ?Subroutine46
-        ;               // Fall through to label ?Subroutine46
+        REQUIRE ?Subroutine45
+        ;               // Fall through to label ?Subroutine45
 
         RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash *const __flash CModbusRTU::CModbusRTU()::__vtbltbl[1]
@@ -786,7 +786,7 @@ _A_PINF:
         DC16 ??__vtbl_CModbus
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine46:
+?Subroutine45:
         LDI     R17, 0
         RET
 //   18 
@@ -858,7 +858,7 @@ _A_PINF:
 // __version_3 void CModbusRTU::~CModbusRTU for CDfaLite/-15/()
 `?~CModbusRTU for CDfaLite/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_59:
+??CrossCallReturnLabel_57:
         RJMP    `?~CModbusRTU`
 
         RSEG CODE:CODE:NOROOT(1)
@@ -989,7 +989,7 @@ _A_PINF:
         LDD     R17, Z+19
         RCALL   ?Subroutine5
 //   80     memset(m_puiDiscreteInputs, 0, m_uiDiscreteInputsNumber * sizeof(uint8_t));
-??CrossCallReturnLabel_50:
+??CrossCallReturnLabel_48:
         LDD     R20, Z+28
         LDD     R21, Z+29
         RCALL   ??Subroutine54_0
@@ -998,7 +998,7 @@ _A_PINF:
         LDD     R17, Z+21
         RCALL   ?Subroutine5
 //   81     memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
-??CrossCallReturnLabel_51:
+??CrossCallReturnLabel_49:
         LDD     R20, Z+30
         LDD     R21, Z+31
         RCALL   ?Subroutine12
@@ -1007,7 +1007,7 @@ _A_PINF:
         LDD     R17, Z+23
         RCALL   ?Subroutine5
 //   82     memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
-??CrossCallReturnLabel_52:
+??CrossCallReturnLabel_50:
         LDD     R20, Z+32
         LDD     R21, Z+33
         RCALL   ?Subroutine12
@@ -1052,11 +1052,11 @@ _A_PINF:
 ?Subroutine5:
         CALL    memset
         MOVW    R31:R30, R25:R24
-        REQUIRE ?Subroutine44
-        ;               // Fall through to label ?Subroutine44
+        REQUIRE ?Subroutine43
+        ;               // Fall through to label ?Subroutine43
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine44:
+?Subroutine43:
         LDD     R16, Z+13
         LDD     R31, Z+14
         MOV     R30, R16
@@ -1071,12 +1071,12 @@ _A_PINF:
 //   95     m_pxDevice -> Reset();
         RCALL   ?Subroutine2
 ??CrossCallReturnLabel_0:
-        REQUIRE ?Subroutine50
-        ;               // Fall through to label ?Subroutine50
+        REQUIRE ?Subroutine49
+        ;               // Fall through to label ?Subroutine49
 //   96 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine50:
+?Subroutine49:
         JMP     ??Reset_1
 //   97 
 //   98 //-----------------------------------------------------------------------------------------------------
@@ -1124,12 +1124,12 @@ _A_PINF:
 //  119     m_pxDevice -> Disable();
         RCALL   ?Subroutine2
 ??CrossCallReturnLabel_4:
-        REQUIRE ?Subroutine51
-        ;               // Fall through to label ?Subroutine51
+        REQUIRE ?Subroutine50
+        ;               // Fall through to label ?Subroutine50
 //  120 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine51:
+?Subroutine50:
         JMP     ??Disable
 
         RSEG CODE:CODE:NOROOT(1)
@@ -1148,12 +1148,12 @@ _A_PINF:
 //  125     m_pxDevice -> TransmitEnable();
         RCALL   ?Subroutine2
 ??CrossCallReturnLabel_5:
-        REQUIRE ?Subroutine52
-        ;               // Fall through to label ?Subroutine52
+        REQUIRE ?Subroutine51
+        ;               // Fall through to label ?Subroutine51
 //  126 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine52:
+?Subroutine51:
         JMP     ??TransmitEnable_1
 //  127 
 //  128 //-----------------------------------------------------------------------------------------------------
@@ -1165,8 +1165,13 @@ _A_PINF:
 //  131     m_pxDevice -> TransmitDisable();
         RCALL   ?Subroutine2
 ??CrossCallReturnLabel_6:
-        JMP     ??TransmitDisable_1
+        REQUIRE ?Subroutine52
+        ;               // Fall through to label ?Subroutine52
 //  132 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine52:
+        JMP     ??TransmitDisable_1
 //  133 
 //  134 //-----------------------------------------------------------------------------------------------------
 
@@ -1181,9 +1186,9 @@ _A_PINF:
 //  137     uint16_t uiCrc = usCrc16(puiMessage, uiLength);
         MOVW    R19:R18, R21:R20
         MOVW    R17:R16, R27:R26
-        RCALL   ?Subroutine33
+        RCALL   ?Subroutine32
 //  138     puiMessage[uiLength++] = uiCrc & 0x00FF;
-??CrossCallReturnLabel_37:
+??CrossCallReturnLabel_35:
         MOVW    R31:R30, R27:R26
         ADD     R30, R24
         ADC     R31, R25
@@ -1204,7 +1209,7 @@ _A_PINF:
 // __version_3 int16_t CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
 `??Tail for CModbus/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_60:
+??CrossCallReturnLabel_58:
         RJMP    ??Tail
 //  143 
 //  144 /* Builds a RTU request header */
@@ -1245,7 +1250,7 @@ _A_PINF:
 // __version_3 int16_t CModbusRTU::RequestBasis for CModbus/-15/(uint8_t, uint8_t, uint16_t, uint16_t, uint8_t *)
 `??RequestBasis for CModbus/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_61:
+??CrossCallReturnLabel_59:
         RJMP    ??RequestBasis
 //  160 
 //  161 /* Builds a RTU response header */
@@ -1264,24 +1269,24 @@ _A_PINF:
 //  168 
 //  169     return _MODBUS_RTU_PRESET_RSP_LENGTH;
         LDI     R16, 2
-        RJMP    ?Subroutine46
+        RJMP    ?Subroutine45
 //  170 }
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 int16_t CModbusRTU::ResponseBasis for CModbus/-15/(uint8_t, uint8_t, uint8_t *)
 `??ResponseBasis for CModbus/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_62:
+??CrossCallReturnLabel_60:
         RJMP    ??ResponseBasis
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine13:
         SUBI    R16, 15
-        REQUIRE ?Subroutine47
-        ;               // Fall through to label ?Subroutine47
+        REQUIRE ?Subroutine46
+        ;               // Fall through to label ?Subroutine46
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine47:
+?Subroutine46:
         SBCI    R17, 0
         RET
 //  171 
@@ -1301,7 +1306,7 @@ _A_PINF:
 // __version_3 int16_t CModbusRTU::Send for CModbus/-15/(uint8_t *, uint16_t)
 `??Send for CModbus/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_63:
+??CrossCallReturnLabel_61:
         RJMP    ??Send
 //  177 
 //  178 //-----------------------------------------------------------------------------------------------------
@@ -1314,11 +1319,11 @@ _A_PINF:
 //  181     return m_pxDevice -> FrameIsSended();
 ??CrossCallReturnLabel_17:
         ADIW    R27:R26, 43
-        REQUIRE ?Subroutine45
-        ;               // Fall through to label ?Subroutine45
+        REQUIRE ?Subroutine44
+        ;               // Fall through to label ?Subroutine44
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine45:
+?Subroutine44:
         LD      R16, X
         REQUIRE ??Subroutine55_0
         ;               // Fall through to label ??Subroutine55_0
@@ -1339,7 +1344,7 @@ _A_PINF:
 //  187     return m_pxDevice -> ByteIsReceived();
 ??CrossCallReturnLabel_18:
         ADIW    R27:R26, 42
-        RJMP    ?Subroutine45
+        RJMP    ?Subroutine44
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine9:
@@ -1372,7 +1377,7 @@ _A_PINF:
 //  199     if ((CPlatform::GetSystemTick() - m_uiLastSystemTime)  >=
 //  200             m_uiGuardTimeout)
         RCALL   ?Subroutine10
-??CrossCallReturnLabel_42:
+??CrossCallReturnLabel_40:
         LD      R20, X+
         LD      R21, X
         SUB     R18, R20
@@ -1381,8 +1386,8 @@ _A_PINF:
         LDD     R17, Z+10
         CP      R18, R16
         CPC     R19, R17
-        REQUIRE ?Subroutine42
-        ;               // Fall through to label ?Subroutine42
+        REQUIRE ?Subroutine41
+        ;               // Fall through to label ?Subroutine41
 //  201     {
 //  202         return 1;
 //  203     }
@@ -1393,13 +1398,13 @@ _A_PINF:
 //  208 };
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine42:
-        BRCS    ??Subroutine42_0
+?Subroutine41:
+        BRCS    ??Subroutine41_0
         LDI     R16, 1
-        RJMP    ??Subroutine42_1
-??Subroutine42_0:
+        RJMP    ??Subroutine41_1
+??Subroutine41_0:
         LDI     R16, 0
-??Subroutine42_1:
+??Subroutine41_1:
         MOVW    R27:R26, R23:R22
         RET
 //  209 
@@ -1415,23 +1420,23 @@ _A_PINF:
 ??CrossCallReturnLabel_11:
         CPI     R18, 152
         SBCI    R19, 58
-        REQUIRE ?Subroutine43
-        ;               // Fall through to label ?Subroutine43
+        REQUIRE ?Subroutine42
+        ;               // Fall through to label ?Subroutine42
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine43:
-        BRCS    ??Subroutine43_1
+?Subroutine42:
+        BRCS    ??Subroutine42_1
 //  215     {
 //  216         return 1;
         LDI     R16, 1
-        RJMP    ??Subroutine43_0
+        RJMP    ??Subroutine42_0
 //  217     }
 //  218     else
 //  219     {
 //  220         return 0;
-??Subroutine43_1:
+??Subroutine42_1:
         LDI     R16, 0
-??Subroutine43_0:
+??Subroutine42_0:
         MOVW    R27:R26, R21:R20
         RET
 //  221     }
@@ -1449,15 +1454,15 @@ _A_PINF:
 ??CrossCallReturnLabel_12:
         CPI     R18, 232
         SBCI    R19, 3
-        RJMP    ?Subroutine43
+        RJMP    ?Subroutine42
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine4:
         MOVW    R21:R20, R27:R26
-        RCALL   ?Subroutine34
-??CrossCallReturnLabel_38:
-        RCALL   ?Subroutine28
-??CrossCallReturnLabel_48:
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_36:
+        RCALL   ?Subroutine27
+??CrossCallReturnLabel_46:
         SUB     R18, R16
         SBC     R19, R17
         RET
@@ -1484,8 +1489,8 @@ _A_PINF:
         LDI     R31, (??m_uiSystemTick) >> 8
         LD      R24, Z
         LDD     R25, Z+1
-        RCALL   ?Subroutine28
-??CrossCallReturnLabel_46:
+        RCALL   ?Subroutine27
+??CrossCallReturnLabel_44:
         SUB     R24, R16
         SBC     R25, R17
         SBIW    R25:R24, 5
@@ -1518,13 +1523,13 @@ _A_PINF:
         LDI     R31, (??m_uiSystemTick) >> 8
         LD      R20, Z
         LDD     R21, Z+1
-        RCALL   ?Subroutine28
-??CrossCallReturnLabel_47:
+        RCALL   ?Subroutine27
+??CrossCallReturnLabel_45:
         SUB     R20, R16
         SBC     R21, R17
         CP      R20, R18
         CPC     R21, R19
-        RJMP    ?Subroutine42
+        RJMP    ?Subroutine41
 //  257     {
 //  258         return 1;
 //  259     }
@@ -1535,14 +1540,14 @@ _A_PINF:
 //  264 };
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine28:
-        RCALL   ?Subroutine39
-??CrossCallReturnLabel_43:
-        REQUIRE ?Subroutine40
-        ;               // Fall through to label ?Subroutine40
+?Subroutine27:
+        RCALL   ?Subroutine38
+??CrossCallReturnLabel_41:
+        REQUIRE ?Subroutine39
+        ;               // Fall through to label ?Subroutine39
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine40:
+?Subroutine39:
         LD      R16, X+
         LD      R17, X
         RET
@@ -1557,8 +1562,8 @@ _A_PINF:
 //  269     return m_pxDevice -> GetFrameLength();
 ??CrossCallReturnLabel_19:
         ADIW    R27:R26, 24
-        RCALL   ?Subroutine40
-??CrossCallReturnLabel_44:
+        RCALL   ?Subroutine39
+??CrossCallReturnLabel_42:
         RJMP    ??Subroutine55_0
 //  270 }
 //  271 
@@ -1575,17 +1580,17 @@ _A_PINF:
         ST      X+, R18
         ST      X, R19
 //  276 }
-        RJMP    ??Subroutine43_0
+        RJMP    ??Subroutine42_0
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine10:
-        RCALL   ?Subroutine34
-??CrossCallReturnLabel_39:
-        REQUIRE ?Subroutine39
-        ;               // Fall through to label ?Subroutine39
+        RCALL   ?Subroutine33
+??CrossCallReturnLabel_37:
+        REQUIRE ?Subroutine38
+        ;               // Fall through to label ?Subroutine38
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine39:
+?Subroutine38:
         MOVW    R31:R30, R17:R16
         LDD     R26, Z+13
         LDD     R27, Z+14
@@ -1593,7 +1598,7 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine34:
+?Subroutine33:
         LDI     R30, LOW(??m_uiSystemTick)
         LDI     R31, (??m_uiSystemTick) >> 8
         LD      R18, Z
@@ -1609,16 +1614,16 @@ _A_PINF:
         RCALL   ?Subroutine17
 ??CrossCallReturnLabel_25:
         MOVW    R27:R26, R17:R16
-        RCALL   ?Subroutine36
-??CrossCallReturnLabel_81:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_79:
         LDD     R18, Z+24
         LDD     R19, Z+25
         CPI     R18, 4
         LDI     R16, 0
         CPC     R19, R16
         BRCS    ??FrameCheck_2
-        RCALL   ?Subroutine29
-??CrossCallReturnLabel_53:
+        RCALL   ?Subroutine28
+??CrossCallReturnLabel_51:
         LDD     R16, Z+14
         LDD     R17, Z+15
         MOVW    R31:R30, R17:R16
@@ -1639,8 +1644,8 @@ _A_PINF:
 //  290                 (m_pxDevice -> GetFrameLength() - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
         SUBI    R18, 2
         SBCI    R19, 0
-        RCALL   ?Subroutine33
-??CrossCallReturnLabel_36:
+        RCALL   ?Subroutine32
+??CrossCallReturnLabel_34:
         CP      R16, R24
         CPC     R17, R25
         BRNE    ??FrameCheck_2
@@ -1705,10 +1710,10 @@ _A_PINF:
         RCALL   ?Subroutine11
 //  312     if (usCrc16(puiSource,
 //  313                 (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
-??CrossCallReturnLabel_34:
+??CrossCallReturnLabel_32:
         MOVW    R19:R18, R5:R4
         RCALL   ?Subroutine11
-??CrossCallReturnLabel_35:
+??CrossCallReturnLabel_33:
         CP      R16, R26
         CPC     R17, R27
         BRNE    ??FrameCheck_4
@@ -1724,17 +1729,17 @@ _A_PINF:
         LDI     R16, 0
 //  320     }
 ??FrameCheck_5:
-        RJMP    ?Subroutine41
+        RJMP    ?Subroutine40
 //  321 }
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine11:
         MOVW    R17:R16, R25:R24
-        REQUIRE ?Subroutine33
-        ;               // Fall through to label ?Subroutine33
+        REQUIRE ?Subroutine32
+        ;               // Fall through to label ?Subroutine32
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine33:
+?Subroutine32:
         JMP     ??usCrc16
 //  322 
 //  323 //-----------------------------------------------------------------------------------------------------
@@ -1767,7 +1772,7 @@ _A_PINF:
 //  334         GetSystemTime();
 ??Fsm_1:
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_108:
+??CrossCallReturnLabel_104:
         LDI     R16, 3
         RJMP    ??Fsm_2
 //  335         Reset();
@@ -1781,14 +1786,14 @@ _A_PINF:
 //  343         if (Select())
 ??Fsm_3:
         RCALL   ?Subroutine22
-??CrossCallReturnLabel_71:
+??CrossCallReturnLabel_69:
         BREQ    ??Fsm_4
 //  344         {
 //  345             iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
         RCALL   ?Subroutine0
 //  346 
 //  347             if (iReceivedCounter > 0)
-??CrossCallReturnLabel_55:
+??CrossCallReturnLabel_53:
         BRLT    ??Fsm_5
 //  348             {
 //  349                 m_uiMessageLength += iReceivedCounter;
@@ -1796,9 +1801,9 @@ _A_PINF:
 //  350                 GetSystemTime();
 //  351                 SetFsmState(RECEIVE_MESSAGE_REQUEST);
 ??CrossCallReturnLabel_9:
-        RCALL   ?Subroutine37
+        RCALL   ?Subroutine36
 //  352             }
-??CrossCallReturnLabel_101:
+??CrossCallReturnLabel_97:
         LDI     R16, 4
         RJMP    ??Fsm_6
 //  353             else if (iReceivedCounter == -1)
@@ -1807,8 +1812,8 @@ _A_PINF:
         BRNE    ??Fsm_4
 //  354             {
 //  355                 SetFsmState(START_REQUEST);
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_102:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_98:
         LDI     R16, 2
 ??Fsm_6:
         ST      Z, R16
@@ -1819,52 +1824,52 @@ _A_PINF:
 ??Fsm_4:
         LDI     R18, 152
         LDI     R19, 58
-        RCALL   ?Subroutine30
-??CrossCallReturnLabel_66:
+        RCALL   ?Subroutine29
+??CrossCallReturnLabel_64:
         BRNE    $+2+2
         RJMP    ??Fsm_7
 //  360         {
 //  361             SetFsmState(START_REQUEST);
-        RJMP    ??CrossCallReturnLabel_96
+        RJMP    ??Fsm_8
 //  362         }
 //  363 
 //  364         break;
 //  365 
 //  366     case RECEIVE_MESSAGE_REQUEST:
 //  367         if (Select())
-??Fsm_8:
+??Fsm_9:
         RCALL   ?Subroutine22
-??CrossCallReturnLabel_72:
-        BREQ    ??Fsm_9
+??CrossCallReturnLabel_70:
+        BREQ    ??Fsm_10
 //  368         {
 //  369             iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
         RCALL   ?Subroutine0
 //  370 
 //  371             if (iReceivedCounter > 0)
-??CrossCallReturnLabel_56:
-        BRLT    ??Fsm_10
+??CrossCallReturnLabel_54:
+        BRLT    ??Fsm_11
 //  372             {
 //  373                 m_uiMessageLength += iReceivedCounter;
         RCALL   ?Subroutine3
 //  374                 GetSystemTime();
 //  375             }
 ??CrossCallReturnLabel_10:
-        RJMP    ??Fsm_9
+        RJMP    ??Fsm_10
 //  376             else if (iReceivedCounter == -1)
-??Fsm_10:
+??Fsm_11:
         ADIW    R25:R24, 1
-        BRNE    ??Fsm_9
+        BRNE    ??Fsm_10
 //  377             {
 //  378                 SetFsmState(START_REQUEST);
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_103:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_99:
         LDI     R16, 2
         ST      Z, R16
 //  379             }
 //  380         }
 //  381 
 //  382         if (TimeIsOver(m_uiGuardTimeout))
-??Fsm_9:
+??Fsm_10:
         RCALL   ?Subroutine7
 ??CrossCallReturnLabel_15:
         BRNE    $+2+2
@@ -1872,10 +1877,10 @@ _A_PINF:
 //  383         {
 //  384             if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
         RCALL   ?Subroutine19
-??CrossCallReturnLabel_69:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_110:
-        BREQ    ??CrossCallReturnLabel_114
+??CrossCallReturnLabel_67:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_106:
+        BREQ    ??CrossCallReturnLabel_110
 //  385             {
 //  386                 SetFsmState(REPLY_REQUEST);
         LDI     R16, 5
@@ -1891,27 +1896,25 @@ _A_PINF:
 //  395 
 //  396     case REPLY_REQUEST:
 //  397         if (Reply(m_puiRxBuffer, m_puiTxBuffer, m_uiMessageLength))
-??Fsm_11:
+??Fsm_12:
         MOVW    R31:R30, R25:R24
         LDD     R22, Z+12
         LDD     R23, Z+13
         LDD     R20, Z+16
         LDD     R21, Z+17
-        RCALL   ??Subroutine59_0
-??CrossCallReturnLabel_122:
+        RCALL   ??Subroutine58_0
+??CrossCallReturnLabel_118:
         MOVW    R17:R16, R25:R24
         CALL    ??Reply
         OR      R16, R17
-        LDS     R16, 98
-        BREQ    ??CrossCallReturnLabel_27
+        BREQ    ??CrossCallReturnLabel_89
 //  398         {
 //  399             CPlatform::TxLedOn();
-        RCALL   ?Subroutine27
+        CBI     0x1B, 0x03
 //  400             SetFsmState(FRAME_TRANSMIT_CONFIRMATION);
-??CrossCallReturnLabel_98:
-        RCALL   ??Subroutine58_0
+        RCALL   ??Subroutine57_0
 //  401         }
-??CrossCallReturnLabel_111:
+??CrossCallReturnLabel_107:
         LDI     R16, 6
         RJMP    ??Fsm_2
 //  402         else
@@ -1923,25 +1926,25 @@ _A_PINF:
 //  408 
 //  409     case FRAME_TRANSMIT_CONFIRMATION:
 //  410         GetSystemTime();
-??Fsm_12:
+??Fsm_13:
         RCALL   ?Subroutine16
 //  411         Reset();
 //  412         ReceiveDisable();
-??CrossCallReturnLabel_85:
+??CrossCallReturnLabel_83:
         RCALL   ?Subroutine20
 //  413         SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
-??CrossCallReturnLabel_87:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_112:
+??CrossCallReturnLabel_85:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_108:
         LDI     R16, 7
         RJMP    ??Fsm_2
 //  414         break;
 //  415 
 //  416     case WAITING_FRAME_TRANSMIT_CONFIRMATION:
 //  417         if (TimeIsOver(m_uiTransmitDelayTimeout))
-??Fsm_13:
+??Fsm_14:
         RCALL   ?Subroutine14
-??CrossCallReturnLabel_68:
+??CrossCallReturnLabel_66:
         BRNE    $+2+2
         RJMP    ??Fsm_7
 //  418         {
@@ -1950,40 +1953,39 @@ _A_PINF:
         LDD     R16, Z+13
         LDD     R17, Z+14
         MOVW    R31:R30, R17:R16
-        RCALL   ?Subroutine26
-??CrossCallReturnLabel_29:
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_27:
         RCALL   ?Subroutine21
 //  420             TransmitEnable();
 //  421             SetFsmState(END_WAITING_FRAME_TRANSMIT_CONFIRMATION);
-??CrossCallReturnLabel_89:
-        RCALL   ??Subroutine58_0
+??CrossCallReturnLabel_87:
+        RCALL   ??Subroutine57_0
 //  422         }
-??CrossCallReturnLabel_113:
+??CrossCallReturnLabel_109:
         LDI     R16, 8
         RJMP    ??Fsm_2
 //  423         break;
 //  424 
 //  425     case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
 //  426         if (MessageIsSended())
-??Fsm_14:
+??Fsm_15:
         RCALL   ?Subroutine24
-??CrossCallReturnLabel_75:
+??CrossCallReturnLabel_73:
         BRNE    $+2+2
         RJMP    ??Fsm_7
 //  427         {
 //  428             TransmitDisable();
-        RCALL   ?Subroutine25
-??CrossCallReturnLabel_27:
-        ORI     R16, 0x40
-        RCALL   ??Subroutine56_0
+        RCALL   ?Subroutine26
 //  429             CPlatform::TxLedOff();
+??CrossCallReturnLabel_89:
+        SBI     0x1B, 0x03
 //  430             SetFsmState(START_REQUEST);
-??CrossCallReturnLabel_96:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_114:
+//  431         }
+??Fsm_8:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_110:
         LDI     R16, 2
         RJMP    ??Fsm_2
-//  431         }
 //  432 
 //  433         break;
 //  434 
@@ -1997,9 +1999,9 @@ _A_PINF:
 //  442 // ModbusMaster
 //  443     case START_CONFIRMATION:
 //  444         GetSystemTime();
-??Fsm_15:
+??Fsm_16:
         RCALL   ?Subroutine1
-??CrossCallReturnLabel_109:
+??CrossCallReturnLabel_105:
         LDI     R16, 11
         RJMP    ??Fsm_2
 //  445         Reset();
@@ -2011,17 +2013,17 @@ _A_PINF:
 //  451 
 //  452     case WAITING_MESSAGE_CONFIRMATION:
 //  453         if (Select())
-??Fsm_16:
+??Fsm_17:
         RCALL   ?Subroutine22
-??CrossCallReturnLabel_73:
-        BREQ    ??Fsm_17
+??CrossCallReturnLabel_71:
+        BREQ    ??Fsm_18
 //  454         {
 //  455             iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
         RCALL   ?Subroutine0
 //  456 
 //  457             if (iReceivedCounter > 0)
-??CrossCallReturnLabel_57:
-        BRLT    ??Fsm_18
+??CrossCallReturnLabel_55:
+        BRLT    ??Fsm_19
 //  458             {
 //  459                 GetSystemTime();
         RCALL   ?Subroutine6
@@ -2035,85 +2037,85 @@ _A_PINF:
 //  460                 m_uiMessageLength += iReceivedCounter;
 //  461                 SetFsmState(RECEIVE_MESSAGE_CONFIRMATION);
         LDI     R16, 12
-        RJMP    ??Fsm_19
+        RJMP    ??Fsm_20
 //  462             }
 //  463             else if (iReceivedCounter == -1)
-??Fsm_18:
+??Fsm_19:
         ADIW    R25:R24, 1
-        BRNE    ??Fsm_17
+        BRNE    ??Fsm_18
 //  464             {
 //  465                 SetFsmState(STOP_CONFIRMATION);
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_104:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_100:
         LDI     R16, 17
-??Fsm_19:
+??Fsm_20:
         ST      Z, R16
 //  466             }
 //  467         }
 //  468 
 //  469         if (TimeIsOver(m_uiConfirmationTimeout))
-??Fsm_17:
+??Fsm_18:
         LDI     R18, 232
         LDI     R19, 3
-        RCALL   ?Subroutine30
-??CrossCallReturnLabel_65:
+        RCALL   ?Subroutine29
+??CrossCallReturnLabel_63:
         BREQ    ??Fsm_7
 //  470         {
 //  471             SetFsmState(STOP_CONFIRMATION);
-        RCALL   ??Subroutine58_0
+        RCALL   ??Subroutine57_0
 //  472         }
-??CrossCallReturnLabel_115:
-        RJMP    ??Fsm_20
+??CrossCallReturnLabel_111:
+        RJMP    ??Fsm_21
 //  473 
 //  474         break;
 //  475 
 //  476     case RECEIVE_MESSAGE_CONFIRMATION:
 //  477         if (Select())
-??Fsm_21:
+??Fsm_22:
         RCALL   ?Subroutine22
-??CrossCallReturnLabel_74:
-        BREQ    ??Fsm_22
+??CrossCallReturnLabel_72:
+        BREQ    ??Fsm_23
 //  478         {
 //  479             iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
         RCALL   ?Subroutine0
 //  480 
 //  481             if (iReceivedCounter > 0)
-??CrossCallReturnLabel_58:
-        BRLT    ??Fsm_23
+??CrossCallReturnLabel_56:
+        BRLT    ??Fsm_24
 //  482             {
 //  483                 GetSystemTime();
         RCALL   ?Subroutine6
 //  484                 m_uiMessageLength += iReceivedCounter;
 //  485             }
 ??CrossCallReturnLabel_13:
-        RCALL   ?Subroutine35
-??CrossCallReturnLabel_40:
-        RJMP    ??Fsm_22
+        RCALL   ?Subroutine34
+??CrossCallReturnLabel_38:
+        RJMP    ??Fsm_23
 //  486             else if (iReceivedCounter == -1)
-??Fsm_23:
+??Fsm_24:
         ADIW    R25:R24, 1
-        BRNE    ??Fsm_22
+        BRNE    ??Fsm_23
 //  487             {
 //  488                 SetFsmState(STOP_CONFIRMATION);
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_105:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_101:
         LDI     R16, 17
         ST      Z, R16
 //  489             }
 //  490         }
 //  491 
 //  492         if (TimeIsOver(m_uiGuardTimeout))
-??Fsm_22:
+??Fsm_23:
         RCALL   ?Subroutine7
 ??CrossCallReturnLabel_16:
         BREQ    ??Fsm_7
 //  493         {
 //  494             if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
         RCALL   ?Subroutine19
-??CrossCallReturnLabel_70:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_116:
-        BREQ    ??Fsm_20
+??CrossCallReturnLabel_68:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_112:
+        BREQ    ??Fsm_21
 //  495             {
 //  496                 SetFsmState(REPLY_CONFIRMATION);
         LDI     R16, 13
@@ -2122,7 +2124,7 @@ _A_PINF:
 //  498             else
 //  499             {
 //  500                 SetFsmState(STOP_CONFIRMATION);
-??Fsm_20:
+??Fsm_21:
         LDI     R16, 17
         RJMP    ??Fsm_2
 //  501             }
@@ -2132,15 +2134,15 @@ _A_PINF:
 //  505 
 //  506     case REPLY_CONFIRMATION:
 //  507         if (ReceiveMessage(m_puiRxBuffer, m_uiMessageLength))
-??Fsm_24:
+??Fsm_25:
         MOVW    R31:R30, R25:R24
-        RCALL   ?Subroutine38
-??CrossCallReturnLabel_124:
+        RCALL   ?Subroutine37
+??CrossCallReturnLabel_120:
         MOVW    R17:R16, R25:R24
         CALL    ??ReceiveMessage
         OR      R16, R17
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_117:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_113:
         LDI     R16, 17
         ST      X, R16
         BRNE    ??Fsm_7
@@ -2156,63 +2158,59 @@ _A_PINF:
 //  516 
 //  517     case FRAME_TRANSMIT_REQUEST:
 //  518         GetSystemTime();
-??Fsm_25:
+??Fsm_26:
         RCALL   ?Subroutine16
 //  519         Reset();
 //  520         CPlatform::TxLedOn();
-??CrossCallReturnLabel_84:
-        LDS     R16, 98
-        RCALL   ?Subroutine27
+??CrossCallReturnLabel_82:
+        CBI     0x1B, 0x03
 //  521         SetFsmState(WAITING_FRAME_TRANSMIT_REQUEST);
-??CrossCallReturnLabel_99:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_118:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_114:
         LDI     R16, 15
         RJMP    ??Fsm_2
 //  522         break;
 //  523 
 //  524     case WAITING_FRAME_TRANSMIT_REQUEST:
 //  525         if (TimeIsOver(m_uiTransmitDelayTimeout))
-??Fsm_26:
+??Fsm_27:
         RCALL   ?Subroutine14
-??CrossCallReturnLabel_67:
+??CrossCallReturnLabel_65:
         BREQ    ??Fsm_7
 //  526         {
 //  527             SendMessage(m_puiTxBuffer, m_uiMessageLength);
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_106:
-        RCALL   ?Subroutine26
-??CrossCallReturnLabel_30:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_102:
+        RCALL   ?Subroutine25
+??CrossCallReturnLabel_28:
         MOVW    R17:R16, R31:R30
         RCALL   ?Subroutine21
 //  528             TransmitEnable();
 //  529             SetFsmState(END_WAITING_FRAME_TRANSMIT_REQUEST);
-??CrossCallReturnLabel_88:
-        RCALL   ??Subroutine58_0
+??CrossCallReturnLabel_86:
+        RCALL   ??Subroutine57_0
 //  530         }
-??CrossCallReturnLabel_119:
+??CrossCallReturnLabel_115:
         LDI     R16, 16
         RJMP    ??Fsm_2
 //  531         break;
 //  532 
 //  533     case END_WAITING_FRAME_TRANSMIT_REQUEST:
 //  534         if (MessageIsSended())
-??Fsm_27:
+??Fsm_28:
         RCALL   ?Subroutine24
-??CrossCallReturnLabel_76:
+??CrossCallReturnLabel_74:
         BREQ    ??Fsm_7
 //  535         {
 //  536             TransmitDisable();
-        RCALL   ?Subroutine25
-??CrossCallReturnLabel_28:
-        ORI     R16, 0x40
-        RCALL   ??Subroutine56_0
+        RCALL   ?Subroutine26
 //  537             CPlatform::TxLedOff();
+??CrossCallReturnLabel_88:
+        SBI     0x1B, 0x03
 //  538             SetFsmState(START_CONFIRMATION);
-??CrossCallReturnLabel_97:
-        RCALL   ??Subroutine58_0
+        RCALL   ??Subroutine57_0
 //  539         }
-??CrossCallReturnLabel_120:
+??CrossCallReturnLabel_116:
         LDI     R16, 10
         RJMP    ??Fsm_2
 //  540 
@@ -2220,13 +2218,13 @@ _A_PINF:
 //  542 
 //  543     case STOP_CONFIRMATION:
 //  544         ReceiveDisable();
-??Fsm_28:
+??Fsm_29:
         RCALL   ?Subroutine20
 //  545 //        Close();
 //  546         SetFsmState(IDDLE);
-??CrossCallReturnLabel_86:
-        RCALL   ??Subroutine58_0
-??CrossCallReturnLabel_121:
+??CrossCallReturnLabel_84:
+        RCALL   ??Subroutine57_0
+??CrossCallReturnLabel_117:
         LDI     R16, 0
 ??Fsm_2:
         ST      X, R16
@@ -2238,21 +2236,15 @@ _A_PINF:
 //  552 }
 ??Fsm_7:
         RJMP    ?Subroutine53
-        REQUIRE _A_PORTF
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine27:
-        ANDI    R16, 0xBF
-        REQUIRE ??Subroutine56_0
-        ;               // Fall through to label ??Subroutine56_0
-
-        RSEG CODE:CODE:NOROOT(1)
-??Subroutine56_0:
-        STS     98, R16
-        RET
+        REQUIRE _A_PORTA
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine26:
+        MOVW    R17:R16, R31:R30
+        RJMP    ?Subroutine52
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine25:
         LDD     R20, Z+12
         LDD     R21, Z+13
         LDD     R18, Z+16
@@ -2260,39 +2252,32 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine25:
-        MOVW    R17:R16, R31:R30
-        CALL    ??TransmitDisable_1
-        LDS     R16, 98
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
 ?Subroutine24:
-        RCALL   ?Subroutine36
-??CrossCallReturnLabel_83:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_81:
         LDD     R16, Z+43
-        RJMP    ?Subroutine48
+        RJMP    ?Subroutine47
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine36:
+?Subroutine35:
         LD      R30, X+
         LD      R31, X
-        REQUIRE ?Subroutine49
-        ;               // Fall through to label ?Subroutine49
+        REQUIRE ?Subroutine48
+        ;               // Fall through to label ?Subroutine48
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine49:
+?Subroutine48:
         SBIW    R27:R26, 1
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine37:
+?Subroutine36:
         ADIW    R27:R26, 13
-        REQUIRE ??Subroutine57_0
-        ;               // Fall through to label ??Subroutine57_0
+        REQUIRE ??Subroutine56_0
+        ;               // Fall through to label ??Subroutine56_0
 
         RSEG CODE:CODE:NOROOT(1)
-??Subroutine57_0:
+??Subroutine56_0:
         LD      R30, X+
         LD      R31, X
         SBIW    R27:R26, 14
@@ -2300,96 +2285,96 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine22:
-        RCALL   ?Subroutine36
-??CrossCallReturnLabel_82:
+        RCALL   ?Subroutine35
+??CrossCallReturnLabel_80:
         LDD     R16, Z+42
-        RJMP    ?Subroutine48
+        RJMP    ?Subroutine47
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine21:
         CALL    ??SendMessage
-        RCALL   ?Subroutine31
-??CrossCallReturnLabel_80:
-        RJMP    ?Subroutine52
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine20:
-        RCALL   ?Subroutine31
-??CrossCallReturnLabel_79:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_78:
         RJMP    ?Subroutine51
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine19:
-        RCALL   ?Subroutine37
-??CrossCallReturnLabel_107:
-        RCALL   ?Subroutine38
-??CrossCallReturnLabel_125:
-        MOVW    R17:R16, R27:R26
-        RCALL   ??FrameCheck_1
-        REQUIRE ?Subroutine48
-        ;               // Fall through to label ?Subroutine48
+?Subroutine20:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_77:
+        RJMP    ?Subroutine50
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine48:
+?Subroutine19:
+        RCALL   ?Subroutine36
+??CrossCallReturnLabel_103:
+        RCALL   ?Subroutine37
+??CrossCallReturnLabel_121:
+        MOVW    R17:R16, R27:R26
+        RCALL   ??FrameCheck_1
+        REQUIRE ?Subroutine47
+        ;               // Fall through to label ?Subroutine47
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine47:
         TST     R16
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine16:
-        RCALL   ?Subroutine32
-??CrossCallReturnLabel_33:
         RCALL   ?Subroutine31
-??CrossCallReturnLabel_78:
-        RJMP    ?Subroutine50
+??CrossCallReturnLabel_31:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_76:
+        RJMP    ?Subroutine49
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine31:
-        RCALL   ?Subroutine40
-??CrossCallReturnLabel_49:
-        RJMP    ?Subroutine49
+?Subroutine30:
+        RCALL   ?Subroutine39
+??CrossCallReturnLabel_47:
+        RJMP    ?Subroutine48
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine14:
         LDI     R18, 5
         LDI     R19, 0
-        REQUIRE ?Subroutine30
-        ;               // Fall through to label ?Subroutine30
+        REQUIRE ?Subroutine29
+        ;               // Fall through to label ?Subroutine29
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine30:
+?Subroutine29:
         MOVW    R17:R16, R27:R26
         RCALL   ??TimeIsOver
-        RJMP    ?Subroutine48
+        RJMP    ?Subroutine47
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine7:
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+9
         LDD     R19, Z+10
-        RJMP    ?Subroutine30
+        RJMP    ?Subroutine29
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine6:
-        RCALL   ?Subroutine32
-??CrossCallReturnLabel_32:
-        REQUIRE ?Subroutine29
-        ;               // Fall through to label ?Subroutine29
+        RCALL   ?Subroutine31
+??CrossCallReturnLabel_30:
+        REQUIRE ?Subroutine28
+        ;               // Fall through to label ?Subroutine28
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine29:
+?Subroutine28:
         MOVW    R31:R30, R27:R26
-        RJMP    ?Subroutine44
+        RJMP    ?Subroutine43
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine3:
-        RCALL   ?Subroutine29
-??CrossCallReturnLabel_54:
-        RCALL   ?Subroutine35
-??CrossCallReturnLabel_41:
-        RJMP    ?Subroutine32
+        RCALL   ?Subroutine28
+??CrossCallReturnLabel_52:
+        RCALL   ?Subroutine34
+??CrossCallReturnLabel_39:
+        RJMP    ?Subroutine31
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine35:
+?Subroutine34:
         LDD     R16, Z+12
         LDD     R17, Z+13
         ADD     R16, R24
@@ -2399,31 +2384,31 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine32:
+?Subroutine31:
         MOVW    R17:R16, R27:R26
         RJMP    ??GetSystemTime
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine1:
-        RCALL   ?Subroutine32
-??CrossCallReturnLabel_31:
-        RCALL   ?Subroutine40
-??CrossCallReturnLabel_45:
+        RCALL   ?Subroutine31
+??CrossCallReturnLabel_29:
+        RCALL   ?Subroutine39
+??CrossCallReturnLabel_43:
         ADIW    R27:R26, 12
         CALL    ??Reset_1
-        RCALL   ??Subroutine57_0
-??CrossCallReturnLabel_100:
+        RCALL   ??Subroutine56_0
+??CrossCallReturnLabel_96:
         LDI     R16, 0
         STD     Z+12, R16
         STD     Z+13, R16
-        RCALL   ?Subroutine31
-??CrossCallReturnLabel_77:
+        RCALL   ?Subroutine30
+??CrossCallReturnLabel_75:
         CALL    ??Enable
-        REQUIRE ??Subroutine58_0
-        ;               // Fall through to label ??Subroutine58_0
+        REQUIRE ??Subroutine57_0
+        ;               // Fall through to label ??Subroutine57_0
 
         RSEG CODE:CODE:NOROOT(1)
-??Subroutine58_0:
+??Subroutine57_0:
         MOVW    R31:R30, R27:R26
         LDD     R26, Z+13
         LDD     R27, Z+14
@@ -2438,25 +2423,25 @@ _A_PINF:
         LDI     R21, 1
         SUB     R20, R16
         SBC     R21, R17
-        RCALL   ??Subroutine59_0
-??CrossCallReturnLabel_123:
+        RCALL   ??Subroutine58_0
+??CrossCallReturnLabel_119:
         ADD     R18, R16
         ADC     R19, R17
         MOVW    R17:R16, R27:R26
         RCALL   ??Receive
         MOVW    R25:R24, R17:R16
         CPI     R16, 1
-        RJMP    ?Subroutine47
+        RJMP    ?Subroutine46
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine38:
+?Subroutine37:
         LDD     R20, Z+12
         LDD     R21, Z+13
-        REQUIRE ??Subroutine59_0
-        ;               // Fall through to label ??Subroutine59_0
+        REQUIRE ??Subroutine58_0
+        ;               // Fall through to label ??Subroutine58_0
 
         RSEG CODE:CODE:NOROOT(1)
-??Subroutine59_0:
+??Subroutine58_0:
         LDD     R18, Z+14
         LDD     R19, Z+15
         RET
@@ -2465,7 +2450,7 @@ _A_PINF:
 // __version_3 void CModbusRTU::Fsm for CDfaLite/-15/()
 `??Fsm for CDfaLite/-15/`:
         RCALL   ?Subroutine13
-??CrossCallReturnLabel_64:
+??CrossCallReturnLabel_62:
         RJMP    ??Fsm
 
         RSEG CODE:CODE:NOROOT(1)
@@ -2516,20 +2501,20 @@ __?EEARH:
         DW      16
         DW      (??Fsm_1) /2
         DW      (??Fsm_3) /2
-        DW      (??Fsm_8) /2
-        DW      (??Fsm_11) /2
+        DW      (??Fsm_9) /2
         DW      (??Fsm_12) /2
         DW      (??Fsm_13) /2
         DW      (??Fsm_14) /2
-        DW      (??Fsm_28) /2
         DW      (??Fsm_15) /2
+        DW      (??Fsm_29) /2
         DW      (??Fsm_16) /2
-        DW      (??Fsm_21) /2
-        DW      (??Fsm_24) /2
+        DW      (??Fsm_17) /2
+        DW      (??Fsm_22) /2
         DW      (??Fsm_25) /2
         DW      (??Fsm_26) /2
         DW      (??Fsm_27) /2
         DW      (??Fsm_28) /2
+        DW      (??Fsm_29) /2
 
         END
 //  553 //-----------------------------------------------------------------------------------------------------
@@ -2540,11 +2525,11 @@ __?EEARH:
 //  558 
 // 
 //   105 bytes in segment ABSOLUTE
-// 1 526 bytes in segment CODE
+// 1 498 bytes in segment CODE
 //    36 bytes in segment NEAR_F
 //    38 bytes in segment SWITCH
 // 
-// 1 556 bytes of CODE memory (+  44 bytes shared)
+// 1 528 bytes of CODE memory (+  44 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

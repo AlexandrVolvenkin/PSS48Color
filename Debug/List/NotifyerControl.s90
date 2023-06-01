@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:24
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  15:39:52
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW3F8E.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW3F01.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o
@@ -710,13 +710,13 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 //   14 CNotifyerControl::CNotifyerControl()
 ??CNotifyerControl:
-        RCALL   ?Subroutine18
+        RCALL   ?Subroutine17
 //   15 {
 ??CrossCallReturnLabel_22:
         CALL    ??CDfa
         RCALL   ?Subroutine3
 ??CrossCallReturnLabel_30:
-        RCALL   ?Subroutine19
+        RCALL   ?Subroutine18
 ??CrossCallReturnLabel_25:
         CALL    ??CTimer
 //   16     SetFsmState(STOP);
@@ -724,7 +724,7 @@ _A_PINF:
         ST      X, R16
 //   17     SetSavedFsmState(STOP);
         MOVW    R31:R30, R27:R26
-        RJMP    ?Subroutine22
+        RJMP    ?Subroutine21
 //   18 }
 
         RSEG CODE:CODE:NOROOT(1)
@@ -733,7 +733,7 @@ _A_PINF:
         RCALL   ?Subroutine9
 ??CrossCallReturnLabel_13:
         BREQ    `??new CNotifyerControl_1`
-        RJMP    ?Subroutine28
+        RJMP    ?Subroutine27
 `??new CNotifyerControl_1`:
         RJMP    ?Subroutine10
 //   19 
@@ -1110,7 +1110,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine1:
-        RCALL   ?Subroutine20
+        RCALL   ?Subroutine19
 //  363     SetFsmState(STOP);
 ??CrossCallReturnLabel_29:
         LDI     R16, 37
@@ -1121,7 +1121,7 @@ _A_PINF:
 ?Subroutine35:
         ST      X, R16
 //  364     SetSavedFsmState(STOP);
-        RJMP    ?Subroutine22
+        RJMP    ?Subroutine21
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CEmergencyAlarmWindowNotifyerControl &CEmergencyAlarmWindowNotifyerControl::new CEmergencyAlarmWindowNotifyerControl()
@@ -1247,7 +1247,7 @@ _A_PINF:
 ??CrossCallReturnLabel_33:
         LDI     R16, LOW(??__vtbl_6)
         LDI     R17, (??__vtbl_6) >> 8
-        RCALL   ?Subroutine20
+        RCALL   ?Subroutine19
 //  457     SetFsmState(NORMAL_SIGNAL_START);
 ??CrossCallReturnLabel_28:
         LDI     R16, 24
@@ -1256,31 +1256,31 @@ _A_PINF:
 //  459 }
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine22:
+?Subroutine21:
         STD     Z+3, R16
         MOVW    R17:R16, R27:R26
-        REQUIRE ?Subroutine29
-        ;               // Fall through to label ?Subroutine29
+        REQUIRE ?Subroutine28
+        ;               // Fall through to label ?Subroutine28
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine29:
+?Subroutine28:
         LD      R26, Y+
         LD      R27, Y+
         RET
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine2:
-        RCALL   ?Subroutine18
+        RCALL   ?Subroutine17
 ??CrossCallReturnLabel_24:
-        REQUIRE ?Subroutine28
-        ;               // Fall through to label ?Subroutine28
+        REQUIRE ?Subroutine27
+        ;               // Fall through to label ?Subroutine27
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine28:
+?Subroutine27:
         RJMP    ??CNotifyerControl
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine18:
+?Subroutine17:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
@@ -1316,7 +1316,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 `?~CNotifyerControl`:
-        RCALL   ?Subroutine23
+        RCALL   ?Subroutine22
 ??CrossCallReturnLabel_39:
         OR      R16, R27
         BREQ    ??CrossCallReturnLabel_37
@@ -1324,20 +1324,20 @@ _A_PINF:
 ??CrossCallReturnLabel_31:
         LDI     R18, 2
         LDI     R19, 0
-        RCALL   ?Subroutine19
+        RCALL   ?Subroutine18
 ??CrossCallReturnLabel_26:
         CALL    `?~CTimer`
         LDI     R18, 0
         LDI     R19, 0
         MOVW    R17:R16, R27:R26
         CALL    `?~CDfa`
-        RCALL   ?Subroutine21
+        RCALL   ?Subroutine20
 ??CrossCallReturnLabel_37:
         LDI     R30, 4
         RJMP    ??Subroutine38_0
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine19:
+?Subroutine18:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
@@ -1347,11 +1347,11 @@ _A_PINF:
 ?Subroutine3:
         LDI     R16, LOW(??__vtbl)
         LDI     R17, (??__vtbl) >> 8
-        REQUIRE ?Subroutine20
-        ;               // Fall through to label ?Subroutine20
+        REQUIRE ?Subroutine19
+        ;               // Fall through to label ?Subroutine19
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine20:
+?Subroutine19:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
@@ -1359,7 +1359,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ??Fsm:
-        RCALL   ?Subroutine18
+        RCALL   ?Subroutine17
 ??CrossCallReturnLabel_23:
         LD      R16, X
         LDI     R30, LOW(`?<Jumptable for Fsm>_0`)
@@ -1372,7 +1372,7 @@ _A_PINF:
 ??CrossCallReturnLabel_0:
         BRNE    $+2+2
         RJMP    ??Fsm_2
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_59:
         ADIW    R31:R30, 18
         RCALL   ?Subroutine4
@@ -1385,21 +1385,21 @@ _A_PINF:
         BRNE    $+2+2
         RJMP    ??Fsm_2
 ??Fsm_5:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_60:
         ADIW    R31:R30, 16
         RCALL   ?Subroutine8
 ??CrossCallReturnLabel_12:
         ADIW    R31:R30, 4
-        RCALL   ?Subroutine25
+        RCALL   ?Subroutine24
 ??CrossCallReturnLabel_56:
         LDI     R16, 25
         RJMP    ??Fsm_3
 ??Fsm_6:
-        RCALL   ?Subroutine27
+        RCALL   ?Subroutine26
 ??CrossCallReturnLabel_71:
         ADIW    R31:R30, 6
-        RCALL   ?Subroutine25
+        RCALL   ?Subroutine24
 ??CrossCallReturnLabel_57:
         RJMP    ??Fsm_2
 ??Fsm_7:
@@ -1407,7 +1407,7 @@ _A_PINF:
 ??CrossCallReturnLabel_2:
         BRNE    $+2+2
         RJMP    ??Fsm_2
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_61:
         ADIW    R31:R30, 22
         RCALL   ?Subroutine4
@@ -1419,13 +1419,13 @@ _A_PINF:
 ??CrossCallReturnLabel_3:
         BREQ    ??Fsm_2
 ??Fsm_9:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_62:
         ADIW    R31:R30, 20
         RCALL   ?Subroutine8
 ??CrossCallReturnLabel_11:
         ADIW    R31:R30, 8
-        RCALL   ?Subroutine25
+        RCALL   ?Subroutine24
 ??CrossCallReturnLabel_58:
         LDI     R16, 8
         RJMP    ??Fsm_3
@@ -1433,7 +1433,7 @@ _A_PINF:
         RCALL   ?Subroutine5
 ??CrossCallReturnLabel_4:
         BREQ    ??Fsm_2
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_63:
         ADIW    R31:R30, 26
         RCALL   ?Subroutine4
@@ -1445,7 +1445,7 @@ _A_PINF:
 ??CrossCallReturnLabel_5:
         BREQ    ??Fsm_2
 ??Fsm_12:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_64:
         ADIW    R31:R30, 24
         RCALL   ??Subroutine36_0
@@ -1456,7 +1456,7 @@ _A_PINF:
         RCALL   ?Subroutine5
 ??CrossCallReturnLabel_6:
         BREQ    ??Fsm_2
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_65:
         ADIW    R31:R30, 30
         RCALL   ?Subroutine4
@@ -1475,7 +1475,7 @@ _A_PINF:
         RCALL   ?Subroutine5
 ??CrossCallReturnLabel_8:
         BREQ    ??Fsm_2
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_66:
         ADIW    R31:R30, 32
         RCALL   ?Subroutine4
@@ -1492,7 +1492,7 @@ _A_PINF:
         LDI     R16, 20
         RJMP    ??Fsm_3
 ??Fsm_18:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_67:
         ADIW    R31:R30, 34
         RCALL   ??Subroutine36_0
@@ -1503,36 +1503,36 @@ _A_PINF:
         RCALL   ?Subroutine5
 ??CrossCallReturnLabel_10:
         BREQ    ??Fsm_2
-        RCALL   ?Subroutine15
+        RCALL   ?Subroutine14
 ??CrossCallReturnLabel_48:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+3
         RJMP    ??Fsm_3
 ??Fsm_20:
-        RCALL   ?Subroutine15
+        RCALL   ?Subroutine14
 ??CrossCallReturnLabel_49:
         LDI     R16, 0
 ??Fsm_3:
         ST      X, R16
 ??Fsm_2:
-        RJMP    ?Subroutine29
+        RJMP    ?Subroutine28
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine8:
-        RCALL   ?Subroutine16
+        RCALL   ?Subroutine15
 ??CrossCallReturnLabel_47:
-        REQUIRE ?Subroutine26
-        ;               // Fall through to label ?Subroutine26
+        REQUIRE ?Subroutine25
+        ;               // Fall through to label ?Subroutine25
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine26:
-        RCALL   ?Subroutine27
+?Subroutine25:
+        RCALL   ?Subroutine26
 ??CrossCallReturnLabel_72:
         SBIW    R27:R26, 2
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine27:
+?Subroutine26:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1541,7 +1541,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine6:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_68:
         ADIW    R31:R30, 28
         REQUIRE ??Subroutine36_0
@@ -1549,16 +1549,16 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ??Subroutine36_0:
-        RCALL   ?Subroutine16
+        RCALL   ?Subroutine15
 ??CrossCallReturnLabel_46:
-        RCALL   ?Subroutine26
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_70:
         ADIW    R31:R30, 10
-        RJMP    ?Subroutine25
+        RJMP    ?Subroutine24
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine16:
-        RCALL   ?Subroutine25
+?Subroutine15:
+        RCALL   ?Subroutine24
 ??CrossCallReturnLabel_55:
         MOVW    R19:R18, R17:R16
         MOVW    R17:R16, R27:R26
@@ -1568,7 +1568,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine5:
-        RCALL   ?Subroutine19
+        RCALL   ?Subroutine18
 ??CrossCallReturnLabel_27:
         CALL    ??IsOverflow
         TST     R16
@@ -1576,21 +1576,21 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine4:
-        RCALL   ?Subroutine16
+        RCALL   ?Subroutine15
 ??CrossCallReturnLabel_45:
-        REQUIRE ?Subroutine15
-        ;               // Fall through to label ?Subroutine15
+        REQUIRE ?Subroutine14
+        ;               // Fall through to label ?Subroutine14
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine15:
-        RCALL   ?Subroutine26
+?Subroutine14:
+        RCALL   ?Subroutine25
 ??CrossCallReturnLabel_69:
         ADIW    R31:R30, 12
-        REQUIRE ?Subroutine25
-        ;               // Fall through to label ?Subroutine25
+        REQUIRE ?Subroutine24
+        ;               // Fall through to label ?Subroutine24
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine25:
+?Subroutine24:
         LPM     R18, Z+
         LPM     R31, Z
         MOV     R30, R18
@@ -1621,11 +1621,11 @@ _A_PINF:
 ??AlarmSet_6:
         LDI     R16, 7
 ??AlarmSet_7:
-        REQUIRE ?Subroutine30
-        ;               // Fall through to label ?Subroutine30
+        REQUIRE ?Subroutine29
+        ;               // Fall through to label ?Subroutine29
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine30:
+?Subroutine29:
         ST      Z, R16
         RET
 
@@ -1683,7 +1683,7 @@ _A_PINF:
 ??AlarmSet_8:
         LDI     R16, 37
 ??AlarmSet_11:
-        RJMP    ?Subroutine30
+        RJMP    ?Subroutine29
 ??AlarmSet_10:
         LDI     R16, 13
         RJMP    ??AlarmSet_11
@@ -1733,7 +1733,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine0:
-        RCALL   ?Subroutine23
+        RCALL   ?Subroutine22
 ??CrossCallReturnLabel_40:
         OR      R16, R17
         BREQ    ??CrossCallReturnLabel_38
@@ -1743,25 +1743,25 @@ _A_PINF:
         LDI     R19, 0
         MOV     R16, R26
         RCALL   `?~CNotifyerControl`
-        RCALL   ?Subroutine21
+        RCALL   ?Subroutine20
 ??CrossCallReturnLabel_38:
         LDI     R30, 4
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine23:
+?Subroutine22:
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
         MOV     R24, R18
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine21:
+?Subroutine20:
         BST     R24, 0
-        BRTC    ??Subroutine21_0
+        BRTC    ??Subroutine20_0
         MOVW    R17:R16, R27:R26
         CALL    `??operator delete`
-??Subroutine21_0:
+??Subroutine20_0:
         RET
 //  465 
 //  466 //-----------------------------------------------------------------------------------------------------
@@ -1795,7 +1795,7 @@ _A_PINF:
 ??AlarmSet_12:
         LDI     R16, 24
 ??AlarmSet_16:
-        RJMP    ?Subroutine30
+        RJMP    ?Subroutine29
 //  479         break;
 //  480 
 //  481     case PREVENTIVE:
@@ -1848,9 +1848,15 @@ _A_PINF:
 ??NotifyerNormalOn_2:
 //  509 {
 //  510     CPlatform::StatusLedOn();
-        RJMP    ?Subroutine14
-        REQUIRE _A_PORTF
+        REQUIRE ?Subroutine30
+        REQUIRE _A_PORTA
+        ;               // Fall through to label ?Subroutine30
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine30:
+        CBI     0x1B, 0x04
 //  511 }
+        RET
 //  512 
 //  513 //-----------------------------------------------------------------------------------------------------
 
@@ -1869,16 +1875,8 @@ _A_PINF:
 ??NotifyerPreventiveOn_2:
 //  521 {
 //  522     CPlatform::StatusLedOn();
-        REQUIRE ?Subroutine14
-        REQUIRE _A_PORTF
-        ;               // Fall through to label ?Subroutine14
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine14:
-        LDS     R16, 98
-        ANDI    R16, 0x7F
-        STS     98, R16
-        RET
+        RJMP    ?Subroutine30
+        REQUIRE _A_PORTA
 //  523 }
 //  524 
 //  525 //-----------------------------------------------------------------------------------------------------
@@ -1888,8 +1886,8 @@ _A_PINF:
 ??NotifyerEmergencyOn_2:
 //  527 {
 //  528     CPlatform::StatusLedOn();
-        RJMP    ?Subroutine14
-        REQUIRE _A_PORTF
+        RJMP    ?Subroutine30
+        REQUIRE _A_PORTA
 //  529 }
 //  530 
 //  531 //-----------------------------------------------------------------------------------------------------
@@ -1899,12 +1897,10 @@ _A_PINF:
 ??NotifyerOff_2:
 //  533 {
 //  534     CPlatform::StatusLedOff();
-        LDS     R16, 98
-        ORI     R16, 0x80
-        STS     98, R16
+        SBI     0x1B, 0x04
 //  535     CPss21::BoardWindowsUpdate();
         RJMP    ??Subroutine39_0
-        REQUIRE _A_PORTF
+        REQUIRE _A_PORTA
 //  536 }
 
         RSEG CODE:CODE:NOROOT(1)
@@ -1973,7 +1969,7 @@ _A_PINF:
 ??AlarmSet_17:
         LDI     R16, 37
 ??AlarmSet_22:
-        RJMP    ?Subroutine30
+        RJMP    ?Subroutine29
 //  570         break;
 //  571 
 //  572     case PREVENTIVE:
@@ -2358,11 +2354,11 @@ __?EEARH:
 //  631 
 // 
 // 105 bytes in segment ABSOLUTE
-// 904 bytes in segment CODE
+// 888 bytes in segment CODE
 // 202 bytes in segment NEAR_F
 //  58 bytes in segment SWITCH
 // 
-// 852 bytes of CODE memory (+ 312 bytes shared)
+// 836 bytes of CODE memory (+ 312 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  07:56:24
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  18:35:16
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW400C.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EW9BEC.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 #        --cpu=m128a -ms -o
@@ -544,44 +544,53 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
      41          void CPss48BoardPixel::SetCorrection(TPixelColorData __farflash* pxPixelData)
    \                     ??SetCorrection:
      42          {
-   \   00000000   ....               RCALL   ?Subroutine0
+   \   00000000   ....               RCALL   ?Subroutine2
      43              CDm163::SetBank0(pxPixelData -> uiRedData);
    \                     ??CrossCallReturnLabel_0:
-   \   00000002   ........           CALL    ??SetBank0
+   \   00000002   01F8               MOVW    R31:R30, R17:R16
+   \   00000004   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_9:
+   \   00000006   9631               ADIW    R31:R30, 1
+   \   00000008   ....               RCALL   ?Subroutine1
      44              CDm163::SetBank0(pxPixelData -> uiGreenData);
-   \   00000006   01FD               MOVW    R31:R30, R27:R26
-   \   00000008   9631               ADIW    R31:R30, 1
-   \   0000000A   ....               RCALL   ?Subroutine1
      45              CDm163::SetBank0(pxPixelData -> uiBlueData);
-   \                     ??CrossCallReturnLabel_3:
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   9632               ADIW    R31:R30, 2
-   \   00000010   ....               RCALL   ?Subroutine1
+   \                     ??CrossCallReturnLabel_10:
+   \   0000000A   9632               ADIW    R31:R30, 2
+   \   0000000C   ....               RCALL   ?Subroutine3
      46          }
-   \                     ??CrossCallReturnLabel_2:
-   \   00000012                      REQUIRE ?Subroutine3
-   \   00000012                      ;               // Fall through to label ?Subroutine3
+   \                     ??CrossCallReturnLabel_3:
+   \   0000000E                      REQUIRE ?Subroutine6
+   \   0000000E                      ;               // Fall through to label ?Subroutine6
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine3:
+   \                     ?Subroutine6:
    \   00000000   E0E4               LDI     R30, 4
    \   00000002   ........           JMP     ?EPILOGUE_B4_L09
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
+   \   00000000   ....               RCALL   ?Subroutine3
+   \                     ??CrossCallReturnLabel_2:
+   \   00000002                      REQUIRE ?Subroutine7
+   \   00000002                      ;               // Fall through to label ?Subroutine7
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine7:
+   \   00000000   01FD               MOVW    R31:R30, R27:R26
+   \   00000002   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine3:
    \   00000000   BF9B               OUT     0x3B, R25
    \   00000002   9106               ELPM    R16, Z
    \   00000004   ........           JMP     ??SetBank0
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine0:
+   \                     ?Subroutine2:
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01D8               MOVW    R27:R26, R17:R16
    \   00000006   2F92               MOV     R25, R18
-   \   00000008   01F8               MOVW    R31:R30, R17:R16
-   \   0000000A   BF9B               OUT     0x3B, R25
-   \   0000000C   9106               ELPM    R16, Z
-   \   0000000E   9508               RET
+   \   00000008   9508               RET
      47          
      48          //-----------------------------------------------------------------------------------------------------
 
@@ -589,29 +598,61 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
      49          void CPss48BoardPixel::SetData(TPixelColorData __farflash* pxPixelData)
    \                     ??SetData:
      50          {
-   \   00000000   ....               RCALL   ?Subroutine0
-     51              CDm163::SetBank1(pxPixelData -> uiRedData);
+   \   00000000   ....               RCALL   ?Subroutine2
+     51          //    CDm163::SetBank1(pxPixelData -> uiRedData);
+     52          //    CDm163::SetBank1(pxPixelData -> uiGreenData);
+     53          //    CDm163::SetBank1(pxPixelData -> uiBlueData);
+     54          
+     55          //    CDm163::SetBank0(63);
+     56          //    CDm163::SetBank1(255);
+     57          //
+     58          //    CDm163::SetBank0(63);
+     59          //    CDm163::SetBank1(255);
+     60          //
+     61          //    CDm163::SetBank0(63);
+     62          //    CDm163::SetBank1(255);
+     63          
+     64              CDm163::SetBank0(63);
    \                     ??CrossCallReturnLabel_1:
-   \   00000002   ........           CALL    ??SetBank1
-     52              CDm163::SetBank1(pxPixelData -> uiGreenData);
-   \   00000006   01FD               MOVW    R31:R30, R27:R26
-   \   00000008   9631               ADIW    R31:R30, 1
-   \   0000000A   ....               RCALL   ?Subroutine2
-     53              CDm163::SetBank1(pxPixelData -> uiBlueData);
+   \   00000002   ....               RCALL   ?Subroutine5
+     65              CDm163::SetBank1(pxPixelData -> uiBlueData);
+   \                     ??CrossCallReturnLabel_6:
+   \   00000004   9632               ADIW    R31:R30, 2
+   \   00000006   ....               RCALL   ?Subroutine0
+     66          
+     67              CDm163::SetBank0(63);
+     68              CDm163::SetBank1(pxPixelData -> uiRedData);
+   \                     ??CrossCallReturnLabel_8:
+   \   00000008   ....               RCALL   ?Subroutine0
+     69          
+     70              CDm163::SetBank0(63);
+     71              CDm163::SetBank1(pxPixelData -> uiGreenData);
+   \                     ??CrossCallReturnLabel_7:
+   \   0000000A   9631               ADIW    R31:R30, 1
+   \   0000000C   ....               RCALL   ?Subroutine4
+     72          }
    \                     ??CrossCallReturnLabel_5:
-   \   0000000C   01FD               MOVW    R31:R30, R27:R26
-   \   0000000E   9632               ADIW    R31:R30, 2
-   \   00000010   ....               RCALL   ?Subroutine2
-     54          }
-   \                     ??CrossCallReturnLabel_4:
-   \   00000012   ....               RJMP    ?Subroutine3
+   \   0000000E   ....               RJMP    ?Subroutine6
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine2:
+   \                     ?Subroutine0:
+   \   00000000   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_4:
+   \   00000002                      REQUIRE ?Subroutine5
+   \   00000002                      ;               // Fall through to label ?Subroutine5
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine5:
+   \   00000000   E30F               LDI     R16, 63
+   \   00000002   ........           CALL    ??SetBank0
+   \   00000006   ....               RJMP    ?Subroutine7
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine4:
    \   00000000   BF9B               OUT     0x3B, R25
    \   00000002   9106               ELPM    R16, Z
    \   00000004   ........           JMP     ??SetBank1
-     55          
+     73          
 
    Maximum stack usage in bytes:
 
@@ -619,20 +660,27 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
    ------ ------ --------
       4      2   CPss48BoardPixel::SetCorrection(TPixelColorData __farflash *)
         4      2   -> CDm163::SetBank0(uint8_t)
+        4      4   -> CDm163::SetBank0(uint8_t)
       4      2   CPss48BoardPixel::SetData(TPixelColorData __farflash *)
+        4      4   -> CDm163::SetBank0(uint8_t)
         4      2   -> CDm163::SetBank1(uint8_t)
+        4      4   -> CDm163::SetBank1(uint8_t)
 
 
    Segment part sizes:
 
    Bytes  Function/Label
    -----  --------------
-      16  ?Subroutine0
-       8  ?Subroutine1
-       8  ?Subroutine2
-       6  ?Subroutine3
-      18  CPss48BoardPixel::SetCorrection(TPixelColorData __farflash *)
-      20  CPss48BoardPixel::SetData(TPixelColorData __farflash *)
+       2  ?Subroutine0
+       2  ?Subroutine1
+      10  ?Subroutine2
+       8  ?Subroutine3
+       8  ?Subroutine4
+       8  ?Subroutine5
+       6  ?Subroutine6
+       4  ?Subroutine7
+      14  CPss48BoardPixel::SetCorrection(TPixelColorData __farflash *)
+      16  CPss48BoardPixel::SetData(TPixelColorData __farflash *)
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -728,9 +776,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 
  
  105 bytes in segment ABSOLUTE
-  76 bytes in segment CODE
+  78 bytes in segment CODE
  
- 76 bytes of CODE memory
+ 78 bytes of CODE memory
   0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  07:56:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  18:01:28
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW3CE5.tmp
+#        -f C:\Users\ghost\AppData\Local\Temp\EWAB57.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 #        --cpu=m128a -ms -o
@@ -595,7 +595,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
    \   0000001E   ....               RCALL   ?Subroutine1
    \                     ??CrossCallReturnLabel_4:
    \   00000020   7F0B               ANDI    R16, 0xFB
-   \   00000022   ....               RCALL   ??Subroutine9_0
+   \   00000022   ....               RCALL   ?Subroutine5
      28              CPins::ClearPinSIN();
      29          
      30              CPins::SetPinOutputRST_B();
@@ -608,7 +608,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
      37              CPins::ClearPinLAT_B();
      38          
      39              CPins::SetPinOutputGCK();
-   \                     ??CrossCallReturnLabel_20:
+   \                     ??CrossCallReturnLabel_19:
    \   00000024   9ABC               SBI     0x17, 0x04
      40              CPins::ClearPinGCK();
    \   00000026   98C4               CBI     0x18, 0x04
@@ -625,14 +625,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
    \   00000036   ....               RCALL   ?Subroutine1
    \                     ??CrossCallReturnLabel_2:
    \   00000038   6200               ORI     R16, 0x20
-   \   0000003A   ....               RCALL   ??Subroutine9_0
+   \   0000003A   ....               RCALL   ?Subroutine5
      43              CPins::ClearPinSELBK();
      44          
      45              CPins::SetPinOutputEN_B();
      46              CPins::SetPinEN_B();
      47          
      48              SetFrequencyGCK();
-   \                     ??CrossCallReturnLabel_21:
+   \                     ??CrossCallReturnLabel_20:
    \   0000003C   9ABC               SBI     0x17, 0x04
    \   0000003E   E002               LDI     R16, 2
    \   00000040   BF01               OUT     0x31, R16
@@ -649,7 +649,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine2:
-   \   00000000   ....               RCALL   ??Subroutine9_0
+   \   00000000   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_26:
    \   00000002   91000061           LDS     R16, 97
    \   00000006   9508               RET
@@ -657,8 +657,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
    \   00000000   93000061           STS     97, R16
-   \   00000004                      REQUIRE ?Subroutine7
-   \   00000004                      ;               // Fall through to label ?Subroutine7
+   \   00000004                      REQUIRE ?Subroutine4
+   \   00000004                      ;               // Fall through to label ?Subroutine4
      50          
      51          //-----------------------------------------------------------------------------------------------------
 
@@ -667,25 +667,25 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
    \                     ??Reset:
      53          {
      54              CPins::ClearPinRST_B();
-   \   00000000   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_14:
+   \   00000000   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_12:
    \   00000002   7B0F               ANDI    R16, 0xBF
-   \   00000004   ....               RCALL   ??Subroutine9_0
+   \   00000004   ....               RCALL   ?Subroutine5
      55              PulseDelayRST_B();
-   \                     ??CrossCallReturnLabel_22:
+   \                     ??CrossCallReturnLabel_21:
    \   00000006   ........           CALL    ??PulseDelayRST_B
      56              CPins::SetPinRST_B();
-   \   0000000A   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_15:
+   \   0000000A   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_13:
    \   0000000C   6400               ORI     R16, 0x40
-   \   0000000E   ....               RJMP    ??Subroutine9_0
+   \   0000000E   ....               RJMP    ?Subroutine5
    \   00000010                      REQUIRE _A_PORTF
      57          }
      58          
      59          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine7:
+   \                     ?Subroutine4:
    \   00000000   91000062           LDS     R16, 98
    \   00000004   9508               RET
 
@@ -693,20 +693,23 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
      60          void CDm163::SetBank0(uint8_t uiData)
    \                     ??SetBank0:
      61          {
-   \   00000000   ....               RCALL   ?Subroutine3
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
+   \   00000004   2FA0               MOV     R26, R16
      62              CPins::ClearPinSELBK();
+   \   00000006   ....               RCALL   ?Subroutine3
      63          
      64              for (uint8_t i = 0;
-   \                     ??CrossCallReturnLabel_12:
-   \   00000002   E086               LDI     R24, 6
+   \                     ??CrossCallReturnLabel_27:
+   \   00000008   E090               LDI     R25, 0
+   \   0000000A   E086               LDI     R24, 6
      65                      i < DM163_BANK0_BIT_QUANTITY;
      66                      i++)
      67              {
      68                  // передача начинается с 5 бита, старшим вперёд
      69                  if (uiData & (0x20 >> i))
    \                     ??SetBank0_1:
-   \   00000004   E200               LDI     R16, 32
-   \   00000006   ....               RCALL   ?Subroutine0
+   \   0000000C   E200               LDI     R16, 32
+   \   0000000E   ....               RCALL   ?Subroutine0
      70                  {
      71                      CPins::SetPinSIN();
      72                  }
@@ -720,35 +723,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
      80                  CPins::ClearPinDCK();
      81              };
    \                     ??CrossCallReturnLabel_0:
-   \   00000008   F7E9               BRNE    ??SetBank0_1
+   \   00000010   F7E9               BRNE    ??SetBank0_1
      82          
      83              CPins::ClearPinSELBK();
-   \   0000000A                      REQUIRE ?Subroutine8
-   \   0000000A                      REQUIRE _A_PORTF
-   \   0000000A                      ;               // Fall through to label ?Subroutine8
+   \   00000012                      REQUIRE ?Subroutine6
+   \   00000012                      REQUIRE _A_PORTF
+   \   00000012                      ;               // Fall through to label ?Subroutine6
      84          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine8:
-   \   00000000   ....               RCALL   ?Subroutine4
-   \                     ??CrossCallReturnLabel_19:
-   \   00000002   ........           JMP     ?EPILOGUE_B3_L09
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine4:
-   \   00000000   ....               RCALL   ?Subroutine6
+   \                     ?Subroutine6:
+   \   00000000   ....               RCALL   ?Subroutine3
    \                     ??CrossCallReturnLabel_28:
    \   00000002   E0E3               LDI     R30, 3
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine3:
-   \   00000000   ........           CALL    ?PROLOGUE3_L09
-   \   00000004   2FA0               MOV     R26, R16
-   \   00000006   ....               RCALL   ?Subroutine6
-   \                     ??CrossCallReturnLabel_27:
-   \   00000008   E090               LDI     R25, 0
-   \   0000000A   9508               RET
+   \   00000004   ........           JMP     ?EPILOGUE_B3_L09
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine0:
@@ -757,26 +745,26 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
    \   00000004   ........           CALL    ?SS_SHR_L02
    \   00000008   2F1A               MOV     R17, R26
    \   0000000A   2310               AND     R17, R16
-   \   0000000C   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_16:
+   \   0000000C   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_15:
    \   0000000E   F011               BREQ    ??Subroutine0_0
    \   00000010   6001               ORI     R16, 0x01
    \   00000012   C001               RJMP    ??Subroutine0_1
    \                     ??Subroutine0_0:
    \   00000014   7F0E               ANDI    R16, 0xFE
    \                     ??Subroutine0_1:
-   \   00000016   ....               RCALL   ??Subroutine9_0
+   \   00000016   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_23:
-   \   00000018   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_17:
+   \   00000018   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_16:
    \   0000001A   6002               ORI     R16, 0x02
-   \   0000001C   ....               RCALL   ??Subroutine9_0
+   \   0000001C   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_24:
    \   0000001E   ........           CALL    ??PulseDelayDCK
-   \   00000022   ....               RCALL   ?Subroutine7
-   \                     ??CrossCallReturnLabel_18:
+   \   00000022   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_17:
    \   00000024   7F0D               ANDI    R16, 0xFD
-   \   00000026   ....               RCALL   ??Subroutine9_0
+   \   00000026   ....               RCALL   ?Subroutine5
    \                     ??CrossCallReturnLabel_25:
    \   00000028   9593               INC     R25
    \   0000002A   958A               DEC     R24
@@ -788,20 +776,26 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
      87          void CDm163::SetBank1(uint8_t uiData)
    \                     ??SetBank1:
      88          {
-   \   00000000   ....               RCALL   ?Subroutine3
-     89              CPins::ClearPinSELBK();
+   \   00000000   ........           CALL    ?PROLOGUE3_L09
+   \   00000004   2FA0               MOV     R26, R16
+     89              CPins::SetPinSELBK();
+   \   00000006   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_14:
+   \   00000008   6100               ORI     R16, 0x10
+   \   0000000A   ....               RCALL   ?Subroutine5
      90          
      91              for (uint8_t i = 0;
-   \                     ??CrossCallReturnLabel_13:
-   \   00000002   E088               LDI     R24, 8
+   \                     ??CrossCallReturnLabel_22:
+   \   0000000C   E090               LDI     R25, 0
+   \   0000000E   E088               LDI     R24, 8
      92                      i < DM163_BANK1_BIT_QUANTITY;
      93                      i++)
      94              {
      95                  // передача начинается с 8 бита, старшим вперёд
      96                  if (uiData & (0x80 >> i))
    \                     ??SetBank1_1:
-   \   00000004   E800               LDI     R16, 128
-   \   00000006   ....               RCALL   ?Subroutine0
+   \   00000010   E800               LDI     R16, 128
+   \   00000012   ....               RCALL   ?Subroutine0
      97                  {
      98                      CPins::SetPinSIN();
      99                  }
@@ -815,22 +809,23 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
     107                  CPins::ClearPinDCK();
     108              };
    \                     ??CrossCallReturnLabel_1:
-   \   00000008   F7E9               BRNE    ??SetBank1_1
+   \   00000014   F7E9               BRNE    ??SetBank1_1
     109          
     110              CPins::ClearPinSELBK();
-   \   0000000A   ....               RJMP    ?Subroutine8
-   \   0000000C                      REQUIRE _A_PORTF
+   \   00000016   ....               RJMP    ?Subroutine6
+   \   00000018                      REQUIRE _A_PORTF
     111          }
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine6:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7E0F               ANDI    R16, 0xEF
-   \   00000006                      REQUIRE ??Subroutine9_0
-   \   00000006                      ;               // Fall through to label ??Subroutine9_0
+   \                     ?Subroutine3:
+   \   00000000   ....               RCALL   ?Subroutine4
+   \                     ??CrossCallReturnLabel_18:
+   \   00000002   7E0F               ANDI    R16, 0xEF
+   \   00000004                      REQUIRE ?Subroutine5
+   \   00000004                      ;               // Fall through to label ?Subroutine5
 
    \                                 In  segment CODE, align 2, keep-with-next
-   \                     ??Subroutine9_0:
+   \                     ?Subroutine5:
    \   00000000   93000062           STS     98, R16
    \   00000004   9508               RET
     112          
@@ -856,21 +851,19 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 
    Bytes  Function/Label
    -----  --------------
-       6  ??Subroutine9_0
       46  ?Subroutine0
        4  ?Subroutine1
        8  ?Subroutine2
-      12  ?Subroutine3
+       4  ?Subroutine3
        6  ?Subroutine4
-       6  ?Subroutine6
-       6  ?Subroutine7
-       6  ?Subroutine8
+       6  ?Subroutine5
+       8  ?Subroutine6
       72  CDm163::Init()
        4  CDm163::PulseDelayDCK()
        6  CDm163::PulseDelayRST_B()
       16  CDm163::Reset()
-      10  CDm163::SetBank0(uint8_t)
-      12  CDm163::SetBank1(uint8_t)
+      18  CDm163::SetBank0(uint8_t)
+      24  CDm163::SetBank1(uint8_t)
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -967,10 +960,10 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 
  
  105 bytes in segment ABSOLUTE
- 220 bytes in segment CODE
+ 222 bytes in segment CODE
   22 bytes in segment NEAR_F
  
- 232 bytes of CODE memory (+  10 bytes shared)
+ 234 bytes of CODE memory (+  10 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

@@ -86,7 +86,7 @@ void CDm163::SetBank0(uint8_t uiData)
 //-----------------------------------------------------------------------------------------------------
 void CDm163::SetBank1(uint8_t uiData)
 {
-    CPins::ClearPinSELBK();
+    CPins::SetPinSELBK();
 
     for (uint8_t i = 0;
             i < DM163_BANK1_BIT_QUANTITY;

@@ -1335,6 +1335,7 @@ void CPss21::AllAlarmWindowOff(void)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
+        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
@@ -1439,14 +1440,15 @@ void CPss21::MainFsm(void)
 
         CDataStore::Fsm();
 
-        if (CPss21::m_xMainCycleTimer.IsOverflow())
-        {
-            CPss21::m_xMainCycleTimer.Reset();
-            CPlatform::WatchdogReset();
-            SetModuleIndex(0);
-            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
-        }
+//        if (CPss21::m_xMainCycleTimer.IsOverflow())
+//        {
+//            CPss21::m_xMainCycleTimer.Reset();
+//            CPlatform::WatchdogReset();
+//            SetModuleIndex(0);
+//            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+//        }
 
+        CPlatform::WatchdogReset();
         break;
 
     case MAIN_CYCLE_MODULES_INTERACTION:
@@ -1521,11 +1523,19 @@ void CPss21::MainFsm(void)
             SetFsmState(MAP_CREATE_START);
         }
 
+            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
         CPlatform::WatchdogReset();
         break;
 
     case MAP_CREATE_ON:
         TestMainCycle();
+
+
+        if (CPss21::m_xMainCycleTimer.IsOverflow())
+        {
+            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+            SetFsmState(MAP_CREATE_NEXT_WINDOW);
+        }
         break;
 
     case MAP_CREATE_NEXT_WINDOW:

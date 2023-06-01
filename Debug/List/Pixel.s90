@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:24
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  18:35:16
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW400C.tmp
+//        -f C:\Users\ghost\AppData\Local\Temp\EW9BEC.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 //        --cpu=m128a -ms -o
@@ -648,31 +648,43 @@ _A_PINF:
 //   41 void CPss48BoardPixel::SetCorrection(TPixelColorData __farflash* pxPixelData)
 ??SetCorrection:
 //   42 {
-        RCALL   ?Subroutine0
+        RCALL   ?Subroutine2
 //   43     CDm163::SetBank0(pxPixelData -> uiRedData);
 ??CrossCallReturnLabel_0:
-        CALL    ??SetBank0
-//   44     CDm163::SetBank0(pxPixelData -> uiGreenData);
-        MOVW    R31:R30, R27:R26
+        MOVW    R31:R30, R17:R16
+        RCALL   ?Subroutine1
+??CrossCallReturnLabel_9:
         ADIW    R31:R30, 1
         RCALL   ?Subroutine1
+//   44     CDm163::SetBank0(pxPixelData -> uiGreenData);
 //   45     CDm163::SetBank0(pxPixelData -> uiBlueData);
-??CrossCallReturnLabel_3:
-        MOVW    R31:R30, R27:R26
+??CrossCallReturnLabel_10:
         ADIW    R31:R30, 2
-        RCALL   ?Subroutine1
+        RCALL   ?Subroutine3
 //   46 }
-??CrossCallReturnLabel_2:
-        REQUIRE ?Subroutine3
-        ;               // Fall through to label ?Subroutine3
+??CrossCallReturnLabel_3:
+        REQUIRE ?Subroutine6
+        ;               // Fall through to label ?Subroutine6
 
         RSEG CODE:CODE:NOROOT(1)
-?Subroutine3:
+?Subroutine6:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine1:
+        RCALL   ?Subroutine3
+??CrossCallReturnLabel_2:
+        REQUIRE ?Subroutine7
+        ;               // Fall through to label ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine7:
+        MOVW    R31:R30, R27:R26
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine3:
         OUT     0x3B, R25
         ELPM    R16, Z
         JMP     ??SetBank0
@@ -683,38 +695,67 @@ _A_PINF:
 //   49 void CPss48BoardPixel::SetData(TPixelColorData __farflash* pxPixelData)
 ??SetData:
 //   50 {
-        RCALL   ?Subroutine0
-//   51     CDm163::SetBank1(pxPixelData -> uiRedData);
+        RCALL   ?Subroutine2
+//   51 //    CDm163::SetBank1(pxPixelData -> uiRedData);
+//   52 //    CDm163::SetBank1(pxPixelData -> uiGreenData);
+//   53 //    CDm163::SetBank1(pxPixelData -> uiBlueData);
+//   54 
+//   55 //    CDm163::SetBank0(63);
+//   56 //    CDm163::SetBank1(255);
+//   57 //
+//   58 //    CDm163::SetBank0(63);
+//   59 //    CDm163::SetBank1(255);
+//   60 //
+//   61 //    CDm163::SetBank0(63);
+//   62 //    CDm163::SetBank1(255);
+//   63 
+//   64     CDm163::SetBank0(63);
 ??CrossCallReturnLabel_1:
-        CALL    ??SetBank1
-//   52     CDm163::SetBank1(pxPixelData -> uiGreenData);
-        MOVW    R31:R30, R27:R26
-        ADIW    R31:R30, 1
-        RCALL   ?Subroutine2
-//   53     CDm163::SetBank1(pxPixelData -> uiBlueData);
-??CrossCallReturnLabel_5:
-        MOVW    R31:R30, R27:R26
+        RCALL   ?Subroutine5
+//   65     CDm163::SetBank1(pxPixelData -> uiBlueData);
+??CrossCallReturnLabel_6:
         ADIW    R31:R30, 2
-        RCALL   ?Subroutine2
-//   54 }
-??CrossCallReturnLabel_4:
-        RJMP    ?Subroutine3
+        RCALL   ?Subroutine0
+//   66 
+//   67     CDm163::SetBank0(63);
+//   68     CDm163::SetBank1(pxPixelData -> uiRedData);
+??CrossCallReturnLabel_8:
+        RCALL   ?Subroutine0
+//   69 
+//   70     CDm163::SetBank0(63);
+//   71     CDm163::SetBank1(pxPixelData -> uiGreenData);
+??CrossCallReturnLabel_7:
+        ADIW    R31:R30, 1
+        RCALL   ?Subroutine4
+//   72 }
+??CrossCallReturnLabel_5:
+        RJMP    ?Subroutine6
 
         RSEG CODE:CODE:NOROOT(1)
 ?Subroutine2:
-        OUT     0x3B, R25
-        ELPM    R16, Z
-        JMP     ??SetBank1
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
         MOV     R25, R18
-        MOVW    R31:R30, R17:R16
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        RCALL   ?Subroutine4
+??CrossCallReturnLabel_4:
+        REQUIRE ?Subroutine5
+        ;               // Fall through to label ?Subroutine5
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine5:
+        LDI     R16, 63
+        CALL    ??SetBank0
+        RJMP    ?Subroutine7
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine4:
         OUT     0x3B, R25
         ELPM    R16, Z
-        RET
+        JMP     ??SetBank1
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -729,12 +770,12 @@ __?EEARL:
 __?EEARH:
 
         END
-//   55 
+//   73 
 // 
 // 105 bytes in segment ABSOLUTE
-//  76 bytes in segment CODE
+//  78 bytes in segment CODE
 // 
-// 76 bytes of CODE memory
+// 78 bytes of CODE memory
 //  0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
