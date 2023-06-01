@@ -1,0 +1,942 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  07:56:23
+// Copyright 1996-2018 IAR Systems AB.
+//
+//    Source file  =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
+//    Command line =  
+//        -f C:\Users\Admin\AppData\Local\Temp\EW3D54.tmp
+//        (--string_literals_in_flash
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
+//        --cpu=m128a -ms -o
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\Obj -lC
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -lB
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -y
+//        --initializers_in_flash --root_variables --debug
+//        -DENABLE_BIT_DEFINITIONS -e -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ -I
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\
+//        --eeprom_size 4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        --eec++)
+//    Locale       =  Russian_RUS.1251
+//    List file    =  
+//        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List\LightBoard.s90
+//
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME LightBoard
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        ERROR
+//NOTE: This module defines or uses C++ features that are not
+//      accessible from assembler code. Assembling this file will
+//      not produce an equivalent object file to the one produced
+//      by the C++ compiler.
+
+        EXTERN ?EPILOGUE_B4_L09
+        EXTERN ?PROLOGUE4_L09
+        EXTERN ?S_EC_MUL_L02
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBLIC ??Init
+        PUBLIC ??Set
+        PUBLIC ??m_auiBoardLampsControl
+        PUBLIC ??m_auiLedMap
+        PUBLIC ??m_xPixelColorBlack
+        PUBLIC ??m_xPixelColorBlue
+        PUBLIC ??m_xPixelColorCorrectionData
+        PUBLIC ??m_xPixelColorGreen
+        PUBLIC ??m_xPixelColorRed
+        PUBLIC ??m_xPixelColorWhite
+        PUBLIC ??m_xPixelColorYellow
+        PUBWEAK _A_ACSR
+        PUBWEAK _A_ADC
+        PUBWEAK _A_ADCSRA
+        PUBWEAK _A_ADMUX
+        PUBWEAK _A_ASSR
+        PUBWEAK _A_DDRA
+        PUBWEAK _A_DDRB
+        PUBWEAK _A_DDRC
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_DDRE
+        PUBWEAK _A_DDRF
+        PUBWEAK _A_DDRG
+        PUBWEAK _A_EEAR
+        PUBWEAK _A_EECR
+        PUBWEAK _A_EEDR
+        PUBWEAK _A_EICRA
+        PUBWEAK _A_EICRB
+        PUBWEAK _A_EIFR
+        PUBWEAK _A_EIMSK
+        PUBWEAK _A_ETIFR
+        PUBWEAK _A_ETIMSK
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_ICR3
+        PUBWEAK _A_MCUCR
+        PUBWEAK _A_MCUCSR
+        PUBWEAK _A_OCDR
+        PUBWEAK _A_OCR0
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_OCR1B
+        PUBWEAK _A_OCR1C
+        PUBWEAK _A_OCR2
+        PUBWEAK _A_OCR3A
+        PUBWEAK _A_OCR3B
+        PUBWEAK _A_OCR3C
+        PUBWEAK _A_OSCCAL
+        PUBWEAK _A_PINA
+        PUBWEAK _A_PINB
+        PUBWEAK _A_PINC
+        PUBWEAK _A_PIND
+        PUBWEAK _A_PINE
+        PUBWEAK _A_PINF
+        PUBWEAK _A_PING
+        PUBWEAK _A_PORTA
+        PUBWEAK _A_PORTB
+        PUBWEAK _A_PORTC
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_PORTE
+        PUBWEAK _A_PORTF
+        PUBWEAK _A_PORTG
+        PUBWEAK _A_RAMPZ
+        PUBWEAK _A_SFIOR
+        PUBWEAK _A_SP
+        PUBWEAK _A_SPCR
+        PUBWEAK _A_SPDR
+        PUBWEAK _A_SPMCSR
+        PUBWEAK _A_SPSR
+        PUBWEAK _A_SREG
+        PUBWEAK _A_TCCR0
+        PUBWEAK _A_TCCR1A
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCCR1C
+        PUBWEAK _A_TCCR2
+        PUBWEAK _A_TCCR3A
+        PUBWEAK _A_TCCR3B
+        PUBWEAK _A_TCCR3C
+        PUBWEAK _A_TCNT0
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TCNT2
+        PUBWEAK _A_TCNT3
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_TWAR
+        PUBWEAK _A_TWBR
+        PUBWEAK _A_TWCR
+        PUBWEAK _A_TWDR
+        PUBWEAK _A_TWSR
+        PUBWEAK _A_UBRR0H
+        PUBWEAK _A_UBRR0L
+        PUBWEAK _A_UBRR1H
+        PUBWEAK _A_UBRR1L
+        PUBWEAK _A_UCSR0A
+        PUBWEAK _A_UCSR0B
+        PUBWEAK _A_UCSR0C
+        PUBWEAK _A_UCSR1A
+        PUBWEAK _A_UCSR1B
+        PUBWEAK _A_UCSR1C
+        PUBWEAK _A_UDR0
+        PUBWEAK _A_UDR1
+        PUBWEAK _A_WDTCR
+        PUBWEAK _A_XDIV
+        PUBWEAK _A_XMCRA
+        PUBWEAK _A_XMCRB
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+
+`?<Name CLightBoard 13>` SYMBOL "CLightBoard"
+??m_auiBoardLampsControl SYMBOL "m_auiBoardLampsControl", `?<Name CLightBoard 13>`
+??m_auiLedMap       SYMBOL "m_auiLedMap", `?<Name CLightBoard 13>`
+??m_xPixelColorBlack SYMBOL "m_xPixelColorBlack", `?<Name CLightBoard 13>`
+??m_xPixelColorBlue SYMBOL "m_xPixelColorBlue", `?<Name CLightBoard 13>`
+??m_xPixelColorCorrectionData SYMBOL "m_xPixelColorCorrectionData", `?<Name CLightBoard 13>`
+??m_xPixelColorGreen SYMBOL "m_xPixelColorGreen", `?<Name CLightBoard 13>`
+??m_xPixelColorRed  SYMBOL "m_xPixelColorRed", `?<Name CLightBoard 13>`
+??m_xPixelColorWhite SYMBOL "m_xPixelColorWhite", `?<Name CLightBoard 13>`
+??m_xPixelColorYellow SYMBOL "m_xPixelColorYellow", `?<Name CLightBoard 13>`
+
+        EXTERN ??Init_1
+        EXTERN ??SetCorrection
+        EXTERN ??SetData
+
+// D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
+//    1 //-----------------------------------------------------------------------------------------------------
+//    2 //  Source      : FileName.cpp
+//    3 //  Created     : 01.06.2022
+//    4 //  Author      : Alexandr Volvenkin
+//    5 //  email       : aav-36@mail.ru
+//    6 //  GitHub      : https://github.com/AlexandrVolvenkin
+//    7 //-----------------------------------------------------------------------------------------------------
+//    8 #include "LightBoard.h"
+
+        ASEGN ABSOLUTE:DATA:ROOT,09dH
+// union <unnamed> volatile __io _A_UCSR1C
+_A_UCSR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09cH
+// union <unnamed> volatile __io _A_UDR1
+_A_UDR1:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09bH
+// union <unnamed> volatile __io _A_UCSR1A
+_A_UCSR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,09aH
+// union <unnamed> volatile __io _A_UCSR1B
+_A_UCSR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,099H
+// union <unnamed> volatile __io _A_UBRR1L
+_A_UBRR1L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,098H
+// union <unnamed> volatile __io _A_UBRR1H
+_A_UBRR1H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,095H
+// union <unnamed> volatile __io _A_UCSR0C
+_A_UCSR0C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,090H
+// union <unnamed> volatile __io _A_UBRR0H
+_A_UBRR0H:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08cH
+// union <unnamed> volatile __io _A_TCCR3C
+_A_TCCR3C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08bH
+// union <unnamed> volatile __io _A_TCCR3A
+_A_TCCR3A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,08aH
+// union <unnamed> volatile __io _A_TCCR3B
+_A_TCCR3B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,088H
+// union <unnamed> volatile __io _A_TCNT3
+_A_TCNT3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,086H
+// union <unnamed> volatile __io _A_OCR3A
+_A_OCR3A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,084H
+// union <unnamed> volatile __io _A_OCR3B
+_A_OCR3B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,082H
+// union <unnamed> volatile __io _A_OCR3C
+_A_OCR3C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,080H
+// union <unnamed> volatile __io _A_ICR3
+_A_ICR3:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,07dH
+// union <unnamed> volatile __io _A_ETIMSK
+_A_ETIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07cH
+// union <unnamed> volatile __io _A_ETIFR
+_A_ETIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,07aH
+// union <unnamed> volatile __io _A_TCCR1C
+_A_TCCR1C:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,078H
+// union <unnamed> volatile __io _A_OCR1C
+_A_OCR1C:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,074H
+// union <unnamed> volatile __io _A_TWCR
+_A_TWCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,073H
+// union <unnamed> volatile __io _A_TWDR
+_A_TWDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,072H
+// union <unnamed> volatile __io _A_TWAR
+_A_TWAR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,071H
+// union <unnamed> volatile __io _A_TWSR
+_A_TWSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,070H
+// union <unnamed> volatile __io _A_TWBR
+_A_TWBR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06fH
+// union <unnamed> volatile __io _A_OSCCAL
+_A_OSCCAL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06dH
+// union <unnamed> volatile __io _A_XMCRA
+_A_XMCRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06cH
+// union <unnamed> volatile __io _A_XMCRB
+_A_XMCRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,06aH
+// union <unnamed> volatile __io _A_EICRA
+_A_EICRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,068H
+// union <unnamed> volatile __io _A_SPMCSR
+_A_SPMCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,065H
+// union <unnamed> volatile __io _A_PORTG
+_A_PORTG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,064H
+// union <unnamed> volatile __io _A_DDRG
+_A_DDRG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,063H
+// union <unnamed> volatile __io _A_PING
+_A_PING:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,062H
+// union <unnamed> volatile __io _A_PORTF
+_A_PORTF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,061H
+// union <unnamed> volatile __io _A_DDRF
+_A_DDRF:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05fH
+// union <unnamed> volatile __io _A_SREG
+_A_SREG:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05dH
+// union <unnamed> volatile __io _A_SP
+_A_SP:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,05cH
+// union <unnamed> volatile __io _A_XDIV
+_A_XDIV:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05bH
+// union <unnamed> volatile __io _A_RAMPZ
+_A_RAMPZ:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,05aH
+// union <unnamed> volatile __io _A_EICRB
+_A_EICRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,059H
+// union <unnamed> volatile __io _A_EIMSK
+_A_EIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,058H
+// union <unnamed> volatile __io _A_EIFR
+_A_EIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,057H
+// union <unnamed> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,056H
+// union <unnamed> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,055H
+// union <unnamed> volatile __io _A_MCUCR
+_A_MCUCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,054H
+// union <unnamed> volatile __io _A_MCUCSR
+_A_MCUCSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,053H
+// union <unnamed> volatile __io _A_TCCR0
+_A_TCCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,052H
+// union <unnamed> volatile __io _A_TCNT0
+_A_TCNT0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,051H
+// union <unnamed> volatile __io _A_OCR0
+_A_OCR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,050H
+// union <unnamed> volatile __io _A_ASSR
+_A_ASSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04fH
+// union <unnamed> volatile __io _A_TCCR1A
+_A_TCCR1A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04eH
+// union <unnamed> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,04cH
+// union <unnamed> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,04aH
+// union <unnamed> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,048H
+// union <unnamed> volatile __io _A_OCR1B
+_A_OCR1B:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,046H
+// union <unnamed> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,045H
+// union <unnamed> volatile __io _A_TCCR2
+_A_TCCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,044H
+// union <unnamed> volatile __io _A_TCNT2
+_A_TCNT2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,043H
+// union <unnamed> volatile __io _A_OCR2
+_A_OCR2:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,042H
+// union <unnamed> volatile __io _A_OCDR
+_A_OCDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,041H
+// union <unnamed> volatile __io _A_WDTCR
+_A_WDTCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,040H
+// union <unnamed> volatile __io _A_SFIOR
+_A_SFIOR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03eH
+// union <unnamed> volatile __io _A_EEAR
+_A_EEAR:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,03dH
+// union <unnamed> volatile __io _A_EEDR
+_A_EEDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03cH
+// union <unnamed> volatile __io _A_EECR
+_A_EECR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03bH
+// union <unnamed> volatile __io _A_PORTA
+_A_PORTA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,03aH
+// union <unnamed> volatile __io _A_DDRA
+_A_DDRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,039H
+// union <unnamed> volatile __io _A_PINA
+_A_PINA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,038H
+// union <unnamed> volatile __io _A_PORTB
+_A_PORTB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,037H
+// union <unnamed> volatile __io _A_DDRB
+_A_DDRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,036H
+// union <unnamed> volatile __io _A_PINB
+_A_PINB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,035H
+// union <unnamed> volatile __io _A_PORTC
+_A_PORTC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,034H
+// union <unnamed> volatile __io _A_DDRC
+_A_DDRC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,033H
+// union <unnamed> volatile __io _A_PINC
+_A_PINC:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,032H
+// union <unnamed> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,031H
+// union <unnamed> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,030H
+// union <unnamed> volatile __io _A_PIND
+_A_PIND:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02fH
+// union <unnamed> volatile __io _A_SPDR
+_A_SPDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02eH
+// union <unnamed> volatile __io _A_SPSR
+_A_SPSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02dH
+// union <unnamed> volatile __io _A_SPCR
+_A_SPCR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02cH
+// union <unnamed> volatile __io _A_UDR0
+_A_UDR0:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02bH
+// union <unnamed> volatile __io _A_UCSR0A
+_A_UCSR0A:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,02aH
+// union <unnamed> volatile __io _A_UCSR0B
+_A_UCSR0B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,029H
+// union <unnamed> volatile __io _A_UBRR0L
+_A_UBRR0L:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,028H
+// union <unnamed> volatile __io _A_ACSR
+_A_ACSR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,027H
+// union <unnamed> volatile __io _A_ADMUX
+_A_ADMUX:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,026H
+// union <unnamed> volatile __io _A_ADCSRA
+_A_ADCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,024H
+// union <unnamed> volatile __io _A_ADC
+_A_ADC:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:ROOT,023H
+// union <unnamed> volatile __io _A_PORTE
+_A_PORTE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,022H
+// union <unnamed> volatile __io _A_DDRE
+_A_DDRE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,021H
+// union <unnamed> volatile __io _A_PINE
+_A_PINE:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:ROOT,020H
+// union <unnamed> volatile __io _A_PINF
+_A_PINF:
+        DS8 1
+//    9 #include "Platform.h"
+//   10 #include "Pss21.h"
+//   11 #include "Dm163.h"
+//   12 
+//   13 //-------------------------------------------------------------------------------------------------
+//   14 // Массив управления драйверами светодиодов на панели.
+
+        RSEG NEAR_Z:DATA:ROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//   15 uint8_t CLightBoard::m_auiBoardLampsControl[m_uiBoardLedNumber];
+??m_auiBoardLampsControl:
+        DS8 64
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+//   16 // Карта соответствия индекса окна на панели и индекса состояния светодиода в массиве управления.
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//   17 __flash uint8_t CLightBoard::m_auiLedMap[] =
+??m_auiLedMap:
+        DC8 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        DC8 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        DC8 1, 1
+//   18 {
+//   19     // Левая часть.    // Правая часть.
+//   20     0, 0, 0, 0,    0, 0, 0, 0,
+//   21     1, 1, 1, 1,    1, 1, 1, 1,
+//   22     1, 1, 1, 1,    1, 1, 1, 1,
+//   23     1, 1, 1, 1,    1, 1, 1, 1,
+//   24     1, 1, 1, 1,    1, 1, 1, 1,
+//   25     1, 1, 1, 1,    1, 1, 1, 1,
+//   26 };
+//   27 
+//   28 __flash TPixelColorData CLightBoard::m_xPixelColorCorrectionData =
+??m_xPixelColorCorrectionData:
+        DC8 63, 63, 63
+//   29 {
+//   30     63,
+//   31     63,
+//   32     63,
+//   33 };
+//   34 
+//   35 __flash TPixelColorData CLightBoard::m_xPixelColorBlack =
+??m_xPixelColorBlack:
+        DC8 0, 0, 0
+//   36 {
+//   37     0,
+//   38     0,
+//   39     0,
+//   40 };
+//   41 
+//   42 __flash TPixelColorData CLightBoard::m_xPixelColorRed =
+??m_xPixelColorRed:
+        DC8 255, 0, 0
+//   43 {
+//   44     255,
+//   45     0,
+//   46     0,
+//   47 };
+//   48 
+//   49 __flash TPixelColorData CLightBoard::m_xPixelColorGreen =
+??m_xPixelColorGreen:
+        DC8 0, 255, 0
+//   50 {
+//   51     0,
+//   52     255,
+//   53     0,
+//   54 };
+//   55 
+//   56 __flash TPixelColorData CLightBoard::m_xPixelColorBlue =
+//   57 {
+//   58     0,
+//   59     0,
+//   60     255,
+//   61 };
+//   62 
+//   63 __flash TPixelColorData CLightBoard::m_xPixelColorYellow =
+??m_xPixelColorYellow:
+        DC8 255, 255, 0
+
+        RSEG NEAR_F:CODE:ROOT(0)
+??m_xPixelColorBlue:
+        DC8 0, 0, 255
+//   64 {
+//   65     255,
+//   66     255,
+//   67     0,
+//   68 };
+//   69 
+
+        RSEG NEAR_F:CODE:ROOT(0)
+//   70 __flash TPixelColorData CLightBoard::m_xPixelColorWhite =
+??m_xPixelColorWhite:
+        DC8 255, 255, 255
+//   71 {
+//   72     255,
+//   73     255,
+//   74     255,
+//   75 };
+//   76 
+//   77 ////-----------------------------------------------------------------------------------------------------
+//   78 //CLightBoard::CLightBoard()
+//   79 //{
+//   80 ////    Init();
+//   81 //}
+//   82 //
+//   83 ////-----------------------------------------------------------------------------------------------------
+//   84 //CLightBoard::~CLightBoard()
+//   85 //{
+//   86 //
+//   87 //}
+//   88 
+//   89 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//   90 void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
+??Init:
+//   91 {
+//   92 //    // Включим панель.
+//   93 //    CPlatform::LedDriverEnable1On();
+//   94 //    CPlatform::LedDriverEnable2On();
+//   95 //    CPlatform::LedDriverEnable3On();
+//   96 //    CPlatform::LedDriverEnable4On();
+//   97 //    CPlatform::LedDriverEnable1SetPinOutput();
+//   98 //    CPlatform::LedDriverEnable2SetPinOutput();
+//   99 //    CPlatform::LedDriverEnable3SetPinOutput();
+//  100 //    CPlatform::LedDriverEnable4SetPinOutput();
+//  101 
+//  102 //    CDM134::Init();
+//  103     CDm163::Init();
+        JMP     ??Init_1
+//  104 }
+//  105 
+//  106 ////-----------------------------------------------------------------------------------------------------
+//  107 //void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
+//  108 //{
+//  109 //    for (uint8_t i = 0;
+//  110 //            i < ALARM_WINDOWS_NUMBER;
+//  111 //            i++)
+//  112 //    {
+//  113 //        // Окно сигнализации активно?
+//  114 //        if (pxAlarmWindowControl[i].GetActivityState())
+//  115 //        {
+//  116 //            m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
+//  117 //        }
+//  118 //        else
+//  119 //        {
+//  120 //            m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
+//  121 //        }
+//  122 //
+//  123 ////        CPss21::m_aucRtuHoldingRegistersArray[i] = pxAlarmWindowControl[i].GetActivityState();
+//  124 //    };
+//  125 //
+//  126 //    // Зажжём активные светодиоды.
+//  127 //    CDM134::Set(m_auiBoardLampsControl, m_uiBoardLedNumber);
+//  128 //}
+//  129 
+//  130 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  131 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
+??Set:
+//  132 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+//  133     // передадим данные коррекции - банк0
+//  134     for (uint8_t i = 0;
+        LDI     R26, 48
+//  135             i < BOARD_LED_NUMBER;
+//  136             i++)
+//  137     {
+//  138         CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
+??Set_1:
+        LDI     R16, LOW((??m_auiLedMap + 48))
+        LDI     R17, HIGH((??m_auiLedMap + 48))
+        LDI     R18, 0
+        CALL    ??SetCorrection
+//  139     };
+        DEC     R26
+        BRNE    ??Set_1
+//  140 
+//  141     for (uint8_t i = 0;
+        LDI     R26, 0
+        LDI     R27, 48
+//  142             i < BOARD_LED_NUMBER;
+//  143             i++)
+//  144     {
+//  145         // Окно сигнализации активно?
+//  146         if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
+??Set_2:
+        MOV     R30, R26
+        LDI     R31, 0
+        SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
+        SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
+        LPM     R16, Z
+        LDI     R17, 0
+        LDI     R20, 6
+        LDI     R21, 0
+        CALL    ?S_EC_MUL_L02
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R16
+        ADC     R31, R17
+        LD      R16, Z
+        TST     R16
+        BREQ    ??Set_3
+//  147         {
+//  148             switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
+        LDD     R16, Z+2
+        DEC     R16
+        BREQ    ??Set_4
+        DEC     R16
+        BREQ    ??Set_5
+        DEC     R16
+        BREQ    ??Set_6
+        RJMP    ??Set_3
+//  149             {
+//  150             case INDICATION:
+//  151                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
+??Set_4:
+        LDI     R16, LOW((??m_auiLedMap + 57))
+        LDI     R17, HIGH((??m_auiLedMap + 57))
+        RJMP    ??Set_7
+//  152                 break;
+//  153 
+//  154             case PREVENTIVE:
+//  155                 CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+??Set_5:
+        LDI     R16, LOW((??m_auiLedMap + 60))
+        LDI     R17, HIGH((??m_auiLedMap + 60))
+        RJMP    ??Set_7
+//  156                 break;
+//  157 
+//  158             case EMERGENCY:
+//  159                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
+??Set_6:
+        LDI     R16, LOW((??m_auiLedMap + 54))
+        LDI     R17, HIGH((??m_auiLedMap + 54))
+        RJMP    ??Set_7
+//  160                 break;
+//  161 
+//  162             default:
+//  163                 CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+//  164                 break;
+//  165             }
+//  166 
+//  167         }
+//  168         else
+//  169         {
+//  170             CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+??Set_3:
+        LDI     R16, LOW((??m_auiLedMap + 51))
+        LDI     R17, HIGH((??m_auiLedMap + 51))
+??Set_7:
+        LDI     R18, 0
+        CALL    ??SetData
+//  171         }
+//  172     };
+        INC     R26
+        DEC     R27
+        BRNE    ??Set_2
+//  173 }
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DP      0
+        REQUIRE ?need_segment_init
+
+        END
+//  174 
+//  175 
+//  176 //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
+// 
+// 105 bytes in segment ABSOLUTE
+// 118 bytes in segment CODE
+//   7 bytes in segment INITTAB
+//  91 bytes in segment NEAR_F
+//  64 bytes in segment NEAR_Z
+// 
+// 209 bytes of CODE memory (+   7 bytes shared)
+//  64 bytes of DATA memory (+ 105 bytes shared)
+//
+//Errors: none
+//Warnings: 7
