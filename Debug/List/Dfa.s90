@@ -1,24 +1,25 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  15:39:47
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  10:14:40
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dfa.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW2EE0.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW1510.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dfa.cpp
 //        --cpu=m128a -ms -o
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\Obj -lC
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -lB
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -y
-//        --initializers_in_flash --root_variables --debug
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\
 //        --eeprom_size 4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
-//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On
 //        --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
@@ -635,6 +636,7 @@ _A_PINF:
         STD     Z+1, R18
         STD     Z+2, R19
 //   15     m_uiFsmState = 0;
+        MOVW    R31:R30, R17:R16
         LDI     R18, 0
         ST      Z, R18
 //   16 }
@@ -644,16 +646,14 @@ _A_PINF:
 // __version_3 CDfaLite &CDfaLite::new CDfaLite()
 `??new CDfaLite`:
         LDI     R16, 3
-        RCALL   ?Subroutine1
-??CrossCallReturnLabel_0:
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
         BREQ    `??new CDfaLite_1`
-        RJMP    ??CDfaLite
+        RCALL   ??CDfaLite
+        RET
 `??new CDfaLite_1`:
-        REQUIRE ?Subroutine2
-        ;               // Fall through to label ?Subroutine2
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine2:
         LDI     R16, 0
         LDI     R17, 0
         RET
@@ -662,14 +662,18 @@ _A_PINF:
 ??CDfa:
         MOVW    R21:R20, R27:R26
         MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
         RCALL   ??CDfaLite
         LDI     R16, LOW(??__vtbl_1)
         LDI     R17, (??__vtbl_1) >> 8
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
+        MOVW    R31:R30, R27:R26
         LDI     R16, 0
         STD     Z+3, R16
+        MOVW    R31:R30, R27:R26
+        LDI     R16, 0
         STD     Z+4, R16
         MOVW    R17:R16, R27:R26
         MOVW    R27:R26, R21:R20
@@ -679,19 +683,16 @@ _A_PINF:
 // __version_3 CDfa &CDfa::new CDfa()
 `??new CDfa`:
         LDI     R16, 5
-        RCALL   ?Subroutine1
-??CrossCallReturnLabel_1:
-        BREQ    `??new CDfa_1`
-        RJMP    ??CDfa
-`??new CDfa_1`:
-        RJMP    ?Subroutine2
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine1:
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
         OR      R18, R17
+        BREQ    `??new CDfa_1`
+        RCALL   ??CDfa
+        RET
+`??new CDfa_1`:
+        LDI     R16, 0
+        LDI     R17, 0
         RET
 //   17 
 //   18 //-----------------------------------------------------------------------------------------------------
@@ -699,10 +700,23 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 //   19 CDfaLite::~CDfaLite()
 `?~CDfaLite`:
-        RJMP    ?Subroutine0
 //   20 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CDfaLite_1`
+        BST     R18, 0
+        BRTC    `?~CDfaLite_1`
 //   21     //dtor
 //   22 }
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CDfaLite_1`:
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
 //   23 
 //   24 //-----------------------------------------------------------------------------------------------------
 
@@ -733,21 +747,22 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 //   45 CDfa::~CDfa()
 `?~CDfa`:
-        REQUIRE ?Subroutine0
-        ;               // Fall through to label ?Subroutine0
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
 //   46 {
-        MOV     R20, R16
-        OR      R20, R17
-        BREQ    ??Subroutine0_0
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CDfa_1`
         BST     R18, 0
-        BRTC    ??Subroutine0_0
+        BRTC    `?~CDfa_1`
 //   47     //dtor
 //   48 }
+        MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
-??Subroutine0_0:
+`?~CDfa_1`:
+        LD      R24, Y+
+        LD      R25, Y+
         RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
@@ -792,10 +807,10 @@ __?EEARH:
 //   56 
 // 
 // 105 bytes in segment ABSOLUTE
-// 100 bytes in segment CODE
+// 160 bytes in segment CODE
 //  30 bytes in segment NEAR_F
 // 
-// 122 bytes of CODE memory (+   8 bytes shared)
+// 182 bytes of CODE memory (+   8 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

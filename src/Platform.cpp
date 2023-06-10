@@ -19,6 +19,11 @@ CUart::CUart()
 
 }
 
+//    uint16_t CUart::m_nuiRxBuffByteCounter;
+//    uint8_t CUart::m_auiIntermediateBuff[UART_INTERMEDIATE_BUFF_LENGTH];
+//    bool CUart::m_bfByteIsReceived;
+//    bool CUart::m_bfRxBuffOverflow;
+
 //-----------------------------------------------------------------------------------------------------
 CUart::CUart(volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
              volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
@@ -242,13 +247,16 @@ void CUart::UdreInterruptHandler(void)
 void CUart::TxcInterruptHandler(void)
 {
     *m_UCSRB &= ~((1 << TXCIE0));
+    TransmitDisable();
     m_bfFrameIsSended = 1;
     return;
 }
 
+        uint8_t uiInterruptCounter = 0;
 //-----------------------------------------------------------------------------------------------------
 void CUart::RecvInterruptHandler(void)
 {
+    uiInterruptCounter++;
     // промежуточный буфер приёма переполнен?
     if (m_nuiRxBuffByteCounter >=
             UART_INTERMEDIATE_BUFF_LENGTH)

@@ -1,24 +1,25 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  18:35:16
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  10:14:41
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW9BEC.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW178D.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pixel.cpp
 //        --cpu=m128a -ms -o
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\Obj -lC
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -lB
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -y
-//        --initializers_in_flash --root_variables --debug
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\
 //        --eeprom_size 4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
-//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On
 //        --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
@@ -648,46 +649,34 @@ _A_PINF:
 //   41 void CPss48BoardPixel::SetCorrection(TPixelColorData __farflash* pxPixelData)
 ??SetCorrection:
 //   42 {
-        RCALL   ?Subroutine2
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R25, R18
 //   43     CDm163::SetBank0(pxPixelData -> uiRedData);
-??CrossCallReturnLabel_0:
-        MOVW    R31:R30, R17:R16
-        RCALL   ?Subroutine1
-??CrossCallReturnLabel_9:
-        ADIW    R31:R30, 1
-        RCALL   ?Subroutine1
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        CALL    ??SetBank0
 //   44     CDm163::SetBank0(pxPixelData -> uiGreenData);
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
+        ADIW    R31:R30, 1
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        SBIW    R31:R30, 1
+        CALL    ??SetBank0
 //   45     CDm163::SetBank0(pxPixelData -> uiBlueData);
-??CrossCallReturnLabel_10:
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
         ADIW    R31:R30, 2
-        RCALL   ?Subroutine3
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        SBIW    R31:R30, 2
+        CALL    ??SetBank0
 //   46 }
-??CrossCallReturnLabel_3:
-        REQUIRE ?Subroutine6
-        ;               // Fall through to label ?Subroutine6
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine6:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine1:
-        RCALL   ?Subroutine3
-??CrossCallReturnLabel_2:
-        REQUIRE ?Subroutine7
-        ;               // Fall through to label ?Subroutine7
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine7:
-        MOVW    R31:R30, R27:R26
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine3:
-        OUT     0x3B, R25
-        ELPM    R16, Z
-        JMP     ??SetBank0
 //   47 
 //   48 //-----------------------------------------------------------------------------------------------------
 
@@ -695,10 +684,31 @@ _A_PINF:
 //   49 void CPss48BoardPixel::SetData(TPixelColorData __farflash* pxPixelData)
 ??SetData:
 //   50 {
-        RCALL   ?Subroutine2
-//   51 //    CDm163::SetBank1(pxPixelData -> uiRedData);
-//   52 //    CDm163::SetBank1(pxPixelData -> uiGreenData);
-//   53 //    CDm163::SetBank1(pxPixelData -> uiBlueData);
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOV     R25, R18
+//   51     CDm163::SetBank1(pxPixelData -> uiRedData);
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        CALL    ??SetBank1
+//   52     CDm163::SetBank1(pxPixelData -> uiGreenData);
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
+        ADIW    R31:R30, 1
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        SBIW    R31:R30, 1
+        CALL    ??SetBank1
+//   53     CDm163::SetBank1(pxPixelData -> uiBlueData);
+        MOVW    R31:R30, R27:R26
+        MOV     R19, R25
+        ADIW    R31:R30, 2
+        OUT     0x3B, R19
+        ELPM    R16, Z
+        SBIW    R31:R30, 2
+        CALL    ??SetBank1
 //   54 
 //   55 //    CDm163::SetBank0(63);
 //   56 //    CDm163::SetBank1(255);
@@ -709,53 +719,17 @@ _A_PINF:
 //   61 //    CDm163::SetBank0(63);
 //   62 //    CDm163::SetBank1(255);
 //   63 
-//   64     CDm163::SetBank0(63);
-??CrossCallReturnLabel_1:
-        RCALL   ?Subroutine5
-//   65     CDm163::SetBank1(pxPixelData -> uiBlueData);
-??CrossCallReturnLabel_6:
-        ADIW    R31:R30, 2
-        RCALL   ?Subroutine0
-//   66 
-//   67     CDm163::SetBank0(63);
-//   68     CDm163::SetBank1(pxPixelData -> uiRedData);
-??CrossCallReturnLabel_8:
-        RCALL   ?Subroutine0
-//   69 
-//   70     CDm163::SetBank0(63);
-//   71     CDm163::SetBank1(pxPixelData -> uiGreenData);
-??CrossCallReturnLabel_7:
-        ADIW    R31:R30, 1
-        RCALL   ?Subroutine4
+//   64 //    CDm163::SetBank0(63);
+//   65 //    CDm163::SetBank1(pxPixelData -> uiRedData);
+//   66 //
+//   67 //    CDm163::SetBank0(63);
+//   68 //    CDm163::SetBank1(pxPixelData -> uiGreenData);
+//   69 //
+//   70 //    CDm163::SetBank0(63);
+//   71 //    CDm163::SetBank1(pxPixelData -> uiBlueData);
 //   72 }
-??CrossCallReturnLabel_5:
-        RJMP    ?Subroutine6
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine2:
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
-        MOV     R25, R18
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
-        RCALL   ?Subroutine4
-??CrossCallReturnLabel_4:
-        REQUIRE ?Subroutine5
-        ;               // Fall through to label ?Subroutine5
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine5:
-        LDI     R16, 63
-        CALL    ??SetBank0
-        RJMP    ?Subroutine7
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine4:
-        OUT     0x3B, R25
-        ELPM    R16, Z
-        JMP     ??SetBank1
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -773,10 +747,10 @@ __?EEARH:
 //   73 
 // 
 // 105 bytes in segment ABSOLUTE
-//  78 bytes in segment CODE
+// 116 bytes in segment CODE
 // 
-// 78 bytes of CODE memory
-//  0 bytes of DATA memory (+ 105 bytes shared)
+// 116 bytes of CODE memory
+//   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 2

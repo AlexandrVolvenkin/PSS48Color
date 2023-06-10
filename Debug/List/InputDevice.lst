@@ -1,24 +1,25 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           30/May/2023  15:39:48
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Jun/2023  10:14:40
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
 #    Command line =  
-#        -f C:\Users\ghost\AppData\Local\Temp\EW320E.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW15AF.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
 #        --cpu=m128a -ms -o
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\Obj -lC
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -lB
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -y
-#        --initializers_in_flash --root_variables --debug
+#        --initializers_in_flash --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 #        -DENABLE_BIT_DEFINITIONS -e -I
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ -I
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\
 #        --eeprom_size 4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
-#        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+#        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On
 #        --eec++)
 #    Locale       =  Russian_RUS.1251
 #    List file    =  
@@ -37,6 +38,60 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
       6          //  GitHub      : https://github.com/AlexandrVolvenkin
       7          //-----------------------------------------------------------------------------------------------------
       8          #include "InputDevice.h"
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CDfaLite::SetFsmState(uint8_t)
+   \                     ??SetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8320               ST      Z, R18
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint8_t CDfaLite::GetFsmState()
+   \                     ??GetFsmState:
+   \   00000000   01F8               MOVW    R31:R30, R17:R16
+   \   00000002   8100               LD      R16, Z
+   \   00000004   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
+   \                     ??KEY_PRESSED_TIME_RECEIPT:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E604               LDI     R16, 100
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
+   \                     ??KEY_PRESSED_TIME_RESET:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   ED0C               LDI     R16, 220
+   \   00000004   E015               LDI     R17, 5
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
+   \                     ??KEY_PRESSED_TIME_CHECK:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   EB08               LDI     R16, 184
+   \   00000004   E01B               LDI     R17, 11
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
+   \                     ??KEY_PRESSED_TIME_SET_DEFAULT:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E808               LDI     R16, 136
+   \   00000004   E113               LDI     R17, 19
+   \   00000006   9508               RET
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 uint16_t CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
+   \                     ??KEY_PRESSED_CHECK_REPEAT_TIME:
+   \   00000000   0198               MOVW    R19:R18, R17:R16
+   \   00000002   E302               LDI     R16, 50
+   \   00000004   E010               LDI     R17, 0
+   \   00000006   9508               RET
       9          #include "Platform.h"
 
    \                                 In  segment ABSOLUTE, at 0x9d, root
@@ -919,54 +974,27 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
    \                                 In  segment CODE, align 2, keep-with-next
     417          CMultiFunctionKey::CMultiFunctionKey()
    \                     ??CMultiFunctionKey:
-   \   00000000   ....               RCALL   ?Subroutine4
-    418          {
-   \                     ??CrossCallReturnLabel_9:
-   \   00000002   ....               RCALL   ?Subroutine2
-    419          
-    420          }
-   \                     ??CrossCallReturnLabel_5:
-   \   00000004   018D               MOVW    R17:R16, R27:R26
-   \   00000006                      REQUIRE ?Subroutine11
-   \   00000006                      ;               // Fall through to label ?Subroutine11
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine11:
-   \   00000000   91A9               LD      R26, Y+
-   \   00000002   91B9               LD      R27, Y+
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine2:
-   \   00000000   ........           CALL    ??CDfa
-   \   00000004   ....               RCALL   ?Subroutine10
-   \                     ??CrossCallReturnLabel_23:
-   \   00000006   ....               RCALL   ?Subroutine9
-   \                     ??CrossCallReturnLabel_19:
-   \   00000008   ........           JMP     ??CTimer
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine10:
-   \   00000000   ....               LDI     R16, LOW(??__vtbl)
-   \   00000002   ....               LDI     R17, (??__vtbl) >> 8
-   \   00000004   01FD               MOVW    R31:R30, R27:R26
-   \   00000006   8301               STD     Z+1, R16
-   \   00000008   8312               STD     Z+2, R17
-   \   0000000A   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine4:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine9:
-   \   00000000   018D               MOVW    R17:R16, R27:R26
-   \   00000002   5F07               SUBI    R16, 247
-   \   00000004   4F1F               SBCI    R17, 255
-   \   00000006   9508               RET
+    418          {
+   \   00000006   018D               MOVW    R17:R16, R27:R26
+   \   00000008   ........           CALL    ??CDfa
+   \   0000000C   ....               LDI     R16, LOW(??__vtbl)
+   \   0000000E   ....               LDI     R17, (??__vtbl) >> 8
+   \   00000010   01FD               MOVW    R31:R30, R27:R26
+   \   00000012   8301               STD     Z+1, R16
+   \   00000014   8312               STD     Z+2, R17
+   \   00000016   018D               MOVW    R17:R16, R27:R26
+   \   00000018   5F07               SUBI    R16, 247
+   \   0000001A   4F1F               SBCI    R17, 255
+   \   0000001C   ........           CALL    ??CTimer
+    419          
+    420          }
+   \   00000020   018D               MOVW    R17:R16, R27:R26
+   \   00000022   91A9               LD      R26, Y+
+   \   00000024   91B9               LD      R27, Y+
+   \   00000026   9508               RET
     421          
     422          //-----------------------------------------------------------------------------------------------------
 
@@ -977,34 +1005,37 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
    \   00000004   01D8               MOVW    R27:R26, R17:R16
    \   00000006   01C9               MOVW    R25:R24, R19:R18
     424          {
-   \   00000008   ....               RCALL   ?Subroutine2
+   \   00000008   018D               MOVW    R17:R16, R27:R26
+   \   0000000A   ........           CALL    ??CDfa
+   \   0000000E   ....               LDI     R16, LOW(??__vtbl)
+   \   00000010   ....               LDI     R17, (??__vtbl) >> 8
+   \   00000012   01FD               MOVW    R31:R30, R27:R26
+   \   00000014   8301               STD     Z+1, R16
+   \   00000016   8312               STD     Z+2, R17
+   \   00000018   018D               MOVW    R17:R16, R27:R26
+   \   0000001A   5F07               SUBI    R16, 247
+   \   0000001C   4F1F               SBCI    R17, 255
+   \   0000001E   ........           CALL    ??CTimer
     425              m_fpuiEventSource = fpuiEventSource;
-   \                     ??CrossCallReturnLabel_4:
-   \   0000000A   01FD               MOVW    R31:R30, R27:R26
-   \   0000000C   8385               STD     Z+5, R24
-   \   0000000E   8396               STD     Z+6, R25
+   \   00000022   01FD               MOVW    R31:R30, R27:R26
+   \   00000024   8385               STD     Z+5, R24
+   \   00000026   8396               STD     Z+6, R25
     426              m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
-   \   00000010   E000               LDI     R16, 0
-   \   00000012   ....               RCALL   ?Subroutine7
+   \   00000028   01FD               MOVW    R31:R30, R27:R26
+   \   0000002A   E000               LDI     R16, 0
+   \   0000002C   8700               STD     Z+8, R16
     427              m_uiEventCode = KEY_EVENT_UNPRESSED;
+   \   0000002E   01FD               MOVW    R31:R30, R27:R26
+   \   00000030   E000               LDI     R16, 0
+   \   00000032   8307               STD     Z+7, R16
     428              SetFsmState(KEY_EVENT_UNPRESSED);
-   \                     ??CrossCallReturnLabel_13:
-   \   00000014   930C               ST      X, R16
+   \   00000034   E020               LDI     R18, 0
+   \   00000036   018D               MOVW    R17:R16, R27:R26
+   \   00000038   ........           CALL    ??SetFsmState
     429          }
-   \   00000016   018D               MOVW    R17:R16, R27:R26
-   \   00000018                      REQUIRE ?Subroutine13
-   \   00000018                      ;               // Fall through to label ?Subroutine13
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine13:
-   \   00000000   E0E4               LDI     R30, 4
-   \   00000002   ........           JMP     ?EPILOGUE_B4_L09
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine7:
-   \   00000000   8700               STD     Z+8, R16
-   \   00000002   8307               STD     Z+7, R16
-   \   00000004   9508               RET
+   \   0000003C   018D               MOVW    R17:R16, R27:R26
+   \   0000003E   E0E4               LDI     R30, 4
+   \   00000040   ........           JMP     ?EPILOGUE_B4_L09
     430          
     431          //-----------------------------------------------------------------------------------------------------
 
@@ -1012,41 +1043,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     432          CMultiFunctionKey::~CMultiFunctionKey()
    \                     `?~CMultiFunctionKey`:
     433          {
-   \   00000000   ....               RCALL   ?Subroutine6
-   \                     ??CrossCallReturnLabel_11:
-   \   00000002   2B0B               OR      R16, R27
-   \   00000004   F079               BREQ    `?~CMultiFunctionKey_1`
-   \   00000006   ....               RCALL   ?Subroutine10
-    434          
-    435          }
-   \                     ??CrossCallReturnLabel_22:
-   \   00000008   E022               LDI     R18, 2
-   \   0000000A   ....               RCALL   ?Subroutine8
-   \                     ??CrossCallReturnLabel_20:
-   \   0000000C   ........           CALL    `?~CTimer`
-   \   00000010   E020               LDI     R18, 0
-   \   00000012   E030               LDI     R19, 0
-   \   00000014   018D               MOVW    R17:R16, R27:R26
-   \   00000016   ........           CALL    `?~CDfa`
-   \   0000001A   FB80               BST     R24, 0
-   \   0000001C   F41E               BRTC    `?~CMultiFunctionKey_1`
-   \   0000001E   018D               MOVW    R17:R16, R27:R26
-   \   00000020   ........           CALL    `??operator delete`
-   \                     `?~CMultiFunctionKey_1`:
-   \   00000024   ....               RJMP    ?Subroutine13
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine6:
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-   \   00000006   2F82               MOV     R24, R18
-   \   00000008   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine8:
-   \   00000000   E030               LDI     R19, 0
-   \   00000002                      REQUIRE ?Subroutine9
-   \   00000002                      ;               // Fall through to label ?Subroutine9
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
+   \   00000008   2F0A               MOV     R16, R26
+   \   0000000A   2B0B               OR      R16, R27
+   \   0000000C   F0B1               BREQ    `?~CMultiFunctionKey_1`
+   \   0000000E   ....               LDI     R16, LOW(??__vtbl)
+   \   00000010   ....               LDI     R17, (??__vtbl) >> 8
+   \   00000012   01FD               MOVW    R31:R30, R27:R26
+   \   00000014   8301               STD     Z+1, R16
+   \   00000016   8312               STD     Z+2, R17
+    434          
+    435          }
+   \   00000018   E022               LDI     R18, 2
+   \   0000001A   E030               LDI     R19, 0
+   \   0000001C   018D               MOVW    R17:R16, R27:R26
+   \   0000001E   5F07               SUBI    R16, 247
+   \   00000020   4F1F               SBCI    R17, 255
+   \   00000022   ........           CALL    `?~CTimer`
+   \   00000026   E020               LDI     R18, 0
+   \   00000028   E030               LDI     R19, 0
+   \   0000002A   018D               MOVW    R17:R16, R27:R26
+   \   0000002C   ........           CALL    `?~CDfa`
+   \   00000030   FB80               BST     R24, 0
+   \   00000032   F41E               BRTC    `?~CMultiFunctionKey_1`
+   \   00000034   018D               MOVW    R17:R16, R27:R26
+   \   00000036   ........           CALL    `??operator delete`
+   \                     `?~CMultiFunctionKey_1`:
+   \   0000003A   E0E4               LDI     R30, 4
+   \   0000003C   ........           JMP     ?EPILOGUE_B4_L09
     436          
     437          //-----------------------------------------------------------------------------------------------------
 
@@ -1054,17 +1080,24 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     438          void CMultiFunctionKey::SetCapabilities(uint8_t (*fpuiEventSource)(void))
    \                     ??SetCapabilities:
     439          {
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   01C9               MOVW    R25:R24, R19:R18
     440              m_fpuiEventSource = fpuiEventSource;
-   \   00000000   01F8               MOVW    R31:R30, R17:R16
-   \   00000002   8325               STD     Z+5, R18
-   \   00000004   8336               STD     Z+6, R19
+   \   00000008   01FD               MOVW    R31:R30, R27:R26
+   \   0000000A   8385               STD     Z+5, R24
+   \   0000000C   8396               STD     Z+6, R25
     441              m_uiEventCode = KEY_EVENT_UNPRESSED;
-   \   00000006   E020               LDI     R18, 0
-   \   00000008   8327               STD     Z+7, R18
+   \   0000000E   01FD               MOVW    R31:R30, R27:R26
+   \   00000010   E000               LDI     R16, 0
+   \   00000012   8307               STD     Z+7, R16
     442              SetFsmState(KEY_EVENT_UNPRESSED);
-   \   0000000A   8320               ST      Z, R18
+   \   00000014   E020               LDI     R18, 0
+   \   00000016   018D               MOVW    R17:R16, R27:R26
+   \   00000018   ........           CALL    ??SetFsmState
     443          }
-   \   0000000C   9508               RET
+   \   0000001C   E0E4               LDI     R30, 4
+   \   0000001E   ........           JMP     ?EPILOGUE_B4_L09
     444          
     445          //-----------------------------------------------------------------------------------------------------
 
@@ -1072,28 +1105,32 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     446          uint8_t CMultiFunctionKey::EventHappened(void)
    \                     ??EventHappened:
     447          {
-   \   00000000   ....               RCALL   ?Subroutine4
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
     448              if (m_fpuiEventSource())
-   \                     ??CrossCallReturnLabel_8:
-   \   00000002   9615               ADIW    R27:R26, 5
-   \   00000004   91ED               LD      R30, X+
-   \   00000006   91FC               LD      R31, X
-   \   00000008   9509               ICALL
-   \   0000000A   2300               TST     R16
-   \   0000000C   F011               BREQ    ??EventHappened_1
+   \   00000006   9615               ADIW    R27:R26, 5
+   \   00000008   91ED               LD      R30, X+
+   \   0000000A   91FC               LD      R31, X
+   \   0000000C   9716               SBIW    R27:R26, 6
+   \   0000000E   9509               ICALL
+   \   00000010   2300               TST     R16
+   \   00000012   F011               BREQ    ??EventHappened_1
     449              {
     450                  return 1;
-   \   0000000E   E001               LDI     R16, 1
-   \   00000010   C001               RJMP    ??EventHappened_2
+   \   00000014   E001               LDI     R16, 1
+   \   00000016   C001               RJMP    ??EventHappened_2
     451              }
     452              else
     453              {
     454                  return 0;
    \                     ??EventHappened_1:
-   \   00000012   E000               LDI     R16, 0
-    455              }
+   \   00000018   E000               LDI     R16, 0
    \                     ??EventHappened_2:
-   \   00000014   ....               RJMP    ?Subroutine11
+   \   0000001A   91A9               LD      R26, Y+
+   \   0000001C   91B9               LD      R27, Y+
+   \   0000001E   9508               RET
+    455              }
     456          
     457          }
     458          
@@ -1103,38 +1140,48 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     460          uint8_t CMultiFunctionKey::KeyEventHappened(uint8_t uiCode)
    \                     ??KeyEventHappened:
     461          {
-   \   00000000   ....               RCALL   ?Subroutine6
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
+   \   00000006   2F82               MOV     R24, R18
     462              Fsm();
-   \                     ??CrossCallReturnLabel_12:
-   \   00000002   01F8               MOVW    R31:R30, R17:R16
-   \   00000004   8121               LDD     R18, Z+1
-   \   00000006   81F2               LDD     R31, Z+2
-   \   00000008   2FE2               MOV     R30, R18
-   \   0000000A   9632               ADIW    R31:R30, 2
-   \   0000000C   9125               LPM     R18, Z+
-   \   0000000E   91F4               LPM     R31, Z
-   \   00000010   2FE2               MOV     R30, R18
-   \   00000012   9509               ICALL
+   \   00000008   018D               MOVW    R17:R16, R27:R26
+   \   0000000A   01FD               MOVW    R31:R30, R27:R26
+   \   0000000C   8121               LDD     R18, Z+1
+   \   0000000E   8132               LDD     R19, Z+2
+   \   00000010   01F9               MOVW    R31:R30, R19:R18
+   \   00000012   9632               ADIW    R31:R30, 2
+   \   00000014   9125               LPM     R18, Z+
+   \   00000016   9134               LPM     R19, Z
+   \   00000018   9733               SBIW    R31:R30, 3
+   \   0000001A   01F9               MOVW    R31:R30, R19:R18
+   \   0000001C   9509               ICALL
     463          
     464              if (m_uiEventCode == uiCode)
-   \   00000014   01FD               MOVW    R31:R30, R27:R26
-   \   00000016   8107               LDD     R16, Z+7
-   \   00000018   1708               CP      R16, R24
-   \   0000001A   E000               LDI     R16, 0
-   \   0000001C   F419               BRNE    ??KeyEventHappened_1
+   \   0000001E   01FD               MOVW    R31:R30, R27:R26
+   \   00000020   8107               LDD     R16, Z+7
+   \   00000022   1708               CP      R16, R24
+   \   00000024   F441               BRNE    ??KeyEventHappened_1
     465              {
     466                  m_uiEventCode = KEY_EVENT_UNPRESSED;
-   \   0000001E   8307               STD     Z+7, R16
+   \   00000026   01FD               MOVW    R31:R30, R27:R26
+   \   00000028   E000               LDI     R16, 0
+   \   0000002A   8307               STD     Z+7, R16
     467                  m_uiPreliminaryEventCode = KEY_EVENT_UNPRESSED;
-   \   00000020   8700               STD     Z+8, R16
+   \   0000002C   01FD               MOVW    R31:R30, R27:R26
+   \   0000002E   E000               LDI     R16, 0
+   \   00000030   8700               STD     Z+8, R16
     468                  return 1;
-   \   00000022   E001               LDI     R16, 1
+   \   00000032   E001               LDI     R16, 1
+   \   00000034   C001               RJMP    ??KeyEventHappened_2
     469              }
     470              else
     471              {
     472                  return 0;
    \                     ??KeyEventHappened_1:
-   \   00000024   ....               RJMP    ?Subroutine13
+   \   00000036   E000               LDI     R16, 0
+   \                     ??KeyEventHappened_2:
+   \   00000038   E0E4               LDI     R30, 4
+   \   0000003A   ........           JMP     ?EPILOGUE_B4_L09
     473              }
     474          
     475          }
@@ -1145,214 +1192,314 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     478          void CMultiFunctionKey::Fsm(void)
    \                     ??Fsm:
     479          {
-   \   00000000   ....               RCALL   ?Subroutine4
+   \   00000000   93BA               ST      -Y, R27
+   \   00000002   93AA               ST      -Y, R26
+   \   00000004   01D8               MOVW    R27:R26, R17:R16
     480              // какое событие обрабатываем?
     481              switch (GetFsmState())
-   \                     ??CrossCallReturnLabel_10:
-   \   00000002   910C               LD      R16, X
-   \   00000004   2300               TST     R16
-   \   00000006   F069               BREQ    ??Fsm_1
-   \   00000008   950A               DEC     R16
-   \   0000000A   F081               BREQ    ??Fsm_2
-   \   0000000C   950A               DEC     R16
-   \   0000000E   F0B1               BREQ    ??Fsm_3
+   \   00000006   018D               MOVW    R17:R16, R27:R26
+   \   00000008   ........           CALL    ??GetFsmState
+   \   0000000C   5000               SUBI    R16, 0
+   \   0000000E   F089               BREQ    ??Fsm_1
    \   00000010   950A               DEC     R16
-   \   00000012   F0F9               BREQ    ??Fsm_4
+   \   00000012   F0C1               BREQ    ??Fsm_2
    \   00000014   950A               DEC     R16
-   \   00000016   F141               BREQ    ??Fsm_5
+   \   00000016   F141               BREQ    ??Fsm_3
    \   00000018   950A               DEC     R16
-   \   0000001A   F199               BREQ    ??Fsm_6
-   \   0000001C   5002               SUBI    R16, 2
-   \   0000001E   F1E1               BREQ    ??Fsm_7
-   \   00000020   C03F               RJMP    ??Fsm_8
+   \   0000001A   F409               BRNE    $+2+2
+   \   0000001C   C04E               RJMP    ??Fsm_4
+   \   0000001E   950A               DEC     R16
+   \   00000020   F409               BRNE    $+2+2
+   \   00000022   C074               RJMP    ??Fsm_5
+   \   00000024   950A               DEC     R16
+   \   00000026   F409               BRNE    $+2+2
+   \   00000028   C09A               RJMP    ??Fsm_6
+   \   0000002A   5002               SUBI    R16, 2
+   \   0000002C   F409               BRNE    $+2+2
+   \   0000002E   C0BC               RJMP    ??Fsm_7
+   \   00000030   C0C3               RJMP    ??Fsm_8
     482              {
     483              case KEY_EVENT_UNPRESSED:
     484                  m_uiEventCode = m_uiPreliminaryEventCode;
    \                     ??Fsm_1:
-   \   00000022   01FD               MOVW    R31:R30, R27:R26
-   \   00000024   8500               LDD     R16, Z+8
-   \   00000026   8307               STD     Z+7, R16
+   \   00000032   01FD               MOVW    R31:R30, R27:R26
+   \   00000034   8500               LDD     R16, Z+8
+   \   00000036   01FD               MOVW    R31:R30, R27:R26
+   \   00000038   8307               STD     Z+7, R16
     485                  SetFsmState(KEY_EVENT_WAITING_PRESSED);
-   \   00000028   E001               LDI     R16, 1
-   \   0000002A   C039               RJMP    ??Fsm_9
+   \   0000003A   E021               LDI     R18, 1
+   \   0000003C   018D               MOVW    R17:R16, R27:R26
+   \   0000003E   ........           CALL    ??SetFsmState
     486                  break;
+   \   00000042   C0BA               RJMP    ??Fsm_8
     487          
     488              case KEY_EVENT_WAITING_PRESSED:
     489                  // кнопка нажата?
     490                  if (EventHappened())
    \                     ??Fsm_2:
-   \   0000002C   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_28:
-   \   0000002E   F1C1               BREQ    ??Fsm_8
+   \   00000044   018D               MOVW    R17:R16, R27:R26
+   \   00000046   ....               RCALL   ??EventHappened
+   \   00000048   2300               TST     R16
+   \   0000004A   F069               BREQ    ??Fsm_9
     491                  {
     492                      m_xTimer.Set(KEY_PRESSED_TIME_RECEIPT());
-   \   00000030   E624               LDI     R18, 100
-   \   00000032   ....               RCALL   ?Subroutine8
-   \                     ??CrossCallReturnLabel_21:
-   \   00000034   ........           CALL    ??Set
+   \   0000004C   018D               MOVW    R17:R16, R27:R26
+   \   0000004E   ........           CALL    ??KEY_PRESSED_TIME_RECEIPT
+   \   00000052   0198               MOVW    R19:R18, R17:R16
+   \   00000054   018D               MOVW    R17:R16, R27:R26
+   \   00000056   5F07               SUBI    R16, 247
+   \   00000058   4F1F               SBCI    R17, 255
+   \   0000005A   ........           CALL    ??Set
     493                      SetFsmState(KEY_EVENT_PRESSED_RECEIPT);
-   \   00000038   E002               LDI     R16, 2
-   \   0000003A   C031               RJMP    ??Fsm_9
+   \   0000005E   E022               LDI     R18, 2
+   \   00000060   018D               MOVW    R17:R16, R27:R26
+   \   00000062   ........           CALL    ??SetFsmState
     494                  }
     495                  break;
+   \                     ??Fsm_9:
+   \   00000066   C0A8               RJMP    ??Fsm_8
     496              case KEY_EVENT_PRESSED_RECEIPT:
     497                  // кнопка нажата?
     498                  if (EventHappened())
    \                     ??Fsm_3:
-   \   0000003C   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_29:
-   \   0000003E   F0E9               BREQ    ??Fsm_10
+   \   00000068   018D               MOVW    R17:R16, R27:R26
+   \   0000006A   ....               RCALL   ??EventHappened
+   \   0000006C   2300               TST     R16
+   \   0000006E   F0E1               BREQ    ??Fsm_10
     499                  {
     500                      if (m_xTimer.IsOverflow())
-   \   00000040   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_24:
-   \   00000042   F171               BREQ    ??Fsm_8
+   \   00000070   018D               MOVW    R17:R16, R27:R26
+   \   00000072   5F07               SUBI    R16, 247
+   \   00000074   4F1F               SBCI    R17, 255
+   \   00000076   ........           CALL    ??IsOverflow
+   \   0000007A   2300               TST     R16
+   \   0000007C   F0E9               BREQ    ??Fsm_11
     501                      {
     502                          m_xTimer.Set(KEY_PRESSED_TIME_RESET());
-   \   00000044   ED2C               LDI     R18, 220
-   \   00000046   E035               LDI     R19, 5
-   \   00000048   ....               RCALL   ?Subroutine0
+   \   0000007E   018D               MOVW    R17:R16, R27:R26
+   \   00000080   ........           CALL    ??KEY_PRESSED_TIME_RESET
+   \   00000084   0198               MOVW    R19:R18, R17:R16
+   \   00000086   018D               MOVW    R17:R16, R27:R26
+   \   00000088   5F07               SUBI    R16, 247
+   \   0000008A   4F1F               SBCI    R17, 255
+   \   0000008C   ........           CALL    ??Set
     503                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RECEIPT;
-   \                     ??CrossCallReturnLabel_0:
-   \   0000004A   E002               LDI     R16, 2
-   \   0000004C   ....               RCALL   ?Subroutine7
+   \   00000090   01FD               MOVW    R31:R30, R27:R26
+   \   00000092   E002               LDI     R16, 2
+   \   00000094   8700               STD     Z+8, R16
     504                          m_uiEventCode = m_uiPreliminaryEventCode;
+   \   00000096   01FD               MOVW    R31:R30, R27:R26
+   \   00000098   8500               LDD     R16, Z+8
+   \   0000009A   01FD               MOVW    R31:R30, R27:R26
+   \   0000009C   8307               STD     Z+7, R16
     505                          SetFsmState(KEY_EVENT_PRESSED_RESET);
-   \                     ??CrossCallReturnLabel_14:
-   \   0000004E   E003               LDI     R16, 3
-   \   00000050   C026               RJMP    ??Fsm_9
+   \   0000009E   E023               LDI     R18, 3
+   \   000000A0   018D               MOVW    R17:R16, R27:R26
+   \   000000A2   ........           CALL    ??SetFsmState
+   \   000000A6   C088               RJMP    ??Fsm_8
     506                      }
     507                  }
     508                  else
     509                  {
     510                      m_uiEventCode = m_uiPreliminaryEventCode;
+   \                     ??Fsm_10:
+   \   000000A8   01FD               MOVW    R31:R30, R27:R26
+   \   000000AA   8500               LDD     R16, Z+8
+   \   000000AC   01FD               MOVW    R31:R30, R27:R26
+   \   000000AE   8307               STD     Z+7, R16
     511                      SetFsmState(KEY_EVENT_UNPRESSED);
+   \   000000B0   E020               LDI     R18, 0
+   \   000000B2   018D               MOVW    R17:R16, R27:R26
+   \   000000B4   ........           CALL    ??SetFsmState
     512                  }
     513                  break;
+   \                     ??Fsm_11:
+   \   000000B8   C07F               RJMP    ??Fsm_8
     514              case KEY_EVENT_PRESSED_RESET:
     515                  // кнопка нажата?
     516                  if (EventHappened())
    \                     ??Fsm_4:
-   \   00000052   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_30:
-   \   00000054   F091               BREQ    ??Fsm_10
+   \   000000BA   018D               MOVW    R17:R16, R27:R26
+   \   000000BC   ....               RCALL   ??EventHappened
+   \   000000BE   2300               TST     R16
+   \   000000C0   F0E1               BREQ    ??Fsm_12
     517                  {
     518                      if (m_xTimer.IsOverflow())
-   \   00000056   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_25:
-   \   00000058   F119               BREQ    ??Fsm_8
+   \   000000C2   018D               MOVW    R17:R16, R27:R26
+   \   000000C4   5F07               SUBI    R16, 247
+   \   000000C6   4F1F               SBCI    R17, 255
+   \   000000C8   ........           CALL    ??IsOverflow
+   \   000000CC   2300               TST     R16
+   \   000000CE   F0E9               BREQ    ??Fsm_13
     519                      {
     520                          m_xTimer.Set(KEY_PRESSED_TIME_CHECK());
-   \   0000005A   EB28               LDI     R18, 184
-   \   0000005C   E03B               LDI     R19, 11
-   \   0000005E   ....               RCALL   ?Subroutine0
+   \   000000D0   018D               MOVW    R17:R16, R27:R26
+   \   000000D2   ........           CALL    ??KEY_PRESSED_TIME_CHECK
+   \   000000D6   0198               MOVW    R19:R18, R17:R16
+   \   000000D8   018D               MOVW    R17:R16, R27:R26
+   \   000000DA   5F07               SUBI    R16, 247
+   \   000000DC   4F1F               SBCI    R17, 255
+   \   000000DE   ........           CALL    ??Set
     521                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_RESET;
-   \                     ??CrossCallReturnLabel_1:
-   \   00000060   E003               LDI     R16, 3
-   \   00000062   ....               RCALL   ?Subroutine7
+   \   000000E2   01FD               MOVW    R31:R30, R27:R26
+   \   000000E4   E003               LDI     R16, 3
+   \   000000E6   8700               STD     Z+8, R16
     522                          m_uiEventCode = m_uiPreliminaryEventCode;
+   \   000000E8   01FD               MOVW    R31:R30, R27:R26
+   \   000000EA   8500               LDD     R16, Z+8
+   \   000000EC   01FD               MOVW    R31:R30, R27:R26
+   \   000000EE   8307               STD     Z+7, R16
     523                          SetFsmState(KEY_EVENT_PRESSED_CHECK);
-   \                     ??CrossCallReturnLabel_15:
-   \   00000064   E004               LDI     R16, 4
-   \   00000066   C01B               RJMP    ??Fsm_9
+   \   000000F0   E024               LDI     R18, 4
+   \   000000F2   018D               MOVW    R17:R16, R27:R26
+   \   000000F4   ........           CALL    ??SetFsmState
+   \   000000F8   C05F               RJMP    ??Fsm_8
     524          
     525                      }
     526                  }
     527                  else
     528                  {
     529                      m_uiEventCode = m_uiPreliminaryEventCode;
+   \                     ??Fsm_12:
+   \   000000FA   01FD               MOVW    R31:R30, R27:R26
+   \   000000FC   8500               LDD     R16, Z+8
+   \   000000FE   01FD               MOVW    R31:R30, R27:R26
+   \   00000100   8307               STD     Z+7, R16
     530                      SetFsmState(KEY_EVENT_UNPRESSED);
+   \   00000102   E020               LDI     R18, 0
+   \   00000104   018D               MOVW    R17:R16, R27:R26
+   \   00000106   ........           CALL    ??SetFsmState
     531                  }
     532                  break;
+   \                     ??Fsm_13:
+   \   0000010A   C056               RJMP    ??Fsm_8
     533          
     534              case KEY_EVENT_PRESSED_CHECK:
     535                  // кнопка нажата?
     536                  if (EventHappened())
    \                     ??Fsm_5:
-   \   00000068   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_31:
-   \   0000006A   F039               BREQ    ??Fsm_10
+   \   0000010C   018D               MOVW    R17:R16, R27:R26
+   \   0000010E   ....               RCALL   ??EventHappened
+   \   00000110   2300               TST     R16
+   \   00000112   F0E1               BREQ    ??Fsm_14
     537                  {
     538                      if (m_xTimer.IsOverflow())
-   \   0000006C   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_26:
-   \   0000006E   F0C1               BREQ    ??Fsm_8
+   \   00000114   018D               MOVW    R17:R16, R27:R26
+   \   00000116   5F07               SUBI    R16, 247
+   \   00000118   4F1F               SBCI    R17, 255
+   \   0000011A   ........           CALL    ??IsOverflow
+   \   0000011E   2300               TST     R16
+   \   00000120   F0E9               BREQ    ??Fsm_15
     539                      {
     540                          m_xTimer.Set(KEY_PRESSED_TIME_SET_DEFAULT());
+   \   00000122   018D               MOVW    R17:R16, R27:R26
+   \   00000124   ........           CALL    ??KEY_PRESSED_TIME_SET_DEFAULT
+   \   00000128   0198               MOVW    R19:R18, R17:R16
+   \   0000012A   018D               MOVW    R17:R16, R27:R26
+   \   0000012C   5F07               SUBI    R16, 247
+   \   0000012E   4F1F               SBCI    R17, 255
+   \   00000130   ........           CALL    ??Set
     541                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_CHECK;
+   \   00000134   01FD               MOVW    R31:R30, R27:R26
+   \   00000136   E004               LDI     R16, 4
+   \   00000138   8700               STD     Z+8, R16
     542                          m_uiEventCode = m_uiPreliminaryEventCode;
+   \   0000013A   01FD               MOVW    R31:R30, R27:R26
+   \   0000013C   8500               LDD     R16, Z+8
+   \   0000013E   01FD               MOVW    R31:R30, R27:R26
+   \   00000140   8307               STD     Z+7, R16
     543          //                SetFsmState(KEY_EVENT_PRESSED_SET_DEFAULT);
     544                          SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
+   \   00000142   E027               LDI     R18, 7
+   \   00000144   018D               MOVW    R17:R16, R27:R26
+   \   00000146   ........           CALL    ??SetFsmState
+   \   0000014A   C036               RJMP    ??Fsm_8
     545          
     546                      }
     547                  }
-   \   00000070   E828               LDI     R18, 136
-   \   00000072   E133               LDI     R19, 19
-   \   00000074   ....               RCALL   ?Subroutine0
-   \                     ??CrossCallReturnLabel_2:
-   \   00000076   E004               LDI     R16, 4
-   \   00000078   C00C               RJMP    ??Fsm_11
     548                  else
     549                  {
     550                      m_uiEventCode = m_uiPreliminaryEventCode;
-   \                     ??Fsm_10:
-   \   0000007A   01FD               MOVW    R31:R30, R27:R26
-   \   0000007C   8500               LDD     R16, Z+8
-   \   0000007E   8307               STD     Z+7, R16
+   \                     ??Fsm_14:
+   \   0000014C   01FD               MOVW    R31:R30, R27:R26
+   \   0000014E   8500               LDD     R16, Z+8
+   \   00000150   01FD               MOVW    R31:R30, R27:R26
+   \   00000152   8307               STD     Z+7, R16
     551                      SetFsmState(KEY_EVENT_UNPRESSED);
-   \   00000080   C00D               RJMP    ??Fsm_12
+   \   00000154   E020               LDI     R18, 0
+   \   00000156   018D               MOVW    R17:R16, R27:R26
+   \   00000158   ........           CALL    ??SetFsmState
     552                  }
     553                  break;
+   \                     ??Fsm_15:
+   \   0000015C   C02D               RJMP    ??Fsm_8
     554          
     555              case KEY_EVENT_PRESSED_SET_DEFAULT:
     556                  // кнопка нажата?
     557                  if (EventHappened())
    \                     ??Fsm_6:
-   \   00000082   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_32:
-   \   00000084   F059               BREQ    ??Fsm_12
+   \   0000015E   018D               MOVW    R17:R16, R27:R26
+   \   00000160   ....               RCALL   ??EventHappened
+   \   00000162   2300               TST     R16
+   \   00000164   F0E1               BREQ    ??Fsm_16
     558                  {
     559                      if (m_xTimer.IsOverflow())
-   \   00000086   ....               RCALL   ?Subroutine1
-   \                     ??CrossCallReturnLabel_27:
-   \   00000088   F059               BREQ    ??Fsm_8
+   \   00000166   018D               MOVW    R17:R16, R27:R26
+   \   00000168   5F07               SUBI    R16, 247
+   \   0000016A   4F1F               SBCI    R17, 255
+   \   0000016C   ........           CALL    ??IsOverflow
+   \   00000170   2300               TST     R16
+   \   00000172   F111               BREQ    ??Fsm_8
     560                      {
     561                          m_xTimer.Set(KEY_PRESSED_CHECK_REPEAT_TIME());
-   \   0000008A   E322               LDI     R18, 50
-   \   0000008C   E030               LDI     R19, 0
-   \   0000008E   ....               RCALL   ?Subroutine0
+   \   00000174   018D               MOVW    R17:R16, R27:R26
+   \   00000176   ........           CALL    ??KEY_PRESSED_CHECK_REPEAT_TIME
+   \   0000017A   0198               MOVW    R19:R18, R17:R16
+   \   0000017C   018D               MOVW    R17:R16, R27:R26
+   \   0000017E   5F07               SUBI    R16, 247
+   \   00000180   4F1F               SBCI    R17, 255
+   \   00000182   ........           CALL    ??Set
     562                          m_uiPreliminaryEventCode = KEY_EVENT_PRESSED_SET_DEFAULT;
-   \                     ??CrossCallReturnLabel_3:
-   \   00000090   E005               LDI     R16, 5
-   \                     ??Fsm_11:
-   \   00000092   ....               RCALL   ?Subroutine7
+   \   00000186   01FD               MOVW    R31:R30, R27:R26
+   \   00000188   E005               LDI     R16, 5
+   \   0000018A   8700               STD     Z+8, R16
     563                          m_uiEventCode = m_uiPreliminaryEventCode;
+   \   0000018C   01FD               MOVW    R31:R30, R27:R26
+   \   0000018E   8500               LDD     R16, Z+8
+   \   00000190   01FD               MOVW    R31:R30, R27:R26
+   \   00000192   8307               STD     Z+7, R16
     564                          SetFsmState(KEY_EVENT_UNPRESSED_WAITING);
-   \                     ??CrossCallReturnLabel_16:
-   \   00000094   E007               LDI     R16, 7
-   \   00000096   C003               RJMP    ??Fsm_9
+   \   00000194   E027               LDI     R18, 7
+   \   00000196   018D               MOVW    R17:R16, R27:R26
+   \   00000198   ........           CALL    ??SetFsmState
+   \   0000019C   C00D               RJMP    ??Fsm_8
     565          
     566                      }
     567                  }
     568                  else
     569                  {
     570                      SetFsmState(KEY_EVENT_UNPRESSED);
+   \                     ??Fsm_16:
+   \   0000019E   E020               LDI     R18, 0
+   \   000001A0   018D               MOVW    R17:R16, R27:R26
+   \   000001A2   ........           CALL    ??SetFsmState
     571                  }
     572                  break;
+   \   000001A6   C008               RJMP    ??Fsm_8
     573          
     574              case KEY_EVENT_UNPRESSED_WAITING:
     575                  // кнопка не нажата?
     576                  if (!(EventHappened()))
    \                     ??Fsm_7:
-   \   00000098   ....               RCALL   ?Subroutine5
-   \                     ??CrossCallReturnLabel_33:
-   \   0000009A   F411               BRNE    ??Fsm_8
+   \   000001A8   018D               MOVW    R17:R16, R27:R26
+   \   000001AA   ....               RCALL   ??EventHappened
+   \   000001AC   2300               TST     R16
+   \   000001AE   F421               BRNE    ??Fsm_8
     577                  {
     578                      SetFsmState(KEY_EVENT_UNPRESSED);
-   \                     ??Fsm_12:
-   \   0000009C   E000               LDI     R16, 0
-   \                     ??Fsm_9:
-   \   0000009E   930C               ST      X, R16
+   \   000001B0   E020               LDI     R18, 0
+   \   000001B2   018D               MOVW    R17:R16, R27:R26
+   \   000001B4   ........           CALL    ??SetFsmState
     579                  }
     580                  break;
     581          
@@ -1362,46 +1509,25 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
     585              }
     586          }
    \                     ??Fsm_8:
-   \   000000A0   ....               RJMP    ?Subroutine11
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine5:
-   \   00000000   2F0A               MOV     R16, R26
-   \   00000002   ....               RCALL   ??EventHappened
-   \   00000004                      REQUIRE ?Subroutine12
-   \   00000004                      ;               // Fall through to label ?Subroutine12
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine12:
-   \   00000000   2300               TST     R16
-   \   00000002   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine1:
-   \   00000000   ....               RCALL   ?Subroutine9
-   \                     ??CrossCallReturnLabel_18:
-   \   00000002   ........           CALL    ??IsOverflow
-   \   00000006   ....               RJMP    ?Subroutine12
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine0:
-   \   00000000   ....               RCALL   ?Subroutine9
-   \                     ??CrossCallReturnLabel_17:
-   \   00000002   ........           CALL    ??Set
-   \   00000006   01FD               MOVW    R31:R30, R27:R26
-   \   00000008   9508               RET
+   \   000001B8   91A9               LD      R26, Y+
+   \   000001BA   91B9               LD      R27, Y+
+   \   000001BC   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey()
    \                     `??new CMultiFunctionKey`:
-   \   00000000   ....               RCALL   ?Subroutine3
-   \                     ??CrossCallReturnLabel_6:
-   \   00000002   F009               BREQ    `??new CMultiFunctionKey_2`
-   \   00000004   ....               RJMP    ??CMultiFunctionKey
+   \   00000000   E00F               LDI     R16, 15
+   \   00000002   E010               LDI     R17, 0
+   \   00000004   ........           CALL    `??operator new`
+   \   00000008   2F20               MOV     R18, R16
+   \   0000000A   2B21               OR      R18, R17
+   \   0000000C   F011               BREQ    `??new CMultiFunctionKey_2`
+   \   0000000E   ....               RCALL   ??CMultiFunctionKey
+   \   00000010   9508               RET
    \                     `??new CMultiFunctionKey_2`:
-   \   00000006   E000               LDI     R16, 0
-   \   00000008   E010               LDI     R17, 0
-   \   0000000A   9508               RET
+   \   00000012   E000               LDI     R16, 0
+   \   00000014   E010               LDI     R17, 0
+   \   00000016   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CMultiFunctionKey &CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
@@ -1409,55 +1535,64 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-   \   00000006   ....               RCALL   ?Subroutine3
-   \                     ??CrossCallReturnLabel_7:
-   \   00000008   F019               BREQ    `??new CMultiFunctionKey_3`
-   \   0000000A   019C               MOVW    R19:R18, R25:R24
-   \   0000000C   ....               RCALL   ??CMultiFunctionKey_1
-   \   0000000E   C002               RJMP    `??new CMultiFunctionKey_4`
+   \   00000006   E00F               LDI     R16, 15
+   \   00000008   E010               LDI     R17, 0
+   \   0000000A   ........           CALL    `??operator new`
+   \   0000000E   2F20               MOV     R18, R16
+   \   00000010   2B21               OR      R18, R17
+   \   00000012   F019               BREQ    `??new CMultiFunctionKey_3`
+   \   00000014   019C               MOVW    R19:R18, R25:R24
+   \   00000016   ....               RCALL   ??CMultiFunctionKey_1
+   \   00000018   C002               RJMP    `??new CMultiFunctionKey_4`
    \                     `??new CMultiFunctionKey_3`:
-   \   00000010   E000               LDI     R16, 0
-   \   00000012   E010               LDI     R17, 0
+   \   0000001A   E000               LDI     R16, 0
+   \   0000001C   E010               LDI     R17, 0
    \                     `??new CMultiFunctionKey_4`:
-   \   00000014   9189               LD      R24, Y+
-   \   00000016   9199               LD      R25, Y+
-   \   00000018   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \                     ?Subroutine3:
-   \   00000000   E00F               LDI     R16, 15
-   \   00000002   E010               LDI     R17, 0
-   \   00000004   ........           CALL    `??operator new`
-   \   00000008   2F20               MOV     R18, R16
-   \   0000000A   2B21               OR      R18, R17
-   \   0000000C   9508               RET
+   \   0000001E   9189               LD      R24, Y+
+   \   00000020   9199               LD      R25, Y+
+   \   00000022   9508               RET
 
    Maximum stack usage in bytes:
 
    CSTACK RSTACK Function
    ------ ------ --------
+      0      2   CDfaLite::GetFsmState()
+      0      2   CDfaLite::SetFsmState(uint8_t)
       2      2   CMultiFunctionKey::CMultiFunctionKey()
-        2      4   -> CDfa::CDfa()
+        2      2   -> CDfa::CDfa()
         2      2   -> CTimer::CTimer()
       4      2   CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
-        4      4   -> CDfa::CDfa()
+        4      2   -> CDfa::CDfa()
+        4      2   -> CDfaLite::SetFsmState(uint8_t)
         4      2   -> CTimer::CTimer()
       2      2   CMultiFunctionKey::EventHappened()
         2      2   -- Indirect call
       2      2   CMultiFunctionKey::Fsm()
-        2      4   -> CMultiFunctionKey::EventHappened()
-        2      4   -> CTimer::IsOverflow()
+        2      2   -> CDfaLite::GetFsmState()
+        2      2   -> CDfaLite::SetFsmState(uint8_t)
+        2      2   -> CMultiFunctionKey::EventHappened()
+        2      2   -> CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
+        2      2   -> CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
+        2      2   -> CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
+        2      2   -> CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
+        2      2   -> CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
+        2      2   -> CTimer::IsOverflow()
         2      2   -> CTimer::Set(uint16_t)
-        2      4   -> CTimer::Set(uint16_t)
+      0      2   CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
+      0      2   CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
+      0      2   CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
+      0      2   CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
+      0      2   CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
       4      2   CMultiFunctionKey::KeyEventHappened(uint8_t)
         4      2   -- Indirect call
-      0      2   CMultiFunctionKey::SetCapabilities(uint8_t (*)())
+      4      2   CMultiFunctionKey::SetCapabilities(uint8_t (*)())
+        4      2   -> CDfaLite::SetFsmState(uint8_t)
       0      2   CMultiFunctionKey::new CMultiFunctionKey()
         0      2   -> CMultiFunctionKey::CMultiFunctionKey()
-        0      4   -> operator new(unsigned int)
+        0      2   -> operator new(unsigned int)
       2      2   CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
         2      2   -> CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
-        2      4   -> operator new(unsigned int)
+        2      2   -> operator new(unsigned int)
       4      2   CMultiFunctionKey::~CMultiFunctionKey()
         4      2   -> CDfa::~CDfa()
         4      2   -> CTimer::~CTimer()
@@ -1468,29 +1603,22 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
 
    Bytes  Function/Label
    -----  --------------
-      10  ?Subroutine0
-       8  ?Subroutine1
-      12  ?Subroutine10
-       6  ?Subroutine11
-       4  ?Subroutine12
-       6  ?Subroutine13
-      12  ?Subroutine2
-      14  ?Subroutine3
-       8  ?Subroutine4
-       4  ?Subroutine5
-      10  ?Subroutine6
-       6  ?Subroutine7
-       2  ?Subroutine8
-       8  ?Subroutine9
-       6  CMultiFunctionKey::CMultiFunctionKey()
-      24  CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
-      22  CMultiFunctionKey::EventHappened()
-     162  CMultiFunctionKey::Fsm()
-      38  CMultiFunctionKey::KeyEventHappened(uint8_t)
-      14  CMultiFunctionKey::SetCapabilities(uint8_t (*)())
-      12  CMultiFunctionKey::new CMultiFunctionKey()
-      26  CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
-      38  CMultiFunctionKey::~CMultiFunctionKey()
+       6  CDfaLite::GetFsmState()
+       6  CDfaLite::SetFsmState(uint8_t)
+      40  CMultiFunctionKey::CMultiFunctionKey()
+      68  CMultiFunctionKey::CMultiFunctionKey(uint8_t (*)())
+      32  CMultiFunctionKey::EventHappened()
+     446  CMultiFunctionKey::Fsm()
+       8  CMultiFunctionKey::KEY_PRESSED_CHECK_REPEAT_TIME()
+       8  CMultiFunctionKey::KEY_PRESSED_TIME_CHECK()
+       8  CMultiFunctionKey::KEY_PRESSED_TIME_RECEIPT()
+       8  CMultiFunctionKey::KEY_PRESSED_TIME_RESET()
+       8  CMultiFunctionKey::KEY_PRESSED_TIME_SET_DEFAULT()
+      62  CMultiFunctionKey::KeyEventHappened(uint8_t)
+      34  CMultiFunctionKey::SetCapabilities(uint8_t (*)())
+      24  CMultiFunctionKey::new CMultiFunctionKey()
+      36  CMultiFunctionKey::new CMultiFunctionKey(uint8_t (*)())
+      64  CMultiFunctionKey::~CMultiFunctionKey()
        1  _A_ACSR
        2  _A_ADC
        1  _A_ADCSRA
@@ -1587,10 +1715,10 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\InputDevice.cpp
 
  
  105 bytes in segment ABSOLUTE
- 452 bytes in segment CODE
+ 858 bytes in segment CODE
    4 bytes in segment NEAR_F
  
- 452 bytes of CODE memory (+   4 bytes shared)
+ 806 bytes of CODE memory (+  56 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

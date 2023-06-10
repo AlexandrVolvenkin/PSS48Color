@@ -48,6 +48,7 @@ void CAlarmDfa::Fsm(void)
             }
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+            CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
             SetFsmState(RECEIPT_OR_RESET_WAITING);
         }
         break;
@@ -272,7 +273,8 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
 
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-            // Актмвизируем окно сигнализации, для отображения извещателем.
+            CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+            // Активизируем окно сигнализации, для отображения извещателем.
             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
             CPss21::BoardWindowsUpdate();
             SetFsmState(NOT_ACTIVE_STATE_WAITING);
@@ -369,6 +371,7 @@ void CErrorAlarmDfa::Fsm(void)
                 CPss21::AlarmTypeErrorChange();
             }
 
+            CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
 //            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::ErrorWindowOn(GetAlarmWindowIndex());
             SetFsmState(RECEIPT_WAITING);

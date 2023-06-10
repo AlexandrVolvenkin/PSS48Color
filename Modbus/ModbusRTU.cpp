@@ -300,6 +300,7 @@ int8_t CModbusRTU::FrameCheck(void)
 //-----------------------------------------------------------------------------------------------------
 int8_t CModbusRTU::FrameCheck(uint8_t *puiSource, uint16_t uiLength)
 {
+
     if (uiLength < _MIN_MESSAGE_LENGTH)
     {
         return 0;
@@ -330,12 +331,15 @@ void CModbusRTU::Fsm(void)
     case IDDLE:
         break;
 
+    case START_SLAVE:
+        Reset();
+        ReceiveEnable();
+        SetFsmState(START_REQUEST);
+        break;
+
     case START_REQUEST:
         GetSystemTime();
-        Reset();
         m_uiMessageLength = 0;
-//        Open();
-        ReceiveEnable();
         SetFsmState(WAITING_MESSAGE_REQUEST);
         break;
 
@@ -352,12 +356,14 @@ void CModbusRTU::Fsm(void)
             }
             else if (iReceivedCounter == -1)
             {
+                Reset();
                 SetFsmState(START_REQUEST);
             }
         }
 
         if (TimeIsOver(m_uiReceiveTimeout))
         {
+            Reset();
             SetFsmState(START_REQUEST);
         }
 
@@ -375,6 +381,7 @@ void CModbusRTU::Fsm(void)
             }
             else if (iReceivedCounter == -1)
             {
+                Reset();
                 SetFsmState(START_REQUEST);
             }
         }
@@ -387,6 +394,7 @@ void CModbusRTU::Fsm(void)
             }
             else
             {
+                Reset();
                 SetFsmState(START_REQUEST);
             }
         }
@@ -402,6 +410,7 @@ void CModbusRTU::Fsm(void)
         else
         {
             CPlatform::TxLedOff();
+            Reset();
             SetFsmState(START_REQUEST);
         }
         break;
@@ -409,7 +418,6 @@ void CModbusRTU::Fsm(void)
     case FRAME_TRANSMIT_CONFIRMATION:
         GetSystemTime();
         Reset();
-        ReceiveDisable();
         SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
         break;
 
@@ -425,7 +433,7 @@ void CModbusRTU::Fsm(void)
     case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
         if (MessageIsSended())
         {
-            TransmitDisable();
+//            TransmitDisable();
             CPlatform::TxLedOff();
             SetFsmState(START_REQUEST);
         }

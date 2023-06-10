@@ -39,6 +39,7 @@ public:
         MAIN_CYCLE_END,
 
         MAP_CREATE_START,
+        MAP_CREATE_ALL_LED_ON,
         MAP_CREATE_WINDOW_ON,
         MAP_CREATE_ON,
         MAP_CREATE_NEXT_WINDOW,
@@ -106,6 +107,7 @@ public:
     static void AlarmTypeReset(void);
     static void NotifyersControlProcessing(void);
     static void SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType);
+    static void SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColor);
     static void SaveContextNotifyerControl(void);
     static void RestoreContextNotifyerControl(void);
     static void DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation);

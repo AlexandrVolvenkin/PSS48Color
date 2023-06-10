@@ -736,13 +736,15 @@ public:
 //-----------------------------------------------------------------------------------------------------
     static void ExternalKeySetPinInput(void)
     {
-        DDRG &= ~BIT(DDG0);
+//        DDRG &= ~BIT(DDG0);
+        DDRC &= ~BIT(DDC4);
     };
 
 //-----------------------------------------------------------------------------------------------------
     static uint8_t ExternalKeyState(void)
     {
-        return BitIsClear(PING, PING0);
+//        return BitIsClear(PING, PING0);
+        return BitIsClear(PINC, PINC4);
     };
 
 //-----------------------------------------------------------------------------------------------------

@@ -132,7 +132,7 @@ void CPss21::ModbusInit(void)
                          HOLDING_REGISTERS_ARRAY_LENGTH,
                          INPUT_REGISTERS_ARRAY_LENGTH);
     m_xModbusRtuOne.SlaveSet(CPss21::m_xModbusSettings.NetAddress);
-    m_xModbusRtuOne.SetFsmState(CModbus::START_SLAVE);
+    m_xModbusRtuOne.SetFsmState(CModbus::START_REQUEST);
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1174,11 +1174,8 @@ void CPss21::AlarmTypeReset(void)
 void CPss21::NotifyersControlProcessing(void)
 {
     m_xPreventiveAlarmWindowNotifyerControl.Fsm();
-    CPss21::m_xModbusRtuOne.Fsm();
     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
-    CPss21::m_xModbusRtuOne.Fsm();
     m_xStatusLedNotifyerControl.Fsm();
-    CPss21::m_xModbusRtuOne.Fsm();
     m_xBuzzerNotifyerControl.Fsm();
 }
 
@@ -1186,12 +1183,6 @@ void CPss21::NotifyersControlProcessing(void)
 void CPss21::SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType)
 {
     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmType(uiAlarmType);
-}
-
-//-----------------------------------------------------------------------------------------------------
-void CPss21::SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColor)
-{
-    GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmColor(uiAlarmColor);
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1210,7 +1201,6 @@ void CPss21::SaveContextNotifyerControl(void)
     {
         m_axAlarmWindowControl[i].SetSavedAlarmType(m_axAlarmWindowControl[i].GetAlarmType());
         m_axAlarmWindowControl[i].SetSavedActivityState(m_axAlarmWindowControl[i].GetActivityState());
-        m_axAlarmWindowControl[i].SetSavedAlarmColor(m_axAlarmWindowControl[i].GetAlarmColor());
     };
 }
 
@@ -1231,7 +1221,6 @@ void CPss21::RestoreContextNotifyerControl(void)
     {
         m_axAlarmWindowControl[i].SetAlarmType(m_axAlarmWindowControl[i].GetSavedAlarmType());
         m_axAlarmWindowControl[i].SetActivityState(m_axAlarmWindowControl[i].GetSavedActivityState());
-        m_axAlarmWindowControl[i].SetAlarmColor(m_axAlarmWindowControl[i].GetSavedAlarmColor());
     };
 }
 
@@ -1261,7 +1250,7 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
         {
-            // Активизируем окно сигнализации, для отображения извещателем.
+            // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(1);
         }
 
@@ -1305,11 +1294,10 @@ void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-        // Активизируем окно сигнализации, для отображения извещателем.
+        // Актмвизируем окно сигнализации, для отображения извещателем.
         m_axAlarmWindowControl[i].SetAlarmType(uiAlarmType);
-        // Активизируем окно сигнализации, для отображения извещателем.
+        // Актмвизируем окно сигнализации, для отображения извещателем.
         m_axAlarmWindowControl[i].SetActivityState(1);
-        m_axAlarmWindowControl[i].SetAlarmColor(uiAlarmType);
     };
 
     BoardWindowsUpdate();
@@ -1325,10 +1313,9 @@ void CPss21::ErrorWindowOn(uint8_t uiIndex)
     {
         if (m_auiErrorLedOn[i])
         {
-            // Активизируем окно сигнализации, для отображения извещателем.
+            // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
             m_axAlarmWindowControl[i].SetActivityState(1);
-            m_axAlarmWindowControl[i].SetAlarmColor(ERROR);
         }
     };
 
@@ -1336,7 +1323,6 @@ void CPss21::ErrorWindowOn(uint8_t uiIndex)
     {
         m_axAlarmWindowControl[uiIndex].SetAlarmType(NORMAL);
         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
-        m_axAlarmWindowControl[uiIndex].SetAlarmColor(NORMAL);
     }
 
     BoardWindowsUpdate();
@@ -1454,16 +1440,15 @@ void CPss21::MainFsm(void)
 
         CDataStore::Fsm();
 
-        if (CPss21::m_xMainCycleTimer.IsOverflow())
-        {
-            CPss21::m_xMainCycleTimer.Reset();
-            CPlatform::WatchdogReset();
-            SetModuleIndex(0);
-            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
-        }
-//            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-//
-//        CPlatform::WatchdogReset();
+//        if (CPss21::m_xMainCycleTimer.IsOverflow())
+//        {
+//            CPss21::m_xMainCycleTimer.Reset();
+//            CPlatform::WatchdogReset();
+//            SetModuleIndex(0);
+//            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+//        }
+
+        CPlatform::WatchdogReset();
         break;
 
     case MAIN_CYCLE_MODULES_INTERACTION:
@@ -1526,9 +1511,9 @@ void CPss21::MainFsm(void)
 //                i < 48;
 //                i++)
 //        {
-//            // Активизируем окно сигнализации, для отображения извещателем.
+//            // Актмвизируем окно сигнализации, для отображения извещателем.
 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-//            // Активизируем окно сигнализации, для отображения извещателем.
+//            // Актмвизируем окно сигнализации, для отображения извещателем.
 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
 //        };
 //        BoardWindowsUpdate();
@@ -1541,16 +1526,15 @@ void CPss21::MainFsm(void)
 //        break;
 
     case MAP_CREATE_WINDOW_ON:
-        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter + 1;
         if (uiMapTestCounter != 48)
         {
             CPss21::AllAlarmWindowOff();
-            // Активизируем окно сигнализации, для отображения извещателем.
+            // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-            // Активизируем окно сигнализации, для отображения извещателем.
+            // Актмвизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-
-            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+            
             BoardWindowsUpdate();
             SetFsmState(MAP_CREATE_ON);
         }
@@ -1656,7 +1640,6 @@ void CPss21::MainFsm(void)
 
 //-----------------------------------------------------------------------------------------------------
     case PROGRAMMING_START:
-        CPss21::m_xModbusRtuOne.Fsm();
         // После приёма последнего блока базы данных произойдёт перезагрузка
         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);

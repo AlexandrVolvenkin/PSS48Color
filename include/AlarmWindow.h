@@ -53,6 +53,24 @@ public:
         return m_uiSavedAlarmType;
     };
 
+    void SetAlarmColor(uint8_t uiData)
+    {
+        m_uiAlarmColor = uiData;
+    };
+    uint8_t GetAlarmColor(void)
+    {
+        return m_uiAlarmColor;
+    };
+
+    void SetSavedAlarmColor(uint8_t uiData)
+    {
+        m_uiSavedAlarmColor = uiData;
+    };
+    uint8_t GetSavedAlarmColor(void)
+    {
+        return m_uiSavedAlarmColor;
+    };
+
 protected:
 private:
     uint8_t m_uiActivityState;
@@ -60,6 +78,8 @@ private:
     // Тип сигнализации.
     uint8_t m_uiAlarmType;
     uint8_t m_uiSavedAlarmType;
+    uint8_t m_uiAlarmColor;
+    uint8_t m_uiSavedAlarmColor;
 };
 
 //-----------------------------------------------------------------------------------------------------

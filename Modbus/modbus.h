@@ -205,6 +205,7 @@ public:
         IDDLE  = 0,
         START,
 
+        START_SLAVE,
         START_REQUEST,
         WAITING_MESSAGE_REQUEST,
         RECEIVE_MESSAGE_REQUEST,
@@ -216,6 +217,7 @@ public:
 
 //-----------------------------------------------------------------------------------------------------
 // ModbusMaster
+        START_MASTER,
         START_CONFIRMATION,
         WAITING_MESSAGE_CONFIRMATION,
         RECEIVE_MESSAGE_CONFIRMATION,
@@ -242,49 +244,49 @@ public:
 //            uint8_t *puiRxBuffer,
 //            uint8_t *puiTxBuffer);
     virtual ~CModbus();
-    int16_t ByteToBitPack(uint16_t ,
-                          uint16_t ,
+    int16_t ByteToBitPack(uint16_t,
+                          uint16_t,
                           uint8_t *,
                           uint8_t *,
                           uint16_t );
     virtual int8_t MessengerIsReady(void);
-    virtual int16_t Tail(uint8_t * , uint16_t ) = 0;
+    virtual int16_t Tail(uint8_t *, uint16_t ) = 0;
     virtual int16_t RequestBasis(uint8_t uiSlave,
                                  uint8_t uiFunctionCode,
                                  uint16_t uiAddress,
                                  uint16_t uiBitNumber,
                                  uint8_t *puiRequest) = 0;
-    virtual int16_t ResponseBasis(uint8_t , uint8_t , uint8_t * ) = 0;
+    virtual int16_t ResponseBasis(uint8_t, uint8_t, uint8_t * ) = 0;
     uint8_t ResponseIsReceived(void);
-    int16_t ResponseException(uint8_t , uint8_t , uint8_t , uint8_t * );
-    int16_t SendMessage(uint8_t * , uint16_t );
-    virtual int16_t Send(uint8_t * , uint16_t ) = 0;
+    int16_t ResponseException(uint8_t, uint8_t, uint8_t, uint8_t * );
+    int16_t SendMessage(uint8_t *, uint16_t );
+    virtual int16_t Send(uint8_t *, uint16_t ) = 0;
     void SlaveSet(uint8_t );
 //    virtual void FsmSlave(void) = 0;
 //    virtual void FsmMaster(void) = 0;
 //    virtual int16_t Receive(void) = 0;
-    int16_t ReadCoils(uint8_t * , uint8_t * , uint16_t );
-    int16_t ReadDiscreteInputs(uint8_t * , uint8_t * , uint16_t );
-    int16_t ReadHoldingRegisters(uint8_t * , uint8_t * , uint16_t );
-    int16_t ReadInputRegisters(uint8_t * , uint8_t * , uint16_t );
-    int16_t WriteSingleCoil(uint8_t * , uint8_t * , uint16_t );
-    int16_t WriteSingleRegister(uint8_t * , uint8_t * , uint16_t );
-    int16_t WriteMultipleCoils(uint8_t * , uint8_t * , uint16_t );
-    int16_t WriteMultipleRegisters(uint8_t * , uint8_t * , uint16_t );
-    int16_t ReadExceptionStatus(uint8_t * , uint8_t * , uint16_t );
-    int16_t ReportSlaveID(uint8_t * , uint8_t * , uint16_t );
-    int16_t WriteAndReadRegisters(uint8_t * , uint8_t * , uint16_t );
-    int16_t Programming(uint8_t * , uint8_t * , uint16_t );
-    int16_t PollProgramming(uint8_t * , uint8_t * , uint16_t );
+    int16_t ReadCoils(uint8_t *, uint8_t *, uint16_t );
+    int16_t ReadDiscreteInputs(uint8_t *, uint8_t *, uint16_t );
+    int16_t ReadHoldingRegisters(uint8_t *, uint8_t *, uint16_t );
+    int16_t ReadInputRegisters(uint8_t *, uint8_t *, uint16_t );
+    int16_t WriteSingleCoil(uint8_t *, uint8_t *, uint16_t );
+    int16_t WriteSingleRegister(uint8_t *, uint8_t *, uint16_t );
+    int16_t WriteMultipleCoils(uint8_t *, uint8_t *, uint16_t );
+    int16_t WriteMultipleRegisters(uint8_t *, uint8_t *, uint16_t );
+    int16_t ReadExceptionStatus(uint8_t *, uint8_t *, uint16_t );
+    int16_t ReportSlaveID(uint8_t *, uint8_t *, uint16_t );
+    int16_t WriteAndReadRegisters(uint8_t *, uint8_t *, uint16_t );
+    int16_t Programming(uint8_t *, uint8_t *, uint16_t );
+    int16_t PollProgramming(uint8_t *, uint8_t *, uint16_t );
 
-    int16_t Reply(uint8_t * , uint8_t * , uint16_t );
-    void SetByteFromBits(uint8_t * , int16_t , const uint8_t );
-    void SetBytesFromBits(uint8_t * , int16_t , uint16_t ,
+    int16_t Reply(uint8_t *, uint8_t *, uint16_t );
+    void SetByteFromBits(uint8_t *, int16_t, const uint8_t );
+    void SetBytesFromBits(uint8_t *, int16_t, uint16_t,
                           const uint8_t * );
-    uint8_t GetByteFromBits(const uint8_t * , int16_t ,
+    uint8_t GetByteFromBits(const uint8_t *, int16_t,
                             uint16_t );
     float GetFloat(const uint16_t * );
-    void SetFloat(float , uint16_t * );
+    void SetFloat(float, uint16_t * );
 
 //-----------------------------------------------------------------------------------------------------
 // ModbusMaster

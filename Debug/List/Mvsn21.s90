@@ -1,24 +1,25 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          30/May/2023  15:39:51
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  10:14:40
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //    Command line =  
-//        -f C:\Users\ghost\AppData\Local\Temp\EW3E16.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW16EE.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //        --cpu=m128a -ms -o
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\Obj -lC
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -lB
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Debug\List -y
-//        --initializers_in_flash --root_variables --debug
+//        --initializers_in_flash --root_variables --no_cse --no_inline
+//        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
 //        -DENABLE_BIT_DEFINITIONS -e -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ -I
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\
 //        --eeprom_size 4096 --dlib --dlib_config "C:\Program Files (x86)\IAR
-//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -Ohz
+//        Systems\Embedded Workbench 8.0\avr\LIB\DLIB\dlAVR-3s-ec_mul-n.h" -On
 //        --eec++)
 //    Locale       =  Russian_RUS.1251
 //    List file    =  
@@ -37,15 +38,14 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B3_L09
         EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?PROLOGUE3_L09
         EXTERN ?PROLOGUE4_L09
         EXTERN ?S_SHL_L02
 
         PUBLIC ??Allocate
         PUBLIC ??CMvsn21Driver
         PUBLIC ??DataExchange
+        PUBWEAK ??SetErrorAlarmData
         PUBWEAK ??__vtbl_3
         PUBLIC ??__vtbl_CDfa
         PUBLIC `??new CMvsn21Driver`
@@ -645,6 +645,7 @@ _A_PINF:
         MOVW    R27:R26, R17:R16
         MOV     R24, R18
 //   16 {
+        MOVW    R17:R16, R27:R26
         SUBI    R16, 245
         SBCI    R17, 255
         CALL    ??CDfa
@@ -655,17 +656,13 @@ _A_PINF:
         STD     Z+10, R17
         LDI     R16, LOW(??__vtbl_CDfa)
         LDI     R17, (??__vtbl_CDfa) >> 8
+        MOVW    R31:R30, R27:R26
         STD     Z+12, R16
         STD     Z+13, R17
 //   17     m_uiType = uiType;
         ST      X, R24
 //   18 }
         MOVW    R17:R16, R27:R26
-        REQUIRE ?Subroutine0
-        ;               // Fall through to label ?Subroutine0
-
-        RSEG CODE:CODE:NOROOT(1)
-?Subroutine0:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
@@ -696,16 +693,17 @@ _A_PINF:
 //   21 CMvsn21Driver::~CMvsn21Driver()
 `?~CMvsn21Driver`:
 //   22 {
-        CALL    ?PROLOGUE3_L09
+        CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
-        MOV     R26, R18
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
         OR      R16, R25
         BREQ    `?~CMvsn21Driver_1`
 //   23 
 //   24 }
         LDI     R18, 0
         LDI     R19, 0
-        MOV     R16, R24
+        MOVW    R17:R16, R25:R24
         SUBI    R16, 245
         SBCI    R17, 255
         CALL    `?~CDfa`
@@ -714,8 +712,8 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CMvsn21Driver_1`:
-        LDI     R30, 3
-        JMP     ?EPILOGUE_B3_L09
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CMvsn21Driver::~CMvsn21Driver for CDfaLite/-11/()
@@ -765,6 +763,7 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         LDD     R20, Z+7
         LDD     R21, Z+8
+        MOVW    R31:R30, R19:R18
         LDD     R16, Z+9
         LDI     R17, 0
         ADD     R20, R16
@@ -785,6 +784,7 @@ _A_PINF:
 //   43     m_puiErrorAlarmDataArray =
 //   44         &xMemoryAllocationConext.
 //   45         puiErrorAlarmDataArray[DISCRETE_INPUT_MODULE_FAILURE];
+        MOVW    R31:R30, R19:R18
         LDD     R16, Z+19
         LDD     R17, Z+20
         MOVW    R31:R30, R27:R26
@@ -792,6 +792,7 @@ _A_PINF:
         STD     Z+8, R17
 //   46 
 //   47     m_uiBadAnswerCounter = 0;
+        MOVW    R31:R30, R27:R26
         LDI     R16, 0
         STD     Z+23, R16
 //   48 }
@@ -836,6 +837,7 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+19
         LDD     R19, Z+20
+        MOVW    R31:R30, R27:R26
         LDD     R16, Z+17
         LDD     R17, Z+18
         CALL    ??Exchange
@@ -844,12 +846,15 @@ _A_PINF:
 //   63 
 //   64     // что ответил модуль?
 //   65     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+17
-        LDD     R17, Z+18
-        MOVW    R31:R30, R17:R16
-        LDD     R18, Z+1
-        CPI     R18, 66
+        ADIW    R27:R26, 17
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 18
+        LDD     R16, Z+1
+        SUBI    R16, 36
+        BRNE    $+2+2
+        RJMP    ??DataExchange_1
+        SUBI    R16, 30
         BRNE    ??DataExchange_1
 //   66     {
 //   67     case DATA_READY:
@@ -859,6 +864,9 @@ _A_PINF:
 //   71                                      DATA_EXCHANGE_COMMAND_ANSWER_LENGTH)) > 0))
         LDI     R18, 7
         LDI     R19, 0
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+17
+        LDD     R17, Z+18
         SUBI    R16, 255
         SBCI    R17, 255
         CALL    ??iCrcSummOneByteCompare
@@ -871,43 +879,42 @@ _A_PINF:
         LDI     R16, 0
         STD     Z+23, R16
 //   74             SetErrorAlarmData(0);
-        ADIW    R27:R26, 7
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 8
-        ST      Z, R16
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetErrorAlarmData
 //   75             // отправим полученные от модуля данные в рабочий массив прибора.
 //   76             uint8_t *puiDestination = m_puiDiscreteInputs;
         MOVW    R31:R30, R27:R26
-        LDD     R18, Z+21
-        LDD     R19, Z+22
+        LDD     R24, Z+21
+        LDD     R25, Z+22
 //   77             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
-        LDI     R24, 0
-        LDI     R23, 6
+        LDI     R22, 0
+??DataExchange_2:
+        CPI     R22, 6
+        BRCC    ??DataExchange_3
 //   78             {
 //   79                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
-??DataExchange_2:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+17
         LDD     R17, Z+18
-        LDI     R25, 0
-        ADD     R16, R24
-        ADC     R17, R25
+        LDI     R23, 0
+        ADD     R16, R22
+        ADC     R17, R23
         MOVW    R31:R30, R17:R16
-        LDD     R0, Z+2
+        LDD     R19, Z+2
 //   80 
 //   81                 for (uint8_t j = 0; j < DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY; j++)
-        LDI     R22, 0
-        LDI     R21, 8
-        RJMP    ??DataExchange_3
+        LDI     R18, 0
+??DataExchange_4:
+        CPI     R18, 8
+        BRCC    ??DataExchange_5
 //   82                 {
 //   83                     // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
 //   84                     // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
 //   85                     // бит нечётный?
 //   86                     if (j & 0x01)
-??DataExchange_4:
-        BST     R22, 0
-        BRTS    ??DataExchange_5
+        BST     R18, 0
+        BRTS    ??DataExchange_6
 //   87                     {
 //   88                         //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
 //   89 //                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
@@ -916,40 +923,42 @@ _A_PINF:
 //   92                     {
 //   93                         //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
 //   94                         if ((uiData & (1 << j)))
-??DataExchange_3:
         LDI     R16, 1
         LDI     R17, 0
-        MOV     R20, R22
+        MOV     R20, R18
         CALL    ?S_SHL_L02
-        MOV     R17, R0
+        MOV     R17, R19
         AND     R17, R16
-        MOVW    R31:R30, R19:R18
-        BREQ    ??DataExchange_6
+        TST     R17
+        BREQ    ??DataExchange_7
 //   95                         {
 //   96                             *puiDestination++ = 1;
+        MOVW    R31:R30, R25:R24
         LDI     R16, 1
-        ST      Z+, R16
-        RJMP    ??DataExchange_7
+        ST      Z, R16
+        ADIW    R25:R24, 1
+        RJMP    ??DataExchange_6
 //   97                         }
 //   98                         else
 //   99                         {
 //  100                             *puiDestination++ = 0;
-??DataExchange_6:
-        ST      Z+, R25
 ??DataExchange_7:
-        MOVW    R19:R18, R31:R30
+        MOVW    R31:R30, R25:R24
+        LDI     R16, 0
+        ST      Z, R16
+        ADIW    R25:R24, 1
 //  101                         }
 //  102                     }
 //  103                 }
+??DataExchange_6:
+        INC     R18
+        RJMP    ??DataExchange_4
+//  104             }
 ??DataExchange_5:
         INC     R22
-        DEC     R21
-        BRNE    ??DataExchange_4
-//  104             }
-        INC     R24
-        DEC     R23
-        BRNE    ??DataExchange_2
+        RJMP    ??DataExchange_2
 //  105             return 1;
+??DataExchange_3:
         LDI     R16, 1
         RJMP    ??DataExchange_8
 //  106         }
@@ -972,10 +981,13 @@ _A_PINF:
 //  118     {
 //  119         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
 //  120         m_uiBadAnswerCounter++;
+        MOVW    R31:R30, R27:R26
+        LDD     R16, Z+23
         INC     R16
         STD     Z+23, R16
 //  121         return 0;
-        RJMP    ??DataExchange_10
+        LDI     R16, 0
+        RJMP    ??DataExchange_8
 //  122     }
 //  123     else
 //  124     {
@@ -989,17 +1001,27 @@ _A_PINF:
         LDI     R16, 1
         ST      Z, R16
 //  127         SetErrorAlarmData(1);
-        MOVW    R31:R30, R27:R26
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetErrorAlarmData
+//  128         return 0;
+        LDI     R16, 0
+??DataExchange_8:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  129     }
+//  130 }
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CDriver::SetErrorAlarmData(uint8_t)
+??SetErrorAlarmData:
+        MOVW    R21:R20, R27:R26
+        MOVW    R31:R30, R17:R16
         LDD     R26, Z+7
         LDD     R27, Z+8
-        ST      X, R16
-//  128         return 0;
-??DataExchange_10:
-        LDI     R16, 0
-//  129     }
-??DataExchange_8:
-        RJMP    ?Subroutine0
-//  130 }
+        ST      X, R18
+        MOVW    R27:R26, R21:R20
+        RET
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -1035,10 +1057,10 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 446 bytes in segment CODE
+// 500 bytes in segment CODE
 //  32 bytes in segment NEAR_F
 // 
-// 472 bytes of CODE memory (+   6 bytes shared)
+// 512 bytes of CODE memory (+  20 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

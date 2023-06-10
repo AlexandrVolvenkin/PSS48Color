@@ -248,7 +248,6 @@ void CLightBoard::Init(CAlarmWindow* pxAlarmWindowControl)
 //-----------------------------------------------------------------------------------------------------
 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 {
-//    return;
     CDm163::Reset();
     // передадим данные коррекции - банк0
     for (uint8_t i = 0;
@@ -266,12 +265,11 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
         if (pxAlarmWindowControl[m_auiLedMap[i]].GetActivityState())
 //        if (pxAlarmWindowControl[i].GetActivityState())
         {
-//        CPss21::m_aucRtuHoldingRegistersArray[1] = i;
-//        CPss21::m_aucRtuHoldingRegistersArray[2] = m_auiLedMap[i];
-//        CPss21::m_aucRtuHoldingRegistersArray[3] = pxAlarmWindowControl[i].GetAlarmType();
+        CPss21::m_aucRtuHoldingRegistersArray[1] = i;
+        CPss21::m_aucRtuHoldingRegistersArray[2] = m_auiLedMap[i];
+        CPss21::m_aucRtuHoldingRegistersArray[3] = pxAlarmWindowControl[i].GetAlarmType();
 //            switch (pxAlarmWindowControl[i].GetAlarmType())
-//            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
-            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmColor())
+            switch (pxAlarmWindowControl[m_auiLedMap[i]].GetAlarmType())
             {
             case INDICATION:
                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
@@ -287,13 +285,9 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
                 break;
 
-            case ERROR:
-                CPss48BoardPixel::SetData(&m_xPixelColorWhite);
-                break;
-
             default:
-                CPss48BoardPixel::SetData(&m_xPixelColorBlack);
-//                CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+//                CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+                CPss48BoardPixel::SetData(&m_xPixelColorYellow);
                 break;
             }
 
@@ -307,7 +301,7 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 //            CPss48BoardPixel::SetData(&m_xPixelColorWhite);
     };
 
-//delay_ms(30);
+
     CPins::SetPinLAT_B();
     CDm163::PulseDelayLAT_B();
     CPins::ClearPinLAT_B();

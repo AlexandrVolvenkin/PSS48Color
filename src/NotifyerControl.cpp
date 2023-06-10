@@ -123,20 +123,20 @@ void CNotifyerControl::Fsm(void)
         break;
 
     case INDICATION_SIGNAL_START:
-//        m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+        m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
         NotifyerIndicationOn();
-//        SetFsmState(INDICATION_SIGNAL_ON);
+        SetFsmState(INDICATION_SIGNAL_ON);
         break;
 
-//    case INDICATION_SIGNAL_ON:
-////        if (m_xTimer.IsOverflow())
-////        {
-////            m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
-//////            NotifyerOff();
-////            SetFsmState(INDICATION_SIGNAL_OFF);
-////        }
-//        break;
-//
+    case INDICATION_SIGNAL_ON:
+        if (m_xTimer.IsOverflow())
+        {
+//            m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+//            NotifyerOff();
+            SetFsmState(INDICATION_SIGNAL_START);
+        }
+        break;
+
 //    case INDICATION_SIGNAL_OFF:
 ////        if (m_xTimer.IsOverflow())
 ////        {
