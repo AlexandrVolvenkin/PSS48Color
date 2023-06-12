@@ -608,6 +608,16 @@ void CPss21::KeyStateProcessing(void)
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
 
+    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
+    {
+        if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+        {
+            // Включим режим тестирования.
+            SetFsmState(TEST_START);
+            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+        }
+    }
+
     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
     {
         SetPanelReset(1);
@@ -616,29 +626,23 @@ void CPss21::KeyStateProcessing(void)
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
 
-    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_HOLD))
-    {
-        // Включим режим создания карты соответствия окон.
-        SetFsmState(MAP_CREATE_START);
-        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-    }
-
-    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
-    {
-        if (GetFsmState() == MAP_CREATE_ON)
-        {
-            // следующее окно.
-            SetFsmState(MAP_CREATE_NEXT_WINDOW);
-            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-        }
-    }
-
-//    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+//    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_HOLD))
 //    {
-//        // Включим режим тестирования.
-//        SetFsmState(TEST_START);
+//        // Включим режим создания карты соответствия окон.
+//        SetFsmState(MAP_CREATE_START);
 //        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
 //    }
+//
+//    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+//    {
+//        if (GetFsmState() == MAP_CREATE_ON)
+//        {
+//            // следующее окно.
+//            SetFsmState(MAP_CREATE_NEXT_WINDOW);
+//            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//        }
+//    }
+
 
     // Функция внешней кнопки - только сброс?
     if(m_xDeviceConfiguration.ExtUnsetOnly)
@@ -1513,73 +1517,73 @@ void CPss21::MainFsm(void)
         SetFsmState(MAIN_CYCLE_START_WAITING);
         break;
 
-//-----------------------------------------------------------------------------------------------------
-    case MAP_CREATE_START:
-        uiMapTestCounter = 0;
-        SetFsmState(MAP_CREATE_WINDOW_ON);
-
-        CPlatform::WatchdogReset();
-
-
-//        CPss21::AllAlarmWindowOff();
-//        for (uint8_t i = 0;
-//                i < 48;
-//                i++)
+////-----------------------------------------------------------------------------------------------------
+//    case MAP_CREATE_START:
+//        uiMapTestCounter = 0;
+//        SetFsmState(MAP_CREATE_WINDOW_ON);
+//
+//        CPlatform::WatchdogReset();
+//
+//
+////        CPss21::AllAlarmWindowOff();
+////        for (uint8_t i = 0;
+////                i < 48;
+////                i++)
+////        {
+////            // Активизируем окно сигнализации, для отображения извещателем.
+////            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
+////            // Активизируем окно сигнализации, для отображения извещателем.
+////            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
+////        };
+////        BoardWindowsUpdate();
+////        SetFsmState(MAP_CREATE_ALL_LED_ON);
+////        break;
+//
+////    case MAP_CREATE_ALL_LED_ON:
+////
+////        CPlatform::WatchdogReset();
+////        break;
+//
+//    case MAP_CREATE_WINDOW_ON:
+//        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+//        if (uiMapTestCounter != 48)
 //        {
+//            CPss21::AllAlarmWindowOff();
 //            // Активизируем окно сигнализации, для отображения извещателем.
 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
 //            // Активизируем окно сигнализации, для отображения извещателем.
 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-//        };
-//        BoardWindowsUpdate();
-//        SetFsmState(MAP_CREATE_ALL_LED_ON);
+//
+//            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+//            BoardWindowsUpdate();
+//            SetFsmState(MAP_CREATE_ON);
+//        }
+//        else
+//        {
+//            SetFsmState(MAP_CREATE_START);
+//        }
+//
+//        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+//        CPlatform::WatchdogReset();
 //        break;
-
-//    case MAP_CREATE_ALL_LED_ON:
+//
+//    case MAP_CREATE_ON:
+//        TestMainCycle();
+//
+//
+////        if (CPss21::m_xMainCycleTimer.IsOverflow())
+////        {
+////            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+////            SetFsmState(MAP_CREATE_NEXT_WINDOW);
+////        }
+//        break;
+//
+//    case MAP_CREATE_NEXT_WINDOW:
+//        uiMapTestCounter++;
+//        SetFsmState(MAP_CREATE_WINDOW_ON);
 //
 //        CPlatform::WatchdogReset();
 //        break;
-
-    case MAP_CREATE_WINDOW_ON:
-        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-        if (uiMapTestCounter != 48)
-        {
-            CPss21::AllAlarmWindowOff();
-            // Активизируем окно сигнализации, для отображения извещателем.
-            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-            // Активизируем окно сигнализации, для отображения извещателем.
-            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-
-            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-            BoardWindowsUpdate();
-            SetFsmState(MAP_CREATE_ON);
-        }
-        else
-        {
-            SetFsmState(MAP_CREATE_START);
-        }
-
-        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-        CPlatform::WatchdogReset();
-        break;
-
-    case MAP_CREATE_ON:
-        TestMainCycle();
-
-
-//        if (CPss21::m_xMainCycleTimer.IsOverflow())
-//        {
-//            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-//            SetFsmState(MAP_CREATE_NEXT_WINDOW);
-//        }
-        break;
-
-    case MAP_CREATE_NEXT_WINDOW:
-        uiMapTestCounter++;
-        SetFsmState(MAP_CREATE_WINDOW_ON);
-
-        CPlatform::WatchdogReset();
-        break;
 
 
 //-----------------------------------------------------------------------------------------------------

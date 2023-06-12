@@ -51,23 +51,5 @@ void CPss48BoardPixel::SetData(TPixelColorData __farflash* pxPixelData)
     CDm163::SetBank1(pxPixelData -> uiRedData);
     CDm163::SetBank1(pxPixelData -> uiGreenData);
     CDm163::SetBank1(pxPixelData -> uiBlueData);
-
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(255);
-//
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(255);
-//
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(255);
-
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(pxPixelData -> uiRedData);
-//
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(pxPixelData -> uiGreenData);
-//
-//    CDm163::SetBank0(63);
-//    CDm163::SetBank1(pxPixelData -> uiBlueData);
 }
 

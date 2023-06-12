@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  10:14:40
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Jun/2023  08:29:13
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW1450.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWFB0.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
 //        --cpu=m128a -ms -o
@@ -39,8 +39,10 @@
 //      by the C++ compiler.
 
         PUBWEAK ??BuzzerClockAOff
+        PUBWEAK ??BuzzerClockAOn
         PUBWEAK ??BuzzerClockASetPinOutput
         PUBWEAK ??BuzzerClockBOff
+        PUBWEAK ??BuzzerClockBOn
         PUBWEAK ??BuzzerClockBSetPinOutput
         PUBLIC ??CBuzzer
         PUBLIC ??HighOn
@@ -147,9 +149,10 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CBuzzer 18>` SYMBOL "CBuzzer"
-??__vtbl            SYMBOL "__vtbl", `?<Name CBuzzer 18>`
+`?<Name CBuzzer 25>` SYMBOL "CBuzzer"
+??__vtbl            SYMBOL "__vtbl", `?<Name CBuzzer 25>`
 
+        EXTERN ??BuzzerTimerFrequencySet
         EXTERN ??BuzzerTimerStop
         EXTERN `??operator delete`
         EXTERN `??operator new`
@@ -702,10 +705,15 @@ _A_PINF:
 //   33 void CBuzzer::LowOn(void)
 ??LowOn:
 //   34 {
-//   35 //    // Частота предупредительной сигнализации(760Гц).
-//   36 //    CPlatform::BuzzerTimerFrequencySet(760);
-//   37 //    CPlatform::BuzzerClockAOn();
-//   38 //    CPlatform::BuzzerClockBOn();
+//   35     // Частота предупредительной сигнализации(760Гц).
+//   36     CPlatform::BuzzerTimerFrequencySet(760);
+        LDI     R16, 248
+        LDI     R17, 2
+        CALL    ??BuzzerTimerFrequencySet
+//   37     CPlatform::BuzzerClockAOn();
+        CALL    ??BuzzerClockAOn
+//   38     CPlatform::BuzzerClockBOn();
+        CALL    ??BuzzerClockBOn
 //   39 }
         RET
 //   40 
@@ -715,10 +723,15 @@ _A_PINF:
 //   42 void CBuzzer::HighOn(void)
 ??HighOn:
 //   43 {
-//   44 //    // Частота аварийной сигнализации(3210Гц).
-//   45 //    CPlatform::BuzzerTimerFrequencySet(3210);
-//   46 //    CPlatform::BuzzerClockAOn();
-//   47 //    CPlatform::BuzzerClockBOn();
+//   44     // Частота аварийной сигнализации(3210Гц).
+//   45     CPlatform::BuzzerTimerFrequencySet(3210);
+        LDI     R16, 138
+        LDI     R17, 12
+        CALL    ??BuzzerTimerFrequencySet
+//   46     CPlatform::BuzzerClockAOn();
+        CALL    ??BuzzerClockAOn
+//   47     CPlatform::BuzzerClockBOn();
+        CALL    ??BuzzerClockBOn
 //   48 }
         RET
 //   49 
@@ -745,6 +758,13 @@ _A_PINF:
         REQUIRE _A_DDRE
 
         RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::BuzzerClockAOn()
+??BuzzerClockAOn:
+        SBI     0x03, 0x04
+        RET
+        REQUIRE _A_PORTE
+
+        RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::BuzzerClockAOff()
 ??BuzzerClockAOff:
         CBI     0x03, 0x04
@@ -757,6 +777,13 @@ _A_PINF:
         SBI     0x02, 0x05
         RET
         REQUIRE _A_DDRE
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 void CPlatform::BuzzerClockBOn()
+??BuzzerClockBOn:
+        SBI     0x03, 0x05
+        RET
+        REQUIRE _A_PORTE
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::BuzzerClockBOff()
@@ -786,10 +813,10 @@ __?EEARH:
 //   57 
 // 
 // 105 bytes in segment ABSOLUTE
-// 116 bytes in segment CODE
+// 156 bytes in segment CODE
 //   2 bytes in segment NEAR_F
 // 
-// 100 bytes of CODE memory (+  18 bytes shared)
+// 132 bytes of CODE memory (+  26 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

@@ -32,19 +32,19 @@ void CBuzzer::Init(void)
 //-----------------------------------------------------------------------------------------------------
 void CBuzzer::LowOn(void)
 {
-//    // Частота предупредительной сигнализации(760Гц).
-//    CPlatform::BuzzerTimerFrequencySet(760);
-//    CPlatform::BuzzerClockAOn();
-//    CPlatform::BuzzerClockBOn();
+    // Частота предупредительной сигнализации(760Гц).
+    CPlatform::BuzzerTimerFrequencySet(760);
+    CPlatform::BuzzerClockAOn();
+    CPlatform::BuzzerClockBOn();
 }
 
 //-----------------------------------------------------------------------------------------------------
 void CBuzzer::HighOn(void)
 {
-//    // Частота аварийной сигнализации(3210Гц).
-//    CPlatform::BuzzerTimerFrequencySet(3210);
-//    CPlatform::BuzzerClockAOn();
-//    CPlatform::BuzzerClockBOn();
+    // Частота аварийной сигнализации(3210Гц).
+    CPlatform::BuzzerTimerFrequencySet(3210);
+    CPlatform::BuzzerClockAOn();
+    CPlatform::BuzzerClockBOn();
 }
 
 //-----------------------------------------------------------------------------------------------------

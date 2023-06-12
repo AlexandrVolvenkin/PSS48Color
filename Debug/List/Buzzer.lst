@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Jun/2023  10:14:40
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Jun/2023  08:29:13
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW1450.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWFB0.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
 #        --cpu=m128a -ms -o
@@ -518,6 +518,13 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
    \   00000004                      REQUIRE _A_DDRE
 
    \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::BuzzerClockAOn()
+   \                     ??BuzzerClockAOn:
+   \   00000000   9A1C               SBI     0x03, 0x04
+   \   00000002   9508               RET
+   \   00000004                      REQUIRE _A_PORTE
+
+   \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::BuzzerClockAOff()
    \                     ??BuzzerClockAOff:
    \   00000000   981C               CBI     0x03, 0x04
@@ -530,6 +537,13 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
    \   00000000   9A15               SBI     0x02, 0x05
    \   00000002   9508               RET
    \   00000004                      REQUIRE _A_DDRE
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \   __version_3 void CPlatform::BuzzerClockBOn()
+   \                     ??BuzzerClockBOn:
+   \   00000000   9A1D               SBI     0x03, 0x05
+   \   00000002   9508               RET
+   \   00000004                      REQUIRE _A_PORTE
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::BuzzerClockBOff()
@@ -599,12 +613,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
      33          void CBuzzer::LowOn(void)
    \                     ??LowOn:
      34          {
-     35          //    // Частота предупредительной сигнализации(760Гц).
-     36          //    CPlatform::BuzzerTimerFrequencySet(760);
-     37          //    CPlatform::BuzzerClockAOn();
-     38          //    CPlatform::BuzzerClockBOn();
+     35              // Частота предупредительной сигнализации(760Гц).
+     36              CPlatform::BuzzerTimerFrequencySet(760);
+   \   00000000   EF08               LDI     R16, 248
+   \   00000002   E012               LDI     R17, 2
+   \   00000004   ........           CALL    ??BuzzerTimerFrequencySet
+     37              CPlatform::BuzzerClockAOn();
+   \   00000008   ........           CALL    ??BuzzerClockAOn
+     38              CPlatform::BuzzerClockBOn();
+   \   0000000C   ........           CALL    ??BuzzerClockBOn
      39          }
-   \   00000000   9508               RET
+   \   00000010   9508               RET
      40          
      41          //-----------------------------------------------------------------------------------------------------
 
@@ -612,12 +631,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
      42          void CBuzzer::HighOn(void)
    \                     ??HighOn:
      43          {
-     44          //    // Частота аварийной сигнализации(3210Гц).
-     45          //    CPlatform::BuzzerTimerFrequencySet(3210);
-     46          //    CPlatform::BuzzerClockAOn();
-     47          //    CPlatform::BuzzerClockBOn();
+     44              // Частота аварийной сигнализации(3210Гц).
+     45              CPlatform::BuzzerTimerFrequencySet(3210);
+   \   00000000   E80A               LDI     R16, 138
+   \   00000002   E01C               LDI     R17, 12
+   \   00000004   ........           CALL    ??BuzzerTimerFrequencySet
+     46              CPlatform::BuzzerClockAOn();
+   \   00000008   ........           CALL    ??BuzzerClockAOn
+     47              CPlatform::BuzzerClockBOn();
+   \   0000000C   ........           CALL    ??BuzzerClockBOn
      48          }
-   \   00000000   9508               RET
+   \   00000010   9508               RET
      49          
      50          //-----------------------------------------------------------------------------------------------------
 
@@ -657,12 +681,18 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
    ------ ------ --------
       0      2   CBuzzer::CBuzzer()
       0      2   CBuzzer::HighOn()
+        0      2   -> CPlatform::BuzzerClockAOn()
+        0      2   -> CPlatform::BuzzerClockBOn()
+        0      2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
       0      2   CBuzzer::Init()
         0      2   -> CPlatform::BuzzerClockAOff()
         0      2   -> CPlatform::BuzzerClockASetPinOutput()
         0      2   -> CPlatform::BuzzerClockBOff()
         0      2   -> CPlatform::BuzzerClockBSetPinOutput()
       0      2   CBuzzer::LowOn()
+        0      2   -> CPlatform::BuzzerClockAOn()
+        0      2   -> CPlatform::BuzzerClockBOn()
+        0      2   -> CPlatform::BuzzerTimerFrequencySet(uint16_t)
       0      2   CBuzzer::Off()
         0      2   -> CPlatform::BuzzerClockAOff()
         0      2   -> CPlatform::BuzzerClockBOff()
@@ -673,8 +703,10 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
       2      2   CBuzzer::~CBuzzer()
         2      2   -> operator delete(void *)
       0      2   CPlatform::BuzzerClockAOff()
+      0      2   CPlatform::BuzzerClockAOn()
       0      2   CPlatform::BuzzerClockASetPinOutput()
       0      2   CPlatform::BuzzerClockBOff()
+      0      2   CPlatform::BuzzerClockBOn()
       0      2   CPlatform::BuzzerClockBSetPinOutput()
 
 
@@ -683,15 +715,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
    Bytes  Function/Label
    -----  --------------
       12  CBuzzer::CBuzzer()
-       2  CBuzzer::HighOn()
+      18  CBuzzer::HighOn()
       18  CBuzzer::Init()
-       2  CBuzzer::LowOn()
+      18  CBuzzer::LowOn()
       14  CBuzzer::Off()
       24  CBuzzer::new CBuzzer()
       28  CBuzzer::~CBuzzer()
        4  CPlatform::BuzzerClockAOff()
+       4  CPlatform::BuzzerClockAOn()
        4  CPlatform::BuzzerClockASetPinOutput()
        4  CPlatform::BuzzerClockBOff()
+       4  CPlatform::BuzzerClockBOn()
        4  CPlatform::BuzzerClockBSetPinOutput()
        1  _A_ACSR
        2  _A_ADC
@@ -789,10 +823,10 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Buzzer.cpp
 
  
  105 bytes in segment ABSOLUTE
- 116 bytes in segment CODE
+ 156 bytes in segment CODE
    2 bytes in segment NEAR_F
  
- 100 bytes of CODE memory (+  18 bytes shared)
+ 132 bytes of CODE memory (+  26 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

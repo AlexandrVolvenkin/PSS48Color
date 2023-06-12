@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Jun/2023  10:14:40
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Jun/2023  10:45:11
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW15CF.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW7D0.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #        --cpu=m128a -ms -o
@@ -974,92 +974,81 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
    \   0000007E   ....               LDI     R17, (??m_xPixelColorGreen) >> 8
    \   00000080   E020               LDI     R18, 0
    \   00000082   ........           CALL    ??SetData
-    278          //                CPss48BoardPixel::SetData(&m_xPixelColorWhite);
-    279          
-    280                          break;
+    278          
+    279                          break;
    \   00000086   C01D               RJMP    ??Set_11
-    281          
-    282                      case PREVENTIVE:
-    283                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+    280          
+    281                      case PREVENTIVE:
+    282                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
    \                     ??Set_7:
    \   00000088   ....               LDI     R16, LOW(??m_xPixelColorYellow)
    \   0000008A   ....               LDI     R17, (??m_xPixelColorYellow) >> 8
    \   0000008C   E020               LDI     R18, 0
    \   0000008E   ........           CALL    ??SetData
-    284                          break;
+    283                          break;
    \   00000092   C017               RJMP    ??Set_11
-    285          
-    286                      case EMERGENCY:
-    287                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
+    284          
+    285                      case EMERGENCY:
+    286                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
    \                     ??Set_8:
    \   00000094   ....               LDI     R16, LOW(??m_xPixelColorRed)
    \   00000096   ....               LDI     R17, (??m_xPixelColorRed) >> 8
    \   00000098   E020               LDI     R18, 0
    \   0000009A   ........           CALL    ??SetData
-    288                          break;
+    287                          break;
    \   0000009E   C011               RJMP    ??Set_11
-    289          
-    290                      case ERROR:
-    291                          CPss48BoardPixel::SetData(&m_xPixelColorWhite);
+    288          
+    289                      case ERROR:
+    290                          CPss48BoardPixel::SetData(&m_xPixelColorWhite);
    \                     ??Set_9:
    \   000000A0   ....               LDI     R16, LOW(??m_xPixelColorWhite)
    \   000000A2   ....               LDI     R17, (??m_xPixelColorWhite) >> 8
    \   000000A4   E020               LDI     R18, 0
    \   000000A6   ........           CALL    ??SetData
-    292                          break;
+    291                          break;
    \   000000AA   C00B               RJMP    ??Set_11
-    293          
-    294                      default:
-    295                          CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+    292          
+    293                      default:
+    294                          CPss48BoardPixel::SetData(&m_xPixelColorBlack);
    \                     ??Set_10:
    \   000000AC   ....               LDI     R16, LOW(??m_xPixelColorBlack)
    \   000000AE   ....               LDI     R17, (??m_xPixelColorBlack) >> 8
    \   000000B0   E020               LDI     R18, 0
    \   000000B2   ........           CALL    ??SetData
-    296          //                CPss48BoardPixel::SetData(&m_xPixelColorYellow);
-    297                          break;
+    295                          break;
    \   000000B6   C005               RJMP    ??Set_11
-    298                      }
-    299          
-    300                  }
-    301                  else
-    302                  {
-    303                      CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+    296                      }
+    297          
+    298                  }
+    299                  else
+    300                  {
+    301                      CPss48BoardPixel::SetData(&m_xPixelColorBlack);
    \                     ??Set_5:
    \   000000B8   ....               LDI     R16, LOW(??m_xPixelColorBlack)
    \   000000BA   ....               LDI     R17, (??m_xPixelColorBlack) >> 8
    \   000000BC   E020               LDI     R18, 0
    \   000000BE   ........           CALL    ??SetData
-    304                  }
-    305          
-    306          ////        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
-    307          //            CPss48BoardPixel::SetData(&m_xPixelColorWhite);
-    308              };
+    302                  }
+    303              };
    \                     ??Set_11:
    \   000000C2   95A3               INC     R26
    \   000000C4   CFAD               RJMP    ??Set_3
-    309          
-    310          //delay_ms(30);
-    311              CPins::SetPinLAT_B();
+    304          
+    305              CPins::SetPinLAT_B();
    \                     ??Set_4:
    \   000000C6   ........           CALL    ??SetPinLAT_B
-    312              CDm163::PulseDelayLAT_B();
+    306              CDm163::PulseDelayLAT_B();
    \   000000CA   ........           CALL    ??PulseDelayLAT_B
-    313              CPins::ClearPinLAT_B();
+    307              CPins::ClearPinLAT_B();
    \   000000CE   ........           CALL    ??ClearPinLAT_B
-    314              CPins::ClearPinEN_B();
+    308              CPins::ClearPinEN_B();
    \   000000D2   ........           CALL    ??ClearPinEN_B
-    315          
-    316          //    SET_PIN_DM163_CONTROL_LAT_B();
-    317          //    LAT_B_PULSE_DURATION_DELAY();
-    318          //    CLEAR_PIN_DM163_CONTROL_LAT_B();
-    319          //    CLEAR_PIN_DM163_CONTROL_EN_B();
-    320          }
+    309          }
    \   000000D6   E0E3               LDI     R30, 3
    \   000000D8   ........           JMP     ?EPILOGUE_B3_L09
-    321          
-    322          
-    323          //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
+    310          
+    311          
+    312          //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
 
    Maximum stack usage in bytes:
 

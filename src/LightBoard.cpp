@@ -275,7 +275,6 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
             {
             case INDICATION:
                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
-//                CPss48BoardPixel::SetData(&m_xPixelColorWhite);
 
                 break;
 
@@ -293,7 +292,6 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 
             default:
                 CPss48BoardPixel::SetData(&m_xPixelColorBlack);
-//                CPss48BoardPixel::SetData(&m_xPixelColorYellow);
                 break;
             }
 
@@ -302,21 +300,12 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
         {
             CPss48BoardPixel::SetData(&m_xPixelColorBlack);
         }
-
-////        CPss48BoardPixel::SetCorrection(&m_xPixelColorCorrectionData);
-//            CPss48BoardPixel::SetData(&m_xPixelColorWhite);
     };
 
-//delay_ms(30);
     CPins::SetPinLAT_B();
     CDm163::PulseDelayLAT_B();
     CPins::ClearPinLAT_B();
     CPins::ClearPinEN_B();
-
-//    SET_PIN_DM163_CONTROL_LAT_B();
-//    LAT_B_PULSE_DURATION_DELAY();
-//    CLEAR_PIN_DM163_CONTROL_LAT_B();
-//    CLEAR_PIN_DM163_CONTROL_EN_B();
 }
 
 
