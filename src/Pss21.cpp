@@ -608,15 +608,15 @@ void CPss21::KeyStateProcessing(void)
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
 
-    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
-    {
+//    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
+//    {
         if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
         {
             // Включим режим тестирования.
             SetFsmState(TEST_START);
             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
         }
-    }
+//    }
 
     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
     {

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  11:14:31
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          15/Jun/2023  10:16:58
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWDF70.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW515A.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -2308,15 +2308,15 @@ _A_PINF:
 //  608         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
 //  609     }
 //  610 
-//  611     if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
-//  612     {
+//  611 //    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
+//  612 //    {
 //  613         if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
 //  614         {
 //  615             // Включим режим тестирования.
 //  616             SetFsmState(TEST_START);
 //  617             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
 //  618         }
-//  619     }
+//  619 //    }
 //  620 
 //  621     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
 //  622     {
@@ -3833,12 +3833,6 @@ _A_PINF:
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
 ??KeyStateProcessing_1:
-        LDI     R18, 0
-        LDI     R16, LOW(??m_xReceiptKey)
-        LDI     R17, (??m_xReceiptKey) >> 8
-        CALL    ??KeyEventHappened
-        TST     R16
-        BREQ    ??KeyStateProcessing_2
         LDI     R18, 2
         LDI     R16, LOW(??m_xCheckKey)
         LDI     R17, (??m_xCheckKey) >> 8
@@ -6791,7 +6785,7 @@ __?EEARH:
 // 1697 
 // 
 //   105 bytes in segment ABSOLUTE
-// 6 904 bytes in segment CODE
+// 6 890 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -6800,7 +6794,7 @@ __?EEARH:
 // 1 742 bytes in segment NEAR_Z
 //    48 bytes in segment SWITCH
 // 
-// 6 706 bytes of CODE memory (+ 416 bytes shared)
+// 6 692 bytes of CODE memory (+ 416 bytes shared)
 // 1 826 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
