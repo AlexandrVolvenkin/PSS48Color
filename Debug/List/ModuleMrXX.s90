@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Jun/2023  10:14:40
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:26:06
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW16DE.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWC528.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //        --cpu=m128a -ms -o
@@ -1578,7 +1578,7 @@ _A_PINF:
 ??Exchange_18:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+29
-        CPI     R16, 10
+        CPI     R16, 20
         BRCC    ??Exchange_19
 //  273         {
 //  274             // База данных повреждена. Попытаемся записать её повторно.
@@ -1600,7 +1600,7 @@ _A_PINF:
 ??Exchange_19:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+29
-        CPI     R16, 10
+        CPI     R16, 20
         BRCC    ??Exchange_26
 //  285     {
 //  286         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".

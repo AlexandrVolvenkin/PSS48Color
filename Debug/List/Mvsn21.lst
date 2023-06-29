@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Jun/2023  10:14:40
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           29/Jun/2023  11:26:06
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW16EE.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWC529.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #        --cpu=m128a -ms -o
@@ -866,7 +866,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
    \                     ??DataExchange_1:
    \   000000D0   01FD               MOVW    R31:R30, R27:R26
    \   000000D2   8907               LDD     R16, Z+23
-   \   000000D4   300A               CPI     R16, 10
+   \   000000D4   3104               CPI     R16, 20
    \   000000D6   F430               BRCC    ??DataExchange_9
     118              {
     119                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".

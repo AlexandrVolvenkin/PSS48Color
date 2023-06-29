@@ -102,7 +102,7 @@ enum
 // начальное значение счётчика запросов модуля без ответа.
 // если равно нулю - модуль считается неисправным. его данные признаются недостоверными.
 // устанавливается флаг сигнализации в рабочем массиве aucCoilsArray[BAD_MODULES_BIT_ARRAY_OFFSET + индекс модуля].
-    BAD_MODULE_CYCLE_COUNT_DEFAULT = 10,
+    BAD_MODULE_CYCLE_COUNT_DEFAULT = 20,
 };
 
 enum TYPE_INDICATION
