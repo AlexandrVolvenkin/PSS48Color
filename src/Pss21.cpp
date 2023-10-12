@@ -610,12 +610,12 @@ void CPss21::KeyStateProcessing(void)
 
 //    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
 //    {
-        if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
-        {
-            // Включим режим тестирования.
-            SetFsmState(TEST_START);
-            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-        }
+    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+    {
+        // Включим режим тестирования.
+        SetFsmState(TEST_START);
+        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+    }
 //    }
 
     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
@@ -1441,7 +1441,7 @@ void CPss21::MainFsm(void)
             CPss21::AddressBusInit();
             CPss21::SearchModules();
             CPss21::CreateDevices();
-            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
             SetFsmState(MAIN_CYCLE_START_WAITING);
         }
         break;
@@ -1676,6 +1676,7 @@ void CPss21::MainFsm(void)
 
         if (CPss21::m_xMainCycleTimer.IsOverflow())
         {
+            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
             SetFsmState(REBOOT);
         }
 
