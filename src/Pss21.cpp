@@ -1370,6 +1370,19 @@ void CPss21::TestMainCycle(void)
 
     CPss21::KeyStateProcessing();
 
+    // Есть команда - "квитировать"?
+    if ((GetPanelReceipt()) ||
+            (GetExternalReceipt()) ||
+            (GetModbusReceipt()) ||
+            (CPss21::m_xMainCycleTimer.IsOverflow()))
+    {
+        SetFsmState(TEST_STOP);
+    }
+    //    if (CPss21::m_xMainCycleTimer.IsOverflow())
+//    {
+//        SetFsmState(TEST_STOP);
+//    }
+
     NotifyersControlProcessing();
 
     CPss21::ReceiptResetGlobalFlagsClear();
@@ -1598,15 +1611,22 @@ void CPss21::MainFsm(void)
         break;
 
     case TEST_ON:
-        if (CPss21::m_xMainCycleTimer.IsOverflow())
-        {
-            CPss21::AllAlarmWindowOff();
-            RestoreContextNotifyerControl();
-            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-            SetFsmState(MAIN_CYCLE_START_WAITING);
-        }
+//        if (CPss21::m_xMainCycleTimer.IsOverflow())
+//        {
+//            CPss21::AllAlarmWindowOff();
+//            RestoreContextNotifyerControl();
+//            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+//            SetFsmState(MAIN_CYCLE_START_WAITING);
+//        }
 
         TestMainCycle();
+        break;
+
+    case TEST_STOP:
+        CPss21::AllAlarmWindowOff();
+        RestoreContextNotifyerControl();
+        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+        SetFsmState(MAIN_CYCLE_START_WAITING);
         break;
 
 //-----------------------------------------------------------------------------------------------------

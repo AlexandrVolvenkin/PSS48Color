@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:26:06
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  16:33:36
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LinkControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWC469.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW3570.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LinkControl.cpp
 //        --cpu=m128a -ms -o
@@ -985,7 +985,7 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmEvent
 //  111             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
-        LDI     R16, 17
+        LDI     R16, 18
         CALL    ??SetFsmState_1
 //  112             // Установим время ожидания следующего сеанса связи.
 //  113             GetTimerPointer() -> Set(CPss21::GetTimeoutModbusRtuLinkControl());
@@ -1013,7 +1013,7 @@ _A_PINF:
         LDI     R16, 0
         CALL    ??SetModeModbusRtuLinkControlInProgress
 //  121             CPss21::SetFsmState(CPss21::LINK_CONTROL_ERROR_OFF);
-        LDI     R16, 17
+        LDI     R16, 18
         CALL    ??SetFsmState_1
 //  122             SetFsmState(LINK_CONTROL_IN_PROGRESS_ON_WAITING);
         LDI     R18, 2

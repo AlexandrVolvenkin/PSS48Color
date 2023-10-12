@@ -46,6 +46,7 @@ public:
 
         TEST_START,
         TEST_ON,
+        TEST_STOP,
 
         ERROR_START,
         ERROR_ON,

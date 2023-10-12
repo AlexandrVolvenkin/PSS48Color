@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          29/Jun/2023  11:26:06
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  16:33:36
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWC618.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW36FF.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -2310,12 +2310,12 @@ _A_PINF:
 //  610 
 //  611 //    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
 //  612 //    {
-//  613         if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
-//  614         {
-//  615             // Включим режим тестирования.
-//  616             SetFsmState(TEST_START);
-//  617             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-//  618         }
+//  613     if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
+//  614     {
+//  615         // Включим режим тестирования.
+//  616         SetFsmState(TEST_START);
+//  617         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+//  618     }
 //  619 //    }
 //  620 
 //  621     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
@@ -5582,35 +5582,66 @@ _A_PINF:
 // 1371     CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
 // 1372 
-// 1373     NotifyersControlProcessing();
+// 1373     // Есть команда - "квитировать"?
+// 1374     if ((GetPanelReceipt()) ||
+// 1375             (GetExternalReceipt()) ||
+// 1376             (GetModbusReceipt()) ||
+// 1377             (CPss21::m_xMainCycleTimer.IsOverflow()))
+        CALL    ??GetPanelReceipt
+        TST     R16
+        BRNE    ??TestMainCycle_1
+        CALL    ??GetExternalReceipt
+        TST     R16
+        BRNE    ??TestMainCycle_1
+        CALL    ??GetModbusReceipt
+        TST     R16
+        BRNE    ??TestMainCycle_1
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??TestMainCycle_2
+// 1378     {
+// 1379         SetFsmState(TEST_STOP);
+??TestMainCycle_1:
+        LDI     R16, 13
+        CALL    ??SetFsmState_1
+// 1380     }
+// 1381     //    if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1382 //    {
+// 1383 //        SetFsmState(TEST_STOP);
+// 1384 //    }
+// 1385 
+// 1386     NotifyersControlProcessing();
+??TestMainCycle_2:
         RCALL   ??NotifyersControlProcessing
-// 1374 
-// 1375     CPss21::ReceiptResetGlobalFlagsClear();
+// 1387 
+// 1388     CPss21::ReceiptResetGlobalFlagsClear();
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1376 
-// 1377     CPlatform::WatchdogReset();
+// 1389 
+// 1390     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1378 }
+// 1391 }
         RET
-// 1379 
-// 1380 //-----------------------------------------------------------------------------------------------------
+// 1392 
+// 1393 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1381 void CPss21::ErrorMainCycle(void)
+// 1394 void CPss21::ErrorMainCycle(void)
 ??ErrorMainCycle:
-// 1382 {
-// 1383     CPss21::m_xModbusRtuOne.Fsm();
+// 1395 {
+// 1396     CPss21::m_xModbusRtuOne.Fsm();
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1384 
-// 1385     CPss21::KeyStateProcessing();
+// 1397 
+// 1398     CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1386 
-// 1387     // Есть команда - "квитировать"?
-// 1388     if ((GetPanelReceipt()) ||
-// 1389             (GetExternalReceipt()) ||
-// 1390             (GetModbusReceipt()))
+// 1399 
+// 1400     // Есть команда - "квитировать"?
+// 1401     if ((GetPanelReceipt()) ||
+// 1402             (GetExternalReceipt()) ||
+// 1403             (GetModbusReceipt()))
         CALL    ??GetPanelReceipt
         TST     R16
         BRNE    ??ErrorMainCycle_1
@@ -5620,219 +5651,215 @@ _A_PINF:
         CALL    ??GetModbusReceipt
         TST     R16
         BREQ    ??ErrorMainCycle_2
-// 1391     {
-// 1392 //        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1393 //        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1394         m_xStatusLedNotifyerControl.AlarmSet(NORMAL);
+// 1404     {
+// 1405 //        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1406 //        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1407         m_xStatusLedNotifyerControl.AlarmSet(NORMAL);
 ??ErrorMainCycle_1:
         LDI     R18, 0
         LDI     R16, LOW(??m_xStatusLedNotifyerControl)
         LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
         CALL    ??AlarmSet_3
-// 1395         m_xBuzzerNotifyerControl.AlarmSet(NORMAL);
+// 1408         m_xBuzzerNotifyerControl.AlarmSet(NORMAL);
         LDI     R18, 0
         LDI     R16, LOW(??m_xBuzzerNotifyerControl)
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
-// 1396     }
-// 1397 
-// 1398     NotifyersControlProcessing();
+// 1409     }
+// 1410 
+// 1411     NotifyersControlProcessing();
 ??ErrorMainCycle_2:
         RCALL   ??NotifyersControlProcessing
-// 1399 
-// 1400     CPss21::ReceiptResetGlobalFlagsClear();
+// 1412 
+// 1413     CPss21::ReceiptResetGlobalFlagsClear();
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1401 
-// 1402     CPlatform::WatchdogReset();
+// 1414 
+// 1415     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1403 }
+// 1416 }
         RET
-// 1404 
-// 1405 //-----------------------------------------------------------------------------------------------------
+// 1417 
+// 1418 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1406 void CPss21::LinkControlErrorMainCycle(void)
+// 1419 void CPss21::LinkControlErrorMainCycle(void)
 ??LinkControlErrorMainCycle:
-// 1407 {
-// 1408     CPss21::m_xModbusRtuOne.Fsm();
+// 1420 {
+// 1421     CPss21::m_xModbusRtuOne.Fsm();
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1409     CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1422     CPss21::m_xModbusRtuLinkControl.Fsm();
         LDI     R16, LOW(??m_xModbusRtuLinkControl)
         LDI     R17, (??m_xModbusRtuLinkControl) >> 8
         CALL    ??Fsm_2
-// 1410 
-// 1411     CPss21::KeyStateProcessing();
+// 1423 
+// 1424     CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1412 
-// 1413     NotifyersControlProcessing();
+// 1425 
+// 1426     NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1414 
-// 1415     CPss21::ReceiptResetGlobalFlagsClear();
+// 1427 
+// 1428     CPss21::ReceiptResetGlobalFlagsClear();
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1416 
-// 1417     CDataStore::Fsm();
+// 1429 
+// 1430     CDataStore::Fsm();
         CALL    ??Fsm_3
-// 1418 
-// 1419     CPlatform::WatchdogReset();
+// 1431 
+// 1432     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1420 }
+// 1433 }
         RET
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-// 1421 uint8_t uiMapTestCounter = 0;
+// 1434 uint8_t uiMapTestCounter = 0;
 uiMapTestCounter:
         DS8 1
-// 1422 //-----------------------------------------------------------------------------------------------------
+// 1435 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1423 void CPss21::MainFsm(void)
+// 1436 void CPss21::MainFsm(void)
 ??MainFsm:
-// 1424 {
-// 1425     switch (GetFsmState())
+// 1437 {
+// 1438     switch (GetFsmState())
         CALL    ??GetFsmState
         LDI     R30, LOW(`?<Jumptable for MainFsm>_0`)
         LDI     R31, (`?<Jumptable for MainFsm>_0`) >> 16
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for MainFsm>_0`)
         JMP     ?CV_SWITCH_L06
-// 1426     {
-// 1427     case START:
-// 1428         CPlatform::WatchdogEnable();
+// 1439     {
+// 1440     case START:
+// 1441         CPlatform::WatchdogEnable();
 ??MainFsm_1:
         CALL    ??WatchdogEnable
-// 1429         CPlatform::Init();
+// 1442         CPlatform::Init();
         CALL    ??Init_3
-// 1430         CPss21::Init();
+// 1443         CPss21::Init();
         CALL    ??Init
-// 1431         CBuzzer::Init();
+// 1444         CBuzzer::Init();
         CALL    ??Init_4
-// 1432         if (!(CDataBase::Check()))
+// 1445         if (!(CDataBase::Check()))
         CALL    ??Check
         TST     R16
         BRNE    ??MainFsm_2
-// 1433         {
-// 1434             SetFsmState(ERROR_START);
-        LDI     R16, 13
+// 1446         {
+// 1447             SetFsmState(ERROR_START);
+        LDI     R16, 14
         CALL    ??SetFsmState_1
         RET
-// 1435         }
-// 1436         else
-// 1437         {
-// 1438             CPss21::ConfigurationInit();
+// 1448         }
+// 1449         else
+// 1450         {
+// 1451             CPss21::ConfigurationInit();
 ??MainFsm_2:
         RCALL   ??ConfigurationInit
-// 1439             CPss21::ModbusInit();
+// 1452             CPss21::ModbusInit();
         CALL    ??ModbusInit
-// 1440             CSpi::Init();
+// 1453             CSpi::Init();
         CALL    ??Init_5
-// 1441             CPss21::AddressBusInit();
+// 1454             CPss21::AddressBusInit();
         CALL    ??AddressBusInit
-// 1442             CPss21::SearchModules();
+// 1455             CPss21::SearchModules();
         CALL    ??SearchModules
-// 1443             CPss21::CreateDevices();
+// 1456             CPss21::CreateDevices();
         CALL    ??CreateDevices
-// 1444             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-        LDI     R18, 7
-        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-        CALL    ??AlarmSet
-// 1445             SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1457 //            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+// 1458             SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1446         }
-// 1447         break;
+// 1459         }
+// 1460         break;
         RET
-// 1448 
-// 1449     case RESTART:
-// 1450         break;
-// 1451 
-// 1452     case MAIN_CYCLE_START_WAITING:
-// 1453         CPss21::m_xModbusRtuOne.Fsm();
+// 1461 
+// 1462     case RESTART:
+// 1463         break;
+// 1464 
+// 1465     case MAIN_CYCLE_START_WAITING:
+// 1466         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_3:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1454 
-// 1455         CPss21::KeyStateProcessing();
+// 1467 
+// 1468         CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1456 
-// 1457         NotifyersControlProcessing();
+// 1469 
+// 1470         NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1458 
-// 1459         CDataStore::Fsm();
+// 1471 
+// 1472         CDataStore::Fsm();
         CALL    ??Fsm_3
-// 1460 
-// 1461         if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1473 
+// 1474         if (CPss21::m_xMainCycleTimer.IsOverflow())
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
         BREQ    ??MainFsm_4
-// 1462         {
-// 1463             CPss21::m_xMainCycleTimer.Reset();
+// 1475         {
+// 1476             CPss21::m_xMainCycleTimer.Reset();
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Reset
-// 1464             CPlatform::WatchdogReset();
+// 1477             CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1465             SetModuleIndex(0);
+// 1478             SetModuleIndex(0);
         LDI     R16, 0
         CALL    ??SetModuleIndex
-// 1466             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+// 1479             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
         LDI     R16, 3
         CALL    ??SetFsmState_1
-// 1467         }
-// 1468 //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-// 1469 //
-// 1470 //        CPlatform::WatchdogReset();
-// 1471         break;
+// 1480         }
+// 1481 //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+// 1482 //
+// 1483 //        CPlatform::WatchdogReset();
+// 1484         break;
 ??MainFsm_4:
         RET
-// 1472 
-// 1473     case MAIN_CYCLE_MODULES_INTERACTION:
-// 1474         CPss21::m_xModbusRtuOne.Fsm();
+// 1485 
+// 1486     case MAIN_CYCLE_MODULES_INTERACTION:
+// 1487         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_5:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1475         CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1488         CPss21::m_xModbusRtuLinkControl.Fsm();
         LDI     R16, LOW(??m_xModbusRtuLinkControl)
         LDI     R17, (??m_xModbusRtuLinkControl) >> 8
         CALL    ??Fsm_2
-// 1476 
-// 1477         CPss21::KeyStateProcessing();
+// 1489 
+// 1490         CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1478 
-// 1479         NotifyersControlProcessing();
+// 1491 
+// 1492         NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1480 
-// 1481         CDataStore::Fsm();
+// 1493 
+// 1494         CDataStore::Fsm();
         CALL    ??Fsm_3
-// 1482 
-// 1483         if (CPss21::ModulesInteraction(GetModuleIndex()))
+// 1495 
+// 1496         if (CPss21::ModulesInteraction(GetModuleIndex()))
         CALL    ??GetModuleIndex
         RCALL   ??ModulesInteraction
         TST     R16
         BREQ    ??MainFsm_6
-// 1484         {
-// 1485             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+// 1497         {
+// 1498             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
         LDI     R16, 4
         CALL    ??SetFsmState_1
         RJMP    ??MainFsm_7
-// 1486         }
-// 1487         else
-// 1488         {
-// 1489             SetModuleIndex(GetModuleIndex() + 1);
+// 1499         }
+// 1500         else
+// 1501         {
+// 1502             SetModuleIndex(GetModuleIndex() + 1);
 ??MainFsm_6:
         CALL    ??GetModuleIndex
         INC     R16
         CALL    ??SetModuleIndex
-// 1490         }
-// 1491 
-// 1492         switch (GetErrorCode())
+// 1503         }
+// 1504 
+// 1505         switch (GetErrorCode())
 ??MainFsm_7:
         CALL    ??GetErrorCode
         SUBI    R16, 3
@@ -5842,232 +5869,185 @@ uiMapTestCounter:
         DEC     R16
         BREQ    ??MainFsm_9
         RET
-// 1493         {
-// 1494 //        case IMD_ERROR:
-// 1495 //        case OMD_ERROR:
-// 1496         case CFG_ERROR:
-// 1497         case DB_ERROR:
-// 1498             SetFsmState(ERROR_START);
+// 1506         {
+// 1507 //        case IMD_ERROR:
+// 1508 //        case OMD_ERROR:
+// 1509         case CFG_ERROR:
+// 1510         case DB_ERROR:
+// 1511             SetFsmState(ERROR_START);
 ??MainFsm_8:
-        LDI     R16, 13
+        LDI     R16, 14
         CALL    ??SetFsmState_1
-// 1499             break;
+// 1512             break;
         RET
-// 1500 
-// 1501         case MBS_ERROR:
-// 1502             SetFsmState(LINK_CONTROL_ERROR_START);
+// 1513 
+// 1514         case MBS_ERROR:
+// 1515             SetFsmState(LINK_CONTROL_ERROR_START);
 ??MainFsm_9:
-        LDI     R16, 15
+        LDI     R16, 16
         CALL    ??SetFsmState_1
-// 1503             break;
-// 1504 
-// 1505         default:
-// 1506             break;
-// 1507         }
-// 1508         break;
+// 1516             break;
+// 1517 
+// 1518         default:
+// 1519             break;
+// 1520         }
+// 1521         break;
         RET
-// 1509 
-// 1510     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
-// 1511         CPss21::DiscreteSignalsProcessing();
+// 1522 
+// 1523     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
+// 1524         CPss21::DiscreteSignalsProcessing();
 ??MainFsm_10:
         RCALL   ??DiscreteSignalsProcessing
-// 1512         SetFsmState(MAIN_CYCLE_END);
+// 1525         SetFsmState(MAIN_CYCLE_END);
         LDI     R16, 5
         CALL    ??SetFsmState_1
-// 1513         break;
+// 1526         break;
         RET
-// 1514 
-// 1515     case MAIN_CYCLE_END:
-// 1516         CPss21::ReceiptResetGlobalFlagsClear();
+// 1527 
+// 1528     case MAIN_CYCLE_END:
+// 1529         CPss21::ReceiptResetGlobalFlagsClear();
 ??MainFsm_11:
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1517         SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1530         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1518         break;
+// 1531         break;
         RET
-// 1519 
-// 1520 ////-----------------------------------------------------------------------------------------------------
-// 1521 //    case MAP_CREATE_START:
-// 1522 //        uiMapTestCounter = 0;
-// 1523 //        SetFsmState(MAP_CREATE_WINDOW_ON);
-// 1524 //
-// 1525 //        CPlatform::WatchdogReset();
-// 1526 //
-// 1527 //
-// 1528 ////        CPss21::AllAlarmWindowOff();
-// 1529 ////        for (uint8_t i = 0;
-// 1530 ////                i < 48;
-// 1531 ////                i++)
-// 1532 ////        {
-// 1533 ////            // Активизируем окно сигнализации, для отображения извещателем.
-// 1534 ////            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-// 1535 ////            // Активизируем окно сигнализации, для отображения извещателем.
-// 1536 ////            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-// 1537 ////        };
-// 1538 ////        BoardWindowsUpdate();
-// 1539 ////        SetFsmState(MAP_CREATE_ALL_LED_ON);
-// 1540 ////        break;
-// 1541 //
-// 1542 ////    case MAP_CREATE_ALL_LED_ON:
-// 1543 ////
-// 1544 ////        CPlatform::WatchdogReset();
-// 1545 ////        break;
-// 1546 //
-// 1547 //    case MAP_CREATE_WINDOW_ON:
-// 1548 //        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-// 1549 //        if (uiMapTestCounter != 48)
-// 1550 //        {
-// 1551 //            CPss21::AllAlarmWindowOff();
-// 1552 //            // Активизируем окно сигнализации, для отображения извещателем.
-// 1553 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-// 1554 //            // Активизируем окно сигнализации, для отображения извещателем.
-// 1555 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-// 1556 //
-// 1557 //            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-// 1558 //            BoardWindowsUpdate();
-// 1559 //            SetFsmState(MAP_CREATE_ON);
-// 1560 //        }
-// 1561 //        else
-// 1562 //        {
-// 1563 //            SetFsmState(MAP_CREATE_START);
-// 1564 //        }
-// 1565 //
-// 1566 //        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1567 //        CPlatform::WatchdogReset();
-// 1568 //        break;
+// 1532 
+// 1533 ////-----------------------------------------------------------------------------------------------------
+// 1534 //    case MAP_CREATE_START:
+// 1535 //        uiMapTestCounter = 0;
+// 1536 //        SetFsmState(MAP_CREATE_WINDOW_ON);
+// 1537 //
+// 1538 //        CPlatform::WatchdogReset();
+// 1539 //
+// 1540 //
+// 1541 ////        CPss21::AllAlarmWindowOff();
+// 1542 ////        for (uint8_t i = 0;
+// 1543 ////                i < 48;
+// 1544 ////                i++)
+// 1545 ////        {
+// 1546 ////            // Активизируем окно сигнализации, для отображения извещателем.
+// 1547 ////            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
+// 1548 ////            // Активизируем окно сигнализации, для отображения извещателем.
+// 1549 ////            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
+// 1550 ////        };
+// 1551 ////        BoardWindowsUpdate();
+// 1552 ////        SetFsmState(MAP_CREATE_ALL_LED_ON);
+// 1553 ////        break;
+// 1554 //
+// 1555 ////    case MAP_CREATE_ALL_LED_ON:
+// 1556 ////
+// 1557 ////        CPlatform::WatchdogReset();
+// 1558 ////        break;
+// 1559 //
+// 1560 //    case MAP_CREATE_WINDOW_ON:
+// 1561 //        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+// 1562 //        if (uiMapTestCounter != 48)
+// 1563 //        {
+// 1564 //            CPss21::AllAlarmWindowOff();
+// 1565 //            // Активизируем окно сигнализации, для отображения извещателем.
+// 1566 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
+// 1567 //            // Активизируем окно сигнализации, для отображения извещателем.
+// 1568 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
 // 1569 //
-// 1570 //    case MAP_CREATE_ON:
-// 1571 //        TestMainCycle();
-// 1572 //
-// 1573 //
-// 1574 ////        if (CPss21::m_xMainCycleTimer.IsOverflow())
-// 1575 ////        {
-// 1576 ////            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1577 ////            SetFsmState(MAP_CREATE_NEXT_WINDOW);
-// 1578 ////        }
-// 1579 //        break;
-// 1580 //
-// 1581 //    case MAP_CREATE_NEXT_WINDOW:
-// 1582 //        uiMapTestCounter++;
-// 1583 //        SetFsmState(MAP_CREATE_WINDOW_ON);
-// 1584 //
-// 1585 //        CPlatform::WatchdogReset();
-// 1586 //        break;
-// 1587 
-// 1588 
-// 1589 //-----------------------------------------------------------------------------------------------------
-// 1590     case TEST_START:
-// 1591         SaveContextNotifyerControl();
+// 1570 //            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+// 1571 //            BoardWindowsUpdate();
+// 1572 //            SetFsmState(MAP_CREATE_ON);
+// 1573 //        }
+// 1574 //        else
+// 1575 //        {
+// 1576 //            SetFsmState(MAP_CREATE_START);
+// 1577 //        }
+// 1578 //
+// 1579 //        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1580 //        CPlatform::WatchdogReset();
+// 1581 //        break;
+// 1582 //
+// 1583 //    case MAP_CREATE_ON:
+// 1584 //        TestMainCycle();
+// 1585 //
+// 1586 //
+// 1587 ////        if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1588 ////        {
+// 1589 ////            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1590 ////            SetFsmState(MAP_CREATE_NEXT_WINDOW);
+// 1591 ////        }
+// 1592 //        break;
+// 1593 //
+// 1594 //    case MAP_CREATE_NEXT_WINDOW:
+// 1595 //        uiMapTestCounter++;
+// 1596 //        SetFsmState(MAP_CREATE_WINDOW_ON);
+// 1597 //
+// 1598 //        CPlatform::WatchdogReset();
+// 1599 //        break;
+// 1600 
+// 1601 
+// 1602 //-----------------------------------------------------------------------------------------------------
+// 1603     case TEST_START:
+// 1604         SaveContextNotifyerControl();
 ??MainFsm_12:
         RCALL   ??SaveContextNotifyerControl
-// 1592         AlarmTypeSet(PREVENTIVE);
+// 1605         AlarmTypeSet(PREVENTIVE);
         LDI     R16, 2
         RCALL   ??AlarmTypeSet
-// 1593         CPss21::AllAlarmWindowOn(PREVENTIVE);
+// 1606         CPss21::AllAlarmWindowOn(PREVENTIVE);
         LDI     R16, 2
         RCALL   ??AllAlarmWindowOn
-// 1594         CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+// 1607         CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
         CALL    ??TEST_ON_TIME
         MOVW    R19:R18, R17:R16
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Set_1
-// 1595         SetFsmState(TEST_ON);
+// 1608         SetFsmState(TEST_ON);
         LDI     R16, 12
         CALL    ??SetFsmState_1
-// 1596 
-// 1597         CPlatform::WatchdogReset();
+// 1609 
+// 1610         CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1598         break;
+// 1611         break;
         RET
-// 1599 
-// 1600     case TEST_ON:
-// 1601         if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1612 
+// 1613     case TEST_ON:
+// 1614 //        if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1615 //        {
+// 1616 //            CPss21::AllAlarmWindowOff();
+// 1617 //            RestoreContextNotifyerControl();
+// 1618 //            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1619 //            SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1620 //        }
+// 1621 
+// 1622         TestMainCycle();
 ??MainFsm_13:
-        LDI     R16, LOW(??m_xMainCycleTimer)
-        LDI     R17, (??m_xMainCycleTimer) >> 8
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??MainFsm_14
-// 1602         {
-// 1603             CPss21::AllAlarmWindowOff();
+        RCALL   ??TestMainCycle
+// 1623         break;
+        RET
+// 1624 
+// 1625     case TEST_STOP:
+// 1626         CPss21::AllAlarmWindowOff();
+??MainFsm_14:
         CALL    ??AllAlarmWindowOff
-// 1604             RestoreContextNotifyerControl();
+// 1627         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
-// 1605             CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1628         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
         LDI     R18, 100
         LDI     R19, 0
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Set_1
-// 1606             SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1629         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1607         }
-// 1608 
-// 1609         TestMainCycle();
-??MainFsm_14:
-        RCALL   ??TestMainCycle
-// 1610         break;
+// 1630         break;
         RET
-// 1611 
-// 1612 //-----------------------------------------------------------------------------------------------------
-// 1613     case ERROR_START:
-// 1614         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
-// 1615         ModbusDefaultInit();
+// 1631 
+// 1632 //-----------------------------------------------------------------------------------------------------
+// 1633     case ERROR_START:
+// 1634         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
+// 1635         ModbusDefaultInit();
 ??MainFsm_15:
         CALL    ??ModbusDefaultInit
-// 1616         ErrorWindowOn(GetErrorCode() - 1);
-        CALL    ??GetErrorCode
-        DEC     R16
-        RCALL   ??ErrorWindowOn
-// 1617         SetErrorCode(0);
-        LDI     R16, 0
-        CALL    ??SetErrorCode
-// 1618 
-// 1619         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-        LDI     R18, 1
-        LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
-        LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
-        CALL    ??AlarmSet_1
-// 1620         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-        LDI     R18, 1
-        LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
-        LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
-        CALL    ??AlarmSet_2
-// 1621         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
-        LDI     R18, 6
-        LDI     R16, LOW(??m_xStatusLedNotifyerControl)
-        LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
-        CALL    ??AlarmSet_3
-// 1622         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
-        LDI     R18, 6
-        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-        CALL    ??AlarmSet
-// 1623 
-// 1624         SetFsmState(ERROR_ON);
-        LDI     R16, 14
-        CALL    ??SetFsmState_1
-// 1625 
-// 1626         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1627         break;
-        RET
-// 1628 
-// 1629     case ERROR_ON:
-// 1630         ErrorMainCycle();
-??MainFsm_16:
-        RCALL   ??ErrorMainCycle
-// 1631         break;
-        RET
-// 1632 
-// 1633 //-----------------------------------------------------------------------------------------------------
-// 1634     case LINK_CONTROL_ERROR_START:
-// 1635         SaveContextNotifyerControl();
-??MainFsm_17:
-        RCALL   ??SaveContextNotifyerControl
 // 1636         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
         DEC     R16
@@ -6097,111 +6077,166 @@ uiMapTestCounter:
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
 // 1643 
-// 1644         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1645         SetFsmState(LINK_CONTROL_ERROR_ON);
-        LDI     R16, 16
+// 1644         SetFsmState(ERROR_ON);
+        LDI     R16, 15
         CALL    ??SetFsmState_1
-// 1646         break;
+// 1645 
+// 1646         CPlatform::WatchdogReset();
+        CALL    ??WatchdogReset
+// 1647         break;
         RET
-// 1647 
-// 1648     case LINK_CONTROL_ERROR_ON:
-// 1649         LinkControlErrorMainCycle();
+// 1648 
+// 1649     case ERROR_ON:
+// 1650         ErrorMainCycle();
+??MainFsm_16:
+        RCALL   ??ErrorMainCycle
+// 1651         break;
+        RET
+// 1652 
+// 1653 //-----------------------------------------------------------------------------------------------------
+// 1654     case LINK_CONTROL_ERROR_START:
+// 1655         SaveContextNotifyerControl();
+??MainFsm_17:
+        RCALL   ??SaveContextNotifyerControl
+// 1656         ErrorWindowOn(GetErrorCode() - 1);
+        CALL    ??GetErrorCode
+        DEC     R16
+        RCALL   ??ErrorWindowOn
+// 1657         SetErrorCode(0);
+        LDI     R16, 0
+        CALL    ??SetErrorCode
+// 1658 
+// 1659         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        LDI     R18, 1
+        LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
+        LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
+        CALL    ??AlarmSet_1
+// 1660         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        LDI     R18, 1
+        LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
+        LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
+        CALL    ??AlarmSet_2
+// 1661         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+        LDI     R18, 6
+        LDI     R16, LOW(??m_xStatusLedNotifyerControl)
+        LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
+        CALL    ??AlarmSet_3
+// 1662         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+        LDI     R18, 6
+        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+        CALL    ??AlarmSet
+// 1663 
+// 1664         CPlatform::WatchdogReset();
+        CALL    ??WatchdogReset
+// 1665         SetFsmState(LINK_CONTROL_ERROR_ON);
+        LDI     R16, 17
+        CALL    ??SetFsmState_1
+// 1666         break;
+        RET
+// 1667 
+// 1668     case LINK_CONTROL_ERROR_ON:
+// 1669         LinkControlErrorMainCycle();
 ??MainFsm_18:
         RCALL   ??LinkControlErrorMainCycle
-// 1650         break;
+// 1670         break;
         RET
-// 1651 
-// 1652     case LINK_CONTROL_ERROR_OFF:
-// 1653         CPss21::AllAlarmWindowOff();
+// 1671 
+// 1672     case LINK_CONTROL_ERROR_OFF:
+// 1673         CPss21::AllAlarmWindowOff();
 ??MainFsm_19:
         CALL    ??AllAlarmWindowOff
-// 1654         RestoreContextNotifyerControl();
+// 1674         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
-// 1655         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1675         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
         LDI     R18, 100
         LDI     R19, 0
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Set_1
-// 1656 
-// 1657         CPlatform::WatchdogReset();
+// 1676 
+// 1677         CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1658         SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1678         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1659         break;
+// 1679         break;
         RET
-// 1660 
-// 1661 //-----------------------------------------------------------------------------------------------------
-// 1662     case PROGRAMMING_START:
-// 1663         CPss21::m_xModbusRtuOne.Fsm();
+// 1680 
+// 1681 //-----------------------------------------------------------------------------------------------------
+// 1682     case PROGRAMMING_START:
+// 1683         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_20:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1664         // После приёма последнего блока базы данных произойдёт перезагрузка
-// 1665         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
-// 1666         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
+// 1684         // После приёма последнего блока базы данных произойдёт перезагрузка
+// 1685         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
+// 1686         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
         LDI     R18, 232
         LDI     R19, 3
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Set_1
-// 1667         SetFsmState(PROGRAMMING_ON);
-        LDI     R16, 19
+// 1687         SetFsmState(PROGRAMMING_ON);
+        LDI     R16, 20
         CALL    ??SetFsmState_1
-// 1668 
-// 1669         CPlatform::WatchdogReset();
+// 1688 
+// 1689         CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1670         break;
+// 1690         break;
         RET
-// 1671 
-// 1672     case PROGRAMMING_ON:
-// 1673         CPss21::m_xModbusRtuOne.Fsm();
+// 1691 
+// 1692     case PROGRAMMING_ON:
+// 1693         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_21:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1674 
-// 1675         CDataStore::Fsm();
+// 1694 
+// 1695         CDataStore::Fsm();
         CALL    ??Fsm_3
-// 1676 
-// 1677         if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1696 
+// 1697         if (CPss21::m_xMainCycleTimer.IsOverflow())
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
         BREQ    ??MainFsm_22
-// 1678         {
-// 1679             SetFsmState(REBOOT);
-        LDI     R16, 20
+// 1698         {
+// 1699             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+        LDI     R18, 7
+        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+        CALL    ??AlarmSet
+// 1700             SetFsmState(REBOOT);
+        LDI     R16, 21
         CALL    ??SetFsmState_1
-// 1680         }
-// 1681 
-// 1682         CPlatform::WatchdogReset();
+// 1701         }
+// 1702 
+// 1703         CPlatform::WatchdogReset();
 ??MainFsm_22:
         CALL    ??WatchdogReset
-// 1683         break;
+// 1704         break;
         RET
-// 1684 
-// 1685     case REBOOT:
-// 1686         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
-// 1687         CPss21::m_xModbusRtuOne.Fsm();
+// 1705 
+// 1706     case REBOOT:
+// 1707         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
+// 1708         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_23:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1688 
-// 1689         CDataStore::Fsm();
+// 1709 
+// 1710         CDataStore::Fsm();
         CALL    ??Fsm_3
-// 1690         break;
-// 1691 
-// 1692 //-----------------------------------------------------------------------------------------------------
-// 1693     default:
-// 1694         break;
-// 1695     }
-// 1696 }
+// 1711         break;
+// 1712 
+// 1713 //-----------------------------------------------------------------------------------------------------
+// 1714     default:
+// 1715         break;
+// 1716     }
+// 1717 }
 ??MainFsm_24:
         RET
 
@@ -6758,7 +6793,7 @@ __?EEARH:
         DB      0
         DB      0
         DW      (??MainFsm_24) /2
-        DW      21
+        DW      22
         DW      (??MainFsm_1) /2
         DW      (??MainFsm_24) /2
         DW      (??MainFsm_3) /2
@@ -6772,6 +6807,7 @@ __?EEARH:
         DW      (??MainFsm_24) /2
         DW      (??MainFsm_12) /2
         DW      (??MainFsm_13) /2
+        DW      (??MainFsm_14) /2
         DW      (??MainFsm_15) /2
         DW      (??MainFsm_16) /2
         DW      (??MainFsm_17) /2
@@ -6782,19 +6818,19 @@ __?EEARH:
         DW      (??MainFsm_23) /2
 
         END
-// 1697 
+// 1718 
 // 
 //   105 bytes in segment ABSOLUTE
-// 6 890 bytes in segment CODE
+// 6 922 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
 //    84 bytes in segment NEAR_I
 //    84 bytes in segment NEAR_ID
 // 1 742 bytes in segment NEAR_Z
-//    48 bytes in segment SWITCH
+//    50 bytes in segment SWITCH
 // 
-// 6 692 bytes of CODE memory (+ 416 bytes shared)
+// 6 726 bytes of CODE memory (+ 416 bytes shared)
 // 1 826 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
