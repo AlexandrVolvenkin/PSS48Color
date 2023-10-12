@@ -77,7 +77,7 @@ public:
     static void AddressBusInit(void);
     static void ConnectDevice(uint8_t );
     static void DisconnectDevice(void);
-    static uint16_t ReportType(uint8_t * , uint16_t );
+    static uint16_t ReportType(uint8_t *, uint16_t );
     static void SetBytesFromBits(uint8_t *uiDestination,
                                  uint8_t *uiSource,
                                  uint16_t uiLength);
@@ -297,6 +297,7 @@ public:
     static CEmergencyAlarmWindowNotifyerControl m_xEmergencyAlarmWindowNotifyerControl;
     static CStatusLedNotifyerControl m_xStatusLedNotifyerControl;
     static CBuzzerNotifyerControl m_xBuzzerNotifyerControl;
+    static CTestModeNotifyerControl m_xTestModeNotifyerControl;
 //    static CLightBoard m_xLightBoard;
 
 //    static uint8_t m_aucRtuCoilsArray[COILS_WORK_ARRAY_LENGTH];

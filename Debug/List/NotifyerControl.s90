@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  16:33:36
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  18:41:23
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW3680.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW212A.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o
@@ -47,51 +47,63 @@
         PUBWEAK ??ALARM_SIGNAL_OFF_TIME
         PUBWEAK ??ALARM_SIGNAL_OFF_TIME_1
         PUBWEAK ??ALARM_SIGNAL_OFF_TIME_2
+        PUBWEAK ??ALARM_SIGNAL_OFF_TIME_3
         PUBWEAK ??ALARM_SIGNAL_ON_TIME
         PUBWEAK ??ALARM_SIGNAL_ON_TIME_1
         PUBWEAK ??ALARM_SIGNAL_ON_TIME_2
+        PUBWEAK ??ALARM_SIGNAL_ON_TIME_3
         PUBLIC ??AlarmSet
         PUBLIC ??AlarmSet_1
         PUBLIC ??AlarmSet_2
         PUBLIC ??AlarmSet_3
+        PUBLIC ??AlarmSet_4
         PUBWEAK ??BEEP_SIGNAL_ON_TIME
         PUBLIC ??CBuzzerNotifyerControl
         PUBLIC ??CEmergencyAlarmWindowNotifyerControl
         PUBLIC ??CNotifyerControl
         PUBLIC ??CPreventiveAlarmWindowNotifyerControl
         PUBLIC ??CStatusLedNotifyerControl
+        PUBLIC ??CTestModeNotifyerControl
         PUBWEAK ??ERROR_SIGNAL_OFF_TIME
         PUBWEAK ??ERROR_SIGNAL_ON_TIME
         PUBWEAK ??ERROR_SIGNAL_PAUSE_TIME
         PUBLIC ??Fsm
+        PUBLIC ??Fsm_1
         PUBWEAK ??GetFsmState
         PUBWEAK ??GetSavedFsmState
         PUBWEAK ??NORMAL_SIGNAL_OFF_TIME
         PUBWEAK ??NORMAL_SIGNAL_OFF_TIME_1
         PUBWEAK ??NORMAL_SIGNAL_OFF_TIME_2
+        PUBWEAK ??NORMAL_SIGNAL_OFF_TIME_3
         PUBWEAK ??NORMAL_SIGNAL_ON_TIME
         PUBWEAK ??NORMAL_SIGNAL_ON_TIME_1
         PUBWEAK ??NORMAL_SIGNAL_ON_TIME_2
+        PUBWEAK ??NORMAL_SIGNAL_ON_TIME_3
         PUBLIC ??NotifyerEmergencyOn
         PUBLIC ??NotifyerEmergencyOn_1
         PUBLIC ??NotifyerEmergencyOn_2
         PUBLIC ??NotifyerEmergencyOn_3
+        PUBLIC ??NotifyerEmergencyOn_4
         PUBLIC ??NotifyerIndicationOn
         PUBLIC ??NotifyerIndicationOn_1
         PUBLIC ??NotifyerIndicationOn_2
         PUBLIC ??NotifyerIndicationOn_3
+        PUBLIC ??NotifyerIndicationOn_4
         PUBLIC ??NotifyerNormalOn
         PUBLIC ??NotifyerNormalOn_1
         PUBLIC ??NotifyerNormalOn_2
         PUBLIC ??NotifyerNormalOn_3
+        PUBLIC ??NotifyerNormalOn_4
         PUBLIC ??NotifyerOff
         PUBLIC ??NotifyerOff_1
         PUBLIC ??NotifyerOff_2
         PUBLIC ??NotifyerOff_3
+        PUBLIC ??NotifyerOff_4
         PUBLIC ??NotifyerPreventiveOn
         PUBLIC ??NotifyerPreventiveOn_1
         PUBLIC ??NotifyerPreventiveOn_2
         PUBLIC ??NotifyerPreventiveOn_3
+        PUBLIC ??NotifyerPreventiveOn_4
         PUBWEAK ??SetFsmState
         PUBWEAK ??SetSavedFsmState
         PUBWEAK ??StatusLedOff
@@ -99,24 +111,29 @@
         PUBWEAK ??WARNING_SIGNAL_OFF_TIME
         PUBWEAK ??WARNING_SIGNAL_OFF_TIME_1
         PUBWEAK ??WARNING_SIGNAL_OFF_TIME_2
+        PUBWEAK ??WARNING_SIGNAL_OFF_TIME_3
         PUBWEAK ??WARNING_SIGNAL_ON_TIME
         PUBWEAK ??WARNING_SIGNAL_ON_TIME_1
         PUBWEAK ??WARNING_SIGNAL_ON_TIME_2
+        PUBWEAK ??WARNING_SIGNAL_ON_TIME_3
         PUBWEAK ??__vtbl
         PUBWEAK ??__vtbl_1
         PUBWEAK ??__vtbl_2
-        PUBWEAK ??__vtbl_6
+        PUBWEAK ??__vtbl_3
         PUBWEAK ??__vtbl_7
+        PUBWEAK ??__vtbl_8
         PUBLIC `??new CBuzzerNotifyerControl`
         PUBLIC `??new CEmergencyAlarmWindowNotifyerControl`
         PUBLIC `??new CNotifyerControl`
         PUBLIC `??new CPreventiveAlarmWindowNotifyerControl`
         PUBLIC `??new CStatusLedNotifyerControl`
+        PUBLIC `??new CTestModeNotifyerControl`
         PUBLIC `?~CBuzzerNotifyerControl`
         PUBLIC `?~CEmergencyAlarmWindowNotifyerControl`
         PUBLIC `?~CNotifyerControl`
         PUBLIC `?~CPreventiveAlarmWindowNotifyerControl`
         PUBLIC `?~CStatusLedNotifyerControl`
+        PUBLIC `?~CTestModeNotifyerControl`
         PUBWEAK _A_ACSR
         PUBWEAK _A_ADC
         PUBWEAK _A_ADCSRA
@@ -214,19 +231,23 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CNotifyerControl 44>` SYMBOL "CNotifyerControl"
-`?<Name CPreventiveAlarmWind 49>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
-`?<Name CEmergencyAlarmWindo 52>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
-`?<Name CStatusLedNotifyerCo 65>` SYMBOL "CStatusLedNotifyerControl"
-`?<Name CBuzzerNotifyerContr 68>` SYMBOL "CBuzzerNotifyerControl"
-??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 44>`
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 49>`
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 52>`
-??__vtbl_6          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 65>`
-??__vtbl_7          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 68>`
+`?<Name CNotifyerControl 48>` SYMBOL "CNotifyerControl"
+`?<Name CPreventiveAlarmWind 53>` SYMBOL "CPreventiveAlarmWindowNotifyerControl"
+`?<Name CEmergencyAlarmWindo 56>` SYMBOL "CEmergencyAlarmWindowNotifyerControl"
+`?<Name CTestModeNotifyerCon 59>` SYMBOL "CTestModeNotifyerControl"
+`?<Name CStatusLedNotifyerCo 76>` SYMBOL "CStatusLedNotifyerControl"
+`?<Name CBuzzerNotifyerContr 79>` SYMBOL "CBuzzerNotifyerControl"
+??__vtbl            SYMBOL "__vtbl", `?<Name CNotifyerControl 48>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CPreventiveAlarmWind 53>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CEmergencyAlarmWindo 56>`
+??__vtbl_3          SYMBOL "__vtbl", `?<Name CTestModeNotifyerCon 59>`
+??__vtbl_7          SYMBOL "__vtbl", `?<Name CStatusLedNotifyerCo 76>`
+??__vtbl_8          SYMBOL "__vtbl", `?<Name CBuzzerNotifyerContr 79>`
 
         EXTERN ??ActiveAlarmWindowOff
         EXTERN ??ActiveAlarmWindowOn
+        EXTERN ??AllAlarmWindowOff
+        EXTERN ??AllAlarmWindowOn
         EXTERN ??BoardWindowsUpdate
         EXTERN ??CDfa
         EXTERN ??CTimer
@@ -1301,8 +1322,8 @@ _A_PINF:
 //  456 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CNotifyerControl
-        LDI     R16, LOW(??__vtbl_6)
-        LDI     R17, (??__vtbl_6) >> 8
+        LDI     R16, LOW(??__vtbl_7)
+        LDI     R17, (??__vtbl_7) >> 8
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
@@ -1335,25 +1356,116 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
+//  460 
+//  461 CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+//  462 {
+//  463     SetFsmState(STOP);
+//  464 }
+//  465 
+//  466 //-----------------------------------------------------------------------------------------------------
+//  467 void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+//  468 {
+//  469     // Сохраним текущее состояние автомата.
+//  470     SetSavedFsmState(GetFsmState());
+//  471     switch (uiAlarmType)
+//  472     {
+//  473     case NORMAL:
+//  474         SetFsmState(NORMAL_SIGNAL_START);
+//  475         break;
+//  476 
+//  477     case INDICATION:
+//  478         SetFsmState(NORMAL_SIGNAL_START);
+//  479         break;
+//  480 
+//  481     case PREVENTIVE:
+//  482         SetFsmState(WARNING_SIGNAL_START);
+//  483         break;
+//  484 
+//  485     case EMERGENCY:
+//  486         SetFsmState(ALARM_SIGNAL_START);
+//  487         break;
+//  488 
+//  489     case IND_PREVENTIVE:
+//  490         break;
+//  491 
+//  492     case IND_EMERGENCY:
+//  493         break;
+//  494 
+//  495     case ERROR:
+//  496         SetFsmState(ERROR_SIGNAL_START);
+//  497         break;
+//  498 
+//  499     case BEEP_SIGNAL:
+//  500         break;
+//  501 
+//  502     default:
+//  503         break;
+//  504     }
+//  505 }
+//  506 
+//  507 //-----------------------------------------------------------------------------------------------------
+//  508 void CStatusLedNotifyerControl::NotifyerNormalOn(void)
+//  509 {
+//  510     CPlatform::StatusLedOn();
+//  511 }
+//  512 
+//  513 //-----------------------------------------------------------------------------------------------------
+//  514 void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
+//  515 {
+//  516 
+//  517 }
+//  518 
+//  519 //-----------------------------------------------------------------------------------------------------
+//  520 void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
+//  521 {
+//  522     CPlatform::StatusLedOn();
+//  523 }
+//  524 
+//  525 //-----------------------------------------------------------------------------------------------------
+//  526 void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
+//  527 {
+//  528     CPlatform::StatusLedOn();
+//  529 }
+//  530 
+//  531 //-----------------------------------------------------------------------------------------------------
+//  532 void CStatusLedNotifyerControl::NotifyerOff(void)
+//  533 {
+//  534     CPlatform::StatusLedOff();
+//  535     CPss21::BoardWindowsUpdate();
+//  536 }
+//  537 //-----------------------------------------------------------------------------------------------------
+//  538 
+//  539 
+//  540 
+//  541 
+//  542 
+//  543 
+//  544 //-----------------------------------------------------------------------------------------------------
+//  545 
 
         RSEG CODE:CODE:NOROOT(1)
+//  546 CBuzzerNotifyerControl::CBuzzerNotifyerControl()
 ??CBuzzerNotifyerControl:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
+//  547 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CNotifyerControl
-        LDI     R16, LOW(??__vtbl_7)
-        LDI     R17, (??__vtbl_7) >> 8
+        LDI     R16, LOW(??__vtbl_8)
+        LDI     R17, (??__vtbl_8) >> 8
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
+//  548     SetFsmState(STOP);
         LDI     R18, 37
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
+//  549     SetSavedFsmState(STOP);
         LDI     R18, 37
         MOVW    R17:R16, R27:R26
         CALL    ??SetSavedFsmState
+//  550 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1371,6 +1483,45 @@ _A_PINF:
         RCALL   ??CBuzzerNotifyerControl
         RET
 `??new CBuzzerNotifyerControl_1`:
+        LDI     R16, 0
+        LDI     R17, 0
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+??CTestModeNotifyerControl:
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
+        RCALL   ??CNotifyerControl
+        LDI     R16, LOW(??__vtbl_3)
+        LDI     R17, (??__vtbl_3) >> 8
+        MOVW    R31:R30, R27:R26
+        STD     Z+1, R16
+        STD     Z+2, R17
+        LDI     R18, 37
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        LDI     R18, 37
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetSavedFsmState
+        MOVW    R17:R16, R27:R26
+        LD      R26, Y+
+        LD      R27, Y+
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 CTestModeNotifyerControl &CTestModeNotifyerControl::new CTestModeNotifyerControl()
+`??new CTestModeNotifyerControl`:
+        LDI     R16, 12
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    `??new CTestModeNotifyerControl_1`
+        RCALL   ??CTestModeNotifyerControl
+        RET
+`??new CTestModeNotifyerControl_1`:
         LDI     R16, 0
         LDI     R17, 0
         RET
@@ -1418,7 +1569,7 @@ _A_PINF:
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for Fsm>_0`)
         JMP     ?CV_SWITCH_L06
-??Fsm_1:
+??Fsm_2:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1449,14 +1600,14 @@ _A_PINF:
         LDI     R18, 25
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_3:
+        RJMP    ??Fsm_3
+??Fsm_4:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_4
+        BREQ    ??Fsm_5
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1487,15 +1638,15 @@ _A_PINF:
         LDI     R18, 26
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_4:
-        RJMP    ??Fsm_2
 ??Fsm_5:
+        RJMP    ??Fsm_3
+??Fsm_6:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_6
+        BREQ    ??Fsm_7
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1526,9 +1677,9 @@ _A_PINF:
         LDI     R18, 25
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_6:
-        RJMP    ??Fsm_2
 ??Fsm_7:
+        RJMP    ??Fsm_3
+??Fsm_8:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1559,20 +1710,20 @@ _A_PINF:
         LDI     R18, 2
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_8:
+        RJMP    ??Fsm_3
+??Fsm_9:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_9
+        BREQ    ??Fsm_10
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_9:
-        RJMP    ??Fsm_2
 ??Fsm_10:
+        RJMP    ??Fsm_3
+??Fsm_11:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1603,14 +1754,14 @@ _A_PINF:
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_11:
+        RJMP    ??Fsm_3
+??Fsm_12:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_12
+        BREQ    ??Fsm_13
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1641,15 +1792,15 @@ _A_PINF:
         LDI     R18, 9
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_12:
-        RJMP    ??Fsm_2
 ??Fsm_13:
+        RJMP    ??Fsm_3
+??Fsm_14:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_14
+        BREQ    ??Fsm_15
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1680,9 +1831,9 @@ _A_PINF:
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_14:
-        RJMP    ??Fsm_2
 ??Fsm_15:
+        RJMP    ??Fsm_3
+??Fsm_16:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1713,14 +1864,14 @@ _A_PINF:
         LDI     R18, 14
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_16:
+        RJMP    ??Fsm_3
+??Fsm_17:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_17
+        BREQ    ??Fsm_18
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1751,15 +1902,15 @@ _A_PINF:
         LDI     R18, 15
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_17:
-        RJMP    ??Fsm_2
 ??Fsm_18:
+        RJMP    ??Fsm_3
+??Fsm_19:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_19
+        BREQ    ??Fsm_20
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1790,9 +1941,9 @@ _A_PINF:
         LDI     R18, 14
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_19:
-        RJMP    ??Fsm_2
 ??Fsm_20:
+        RJMP    ??Fsm_3
+??Fsm_21:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1823,14 +1974,14 @@ _A_PINF:
         LDI     R18, 20
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_21:
+        RJMP    ??Fsm_3
+??Fsm_22:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_22
+        BREQ    ??Fsm_23
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1861,15 +2012,15 @@ _A_PINF:
         LDI     R18, 21
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_22:
-        RJMP    ??Fsm_2
 ??Fsm_23:
+        RJMP    ??Fsm_3
+??Fsm_24:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_24
+        BREQ    ??Fsm_25
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1900,15 +2051,15 @@ _A_PINF:
         LDI     R18, 22
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_24:
-        RJMP    ??Fsm_2
 ??Fsm_25:
+        RJMP    ??Fsm_3
+??Fsm_26:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_26
+        BREQ    ??Fsm_27
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1939,15 +2090,15 @@ _A_PINF:
         LDI     R18, 23
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_26:
-        RJMP    ??Fsm_2
 ??Fsm_27:
+        RJMP    ??Fsm_3
+??Fsm_28:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_28
+        BREQ    ??Fsm_29
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -1978,9 +2129,9 @@ _A_PINF:
         LDI     R18, 20
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_28:
-        RJMP    ??Fsm_2
 ??Fsm_29:
+        RJMP    ??Fsm_3
+??Fsm_30:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -2011,14 +2162,14 @@ _A_PINF:
         LDI     R18, 31
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_30:
+        RJMP    ??Fsm_3
+??Fsm_31:
         MOVW    R17:R16, R27:R26
         SUBI    R16, 250
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_2
+        BREQ    ??Fsm_3
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -2035,8 +2186,8 @@ _A_PINF:
         MOV     R18, R16
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_2
-??Fsm_31:
+        RJMP    ??Fsm_3
+??Fsm_32:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -2051,7 +2202,7 @@ _A_PINF:
         LDI     R18, 0
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_2:
+??Fsm_3:
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -2095,26 +2246,26 @@ _A_PINF:
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for AlarmSet>_0`)
         JMP     ?CV_SWITCH_L06
-??AlarmSet_4:
+??AlarmSet_5:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_5
-??AlarmSet_6:
+        RJMP    ??AlarmSet_6
+??AlarmSet_7:
         LDI     R18, 1
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_5
-??AlarmSet_7:
-        LDI     R18, 7
-        MOVW    R17:R16, R25:R24
-        CALL    ??SetFsmState
-        RJMP    ??AlarmSet_5
+        RJMP    ??AlarmSet_6
 ??AlarmSet_8:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-??AlarmSet_5:
+        RJMP    ??AlarmSet_6
+??AlarmSet_9:
+        LDI     R18, 7
+        MOVW    R17:R16, R25:R24
+        CALL    ??SetFsmState
+??AlarmSet_6:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -2199,26 +2350,26 @@ _A_PINF:
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for AlarmSet>_1`)
         JMP     ?CV_SWITCH_L06
-??AlarmSet_9:
+??AlarmSet_10:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_10
-??AlarmSet_11:
+        RJMP    ??AlarmSet_11
+??AlarmSet_12:
         LDI     R18, 1
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_10
-??AlarmSet_12:
+        RJMP    ??AlarmSet_11
+??AlarmSet_13:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_10
-??AlarmSet_13:
+        RJMP    ??AlarmSet_11
+??AlarmSet_14:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-??AlarmSet_10:
+??AlarmSet_11:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -2263,23 +2414,18 @@ _A_PINF:
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  460 
 
         RSEG CODE:CODE:NOROOT(1)
-//  461 CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
 `?~CStatusLedNotifyerControl`:
-//  462 {
         CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
         MOVW    R27:R26, R19:R18
         MOV     R16, R24
         OR      R16, R25
         BREQ    `?~CStatusLedNotifyerControl_1`
-//  463     SetFsmState(STOP);
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-//  464 }
         LDI     R18, 0
         LDI     R19, 0
         MOVW    R17:R16, R25:R24
@@ -2291,181 +2437,95 @@ _A_PINF:
 `?~CStatusLedNotifyerControl_1`:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  465 
-//  466 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  467 void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
-??AlarmSet_2:
-//  468 {
+??AlarmSet_3:
         CALL    ?PROLOGUE3_L09
         MOVW    R25:R24, R17:R16
         MOV     R26, R18
-//  469     // Сохраним текущее состояние автомата.
-//  470     SetSavedFsmState(GetFsmState());
         MOVW    R17:R16, R25:R24
         CALL    ??GetFsmState
         MOV     R18, R16
         MOVW    R17:R16, R25:R24
         CALL    ??SetSavedFsmState
-//  471     switch (uiAlarmType)
         MOV     R16, R26
         LDI     R30, LOW(`?<Jumptable for AlarmSet>_2`)
         LDI     R31, (`?<Jumptable for AlarmSet>_2`) >> 16
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for AlarmSet>_2`)
         JMP     ?CV_SWITCH_L06
-//  472     {
-//  473     case NORMAL:
-//  474         SetFsmState(NORMAL_SIGNAL_START);
-??AlarmSet_14:
+??AlarmSet_15:
         LDI     R18, 24
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-//  475         break;
-        RJMP    ??AlarmSet_15
-//  476 
-//  477     case INDICATION:
-//  478         SetFsmState(NORMAL_SIGNAL_START);
-??AlarmSet_16:
-        LDI     R18, 24
-        MOVW    R17:R16, R25:R24
-        CALL    ??SetFsmState
-//  479         break;
-        RJMP    ??AlarmSet_15
-//  480 
-//  481     case PREVENTIVE:
-//  482         SetFsmState(WARNING_SIGNAL_START);
+        RJMP    ??AlarmSet_16
 ??AlarmSet_17:
+        LDI     R18, 24
+        MOVW    R17:R16, R25:R24
+        CALL    ??SetFsmState
+        RJMP    ??AlarmSet_16
+??AlarmSet_18:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-//  483         break;
-        RJMP    ??AlarmSet_15
-//  484 
-//  485     case EMERGENCY:
-//  486         SetFsmState(ALARM_SIGNAL_START);
-??AlarmSet_18:
+        RJMP    ??AlarmSet_16
+??AlarmSet_19:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-//  487         break;
-        RJMP    ??AlarmSet_15
-//  488 
-//  489     case IND_PREVENTIVE:
-//  490         break;
-//  491 
-//  492     case IND_EMERGENCY:
-//  493         break;
-//  494 
-//  495     case ERROR:
-//  496         SetFsmState(ERROR_SIGNAL_START);
-??AlarmSet_19:
+        RJMP    ??AlarmSet_16
+??AlarmSet_20:
         LDI     R18, 19
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-//  497         break;
-//  498 
-//  499     case BEEP_SIGNAL:
-//  500         break;
-//  501 
-//  502     default:
-//  503         break;
-//  504     }
-//  505 }
-??AlarmSet_15:
+??AlarmSet_16:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
-//  506 
-//  507 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  508 void CStatusLedNotifyerControl::NotifyerNormalOn(void)
-??NotifyerNormalOn_2:
-//  509 {
+??NotifyerNormalOn_3:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-//  510     CPlatform::StatusLedOn();
         CALL    ??StatusLedOn
-//  511 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  512 
-//  513 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  514 void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
-??NotifyerIndicationOn_2:
-//  515 {
-//  516 
-//  517 }
+??NotifyerIndicationOn_3:
         RET
-//  518 
-//  519 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  520 void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
-??NotifyerPreventiveOn_2:
-//  521 {
+??NotifyerPreventiveOn_3:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-//  522     CPlatform::StatusLedOn();
         CALL    ??StatusLedOn
-//  523 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  524 
-//  525 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  526 void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
-??NotifyerEmergencyOn_2:
-//  527 {
+??NotifyerEmergencyOn_3:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-//  528     CPlatform::StatusLedOn();
         CALL    ??StatusLedOn
-//  529 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  530 
-//  531 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  532 void CStatusLedNotifyerControl::NotifyerOff(void)
-??NotifyerOff_2:
-//  533 {
+??NotifyerOff_3:
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
-//  534     CPlatform::StatusLedOff();
         CALL    ??StatusLedOff
-//  535     CPss21::BoardWindowsUpdate();
         CALL    ??BoardWindowsUpdate
-//  536 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-//  537 //-----------------------------------------------------------------------------------------------------
-//  538 
-//  539 
-//  540 
-//  541 
-//  542 
-//  543 
-//  544 //-----------------------------------------------------------------------------------------------------
-//  545 
-//  546 CBuzzerNotifyerControl::CBuzzerNotifyerControl()
-//  547 {
-//  548     SetFsmState(STOP);
-//  549     SetSavedFsmState(STOP);
-//  550 }
 //  551 
 
         RSEG CODE:CODE:NOROOT(1)
@@ -2499,7 +2559,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  558 void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
-??AlarmSet_3:
+??AlarmSet_4:
 //  559 {
         CALL    ?PROLOGUE3_L09
         MOVW    R25:R24, R17:R16
@@ -2521,39 +2581,39 @@ _A_PINF:
 //  563     {
 //  564     case NORMAL:
 //  565         SetFsmState(STOP);
-??AlarmSet_20:
+??AlarmSet_21:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  566         break;
-        RJMP    ??AlarmSet_21
+        RJMP    ??AlarmSet_22
 //  567 
 //  568     case INDICATION:
 //  569         SetFsmState(STOP);
-??AlarmSet_22:
+??AlarmSet_23:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  570         break;
-        RJMP    ??AlarmSet_21
+        RJMP    ??AlarmSet_22
 //  571 
 //  572     case PREVENTIVE:
 //  573         SetFsmState(WARNING_SIGNAL_START);
-??AlarmSet_23:
+??AlarmSet_24:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  574         break;
-        RJMP    ??AlarmSet_21
+        RJMP    ??AlarmSet_22
 //  575 
 //  576     case EMERGENCY:
 //  577         SetFsmState(ALARM_SIGNAL_START);
-??AlarmSet_24:
+??AlarmSet_25:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  578         break;
-        RJMP    ??AlarmSet_21
+        RJMP    ??AlarmSet_22
 //  579 
 //  580     case IND_PREVENTIVE:
 //  581         break;
@@ -2563,16 +2623,16 @@ _A_PINF:
 //  585 
 //  586     case ERROR:
 //  587         SetFsmState(ERROR_SIGNAL_START);
-??AlarmSet_25:
+??AlarmSet_26:
         LDI     R18, 19
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  588         break;
-        RJMP    ??AlarmSet_21
+        RJMP    ??AlarmSet_22
 //  589 
 //  590     case BEEP_SIGNAL:
 //  591         SetFsmState(BEEP_SIGNAL_START);
-??AlarmSet_26:
+??AlarmSet_27:
         LDI     R18, 30
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
@@ -2582,7 +2642,7 @@ _A_PINF:
 //  595         break;
 //  596     }
 //  597 }
-??AlarmSet_21:
+??AlarmSet_22:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 //  598 
@@ -2590,7 +2650,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  600 void CBuzzerNotifyerControl::NotifyerNormalOn(void)
-??NotifyerNormalOn_3:
+??NotifyerNormalOn_4:
 //  601 {
         ST      -Y, R25
         ST      -Y, R24
@@ -2606,7 +2666,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  606 void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
-??NotifyerIndicationOn_3:
+??NotifyerIndicationOn_4:
 //  607 {
         ST      -Y, R25
         ST      -Y, R24
@@ -2622,7 +2682,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  612 void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
-??NotifyerPreventiveOn_3:
+??NotifyerPreventiveOn_4:
 //  613 {
         ST      -Y, R25
         ST      -Y, R24
@@ -2638,7 +2698,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  618 void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
-??NotifyerEmergencyOn_3:
+??NotifyerEmergencyOn_4:
 //  619 {
         ST      -Y, R25
         ST      -Y, R24
@@ -2654,7 +2714,7 @@ _A_PINF:
 
         RSEG CODE:CODE:NOROOT(1)
 //  624 void CBuzzerNotifyerControl::NotifyerOff(void)
-??NotifyerOff_3:
+??NotifyerOff_4:
 //  625 {
         ST      -Y, R25
         ST      -Y, R24
@@ -2666,6 +2726,579 @@ _A_PINF:
 //  628 }
         LD      R24, Y+
         LD      R25, Y+
+        RET
+//  629 //-----------------------------------------------------------------------------------------------------
+//  630 
+//  631 
+//  632 
+//  633 
+//  634 
+//  635 
+//  636 
+//  637 //-----------------------------------------------------------------------------------------------------
+//  638 CTestModeNotifyerControl::CTestModeNotifyerControl()
+//  639 {
+//  640     SetFsmState(STOP);
+//  641     SetSavedFsmState(STOP);
+//  642 }
+//  643 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  644 CTestModeNotifyerControl::~CTestModeNotifyerControl()
+`?~CTestModeNotifyerControl`:
+//  645 {
+        CALL    ?PROLOGUE4_L09
+        MOVW    R25:R24, R17:R16
+        MOVW    R27:R26, R19:R18
+        MOV     R16, R24
+        OR      R16, R25
+        BREQ    `?~CTestModeNotifyerControl_1`
+//  646     SetFsmState(STOP);
+        LDI     R18, 37
+        MOVW    R17:R16, R25:R24
+        CALL    ??SetFsmState
+//  647 }
+        LDI     R18, 0
+        LDI     R19, 0
+        MOVW    R17:R16, R25:R24
+        RCALL   `?~CNotifyerControl`
+        BST     R26, 0
+        BRTC    `?~CTestModeNotifyerControl_1`
+        MOVW    R17:R16, R25:R24
+        CALL    `??operator delete`
+`?~CTestModeNotifyerControl_1`:
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+//  648 
+//  649 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  650 void CTestModeNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+??AlarmSet_2:
+//  651 {
+//  652 //    // Сохраним текущее состояние автомата.
+//  653 //    SetSavedFsmState(GetFsmState());
+//  654 //    switch (uiAlarmType)
+//  655 //    {
+//  656 //    case NORMAL:
+//  657 //        SetFsmState(STOP);
+//  658 //        break;
+//  659 //
+//  660 //    case INDICATION:
+//  661 //        SetFsmState(INDICATION_SIGNAL_START);
+//  662 //        break;
+//  663 //
+//  664 //    case PREVENTIVE:
+//  665 //        SetFsmState(WARNING_SIGNAL_START);
+//  666 //        break;
+//  667 //
+//  668 //    case EMERGENCY:
+//  669 //        SetFsmState(WARNING_SIGNAL_START);
+//  670 //        break;
+//  671 //
+//  672 //    case IND_PREVENTIVE:
+//  673 //        break;
+//  674 //
+//  675 //    case IND_EMERGENCY:
+//  676 //        break;
+//  677 //
+//  678 //    case ERROR:
+//  679 //        break;
+//  680 //
+//  681 //    case BEEP_SIGNAL:
+//  682 //        break;
+//  683 //
+//  684 //    default:
+//  685 //        break;
+//  686 //    }
+//  687 }
+        RET
+//  688 
+//  689 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  690 void CTestModeNotifyerControl::NotifyerNormalOn(void)
+??NotifyerNormalOn_2:
+//  691 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+//  692     CPss21::AllAlarmWindowOn(INDICATION);
+        LDI     R16, 1
+        CALL    ??AllAlarmWindowOn
+//  693     CBuzzer::LowOn();
+        CALL    ??LowOn
+//  694 }
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//  695 
+//  696 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  697 void CTestModeNotifyerControl::NotifyerIndicationOn(void)
+??NotifyerIndicationOn_2:
+//  698 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+//  699     CPss21::AllAlarmWindowOn(INDICATION);
+        LDI     R16, 1
+        CALL    ??AllAlarmWindowOn
+//  700     CBuzzer::LowOn();
+        CALL    ??LowOn
+//  701 }
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//  702 
+//  703 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  704 void CTestModeNotifyerControl::NotifyerPreventiveOn(void)
+??NotifyerPreventiveOn_2:
+//  705 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+//  706     CPss21::AllAlarmWindowOn(PREVENTIVE);
+        LDI     R16, 2
+        CALL    ??AllAlarmWindowOn
+//  707     CBuzzer::LowOn();
+        CALL    ??LowOn
+//  708 }
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//  709 
+//  710 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  711 void CTestModeNotifyerControl::NotifyerEmergencyOn(void)
+??NotifyerEmergencyOn_2:
+//  712 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+//  713     CPss21::AllAlarmWindowOn(EMERGENCY);
+        LDI     R16, 3
+        CALL    ??AllAlarmWindowOn
+//  714     CBuzzer::LowOn();
+        CALL    ??LowOn
+//  715 }
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//  716 
+//  717 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  718 void CTestModeNotifyerControl::NotifyerOff(void)
+??NotifyerOff_2:
+//  719 {
+        ST      -Y, R25
+        ST      -Y, R24
+        MOVW    R25:R24, R17:R16
+//  720     CBuzzer::Off();
+        CALL    ??Off
+//  721     CPss21::AllAlarmWindowOff();
+        CALL    ??AllAlarmWindowOff
+//  722     CPss21::BoardWindowsUpdate();
+        CALL    ??BoardWindowsUpdate
+//  723 }
+        LD      R24, Y+
+        LD      R25, Y+
+        RET
+//  724 
+//  725 //-----------------------------------------------------------------------------------------------------
+
+        RSEG CODE:CODE:NOROOT(1)
+//  726 void CTestModeNotifyerControl::Fsm(void)
+??Fsm_1:
+//  727 {
+        ST      -Y, R27
+        ST      -Y, R26
+        MOVW    R27:R26, R17:R16
+//  728     switch (GetFsmState())
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetFsmState
+        SUBI    R16, 0
+        BREQ    ??Fsm_33
+        DEC     R16
+        BREQ    ??Fsm_34
+        DEC     R16
+        BREQ    ??Fsm_35
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_36
+        SUBI    R16, 4
+        BRNE    $+2+2
+        RJMP    ??Fsm_37
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_38
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_39
+        SUBI    R16, 4
+        BRNE    $+2+2
+        RJMP    ??Fsm_40
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_41
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_42
+        SUBI    R16, 22
+        BRNE    $+2+2
+        RJMP    ??Fsm_43
+        RJMP    ??Fsm_44
+//  729     {
+//  730     case IDDLE:
+//  731         break;
+??Fsm_33:
+        RJMP    ??Fsm_44
+//  732 
+//  733     case INDICATION_SIGNAL_START:
+//  734         m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+??Fsm_34:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 16
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 17
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  735         NotifyerIndicationOn();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 6
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 7
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  736         SetFsmState(INDICATION_SIGNAL_ON);
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  737         break;
+        RJMP    ??Fsm_44
+//  738 
+//  739     case INDICATION_SIGNAL_ON:
+//  740         if (m_xTimer.IsOverflow())
+??Fsm_35:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_45
+//  741         {
+//  742             m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 18
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 19
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  743             NotifyerOff();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 12
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 13
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  744             SetFsmState(INDICATION_SIGNAL_OFF);
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  745         }
+//  746         break;
+??Fsm_45:
+        RJMP    ??Fsm_44
+//  747 
+//  748     case INDICATION_SIGNAL_OFF:
+//  749         if (m_xTimer.IsOverflow())
+??Fsm_36:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_46
+//  750         {
+//  751             SetFsmState(WARNING_SIGNAL_START);
+        LDI     R18, 7
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  752         }
+//  753         break;
+??Fsm_46:
+        RJMP    ??Fsm_44
+//  754 
+//  755     case WARNING_SIGNAL_START:
+//  756         m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
+??Fsm_37:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 20
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 21
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  757         NotifyerPreventiveOn();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 8
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 9
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  758         SetFsmState(WARNING_SIGNAL_ON);
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  759         break;
+        RJMP    ??Fsm_44
+//  760 
+//  761     case WARNING_SIGNAL_ON:
+//  762         if (m_xTimer.IsOverflow())
+??Fsm_38:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_47
+//  763         {
+//  764             m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 22
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 23
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  765             NotifyerOff();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 12
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 13
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  766             SetFsmState(WARNING_SIGNAL_OFF);
+        LDI     R18, 9
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  767         }
+//  768         break;
+??Fsm_47:
+        RJMP    ??Fsm_44
+//  769 
+//  770     case WARNING_SIGNAL_OFF:
+//  771         if (m_xTimer.IsOverflow())
+??Fsm_39:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_48
+//  772         {
+//  773             SetFsmState(ALARM_SIGNAL_START);
+        LDI     R18, 13
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  774         }
+//  775         break;
+??Fsm_48:
+        RJMP    ??Fsm_44
+//  776 
+//  777     case ALARM_SIGNAL_START:
+//  778         m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+??Fsm_40:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 24
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 25
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  779         NotifyerEmergencyOn();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 10
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 11
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  780         SetFsmState(ALARM_SIGNAL_ON);
+        LDI     R18, 14
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  781         break;
+        RJMP    ??Fsm_44
+//  782 
+//  783     case ALARM_SIGNAL_ON:
+//  784         if (m_xTimer.IsOverflow())
+??Fsm_41:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_44
+//  785         {
+//  786             m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 26
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 27
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??Set
+//  787             NotifyerOff();
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 12
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 13
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  788             SetFsmState(ALARM_SIGNAL_OFF);
+        LDI     R18, 15
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  789         }
+//  790         break;
+        RJMP    ??Fsm_44
+//  791 
+//  792     case ALARM_SIGNAL_OFF:
+//  793         if (m_xTimer.IsOverflow())
+??Fsm_42:
+        MOVW    R17:R16, R27:R26
+        SUBI    R16, 250
+        SBCI    R17, 255
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??Fsm_44
+//  794         {
+//  795             SetFsmState(STOP);
+        LDI     R18, 37
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  796         }
+//  797         break;
+        RJMP    ??Fsm_44
+//  798 
+//  799     case STOP:
+//  800         NotifyerOff();
+??Fsm_43:
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 12
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 13
+        MOVW    R31:R30, R19:R18
+        ICALL
+//  801         SetFsmState(IDDLE);
+        LDI     R18, 0
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+//  802         break;
+//  803 
+//  804     default:
+//  805         break;
+//  806     };
+//  807 }
+??Fsm_44:
+        LD      R26, Y+
+        LD      R27, Y+
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -2859,6 +3492,54 @@ _A_PINF:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::NORMAL_SIGNAL_ON_TIME()
+??NORMAL_SIGNAL_ON_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
+??NORMAL_SIGNAL_OFF_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::WARNING_SIGNAL_ON_TIME()
+??WARNING_SIGNAL_ON_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::WARNING_SIGNAL_OFF_TIME()
+??WARNING_SIGNAL_OFF_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::ALARM_SIGNAL_ON_TIME()
+??ALARM_SIGNAL_ON_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CTestModeNotifyerControl::ALARM_SIGNAL_OFF_TIME()
+??ALARM_SIGNAL_OFF_TIME_3:
+        MOVW    R19:R18, R17:R16
+        LDI     R16, 232
+        LDI     R17, 3
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::StatusLedOn()
 ??StatusLedOn:
         CBI     0x1B, 0x04
@@ -2888,107 +3569,107 @@ __?EEARH:
 `?<Jumptable for Fsm>_0`:
         DB      0
         DB      1
-        DW      (??Fsm_2) /2
-        DW      (??Fsm_2) /2
-        DB      0x1
-        DW      (??Fsm_7) /2
-        DB      0x1
-        DW      (??Fsm_8) /2
-        DB      0x5
-        DW      (??Fsm_10) /2
-        DB      0x1
-        DW      (??Fsm_11) /2
-        DB      0x1
-        DW      (??Fsm_13) /2
-        DB      0x4
-        DW      (??Fsm_15) /2
-        DB      0x1
-        DW      (??Fsm_16) /2
-        DB      0x1
-        DW      (??Fsm_18) /2
-        DB      0x4
-        DW      (??Fsm_20) /2
-        DB      0x1
-        DW      (??Fsm_21) /2
-        DB      0x1
-        DW      (??Fsm_23) /2
-        DB      0x1
-        DW      (??Fsm_25) /2
-        DB      0x1
-        DW      (??Fsm_27) /2
-        DB      0x1
-        DW      (??Fsm_1) /2
-        DB      0x1
+        DW      (??Fsm_3) /2
         DW      (??Fsm_3) /2
         DB      0x1
-        DW      (??Fsm_5) /2
-        DB      0x4
-        DW      (??Fsm_29) /2
+        DW      (??Fsm_8) /2
         DB      0x1
+        DW      (??Fsm_9) /2
+        DB      0x5
+        DW      (??Fsm_11) /2
+        DB      0x1
+        DW      (??Fsm_12) /2
+        DB      0x1
+        DW      (??Fsm_14) /2
+        DB      0x4
+        DW      (??Fsm_16) /2
+        DB      0x1
+        DW      (??Fsm_17) /2
+        DB      0x1
+        DW      (??Fsm_19) /2
+        DB      0x4
+        DW      (??Fsm_21) /2
+        DB      0x1
+        DW      (??Fsm_22) /2
+        DB      0x1
+        DW      (??Fsm_24) /2
+        DB      0x1
+        DW      (??Fsm_26) /2
+        DB      0x1
+        DW      (??Fsm_28) /2
+        DB      0x1
+        DW      (??Fsm_2) /2
+        DB      0x1
+        DW      (??Fsm_4) /2
+        DB      0x1
+        DW      (??Fsm_6) /2
+        DB      0x4
         DW      (??Fsm_30) /2
-        DB      0x6
+        DB      0x1
         DW      (??Fsm_31) /2
+        DB      0x6
+        DW      (??Fsm_32) /2
         DB      251
 
         RSEG SWITCH:CODE:NOROOT(1)
 `?<Jumptable for AlarmSet>_0`:
         DB      0
         DB      0
-        DW      (??AlarmSet_5) /2
-        DW      8
-        DW      (??AlarmSet_4) /2
         DW      (??AlarmSet_6) /2
+        DW      8
+        DW      (??AlarmSet_5) /2
         DW      (??AlarmSet_7) /2
         DW      (??AlarmSet_8) /2
-        DW      (??AlarmSet_5) /2
-        DW      (??AlarmSet_5) /2
-        DW      (??AlarmSet_5) /2
-        DW      (??AlarmSet_5) /2
+        DW      (??AlarmSet_9) /2
+        DW      (??AlarmSet_6) /2
+        DW      (??AlarmSet_6) /2
+        DW      (??AlarmSet_6) /2
+        DW      (??AlarmSet_6) /2
 
         RSEG SWITCH:CODE:NOROOT(1)
 `?<Jumptable for AlarmSet>_1`:
         DB      0
         DB      0
-        DW      (??AlarmSet_10) /2
-        DW      8
-        DW      (??AlarmSet_9) /2
         DW      (??AlarmSet_11) /2
+        DW      8
+        DW      (??AlarmSet_10) /2
         DW      (??AlarmSet_12) /2
         DW      (??AlarmSet_13) /2
-        DW      (??AlarmSet_10) /2
-        DW      (??AlarmSet_10) /2
-        DW      (??AlarmSet_10) /2
-        DW      (??AlarmSet_10) /2
+        DW      (??AlarmSet_14) /2
+        DW      (??AlarmSet_11) /2
+        DW      (??AlarmSet_11) /2
+        DW      (??AlarmSet_11) /2
+        DW      (??AlarmSet_11) /2
 
         RSEG SWITCH:CODE:NOROOT(1)
 `?<Jumptable for AlarmSet>_2`:
         DB      0
         DB      0
-        DW      (??AlarmSet_15) /2
-        DW      8
-        DW      (??AlarmSet_14) /2
         DW      (??AlarmSet_16) /2
+        DW      8
+        DW      (??AlarmSet_15) /2
         DW      (??AlarmSet_17) /2
         DW      (??AlarmSet_18) /2
-        DW      (??AlarmSet_15) /2
-        DW      (??AlarmSet_15) /2
         DW      (??AlarmSet_19) /2
-        DW      (??AlarmSet_15) /2
+        DW      (??AlarmSet_16) /2
+        DW      (??AlarmSet_16) /2
+        DW      (??AlarmSet_20) /2
+        DW      (??AlarmSet_16) /2
 
         RSEG SWITCH:CODE:NOROOT(1)
 `?<Jumptable for AlarmSet>_3`:
         DB      0
         DB      0
-        DW      (??AlarmSet_21) /2
-        DW      8
-        DW      (??AlarmSet_20) /2
         DW      (??AlarmSet_22) /2
+        DW      8
+        DW      (??AlarmSet_21) /2
         DW      (??AlarmSet_23) /2
         DW      (??AlarmSet_24) /2
-        DW      (??AlarmSet_21) /2
-        DW      (??AlarmSet_21) /2
         DW      (??AlarmSet_25) /2
+        DW      (??AlarmSet_22) /2
+        DW      (??AlarmSet_22) /2
         DW      (??AlarmSet_26) /2
+        DW      (??AlarmSet_27) /2
 
         RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash CNotifyerControl::__vtbl[18]
@@ -3030,6 +3711,18 @@ __?EEARH:
         DC16 ??BEEP_SIGNAL_ON_TIME/2
 
         RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CTestModeNotifyerControl::__vtbl[18]
+??__vtbl_3:
+        DC16 `?~CTestModeNotifyerControl`/2, ??Fsm_1/2, ??NotifyerNormalOn_2/2
+        DC16 ??NotifyerIndicationOn_2/2, ??NotifyerPreventiveOn_2/2
+        DC16 ??NotifyerEmergencyOn_2/2, ??NotifyerOff_2/2, ??AlarmSet_2/2
+        DC16 ??NORMAL_SIGNAL_ON_TIME_3/2, ??NORMAL_SIGNAL_OFF_TIME_3/2
+        DC16 ??WARNING_SIGNAL_ON_TIME_3/2, ??WARNING_SIGNAL_OFF_TIME_3/2
+        DC16 ??ALARM_SIGNAL_ON_TIME_3/2, ??ALARM_SIGNAL_OFF_TIME_3/2
+        DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
+        DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
+
+        RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
 
         RSEG NEAR_F:CODE:ROOT(0)
@@ -3040,20 +3733,8 @@ __?EEARH:
 
         RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash CStatusLedNotifyerControl::__vtbl[18]
-??__vtbl_6:
-        DC16 `?~CStatusLedNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_2/2
-        DC16 ??NotifyerIndicationOn_2/2, ??NotifyerPreventiveOn_2/2
-        DC16 ??NotifyerEmergencyOn_2/2, ??NotifyerOff_2/2, ??AlarmSet_2/2
-        DC16 ??NORMAL_SIGNAL_ON_TIME/2, ??NORMAL_SIGNAL_OFF_TIME/2
-        DC16 ??WARNING_SIGNAL_ON_TIME/2, ??WARNING_SIGNAL_OFF_TIME/2
-        DC16 ??ALARM_SIGNAL_ON_TIME/2, ??ALARM_SIGNAL_OFF_TIME/2
-        DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
-        DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
-
-        RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CBuzzerNotifyerControl::__vtbl[18]
 ??__vtbl_7:
-        DC16 `?~CBuzzerNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_3/2
+        DC16 `?~CStatusLedNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_3/2
         DC16 ??NotifyerIndicationOn_3/2, ??NotifyerPreventiveOn_3/2
         DC16 ??NotifyerEmergencyOn_3/2, ??NotifyerOff_3/2, ??AlarmSet_3/2
         DC16 ??NORMAL_SIGNAL_ON_TIME/2, ??NORMAL_SIGNAL_OFF_TIME/2
@@ -3062,17 +3743,29 @@ __?EEARH:
         DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
         DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
 
+        RSEG NEAR_F:CODE:ROOT(0)
+// __vtbl_entry const __flash CBuzzerNotifyerControl::__vtbl[18]
+??__vtbl_8:
+        DC16 `?~CBuzzerNotifyerControl`/2, ??Fsm/2, ??NotifyerNormalOn_4/2
+        DC16 ??NotifyerIndicationOn_4/2, ??NotifyerPreventiveOn_4/2
+        DC16 ??NotifyerEmergencyOn_4/2, ??NotifyerOff_4/2, ??AlarmSet_4/2
+        DC16 ??NORMAL_SIGNAL_ON_TIME/2, ??NORMAL_SIGNAL_OFF_TIME/2
+        DC16 ??WARNING_SIGNAL_ON_TIME/2, ??WARNING_SIGNAL_OFF_TIME/2
+        DC16 ??ALARM_SIGNAL_ON_TIME/2, ??ALARM_SIGNAL_OFF_TIME/2
+        DC16 ??ERROR_SIGNAL_ON_TIME/2, ??ERROR_SIGNAL_OFF_TIME/2
+        DC16 ??ERROR_SIGNAL_PAUSE_TIME/2, ??BEEP_SIGNAL_ON_TIME/2
+
         END
-//  629 
-//  630 
-//  631 
+//  808 //-----------------------------------------------------------------------------------------------------
+//  809 
+//  810 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 768 bytes in segment CODE
-//   202 bytes in segment NEAR_F
+// 3 666 bytes in segment CODE
+//   238 bytes in segment NEAR_F
 //   152 bytes in segment SWITCH
 // 
-// 2 734 bytes of CODE memory (+ 388 bytes shared)
+// 3 584 bytes of CODE memory (+ 472 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

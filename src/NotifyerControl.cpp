@@ -626,6 +626,185 @@ void CBuzzerNotifyerControl::NotifyerOff(void)
     CBuzzer::Off();
     CPss21::BoardWindowsUpdate();
 }
+//-----------------------------------------------------------------------------------------------------
 
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+CTestModeNotifyerControl::CTestModeNotifyerControl()
+{
+    SetFsmState(STOP);
+    SetSavedFsmState(STOP);
+}
+
+CTestModeNotifyerControl::~CTestModeNotifyerControl()
+{
+    SetFsmState(STOP);
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+{
+//    // Сохраним текущее состояние автомата.
+//    SetSavedFsmState(GetFsmState());
+//    switch (uiAlarmType)
+//    {
+//    case NORMAL:
+//        SetFsmState(STOP);
+//        break;
+//
+//    case INDICATION:
+//        SetFsmState(INDICATION_SIGNAL_START);
+//        break;
+//
+//    case PREVENTIVE:
+//        SetFsmState(WARNING_SIGNAL_START);
+//        break;
+//
+//    case EMERGENCY:
+//        SetFsmState(WARNING_SIGNAL_START);
+//        break;
+//
+//    case IND_PREVENTIVE:
+//        break;
+//
+//    case IND_EMERGENCY:
+//        break;
+//
+//    case ERROR:
+//        break;
+//
+//    case BEEP_SIGNAL:
+//        break;
+//
+//    default:
+//        break;
+//    }
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::NotifyerNormalOn(void)
+{
+    CPss21::AllAlarmWindowOn(INDICATION);
+    CBuzzer::LowOn();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::NotifyerIndicationOn(void)
+{
+    CPss21::AllAlarmWindowOn(INDICATION);
+    CBuzzer::LowOn();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::NotifyerPreventiveOn(void)
+{
+    CPss21::AllAlarmWindowOn(PREVENTIVE);
+    CBuzzer::LowOn();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::NotifyerEmergencyOn(void)
+{
+    CPss21::AllAlarmWindowOn(EMERGENCY);
+    CBuzzer::LowOn();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::NotifyerOff(void)
+{
+    CBuzzer::Off();
+    CPss21::AllAlarmWindowOff();
+    CPss21::BoardWindowsUpdate();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CTestModeNotifyerControl::Fsm(void)
+{
+    switch (GetFsmState())
+    {
+    case IDDLE:
+        break;
+
+    case INDICATION_SIGNAL_START:
+        m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+        NotifyerIndicationOn();
+        SetFsmState(INDICATION_SIGNAL_ON);
+        break;
+
+    case INDICATION_SIGNAL_ON:
+        if (m_xTimer.IsOverflow())
+        {
+            m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+            NotifyerOff();
+            SetFsmState(INDICATION_SIGNAL_OFF);
+        }
+        break;
+
+    case INDICATION_SIGNAL_OFF:
+        if (m_xTimer.IsOverflow())
+        {
+            SetFsmState(WARNING_SIGNAL_START);
+        }
+        break;
+
+    case WARNING_SIGNAL_START:
+        m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
+        NotifyerPreventiveOn();
+        SetFsmState(WARNING_SIGNAL_ON);
+        break;
+
+    case WARNING_SIGNAL_ON:
+        if (m_xTimer.IsOverflow())
+        {
+            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+            NotifyerOff();
+            SetFsmState(WARNING_SIGNAL_OFF);
+        }
+        break;
+
+    case WARNING_SIGNAL_OFF:
+        if (m_xTimer.IsOverflow())
+        {
+            SetFsmState(ALARM_SIGNAL_START);
+        }
+        break;
+
+    case ALARM_SIGNAL_START:
+        m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+        NotifyerEmergencyOn();
+        SetFsmState(ALARM_SIGNAL_ON);
+        break;
+
+    case ALARM_SIGNAL_ON:
+        if (m_xTimer.IsOverflow())
+        {
+            m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+            NotifyerOff();
+            SetFsmState(ALARM_SIGNAL_OFF);
+        }
+        break;
+
+    case ALARM_SIGNAL_OFF:
+        if (m_xTimer.IsOverflow())
+        {
+            SetFsmState(STOP);
+        }
+        break;
+
+    case STOP:
+        NotifyerOff();
+        SetFsmState(IDDLE);
+        break;
+
+    default:
+        break;
+    };
+}
+//-----------------------------------------------------------------------------------------------------
 
 

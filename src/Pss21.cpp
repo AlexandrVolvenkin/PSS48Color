@@ -70,7 +70,9 @@ CPreventiveAlarmWindowNotifyerControl CPss21::m_xPreventiveAlarmWindowNotifyerCo
 CEmergencyAlarmWindowNotifyerControl CPss21::m_xEmergencyAlarmWindowNotifyerControl;
 CStatusLedNotifyerControl CPss21::m_xStatusLedNotifyerControl;
 CBuzzerNotifyerControl CPss21::m_xBuzzerNotifyerControl;
+CTestModeNotifyerControl CPss21::m_xTestModeNotifyerControl;
 CModbusRtuLinkControl CPss21::m_xModbusRtuLinkControl;
+
 
 uint8_t CPss21::m_uiCommonAlarmType;
 uint8_t CPss21::m_uiCommonAlarmTypePrevious;
@@ -1353,7 +1355,7 @@ void CPss21::AllAlarmWindowOff(void)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
+//        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
@@ -1368,14 +1370,25 @@ void CPss21::TestMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
 
+    m_xTestModeNotifyerControl.Fsm();
+//    NotifyersControlProcessing();
+
     CPss21::KeyStateProcessing();
 
-    // Есть команда - "квитировать"?
+    // Есть команда - "квитировать" или "сброс"?
     if ((GetPanelReceipt()) ||
             (GetExternalReceipt()) ||
             (GetModbusReceipt()) ||
-            (CPss21::m_xMainCycleTimer.IsOverflow()))
+            (GetPanelReset()) ||
+            (GetExternalReset()) ||
+            (GetModbusReset()) ||
+            // автомат извещателя тестового режима закончил работу?
+            (m_xTestModeNotifyerControl.GetFsmState() ==
+             CNotifyerControl::IDDLE))
     {
+        // если прекращаем работу по сбросу или квитированию, то
+        // остановим автомат извещателя тестового режима
+        m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::STOP);
         SetFsmState(TEST_STOP);
     }
     //    if (CPss21::m_xMainCycleTimer.IsOverflow())
@@ -1383,7 +1396,7 @@ void CPss21::TestMainCycle(void)
 //        SetFsmState(TEST_STOP);
 //    }
 
-    NotifyersControlProcessing();
+
 
     CPss21::ReceiptResetGlobalFlagsClear();
 
@@ -1602,9 +1615,10 @@ void CPss21::MainFsm(void)
 //-----------------------------------------------------------------------------------------------------
     case TEST_START:
         SaveContextNotifyerControl();
-        AlarmTypeSet(PREVENTIVE);
-        CPss21::AllAlarmWindowOn(PREVENTIVE);
-        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+//        AlarmTypeSet(PREVENTIVE);
+//        CPss21::AllAlarmWindowOn(PREVENTIVE);
+//        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+        m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
         SetFsmState(TEST_ON);
 
         CPlatform::WatchdogReset();

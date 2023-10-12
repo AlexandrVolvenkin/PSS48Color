@@ -146,7 +146,7 @@ public:
     };
 
 protected:
-private:
+//private:
     // Тип сигнализации.
     uint8_t m_uiAlarmType;
     CTimer m_xTimer;
@@ -298,5 +298,55 @@ protected:
 private:
 };
 
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CTestModeNotifyerControl : public CNotifyerControl
+{
+public:
+    CTestModeNotifyerControl();
+    virtual ~CTestModeNotifyerControl();
+    void NotifyerNormalOn(void);
+    void NotifyerIndicationOn(void);
+    void NotifyerPreventiveOn(void);
+    void NotifyerEmergencyOn(void);
+    void NotifyerOff(void);
+    void AlarmSet(uint8_t uiAlarmType);
+    void Fsm(void);
+
+    uint16_t NORMAL_SIGNAL_ON_TIME(void)
+    {
+        return 1000;
+    };
+    uint16_t NORMAL_SIGNAL_OFF_TIME(void)
+    {
+        return 1000;
+    };
+    uint16_t WARNING_SIGNAL_ON_TIME(void)
+    {
+        return 1000;
+    };
+    uint16_t WARNING_SIGNAL_OFF_TIME(void)
+    {
+        return 1000;
+    };
+    uint16_t ALARM_SIGNAL_ON_TIME(void)
+    {
+        return 1000;
+    };
+    uint16_t ALARM_SIGNAL_OFF_TIME(void)
+    {
+        return 1000;
+    };
+
+protected:
+private:
+};
 //-----------------------------------------------------------------------------------------------------
 #endif // CNOTIFYERCONTROL_H
