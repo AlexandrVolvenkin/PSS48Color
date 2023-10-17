@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  18:41:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          17/Oct/2023  11:47:20
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW212B.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW2FC6.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -174,6 +174,7 @@
         PUBWEAK ??SpiSlaveSelectEnableOff
         PUBWEAK ??SpiSlaveSelectEnableOn
         PUBWEAK ??SpiSlaveSelectEnableSetPinOutput
+        PUBWEAK ??TEST_ON_TIME
         PUBLIC ??TestMainCycle
         PUBWEAK ??WatchdogEnable
         PUBWEAK ??WatchdogReset
@@ -6050,7 +6051,12 @@ uiMapTestCounter:
         RCALL   ??SaveContextNotifyerControl
 // 1618 //        AlarmTypeSet(PREVENTIVE);
 // 1619 //        CPss21::AllAlarmWindowOn(PREVENTIVE);
-// 1620 //        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+// 1620         CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+        CALL    ??TEST_ON_TIME
+        MOVW    R19:R18, R17:R16
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??Set_1
 // 1621         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
         LDI     R18, 1
         LDI     R16, LOW(??m_xTestModeNotifyerControl)
@@ -6066,23 +6072,37 @@ uiMapTestCounter:
         RET
 // 1626 
 // 1627     case TEST_ON:
-// 1628 //        if (CPss21::m_xMainCycleTimer.IsOverflow())
-// 1629 //        {
-// 1630 //            CPss21::AllAlarmWindowOff();
-// 1631 //            RestoreContextNotifyerControl();
-// 1632 //            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1633 //            SetFsmState(MAIN_CYCLE_START_WAITING);
-// 1634 //        }
-// 1635 
-// 1636         TestMainCycle();
+// 1628         if (CPss21::m_xMainCycleTimer.IsOverflow())
 ??MainFsm_13:
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??IsOverflow
+        TST     R16
+        BREQ    ??MainFsm_14
+// 1629         {
+// 1630             CPss21::m_xMainCycleTimer.Set(1000);
+        LDI     R18, 232
+        LDI     R19, 3
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??Set_1
+// 1631             CPss21::BoardWindowsUpdate();
+        CALL    ??BoardWindowsUpdate
+// 1632             SetFsmState(MAIN_CYCLE_START_WAITING);
+        LDI     R16, 2
+        CALL    ??SetFsmState_1
+// 1633         }
+// 1634 
+// 1635         TestMainCycle();
+??MainFsm_14:
         RCALL   ??TestMainCycle
+// 1636 
 // 1637         break;
         RET
 // 1638 
 // 1639     case TEST_STOP:
 // 1640         CPss21::AllAlarmWindowOff();
-??MainFsm_14:
+??MainFsm_15:
         CALL    ??AllAlarmWindowOff
 // 1641         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
@@ -6102,7 +6122,7 @@ uiMapTestCounter:
 // 1647     case ERROR_START:
 // 1648         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
 // 1649         ModbusDefaultInit();
-??MainFsm_15:
+??MainFsm_16:
         CALL    ??ModbusDefaultInit
 // 1650         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
@@ -6144,7 +6164,7 @@ uiMapTestCounter:
 // 1662 
 // 1663     case ERROR_ON:
 // 1664         ErrorMainCycle();
-??MainFsm_16:
+??MainFsm_17:
         RCALL   ??ErrorMainCycle
 // 1665         break;
         RET
@@ -6152,7 +6172,7 @@ uiMapTestCounter:
 // 1667 //-----------------------------------------------------------------------------------------------------
 // 1668     case LINK_CONTROL_ERROR_START:
 // 1669         SaveContextNotifyerControl();
-??MainFsm_17:
+??MainFsm_18:
         RCALL   ??SaveContextNotifyerControl
 // 1670         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
@@ -6193,14 +6213,14 @@ uiMapTestCounter:
 // 1681 
 // 1682     case LINK_CONTROL_ERROR_ON:
 // 1683         LinkControlErrorMainCycle();
-??MainFsm_18:
+??MainFsm_19:
         RCALL   ??LinkControlErrorMainCycle
 // 1684         break;
         RET
 // 1685 
 // 1686     case LINK_CONTROL_ERROR_OFF:
 // 1687         CPss21::AllAlarmWindowOff();
-??MainFsm_19:
+??MainFsm_20:
         CALL    ??AllAlarmWindowOff
 // 1688         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
@@ -6222,7 +6242,7 @@ uiMapTestCounter:
 // 1695 //-----------------------------------------------------------------------------------------------------
 // 1696     case PROGRAMMING_START:
 // 1697         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_20:
+??MainFsm_21:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6245,7 +6265,7 @@ uiMapTestCounter:
 // 1705 
 // 1706     case PROGRAMMING_ON:
 // 1707         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_21:
+??MainFsm_22:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6258,7 +6278,7 @@ uiMapTestCounter:
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??MainFsm_22
+        BREQ    ??MainFsm_23
 // 1712         {
 // 1713             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
         LDI     R18, 7
@@ -6271,7 +6291,7 @@ uiMapTestCounter:
 // 1715         }
 // 1716 
 // 1717         CPlatform::WatchdogReset();
-??MainFsm_22:
+??MainFsm_23:
         CALL    ??WatchdogReset
 // 1718         break;
         RET
@@ -6279,7 +6299,7 @@ uiMapTestCounter:
 // 1720     case REBOOT:
 // 1721         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
 // 1722         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_23:
+??MainFsm_24:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6293,7 +6313,7 @@ uiMapTestCounter:
 // 1729         break;
 // 1730     }
 // 1731 }
-??MainFsm_24:
+??MainFsm_25:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -6637,6 +6657,13 @@ uiMapTestCounter:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
+// __version_3 uint16_t CPss21::TEST_ON_TIME()
+??TEST_ON_TIME:
+        LDI     R16, 136
+        LDI     R17, 19
+        RET
+
+        RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint8_t CPss21::GetFsmState()
 ??GetFsmState_1:
         LDS     R16, ??m_uiFsmState
@@ -6870,22 +6897,21 @@ __?EEARH:
 `?<Jumptable for MainFsm>_0`:
         DB      0
         DB      0
-        DW      (??MainFsm_24) /2
+        DW      (??MainFsm_25) /2
         DW      22
         DW      (??MainFsm_1) /2
-        DW      (??MainFsm_24) /2
+        DW      (??MainFsm_25) /2
         DW      (??MainFsm_3) /2
         DW      (??MainFsm_5) /2
         DW      (??MainFsm_10) /2
         DW      (??MainFsm_11) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
+        DW      (??MainFsm_25) /2
+        DW      (??MainFsm_25) /2
+        DW      (??MainFsm_25) /2
+        DW      (??MainFsm_25) /2
+        DW      (??MainFsm_25) /2
         DW      (??MainFsm_12) /2
         DW      (??MainFsm_13) /2
-        DW      (??MainFsm_14) /2
         DW      (??MainFsm_15) /2
         DW      (??MainFsm_16) /2
         DW      (??MainFsm_17) /2
@@ -6893,13 +6919,14 @@ __?EEARH:
         DW      (??MainFsm_19) /2
         DW      (??MainFsm_20) /2
         DW      (??MainFsm_21) /2
-        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_22) /2
+        DW      (??MainFsm_24) /2
 
         END
 // 1732 
 // 
 //   105 bytes in segment ABSOLUTE
-// 6 984 bytes in segment CODE
+// 7 038 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -6908,7 +6935,7 @@ __?EEARH:
 // 1 756 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 6 776 bytes of CODE memory (+ 434 bytes shared)
+// 6 824 bytes of CODE memory (+ 440 bytes shared)
 // 1 846 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

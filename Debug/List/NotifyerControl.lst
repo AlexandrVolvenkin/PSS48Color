@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           17/Oct/2023  11:29:40
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           17/Oct/2023  11:47:20
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW530.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW2FC5.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o
@@ -2900,28 +2900,28 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000022   C069               RJMP    ??Fsm_37
    \   00000024   950A               DEC     R16
    \   00000026   F409               BRNE    $+2+2
-   \   00000028   C087               RJMP    ??Fsm_38
+   \   00000028   C0F7               RJMP    ??Fsm_38
    \   0000002A   950A               DEC     R16
    \   0000002C   F409               BRNE    $+2+2
-   \   0000002E   C0AC               RJMP    ??Fsm_39
+   \   0000002E   C084               RJMP    ??Fsm_39
    \   00000030   5004               SUBI    R16, 4
    \   00000032   F409               BRNE    $+2+2
-   \   00000034   C0B5               RJMP    ??Fsm_40
+   \   00000034   C08D               RJMP    ??Fsm_40
    \   00000036   950A               DEC     R16
    \   00000038   F409               BRNE    $+2+2
-   \   0000003A   C0D3               RJMP    ??Fsm_41
+   \   0000003A   C0AB               RJMP    ??Fsm_41
    \   0000003C   950A               DEC     R16
    \   0000003E   F409               BRNE    $+2+2
-   \   00000040   C0F8               RJMP    ??Fsm_42
+   \   00000040   C0D0               RJMP    ??Fsm_42
    \   00000042   5106               SUBI    R16, 22
    \   00000044   F409               BRNE    $+2+2
-   \   00000046   C101               RJMP    ??Fsm_43
-   \   00000048   C10F               RJMP    ??Fsm_44
+   \   00000046   C0D9               RJMP    ??Fsm_43
+   \   00000048   C0E7               RJMP    ??Fsm_38
     730              {
     731              case IDDLE:
     732                  break;
    \                     ??Fsm_33:
-   \   0000004A   C10E               RJMP    ??Fsm_44
+   \   0000004A   C0E6               RJMP    ??Fsm_38
     733          
     734              case INDICATION_SIGNAL_START:
     735                  m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
@@ -2959,7 +2959,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000086   018D               MOVW    R17:R16, R27:R26
    \   00000088   ........           CALL    ??SetFsmState
     738                  break;
-   \   0000008C   C0ED               RJMP    ??Fsm_44
+   \   0000008C   C0C5               RJMP    ??Fsm_38
     739          
     740              case INDICATION_SIGNAL_ON:
     741                  if (m_xTimer.IsOverflow())
@@ -2969,7 +2969,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000092   4F1F               SBCI    R17, 255
    \   00000094   ........           CALL    ??IsOverflow
    \   00000098   2300               TST     R16
-   \   0000009A   F101               BREQ    ??Fsm_45
+   \   0000009A   F101               BREQ    ??Fsm_44
     742                  {
     743                      m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
    \   0000009C   018D               MOVW    R17:R16, R27:R26
@@ -3006,8 +3006,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000D8   ........           CALL    ??SetFsmState
     746                  }
     747                  break;
-   \                     ??Fsm_45:
-   \   000000DC   C0C5               RJMP    ??Fsm_44
+   \                     ??Fsm_44:
+   \   000000DC   C09D               RJMP    ??Fsm_38
     748          
     749              case INDICATION_SIGNAL_OFF:
     750                  if (m_xTimer.IsOverflow())
@@ -3017,7 +3017,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000E2   4F1F               SBCI    R17, 255
    \   000000E4   ........           CALL    ??IsOverflow
    \   000000E8   2300               TST     R16
-   \   000000EA   F021               BREQ    ??Fsm_46
+   \   000000EA   F021               BREQ    ??Fsm_45
     751                  {
     752                      SetFsmState(WARNING_SIGNAL_START);
    \   000000EC   E027               LDI     R18, 7
@@ -3025,8 +3025,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000F0   ........           CALL    ??SetFsmState
     753                  }
     754                  break;
-   \                     ??Fsm_46:
-   \   000000F4   C0B9               RJMP    ??Fsm_44
+   \                     ??Fsm_45:
+   \   000000F4   C091               RJMP    ??Fsm_38
     755          
     756              case WARNING_SIGNAL_START:
     757                  m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
@@ -3064,87 +3064,94 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000130   018D               MOVW    R17:R16, R27:R26
    \   00000132   ........           CALL    ??SetFsmState
     760                  break;
-   \   00000136   C098               RJMP    ??Fsm_44
+   \   00000136   C070               RJMP    ??Fsm_38
     761          
     762              case WARNING_SIGNAL_ON:
-    763                  if (m_xTimer.IsOverflow())
-   \                     ??Fsm_38:
+    763          //        if (m_xTimer.IsOverflow())
+    764          //        {
+    765          //            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+    766          //            NotifyerOff();
+    767          //            SetFsmState(WARNING_SIGNAL_OFF);
+    768          //        }
+    769                  break;
+    770          
+    771              case WARNING_SIGNAL_OFF:
+    772                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_39:
    \   00000138   018D               MOVW    R17:R16, R27:R26
    \   0000013A   5F0A               SUBI    R16, 250
    \   0000013C   4F1F               SBCI    R17, 255
    \   0000013E   ........           CALL    ??IsOverflow
    \   00000142   2300               TST     R16
-   \   00000144   F101               BREQ    ??Fsm_47
-    764                  {
-    765                      m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
-   \   00000146   018D               MOVW    R17:R16, R27:R26
-   \   00000148   9611               ADIW    R27:R26, 1
-   \   0000014A   91ED               LD      R30, X+
-   \   0000014C   91FC               LD      R31, X
-   \   0000014E   9712               SBIW    R27:R26, 2
-   \   00000150   9676               ADIW    R31:R30, 22
-   \   00000152   9125               LPM     R18, Z+
-   \   00000154   9134               LPM     R19, Z
-   \   00000156   9777               SBIW    R31:R30, 23
-   \   00000158   01F9               MOVW    R31:R30, R19:R18
-   \   0000015A   9509               ICALL
-   \   0000015C   0198               MOVW    R19:R18, R17:R16
-   \   0000015E   018D               MOVW    R17:R16, R27:R26
-   \   00000160   5F0A               SUBI    R16, 250
-   \   00000162   4F1F               SBCI    R17, 255
-   \   00000164   ........           CALL    ??Set
-    766                      NotifyerOff();
-   \   00000168   018D               MOVW    R17:R16, R27:R26
-   \   0000016A   9611               ADIW    R27:R26, 1
-   \   0000016C   91ED               LD      R30, X+
-   \   0000016E   91FC               LD      R31, X
-   \   00000170   9712               SBIW    R27:R26, 2
-   \   00000172   963C               ADIW    R31:R30, 12
-   \   00000174   9125               LPM     R18, Z+
-   \   00000176   9134               LPM     R19, Z
-   \   00000178   973D               SBIW    R31:R30, 13
-   \   0000017A   01F9               MOVW    R31:R30, R19:R18
-   \   0000017C   9509               ICALL
-    767                      SetFsmState(WARNING_SIGNAL_OFF);
-   \   0000017E   E029               LDI     R18, 9
-   \   00000180   018D               MOVW    R17:R16, R27:R26
-   \   00000182   ........           CALL    ??SetFsmState
-    768                  }
-    769                  break;
-   \                     ??Fsm_47:
-   \   00000186   C070               RJMP    ??Fsm_44
-    770          
-    771              case WARNING_SIGNAL_OFF:
-    772                  if (m_xTimer.IsOverflow())
-   \                     ??Fsm_39:
-   \   00000188   018D               MOVW    R17:R16, R27:R26
-   \   0000018A   5F0A               SUBI    R16, 250
-   \   0000018C   4F1F               SBCI    R17, 255
-   \   0000018E   ........           CALL    ??IsOverflow
-   \   00000192   2300               TST     R16
-   \   00000194   F021               BREQ    ??Fsm_48
+   \   00000144   F021               BREQ    ??Fsm_46
     773                  {
     774                      SetFsmState(ALARM_SIGNAL_START);
-   \   00000196   E02D               LDI     R18, 13
-   \   00000198   018D               MOVW    R17:R16, R27:R26
-   \   0000019A   ........           CALL    ??SetFsmState
+   \   00000146   E02D               LDI     R18, 13
+   \   00000148   018D               MOVW    R17:R16, R27:R26
+   \   0000014A   ........           CALL    ??SetFsmState
     775                  }
     776                  break;
-   \                     ??Fsm_48:
-   \   0000019E   C064               RJMP    ??Fsm_44
+   \                     ??Fsm_46:
+   \   0000014E   C064               RJMP    ??Fsm_38
     777          
     778              case ALARM_SIGNAL_START:
     779                  m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
    \                     ??Fsm_40:
+   \   00000150   018D               MOVW    R17:R16, R27:R26
+   \   00000152   9611               ADIW    R27:R26, 1
+   \   00000154   91ED               LD      R30, X+
+   \   00000156   91FC               LD      R31, X
+   \   00000158   9712               SBIW    R27:R26, 2
+   \   0000015A   9678               ADIW    R31:R30, 24
+   \   0000015C   9125               LPM     R18, Z+
+   \   0000015E   9134               LPM     R19, Z
+   \   00000160   9779               SBIW    R31:R30, 25
+   \   00000162   01F9               MOVW    R31:R30, R19:R18
+   \   00000164   9509               ICALL
+   \   00000166   0198               MOVW    R19:R18, R17:R16
+   \   00000168   018D               MOVW    R17:R16, R27:R26
+   \   0000016A   5F0A               SUBI    R16, 250
+   \   0000016C   4F1F               SBCI    R17, 255
+   \   0000016E   ........           CALL    ??Set
+    780                  NotifyerEmergencyOn();
+   \   00000172   018D               MOVW    R17:R16, R27:R26
+   \   00000174   9611               ADIW    R27:R26, 1
+   \   00000176   91ED               LD      R30, X+
+   \   00000178   91FC               LD      R31, X
+   \   0000017A   9712               SBIW    R27:R26, 2
+   \   0000017C   963A               ADIW    R31:R30, 10
+   \   0000017E   9125               LPM     R18, Z+
+   \   00000180   9134               LPM     R19, Z
+   \   00000182   973B               SBIW    R31:R30, 11
+   \   00000184   01F9               MOVW    R31:R30, R19:R18
+   \   00000186   9509               ICALL
+    781                  SetFsmState(ALARM_SIGNAL_ON);
+   \   00000188   E02E               LDI     R18, 14
+   \   0000018A   018D               MOVW    R17:R16, R27:R26
+   \   0000018C   ........           CALL    ??SetFsmState
+    782                  break;
+   \   00000190   C043               RJMP    ??Fsm_38
+    783          
+    784              case ALARM_SIGNAL_ON:
+    785                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_41:
+   \   00000192   018D               MOVW    R17:R16, R27:R26
+   \   00000194   5F0A               SUBI    R16, 250
+   \   00000196   4F1F               SBCI    R17, 255
+   \   00000198   ........           CALL    ??IsOverflow
+   \   0000019C   2300               TST     R16
+   \   0000019E   F1E1               BREQ    ??Fsm_38
+    786                  {
+    787                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
    \   000001A0   018D               MOVW    R17:R16, R27:R26
    \   000001A2   9611               ADIW    R27:R26, 1
    \   000001A4   91ED               LD      R30, X+
    \   000001A6   91FC               LD      R31, X
    \   000001A8   9712               SBIW    R27:R26, 2
-   \   000001AA   9678               ADIW    R31:R30, 24
+   \   000001AA   967A               ADIW    R31:R30, 26
    \   000001AC   9125               LPM     R18, Z+
    \   000001AE   9134               LPM     R19, Z
-   \   000001B0   9779               SBIW    R31:R30, 25
+   \   000001B0   977B               SBIW    R31:R30, 27
    \   000001B2   01F9               MOVW    R31:R30, R19:R18
    \   000001B4   9509               ICALL
    \   000001B6   0198               MOVW    R19:R18, R17:R16
@@ -3152,118 +3159,72 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000001BA   5F0A               SUBI    R16, 250
    \   000001BC   4F1F               SBCI    R17, 255
    \   000001BE   ........           CALL    ??Set
-    780                  NotifyerEmergencyOn();
+    788                      NotifyerOff();
    \   000001C2   018D               MOVW    R17:R16, R27:R26
    \   000001C4   9611               ADIW    R27:R26, 1
    \   000001C6   91ED               LD      R30, X+
    \   000001C8   91FC               LD      R31, X
    \   000001CA   9712               SBIW    R27:R26, 2
-   \   000001CC   963A               ADIW    R31:R30, 10
+   \   000001CC   963C               ADIW    R31:R30, 12
    \   000001CE   9125               LPM     R18, Z+
    \   000001D0   9134               LPM     R19, Z
-   \   000001D2   973B               SBIW    R31:R30, 11
+   \   000001D2   973D               SBIW    R31:R30, 13
    \   000001D4   01F9               MOVW    R31:R30, R19:R18
    \   000001D6   9509               ICALL
-    781                  SetFsmState(ALARM_SIGNAL_ON);
-   \   000001D8   E02E               LDI     R18, 14
+    789                      SetFsmState(ALARM_SIGNAL_OFF);
+   \   000001D8   E02F               LDI     R18, 15
    \   000001DA   018D               MOVW    R17:R16, R27:R26
    \   000001DC   ........           CALL    ??SetFsmState
-    782                  break;
-   \   000001E0   C043               RJMP    ??Fsm_44
-    783          
-    784              case ALARM_SIGNAL_ON:
-    785                  if (m_xTimer.IsOverflow())
-   \                     ??Fsm_41:
+    790                  }
+    791                  break;
+   \   000001E0   C01B               RJMP    ??Fsm_38
+    792          
+    793              case ALARM_SIGNAL_OFF:
+    794                  if (m_xTimer.IsOverflow())
+   \                     ??Fsm_42:
    \   000001E2   018D               MOVW    R17:R16, R27:R26
    \   000001E4   5F0A               SUBI    R16, 250
    \   000001E6   4F1F               SBCI    R17, 255
    \   000001E8   ........           CALL    ??IsOverflow
    \   000001EC   2300               TST     R16
-   \   000001EE   F1E1               BREQ    ??Fsm_44
-    786                  {
-    787                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
-   \   000001F0   018D               MOVW    R17:R16, R27:R26
-   \   000001F2   9611               ADIW    R27:R26, 1
-   \   000001F4   91ED               LD      R30, X+
-   \   000001F6   91FC               LD      R31, X
-   \   000001F8   9712               SBIW    R27:R26, 2
-   \   000001FA   967A               ADIW    R31:R30, 26
-   \   000001FC   9125               LPM     R18, Z+
-   \   000001FE   9134               LPM     R19, Z
-   \   00000200   977B               SBIW    R31:R30, 27
-   \   00000202   01F9               MOVW    R31:R30, R19:R18
-   \   00000204   9509               ICALL
-   \   00000206   0198               MOVW    R19:R18, R17:R16
-   \   00000208   018D               MOVW    R17:R16, R27:R26
-   \   0000020A   5F0A               SUBI    R16, 250
-   \   0000020C   4F1F               SBCI    R17, 255
-   \   0000020E   ........           CALL    ??Set
-    788                      NotifyerOff();
-   \   00000212   018D               MOVW    R17:R16, R27:R26
-   \   00000214   9611               ADIW    R27:R26, 1
-   \   00000216   91ED               LD      R30, X+
-   \   00000218   91FC               LD      R31, X
-   \   0000021A   9712               SBIW    R27:R26, 2
-   \   0000021C   963C               ADIW    R31:R30, 12
-   \   0000021E   9125               LPM     R18, Z+
-   \   00000220   9134               LPM     R19, Z
-   \   00000222   973D               SBIW    R31:R30, 13
-   \   00000224   01F9               MOVW    R31:R30, R19:R18
-   \   00000226   9509               ICALL
-    789                      SetFsmState(ALARM_SIGNAL_OFF);
-   \   00000228   E02F               LDI     R18, 15
-   \   0000022A   018D               MOVW    R17:R16, R27:R26
-   \   0000022C   ........           CALL    ??SetFsmState
-    790                  }
-    791                  break;
-   \   00000230   C01B               RJMP    ??Fsm_44
-    792          
-    793              case ALARM_SIGNAL_OFF:
-    794                  if (m_xTimer.IsOverflow())
-   \                     ??Fsm_42:
-   \   00000232   018D               MOVW    R17:R16, R27:R26
-   \   00000234   5F0A               SUBI    R16, 250
-   \   00000236   4F1F               SBCI    R17, 255
-   \   00000238   ........           CALL    ??IsOverflow
-   \   0000023C   2300               TST     R16
-   \   0000023E   F0A1               BREQ    ??Fsm_44
+   \   000001EE   F0A1               BREQ    ??Fsm_38
     795                  {
     796                      SetFsmState(STOP);
-   \   00000240   E225               LDI     R18, 37
-   \   00000242   018D               MOVW    R17:R16, R27:R26
-   \   00000244   ........           CALL    ??SetFsmState
+   \   000001F0   E225               LDI     R18, 37
+   \   000001F2   018D               MOVW    R17:R16, R27:R26
+   \   000001F4   ........           CALL    ??SetFsmState
     797                  }
     798                  break;
-   \   00000248   C00F               RJMP    ??Fsm_44
+   \   000001F8   C00F               RJMP    ??Fsm_38
     799          
     800              case STOP:
     801                  NotifyerOff();
    \                     ??Fsm_43:
-   \   0000024A   018D               MOVW    R17:R16, R27:R26
-   \   0000024C   9611               ADIW    R27:R26, 1
-   \   0000024E   91ED               LD      R30, X+
-   \   00000250   91FC               LD      R31, X
-   \   00000252   9712               SBIW    R27:R26, 2
-   \   00000254   963C               ADIW    R31:R30, 12
-   \   00000256   9125               LPM     R18, Z+
-   \   00000258   9134               LPM     R19, Z
-   \   0000025A   973D               SBIW    R31:R30, 13
-   \   0000025C   01F9               MOVW    R31:R30, R19:R18
-   \   0000025E   9509               ICALL
+   \   000001FA   018D               MOVW    R17:R16, R27:R26
+   \   000001FC   9611               ADIW    R27:R26, 1
+   \   000001FE   91ED               LD      R30, X+
+   \   00000200   91FC               LD      R31, X
+   \   00000202   9712               SBIW    R27:R26, 2
+   \   00000204   963C               ADIW    R31:R30, 12
+   \   00000206   9125               LPM     R18, Z+
+   \   00000208   9134               LPM     R19, Z
+   \   0000020A   973D               SBIW    R31:R30, 13
+   \   0000020C   01F9               MOVW    R31:R30, R19:R18
+   \   0000020E   9509               ICALL
     802                  SetFsmState(IDDLE);
-   \   00000260   E020               LDI     R18, 0
-   \   00000262   018D               MOVW    R17:R16, R27:R26
-   \   00000264   ........           CALL    ??SetFsmState
+   \   00000210   E020               LDI     R18, 0
+   \   00000212   018D               MOVW    R17:R16, R27:R26
+   \   00000214   ........           CALL    ??SetFsmState
     803                  break;
     804          
     805              default:
     806                  break;
     807              };
     808          }
-   \                     ??Fsm_44:
-   \   00000268   91A9               LD      R26, Y+
-   \   0000026A   91B9               LD      R27, Y+
-   \   0000026C   9508               RET
+   \                     ??Fsm_38:
+   \   00000218   91A9               LD      R26, Y+
+   \   0000021A   91B9               LD      R27, Y+
+   \   0000021C   9508               RET
 
    \                                 In  segment SWITCH, align 2, keep-with-next
    \                     `?<Jumptable for Fsm>_0`:
@@ -3748,7 +3709,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
        8  CTestModeNotifyerControl::ALARM_SIGNAL_ON_TIME()
        2  CTestModeNotifyerControl::AlarmSet(uint8_t)
       44  CTestModeNotifyerControl::CTestModeNotifyerControl()
-     622  CTestModeNotifyerControl::Fsm()
+     542  CTestModeNotifyerControl::Fsm()
        8  CTestModeNotifyerControl::NORMAL_SIGNAL_OFF_TIME()
        8  CTestModeNotifyerControl::NORMAL_SIGNAL_ON_TIME()
       22  CTestModeNotifyerControl::NotifyerEmergencyOn()
@@ -3856,11 +3817,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 
  
    105 bytes in segment ABSOLUTE
- 3 666 bytes in segment CODE
+ 3 586 bytes in segment CODE
    238 bytes in segment NEAR_F
    152 bytes in segment SWITCH
  
- 3 584 bytes of CODE memory (+ 472 bytes shared)
+ 3 504 bytes of CODE memory (+ 472 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

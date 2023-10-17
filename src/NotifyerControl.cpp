@@ -760,12 +760,12 @@ void CTestModeNotifyerControl::Fsm(void)
         break;
 
     case WARNING_SIGNAL_ON:
-        if (m_xTimer.IsOverflow())
-        {
-            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
-            NotifyerOff();
-            SetFsmState(WARNING_SIGNAL_OFF);
-        }
+//        if (m_xTimer.IsOverflow())
+//        {
+//            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+//            NotifyerOff();
+//            SetFsmState(WARNING_SIGNAL_OFF);
+//        }
         break;
 
     case WARNING_SIGNAL_OFF:

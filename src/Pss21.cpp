@@ -1617,7 +1617,7 @@ void CPss21::MainFsm(void)
         SaveContextNotifyerControl();
 //        AlarmTypeSet(PREVENTIVE);
 //        CPss21::AllAlarmWindowOn(PREVENTIVE);
-//        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
         SetFsmState(TEST_ON);
 
@@ -1625,15 +1625,15 @@ void CPss21::MainFsm(void)
         break;
 
     case TEST_ON:
-//        if (CPss21::m_xMainCycleTimer.IsOverflow())
-//        {
-//            CPss21::AllAlarmWindowOff();
-//            RestoreContextNotifyerControl();
-//            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-//            SetFsmState(MAIN_CYCLE_START_WAITING);
-//        }
+        if (CPss21::m_xMainCycleTimer.IsOverflow())
+        {
+            CPss21::m_xMainCycleTimer.Set(1000);
+            CPss21::BoardWindowsUpdate();
+            SetFsmState(MAIN_CYCLE_START_WAITING);
+        }
 
         TestMainCycle();
+
         break;
 
     case TEST_STOP:

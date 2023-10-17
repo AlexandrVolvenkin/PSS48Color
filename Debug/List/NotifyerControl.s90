@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          17/Oct/2023  11:29:40
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          17/Oct/2023  11:47:20
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW530.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW2FC5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o
@@ -2953,12 +2953,12 @@ _A_PINF:
         SUBI    R16, 22
         BRNE    $+2+2
         RJMP    ??Fsm_43
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  730     {
 //  731     case IDDLE:
 //  732         break;
 ??Fsm_33:
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  733 
 //  734     case INDICATION_SIGNAL_START:
 //  735         m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
@@ -2996,7 +2996,7 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
 //  738         break;
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  739 
 //  740     case INDICATION_SIGNAL_ON:
 //  741         if (m_xTimer.IsOverflow())
@@ -3006,7 +3006,7 @@ _A_PINF:
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_45
+        BREQ    ??Fsm_44
 //  742         {
 //  743             m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
         MOVW    R17:R16, R27:R26
@@ -3043,8 +3043,8 @@ _A_PINF:
         CALL    ??SetFsmState
 //  746         }
 //  747         break;
-??Fsm_45:
-        RJMP    ??Fsm_44
+??Fsm_44:
+        RJMP    ??Fsm_38
 //  748 
 //  749     case INDICATION_SIGNAL_OFF:
 //  750         if (m_xTimer.IsOverflow())
@@ -3054,7 +3054,7 @@ _A_PINF:
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_46
+        BREQ    ??Fsm_45
 //  751         {
 //  752             SetFsmState(WARNING_SIGNAL_START);
         LDI     R18, 7
@@ -3062,8 +3062,8 @@ _A_PINF:
         CALL    ??SetFsmState
 //  753         }
 //  754         break;
-??Fsm_46:
-        RJMP    ??Fsm_44
+??Fsm_45:
+        RJMP    ??Fsm_38
 //  755 
 //  756     case WARNING_SIGNAL_START:
 //  757         m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
@@ -3101,55 +3101,16 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
 //  760         break;
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  761 
 //  762     case WARNING_SIGNAL_ON:
-//  763         if (m_xTimer.IsOverflow())
-??Fsm_38:
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 250
-        SBCI    R17, 255
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??Fsm_47
-//  764         {
-//  765             m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
-        ADIW    R31:R30, 22
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 23
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
-        SUBI    R16, 250
-        SBCI    R17, 255
-        CALL    ??Set
-//  766             NotifyerOff();
-        MOVW    R17:R16, R27:R26
-        ADIW    R27:R26, 1
-        LD      R30, X+
-        LD      R31, X
-        SBIW    R27:R26, 2
-        ADIW    R31:R30, 12
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 13
-        MOVW    R31:R30, R19:R18
-        ICALL
-//  767             SetFsmState(WARNING_SIGNAL_OFF);
-        LDI     R18, 9
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-//  768         }
+//  763 //        if (m_xTimer.IsOverflow())
+//  764 //        {
+//  765 //            m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+//  766 //            NotifyerOff();
+//  767 //            SetFsmState(WARNING_SIGNAL_OFF);
+//  768 //        }
 //  769         break;
-??Fsm_47:
-        RJMP    ??Fsm_44
 //  770 
 //  771     case WARNING_SIGNAL_OFF:
 //  772         if (m_xTimer.IsOverflow())
@@ -3159,7 +3120,7 @@ _A_PINF:
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_48
+        BREQ    ??Fsm_46
 //  773         {
 //  774             SetFsmState(ALARM_SIGNAL_START);
         LDI     R18, 13
@@ -3167,8 +3128,8 @@ _A_PINF:
         CALL    ??SetFsmState
 //  775         }
 //  776         break;
-??Fsm_48:
-        RJMP    ??Fsm_44
+??Fsm_46:
+        RJMP    ??Fsm_38
 //  777 
 //  778     case ALARM_SIGNAL_START:
 //  779         m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
@@ -3206,7 +3167,7 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
 //  782         break;
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  783 
 //  784     case ALARM_SIGNAL_ON:
 //  785         if (m_xTimer.IsOverflow())
@@ -3216,7 +3177,7 @@ _A_PINF:
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_44
+        BREQ    ??Fsm_38
 //  786         {
 //  787             m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
         MOVW    R17:R16, R27:R26
@@ -3253,7 +3214,7 @@ _A_PINF:
         CALL    ??SetFsmState
 //  790         }
 //  791         break;
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  792 
 //  793     case ALARM_SIGNAL_OFF:
 //  794         if (m_xTimer.IsOverflow())
@@ -3263,7 +3224,7 @@ _A_PINF:
         SBCI    R17, 255
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??Fsm_44
+        BREQ    ??Fsm_38
 //  795         {
 //  796             SetFsmState(STOP);
         LDI     R18, 37
@@ -3271,7 +3232,7 @@ _A_PINF:
         CALL    ??SetFsmState
 //  797         }
 //  798         break;
-        RJMP    ??Fsm_44
+        RJMP    ??Fsm_38
 //  799 
 //  800     case STOP:
 //  801         NotifyerOff();
@@ -3297,7 +3258,7 @@ _A_PINF:
 //  806         break;
 //  807     };
 //  808 }
-??Fsm_44:
+??Fsm_38:
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -3762,11 +3723,11 @@ __?EEARH:
 //  811 
 // 
 //   105 bytes in segment ABSOLUTE
-// 3 666 bytes in segment CODE
+// 3 586 bytes in segment CODE
 //   238 bytes in segment NEAR_F
 //   152 bytes in segment SWITCH
 // 
-// 3 584 bytes of CODE memory (+ 472 bytes shared)
+// 3 504 bytes of CODE memory (+ 472 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
