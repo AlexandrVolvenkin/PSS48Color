@@ -238,7 +238,8 @@ void CNotifyerControl::Fsm(void)
 
     case BEEP_SIGNAL_START:
         m_xTimer.Set(BEEP_SIGNAL_ON_TIME());
-        NotifyerEmergencyOn();
+        //        NotifyerEmergencyOn();
+        NotifyerPreventiveOn();
         SetFsmState(BEEP_SIGNAL_ON);
         break;
 

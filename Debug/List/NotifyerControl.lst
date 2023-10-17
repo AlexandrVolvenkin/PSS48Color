@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Oct/2023  18:41:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           17/Oct/2023  11:29:40
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW212A.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW530.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o
@@ -1686,27 +1686,28 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000004B4   5F0A               SUBI    R16, 250
    \   000004B6   4F1F               SBCI    R17, 255
    \   000004B8   ........           CALL    ??Set
-    241                  NotifyerEmergencyOn();
+    241                  //        NotifyerEmergencyOn();
+    242                  NotifyerPreventiveOn();
    \   000004BC   018D               MOVW    R17:R16, R27:R26
    \   000004BE   9611               ADIW    R27:R26, 1
    \   000004C0   91ED               LD      R30, X+
    \   000004C2   91FC               LD      R31, X
    \   000004C4   9712               SBIW    R27:R26, 2
-   \   000004C6   963A               ADIW    R31:R30, 10
+   \   000004C6   9638               ADIW    R31:R30, 8
    \   000004C8   9125               LPM     R18, Z+
    \   000004CA   9134               LPM     R19, Z
-   \   000004CC   973B               SBIW    R31:R30, 11
+   \   000004CC   9739               SBIW    R31:R30, 9
    \   000004CE   01F9               MOVW    R31:R30, R19:R18
    \   000004D0   9509               ICALL
-    242                  SetFsmState(BEEP_SIGNAL_ON);
+    243                  SetFsmState(BEEP_SIGNAL_ON);
    \   000004D2   E12F               LDI     R18, 31
    \   000004D4   018D               MOVW    R17:R16, R27:R26
    \   000004D6   ........           CALL    ??SetFsmState
-    243                  break;
+    244                  break;
    \   000004DA   C029               RJMP    ??Fsm_3
-    244          
-    245              case BEEP_SIGNAL_ON:
-    246                  if (m_xTimer.IsOverflow())
+    245          
+    246              case BEEP_SIGNAL_ON:
+    247                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_31:
    \   000004DC   018D               MOVW    R17:R16, R27:R26
    \   000004DE   5F0A               SUBI    R16, 250
@@ -1714,8 +1715,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000004E2   ........           CALL    ??IsOverflow
    \   000004E6   2300               TST     R16
    \   000004E8   F111               BREQ    ??Fsm_3
-    247                  {
-    248                      NotifyerOff();
+    248                  {
+    249                      NotifyerOff();
    \   000004EA   018D               MOVW    R17:R16, R27:R26
    \   000004EC   9611               ADIW    R27:R26, 1
    \   000004EE   91ED               LD      R30, X+
@@ -1727,20 +1728,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000004FA   973D               SBIW    R31:R30, 13
    \   000004FC   01F9               MOVW    R31:R30, R19:R18
    \   000004FE   9509               ICALL
-    249                      // Восстановим предыдущее состояние автомата.
-    250                      SetFsmState(GetSavedFsmState());
+    250                      // Восстановим предыдущее состояние автомата.
+    251                      SetFsmState(GetSavedFsmState());
    \   00000500   018D               MOVW    R17:R16, R27:R26
    \   00000502   ........           CALL    ??GetSavedFsmState
    \   00000506   2F20               MOV     R18, R16
    \   00000508   018D               MOVW    R17:R16, R27:R26
    \   0000050A   ........           CALL    ??SetFsmState
-    251          //            SetFsmState(STOP);
-    252                  }
-    253                  break;
+    252          //            SetFsmState(STOP);
+    253                  }
+    254                  break;
    \   0000050E   C00F               RJMP    ??Fsm_3
-    254          
-    255              case STOP:
-    256                  NotifyerOff();
+    255          
+    256              case STOP:
+    257                  NotifyerOff();
    \                     ??Fsm_32:
    \   00000510   018D               MOVW    R17:R16, R27:R26
    \   00000512   9611               ADIW    R27:R26, 1
@@ -1753,36 +1754,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000520   973D               SBIW    R31:R30, 13
    \   00000522   01F9               MOVW    R31:R30, R19:R18
    \   00000524   9509               ICALL
-    257                  SetFsmState(IDDLE);
+    258                  SetFsmState(IDDLE);
    \   00000526   E020               LDI     R18, 0
    \   00000528   018D               MOVW    R17:R16, R27:R26
    \   0000052A   ........           CALL    ??SetFsmState
-    258                  break;
-    259          
-    260              default:
-    261                  break;
-    262              };
-    263          }
+    259                  break;
+    260          
+    261              default:
+    262                  break;
+    263              };
+    264          }
    \                     ??Fsm_3:
    \   0000052E   91A9               LD      R26, Y+
    \   00000530   91B9               LD      R27, Y+
    \   00000532   9508               RET
-    264          //-----------------------------------------------------------------------------------------------------
-    265          
+    265          //-----------------------------------------------------------------------------------------------------
     266          
     267          
     268          
     269          
     270          
-    271          //-----------------------------------------------------------------------------------------------------
+    271          
+    272          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    272          CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
+    273          CPreventiveAlarmWindowNotifyerControl::CPreventiveAlarmWindowNotifyerControl()
    \                     ??CPreventiveAlarmWindowNotifyerControl:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    273          {
+    274          {
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ....               RCALL   ??CNotifyerControl
    \   0000000A   ....               LDI     R16, LOW(??__vtbl_1)
@@ -1790,36 +1791,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8301               STD     Z+1, R16
    \   00000012   8312               STD     Z+2, R17
-    274              SetFsmState(STOP);
+    275              SetFsmState(STOP);
    \   00000014   E225               LDI     R18, 37
    \   00000016   018D               MOVW    R17:R16, R27:R26
    \   00000018   ........           CALL    ??SetFsmState
-    275              SetSavedFsmState(STOP);
+    276              SetSavedFsmState(STOP);
    \   0000001C   E225               LDI     R18, 37
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ........           CALL    ??SetSavedFsmState
-    276          }
+    277          }
    \   00000024   018D               MOVW    R17:R16, R27:R26
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-    277          
+    278          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    278          CPreventiveAlarmWindowNotifyerControl::~CPreventiveAlarmWindowNotifyerControl()
+    279          CPreventiveAlarmWindowNotifyerControl::~CPreventiveAlarmWindowNotifyerControl()
    \                     `?~CPreventiveAlarmWindowNotifyerControl`:
-    279          {
+    280          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   01D9               MOVW    R27:R26, R19:R18
    \   00000008   2F08               MOV     R16, R24
    \   0000000A   2B09               OR      R16, R25
    \   0000000C   F069               BREQ    `?~CPreventiveAlarmWindowNotifyerControl_1`
-    280              SetFsmState(STOP);
+    281              SetFsmState(STOP);
    \   0000000E   E225               LDI     R18, 37
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetFsmState
-    281          }
+    282          }
    \   00000016   E020               LDI     R18, 0
    \   00000018   E030               LDI     R19, 0
    \   0000001A   018C               MOVW    R17:R16, R25:R24
@@ -1831,174 +1832,174 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \                     `?~CPreventiveAlarmWindowNotifyerControl_1`:
    \   00000028   E0E4               LDI     R30, 4
    \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
-    282          
-    283          //-----------------------------------------------------------------------------------------------------
+    283          
+    284          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    284          void CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    285          void CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet:
-    285          {
+    286          {
    \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   2FA2               MOV     R26, R18
-    286              // Сохраним текущее состояние автомата.
-    287              SetSavedFsmState(GetFsmState());
+    287              // Сохраним текущее состояние автомата.
+    288              SetSavedFsmState(GetFsmState());
    \   00000008   018C               MOVW    R17:R16, R25:R24
    \   0000000A   ........           CALL    ??GetFsmState
    \   0000000E   2F20               MOV     R18, R16
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetSavedFsmState
-    288              switch (uiAlarmType)
+    289              switch (uiAlarmType)
    \   00000016   2F0A               MOV     R16, R26
    \   00000018   ....               LDI     R30, LOW(`?<Jumptable for AlarmSet>_0`)
    \   0000001A   ....               LDI     R31, (`?<Jumptable for AlarmSet>_0`) >> 16
    \   0000001C   BFFB               OUT     0x3B, R31
    \   0000001E   ....               LDI     R31, HIGH(`?<Jumptable for AlarmSet>_0`)
    \   00000020   ........           JMP     ?CV_SWITCH_L06
-    289              {
-    290              case NORMAL:
-    291                  SetFsmState(STOP);
+    290              {
+    291              case NORMAL:
+    292                  SetFsmState(STOP);
    \                     ??AlarmSet_5:
    \   00000024   E225               LDI     R18, 37
    \   00000026   018C               MOVW    R17:R16, R25:R24
    \   00000028   ........           CALL    ??SetFsmState
-    292                  break;
+    293                  break;
    \   0000002C   C00E               RJMP    ??AlarmSet_6
-    293          
-    294              case INDICATION:
-    295                  SetFsmState(INDICATION_SIGNAL_START);
+    294          
+    295              case INDICATION:
+    296                  SetFsmState(INDICATION_SIGNAL_START);
    \                     ??AlarmSet_7:
    \   0000002E   E021               LDI     R18, 1
    \   00000030   018C               MOVW    R17:R16, R25:R24
    \   00000032   ........           CALL    ??SetFsmState
-    296                  break;
+    297                  break;
    \   00000036   C009               RJMP    ??AlarmSet_6
-    297          
-    298              case PREVENTIVE:
-    299                  SetFsmState(WARNING_SIGNAL_START);
+    298          
+    299              case PREVENTIVE:
+    300                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_8:
    \   00000038   E027               LDI     R18, 7
    \   0000003A   018C               MOVW    R17:R16, R25:R24
    \   0000003C   ........           CALL    ??SetFsmState
-    300                  break;
+    301                  break;
    \   00000040   C004               RJMP    ??AlarmSet_6
-    301          
-    302              case EMERGENCY:
-    303                  SetFsmState(WARNING_SIGNAL_START);
+    302          
+    303              case EMERGENCY:
+    304                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_9:
    \   00000042   E027               LDI     R18, 7
    \   00000044   018C               MOVW    R17:R16, R25:R24
    \   00000046   ........           CALL    ??SetFsmState
-    304                  break;
-    305          
-    306              case IND_PREVENTIVE:
-    307                  break;
-    308          
-    309              case IND_EMERGENCY:
-    310                  break;
-    311          
-    312              case ERROR:
-    313                  break;
-    314          
-    315              case BEEP_SIGNAL:
-    316                  break;
-    317          
-    318              default:
-    319                  break;
-    320              }
-    321          }
+    305                  break;
+    306          
+    307              case IND_PREVENTIVE:
+    308                  break;
+    309          
+    310              case IND_EMERGENCY:
+    311                  break;
+    312          
+    313              case ERROR:
+    314                  break;
+    315          
+    316              case BEEP_SIGNAL:
+    317                  break;
+    318          
+    319              default:
+    320                  break;
+    321              }
+    322          }
    \                     ??AlarmSet_6:
    \   0000004A   E0E3               LDI     R30, 3
    \   0000004C   ........           JMP     ?EPILOGUE_B3_L09
-    322          
-    323          //-----------------------------------------------------------------------------------------------------
+    323          
+    324          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    324          void CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+    325          void CPreventiveAlarmWindowNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn:
-    325          {
-    326          
-    327          }
+    326          {
+    327          
+    328          }
    \   00000000   9508               RET
-    328          
-    329          //-----------------------------------------------------------------------------------------------------
+    329          
+    330          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    330          void CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+    331          void CPreventiveAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn:
-    331          {
+    332          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    332              CPss21::ActiveAlarmWindowOn(INDICATION);
+    333              CPss21::ActiveAlarmWindowOn(INDICATION);
    \   00000006   E001               LDI     R16, 1
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
-    333          }
+    334          }
    \   0000000C   9189               LD      R24, Y+
    \   0000000E   9199               LD      R25, Y+
    \   00000010   9508               RET
-    334          
-    335          //-----------------------------------------------------------------------------------------------------
+    335          
+    336          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    336          void CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+    337          void CPreventiveAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn:
-    337          {
+    338          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    338              CPss21::ActiveAlarmWindowOn(PREVENTIVE);
+    339              CPss21::ActiveAlarmWindowOn(PREVENTIVE);
    \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
-    339          }
+    340          }
    \   0000000C   9189               LD      R24, Y+
    \   0000000E   9199               LD      R25, Y+
    \   00000010   9508               RET
-    340          
-    341          //-----------------------------------------------------------------------------------------------------
+    341          
+    342          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    342          void CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+    343          void CPreventiveAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn:
-    343          {
-    344          
-    345          }
+    344          {
+    345          
+    346          }
    \   00000000   9508               RET
-    346          
-    347          //-----------------------------------------------------------------------------------------------------
+    347          
+    348          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    348          void CPreventiveAlarmWindowNotifyerControl::NotifyerOff(void)
+    349          void CPreventiveAlarmWindowNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff:
-    349          {
+    350          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    350              CPss21::ActiveAlarmWindowOff(PREVENTIVE);
+    351              CPss21::ActiveAlarmWindowOff(PREVENTIVE);
    \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??ActiveAlarmWindowOff
-    351              CPss21::BoardWindowsUpdate();
+    352              CPss21::BoardWindowsUpdate();
    \   0000000C   ........           CALL    ??BoardWindowsUpdate
-    352          }
+    353          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    353          //-----------------------------------------------------------------------------------------------------
-    354          
+    354          //-----------------------------------------------------------------------------------------------------
     355          
     356          
     357          
     358          
     359          
-    360          //-----------------------------------------------------------------------------------------------------
+    360          
+    361          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    361          CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
+    362          CEmergencyAlarmWindowNotifyerControl::CEmergencyAlarmWindowNotifyerControl()
    \                     ??CEmergencyAlarmWindowNotifyerControl:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    362          {
+    363          {
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ....               RCALL   ??CNotifyerControl
    \   0000000A   ....               LDI     R16, LOW(??__vtbl_2)
@@ -2006,36 +2007,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8301               STD     Z+1, R16
    \   00000012   8312               STD     Z+2, R17
-    363              SetFsmState(STOP);
+    364              SetFsmState(STOP);
    \   00000014   E225               LDI     R18, 37
    \   00000016   018D               MOVW    R17:R16, R27:R26
    \   00000018   ........           CALL    ??SetFsmState
-    364              SetSavedFsmState(STOP);
+    365              SetSavedFsmState(STOP);
    \   0000001C   E225               LDI     R18, 37
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ........           CALL    ??SetSavedFsmState
-    365          }
+    366          }
    \   00000024   018D               MOVW    R17:R16, R27:R26
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-    366          
+    367          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    367          CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
+    368          CEmergencyAlarmWindowNotifyerControl::~CEmergencyAlarmWindowNotifyerControl()
    \                     `?~CEmergencyAlarmWindowNotifyerControl`:
-    368          {
+    369          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   01D9               MOVW    R27:R26, R19:R18
    \   00000008   2F08               MOV     R16, R24
    \   0000000A   2B09               OR      R16, R25
    \   0000000C   F069               BREQ    `?~CEmergencyAlarmWindowNotifyerControl_1`
-    369              SetFsmState(STOP);
+    370              SetFsmState(STOP);
    \   0000000E   E225               LDI     R18, 37
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetFsmState
-    370          }
+    371          }
    \   00000016   E020               LDI     R18, 0
    \   00000018   E030               LDI     R19, 0
    \   0000001A   018C               MOVW    R17:R16, R25:R24
@@ -2047,161 +2048,160 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \                     `?~CEmergencyAlarmWindowNotifyerControl_1`:
    \   00000028   E0E4               LDI     R30, 4
    \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
-    371          
-    372          //-----------------------------------------------------------------------------------------------------
+    372          
+    373          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    373          void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    374          void CEmergencyAlarmWindowNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_1:
-    374          {
+    375          {
    \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   2FA2               MOV     R26, R18
-    375              // Сохраним текущее состояние автомата.
-    376              SetSavedFsmState(GetFsmState());
+    376              // Сохраним текущее состояние автомата.
+    377              SetSavedFsmState(GetFsmState());
    \   00000008   018C               MOVW    R17:R16, R25:R24
    \   0000000A   ........           CALL    ??GetFsmState
    \   0000000E   2F20               MOV     R18, R16
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetSavedFsmState
-    377              switch (uiAlarmType)
+    378              switch (uiAlarmType)
    \   00000016   2F0A               MOV     R16, R26
    \   00000018   ....               LDI     R30, LOW(`?<Jumptable for AlarmSet>_1`)
    \   0000001A   ....               LDI     R31, (`?<Jumptable for AlarmSet>_1`) >> 16
    \   0000001C   BFFB               OUT     0x3B, R31
    \   0000001E   ....               LDI     R31, HIGH(`?<Jumptable for AlarmSet>_1`)
    \   00000020   ........           JMP     ?CV_SWITCH_L06
-    378              {
-    379              case NORMAL:
-    380                  SetFsmState(STOP);
+    379              {
+    380              case NORMAL:
+    381                  SetFsmState(STOP);
    \                     ??AlarmSet_10:
    \   00000024   E225               LDI     R18, 37
    \   00000026   018C               MOVW    R17:R16, R25:R24
    \   00000028   ........           CALL    ??SetFsmState
-    381                  break;
+    382                  break;
    \   0000002C   C00E               RJMP    ??AlarmSet_11
-    382          
-    383              case INDICATION:
-    384                  SetFsmState(INDICATION_SIGNAL_START);
+    383          
+    384              case INDICATION:
+    385                  SetFsmState(INDICATION_SIGNAL_START);
    \                     ??AlarmSet_12:
    \   0000002E   E021               LDI     R18, 1
    \   00000030   018C               MOVW    R17:R16, R25:R24
    \   00000032   ........           CALL    ??SetFsmState
-    385                  break;
+    386                  break;
    \   00000036   C009               RJMP    ??AlarmSet_11
-    386          
-    387              case PREVENTIVE:
-    388                  SetFsmState(STOP);
+    387          
+    388              case PREVENTIVE:
+    389                  SetFsmState(STOP);
    \                     ??AlarmSet_13:
    \   00000038   E225               LDI     R18, 37
    \   0000003A   018C               MOVW    R17:R16, R25:R24
    \   0000003C   ........           CALL    ??SetFsmState
-    389                  break;
+    390                  break;
    \   00000040   C004               RJMP    ??AlarmSet_11
-    390          
-    391              case EMERGENCY:
-    392                  SetFsmState(ALARM_SIGNAL_START);
+    391          
+    392              case EMERGENCY:
+    393                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_14:
    \   00000042   E02D               LDI     R18, 13
    \   00000044   018C               MOVW    R17:R16, R25:R24
    \   00000046   ........           CALL    ??SetFsmState
-    393                  break;
-    394          
-    395              case IND_PREVENTIVE:
-    396                  break;
-    397          
-    398              case IND_EMERGENCY:
-    399                  break;
-    400          
-    401              case ERROR:
-    402                  break;
-    403          
-    404              case BEEP_SIGNAL:
-    405                  break;
-    406          
-    407              default:
-    408                  break;
-    409              }
-    410          }
+    394                  break;
+    395          
+    396              case IND_PREVENTIVE:
+    397                  break;
+    398          
+    399              case IND_EMERGENCY:
+    400                  break;
+    401          
+    402              case ERROR:
+    403                  break;
+    404          
+    405              case BEEP_SIGNAL:
+    406                  break;
+    407          
+    408              default:
+    409                  break;
+    410              }
+    411          }
    \                     ??AlarmSet_11:
    \   0000004A   E0E3               LDI     R30, 3
    \   0000004C   ........           JMP     ?EPILOGUE_B3_L09
-    411          
     412          
-    413          //-----------------------------------------------------------------------------------------------------
+    413          
+    414          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    414          void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
+    415          void CEmergencyAlarmWindowNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_1:
-    415          {
-    416          
-    417          }
+    416          {
+    417          
+    418          }
    \   00000000   9508               RET
-    418          
-    419          //-----------------------------------------------------------------------------------------------------
+    419          
+    420          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    420          void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
+    421          void CEmergencyAlarmWindowNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_1:
-    421          {
+    422          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    422              CPss21::ActiveAlarmWindowOn(INDICATION);
+    423              CPss21::ActiveAlarmWindowOn(INDICATION);
    \   00000006   E001               LDI     R16, 1
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
-    423          }
+    424          }
    \   0000000C   9189               LD      R24, Y+
    \   0000000E   9199               LD      R25, Y+
    \   00000010   9508               RET
-    424          
-    425          //-----------------------------------------------------------------------------------------------------
+    425          
+    426          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    426          void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
+    427          void CEmergencyAlarmWindowNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_1:
-    427          {
-    428          
-    429          }
+    428          {
+    429          
+    430          }
    \   00000000   9508               RET
-    430          
-    431          //-----------------------------------------------------------------------------------------------------
+    431          
+    432          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    432          void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
+    433          void CEmergencyAlarmWindowNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_1:
-    433          {
+    434          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    434              CPss21::ActiveAlarmWindowOn(EMERGENCY);
+    435              CPss21::ActiveAlarmWindowOn(EMERGENCY);
    \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
-    435          }
+    436          }
    \   0000000C   9189               LD      R24, Y+
    \   0000000E   9199               LD      R25, Y+
    \   00000010   9508               RET
-    436          
-    437          //-----------------------------------------------------------------------------------------------------
+    437          
+    438          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    438          void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
+    439          void CEmergencyAlarmWindowNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_1:
-    439          {
+    440          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    440              CPss21::ActiveAlarmWindowOff(EMERGENCY);
+    441              CPss21::ActiveAlarmWindowOff(EMERGENCY);
    \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??ActiveAlarmWindowOff
-    441              CPss21::BoardWindowsUpdate();
+    442              CPss21::BoardWindowsUpdate();
    \   0000000C   ........           CALL    ??BoardWindowsUpdate
-    442          }
+    443          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    443          //-----------------------------------------------------------------------------------------------------
-    444          
+    444          //-----------------------------------------------------------------------------------------------------
     445          
     446          
     447          
@@ -2210,16 +2210,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
     450          
     451          
     452          
-    453          //-----------------------------------------------------------------------------------------------------
-    454          
+    453          
+    454          //-----------------------------------------------------------------------------------------------------
+    455          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    455          CStatusLedNotifyerControl::CStatusLedNotifyerControl()
+    456          CStatusLedNotifyerControl::CStatusLedNotifyerControl()
    \                     ??CStatusLedNotifyerControl:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    456          {
+    457          {
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ....               RCALL   ??CNotifyerControl
    \   0000000A   ....               LDI     R16, LOW(??__vtbl_7)
@@ -2227,36 +2228,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8301               STD     Z+1, R16
    \   00000012   8312               STD     Z+2, R17
-    457              SetFsmState(NORMAL_SIGNAL_START);
+    458              SetFsmState(NORMAL_SIGNAL_START);
    \   00000014   E128               LDI     R18, 24
    \   00000016   018D               MOVW    R17:R16, R27:R26
    \   00000018   ........           CALL    ??SetFsmState
-    458              SetSavedFsmState(NORMAL_SIGNAL_START);
+    459              SetSavedFsmState(NORMAL_SIGNAL_START);
    \   0000001C   E128               LDI     R18, 24
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ........           CALL    ??SetSavedFsmState
-    459          }
+    460          }
    \   00000024   018D               MOVW    R17:R16, R27:R26
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-    460          
+    461          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    461          CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
+    462          CStatusLedNotifyerControl::~CStatusLedNotifyerControl()
    \                     `?~CStatusLedNotifyerControl`:
-    462          {
+    463          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   01D9               MOVW    R27:R26, R19:R18
    \   00000008   2F08               MOV     R16, R24
    \   0000000A   2B09               OR      R16, R25
    \   0000000C   F069               BREQ    `?~CStatusLedNotifyerControl_1`
-    463              SetFsmState(STOP);
+    464              SetFsmState(STOP);
    \   0000000E   E225               LDI     R18, 37
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetFsmState
-    464          }
+    465          }
    \   00000016   E020               LDI     R18, 0
    \   00000018   E030               LDI     R19, 0
    \   0000001A   018C               MOVW    R17:R16, R25:R24
@@ -2268,184 +2269,184 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \                     `?~CStatusLedNotifyerControl_1`:
    \   00000028   E0E4               LDI     R30, 4
    \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
-    465          
-    466          //-----------------------------------------------------------------------------------------------------
+    466          
+    467          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    467          void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    468          void CStatusLedNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_3:
-    468          {
+    469          {
    \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   2FA2               MOV     R26, R18
-    469              // Сохраним текущее состояние автомата.
-    470              SetSavedFsmState(GetFsmState());
+    470              // Сохраним текущее состояние автомата.
+    471              SetSavedFsmState(GetFsmState());
    \   00000008   018C               MOVW    R17:R16, R25:R24
    \   0000000A   ........           CALL    ??GetFsmState
    \   0000000E   2F20               MOV     R18, R16
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetSavedFsmState
-    471              switch (uiAlarmType)
+    472              switch (uiAlarmType)
    \   00000016   2F0A               MOV     R16, R26
    \   00000018   ....               LDI     R30, LOW(`?<Jumptable for AlarmSet>_2`)
    \   0000001A   ....               LDI     R31, (`?<Jumptable for AlarmSet>_2`) >> 16
    \   0000001C   BFFB               OUT     0x3B, R31
    \   0000001E   ....               LDI     R31, HIGH(`?<Jumptable for AlarmSet>_2`)
    \   00000020   ........           JMP     ?CV_SWITCH_L06
-    472              {
-    473              case NORMAL:
-    474                  SetFsmState(NORMAL_SIGNAL_START);
+    473              {
+    474              case NORMAL:
+    475                  SetFsmState(NORMAL_SIGNAL_START);
    \                     ??AlarmSet_15:
    \   00000024   E128               LDI     R18, 24
    \   00000026   018C               MOVW    R17:R16, R25:R24
    \   00000028   ........           CALL    ??SetFsmState
-    475                  break;
+    476                  break;
    \   0000002C   C013               RJMP    ??AlarmSet_16
-    476          
-    477              case INDICATION:
-    478                  SetFsmState(NORMAL_SIGNAL_START);
+    477          
+    478              case INDICATION:
+    479                  SetFsmState(NORMAL_SIGNAL_START);
    \                     ??AlarmSet_17:
    \   0000002E   E128               LDI     R18, 24
    \   00000030   018C               MOVW    R17:R16, R25:R24
    \   00000032   ........           CALL    ??SetFsmState
-    479                  break;
+    480                  break;
    \   00000036   C00E               RJMP    ??AlarmSet_16
-    480          
-    481              case PREVENTIVE:
-    482                  SetFsmState(WARNING_SIGNAL_START);
+    481          
+    482              case PREVENTIVE:
+    483                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_18:
    \   00000038   E027               LDI     R18, 7
    \   0000003A   018C               MOVW    R17:R16, R25:R24
    \   0000003C   ........           CALL    ??SetFsmState
-    483                  break;
+    484                  break;
    \   00000040   C009               RJMP    ??AlarmSet_16
-    484          
-    485              case EMERGENCY:
-    486                  SetFsmState(ALARM_SIGNAL_START);
+    485          
+    486              case EMERGENCY:
+    487                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_19:
    \   00000042   E02D               LDI     R18, 13
    \   00000044   018C               MOVW    R17:R16, R25:R24
    \   00000046   ........           CALL    ??SetFsmState
-    487                  break;
+    488                  break;
    \   0000004A   C004               RJMP    ??AlarmSet_16
-    488          
-    489              case IND_PREVENTIVE:
-    490                  break;
-    491          
-    492              case IND_EMERGENCY:
-    493                  break;
-    494          
-    495              case ERROR:
-    496                  SetFsmState(ERROR_SIGNAL_START);
+    489          
+    490              case IND_PREVENTIVE:
+    491                  break;
+    492          
+    493              case IND_EMERGENCY:
+    494                  break;
+    495          
+    496              case ERROR:
+    497                  SetFsmState(ERROR_SIGNAL_START);
    \                     ??AlarmSet_20:
    \   0000004C   E123               LDI     R18, 19
    \   0000004E   018C               MOVW    R17:R16, R25:R24
    \   00000050   ........           CALL    ??SetFsmState
-    497                  break;
-    498          
-    499              case BEEP_SIGNAL:
-    500                  break;
-    501          
-    502              default:
-    503                  break;
-    504              }
-    505          }
+    498                  break;
+    499          
+    500              case BEEP_SIGNAL:
+    501                  break;
+    502          
+    503              default:
+    504                  break;
+    505              }
+    506          }
    \                     ??AlarmSet_16:
    \   00000054   E0E3               LDI     R30, 3
    \   00000056   ........           JMP     ?EPILOGUE_B3_L09
-    506          
-    507          //-----------------------------------------------------------------------------------------------------
+    507          
+    508          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    508          void CStatusLedNotifyerControl::NotifyerNormalOn(void)
+    509          void CStatusLedNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_3:
-    509          {
+    510          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    510              CPlatform::StatusLedOn();
+    511              CPlatform::StatusLedOn();
    \   00000006   ........           CALL    ??StatusLedOn
-    511          }
+    512          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    512          
-    513          //-----------------------------------------------------------------------------------------------------
+    513          
+    514          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    514          void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
+    515          void CStatusLedNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_3:
-    515          {
-    516          
-    517          }
+    516          {
+    517          
+    518          }
    \   00000000   9508               RET
-    518          
-    519          //-----------------------------------------------------------------------------------------------------
+    519          
+    520          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    520          void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
+    521          void CStatusLedNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_3:
-    521          {
+    522          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    522              CPlatform::StatusLedOn();
+    523              CPlatform::StatusLedOn();
    \   00000006   ........           CALL    ??StatusLedOn
-    523          }
+    524          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    524          
-    525          //-----------------------------------------------------------------------------------------------------
+    525          
+    526          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    526          void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
+    527          void CStatusLedNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_3:
-    527          {
+    528          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    528              CPlatform::StatusLedOn();
+    529              CPlatform::StatusLedOn();
    \   00000006   ........           CALL    ??StatusLedOn
-    529          }
+    530          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    530          
-    531          //-----------------------------------------------------------------------------------------------------
+    531          
+    532          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    532          void CStatusLedNotifyerControl::NotifyerOff(void)
+    533          void CStatusLedNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_3:
-    533          {
+    534          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    534              CPlatform::StatusLedOff();
+    535              CPlatform::StatusLedOff();
    \   00000006   ........           CALL    ??StatusLedOff
-    535              CPss21::BoardWindowsUpdate();
+    536              CPss21::BoardWindowsUpdate();
    \   0000000A   ........           CALL    ??BoardWindowsUpdate
-    536          }
+    537          }
    \   0000000E   9189               LD      R24, Y+
    \   00000010   9199               LD      R25, Y+
    \   00000012   9508               RET
-    537          //-----------------------------------------------------------------------------------------------------
-    538          
+    538          //-----------------------------------------------------------------------------------------------------
     539          
     540          
     541          
     542          
     543          
-    544          //-----------------------------------------------------------------------------------------------------
-    545          
+    544          
+    545          //-----------------------------------------------------------------------------------------------------
+    546          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    546          CBuzzerNotifyerControl::CBuzzerNotifyerControl()
+    547          CBuzzerNotifyerControl::CBuzzerNotifyerControl()
    \                     ??CBuzzerNotifyerControl:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    547          {
+    548          {
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ....               RCALL   ??CNotifyerControl
    \   0000000A   ....               LDI     R16, LOW(??__vtbl_8)
@@ -2453,36 +2454,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8301               STD     Z+1, R16
    \   00000012   8312               STD     Z+2, R17
-    548              SetFsmState(STOP);
+    549              SetFsmState(STOP);
    \   00000014   E225               LDI     R18, 37
    \   00000016   018D               MOVW    R17:R16, R27:R26
    \   00000018   ........           CALL    ??SetFsmState
-    549              SetSavedFsmState(STOP);
+    550              SetSavedFsmState(STOP);
    \   0000001C   E225               LDI     R18, 37
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ........           CALL    ??SetSavedFsmState
-    550          }
+    551          }
    \   00000024   018D               MOVW    R17:R16, R27:R26
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-    551          
+    552          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    552          CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
+    553          CBuzzerNotifyerControl::~CBuzzerNotifyerControl()
    \                     `?~CBuzzerNotifyerControl`:
-    553          {
+    554          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   01D9               MOVW    R27:R26, R19:R18
    \   00000008   2F08               MOV     R16, R24
    \   0000000A   2B09               OR      R16, R25
    \   0000000C   F069               BREQ    `?~CBuzzerNotifyerControl_1`
-    554              SetFsmState(STOP);
+    555              SetFsmState(STOP);
    \   0000000E   E225               LDI     R18, 37
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetFsmState
-    555          }
+    556          }
    \   00000016   E020               LDI     R18, 0
    \   00000018   E030               LDI     R19, 0
    \   0000001A   018C               MOVW    R17:R16, R25:R24
@@ -2494,196 +2495,196 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \                     `?~CBuzzerNotifyerControl_1`:
    \   00000028   E0E4               LDI     R30, 4
    \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
-    556          
-    557          //-----------------------------------------------------------------------------------------------------
+    557          
+    558          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    558          void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    559          void CBuzzerNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_4:
-    559          {
+    560          {
    \   00000000   ........           CALL    ?PROLOGUE3_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   2FA2               MOV     R26, R18
-    560              // Сохраним текущее состояние автомата.
-    561              SetSavedFsmState(GetFsmState());
+    561              // Сохраним текущее состояние автомата.
+    562              SetSavedFsmState(GetFsmState());
    \   00000008   018C               MOVW    R17:R16, R25:R24
    \   0000000A   ........           CALL    ??GetFsmState
    \   0000000E   2F20               MOV     R18, R16
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetSavedFsmState
-    562              switch (uiAlarmType)
+    563              switch (uiAlarmType)
    \   00000016   2F0A               MOV     R16, R26
    \   00000018   ....               LDI     R30, LOW(`?<Jumptable for AlarmSet>_3`)
    \   0000001A   ....               LDI     R31, (`?<Jumptable for AlarmSet>_3`) >> 16
    \   0000001C   BFFB               OUT     0x3B, R31
    \   0000001E   ....               LDI     R31, HIGH(`?<Jumptable for AlarmSet>_3`)
    \   00000020   ........           JMP     ?CV_SWITCH_L06
-    563              {
-    564              case NORMAL:
-    565                  SetFsmState(STOP);
+    564              {
+    565              case NORMAL:
+    566                  SetFsmState(STOP);
    \                     ??AlarmSet_21:
    \   00000024   E225               LDI     R18, 37
    \   00000026   018C               MOVW    R17:R16, R25:R24
    \   00000028   ........           CALL    ??SetFsmState
-    566                  break;
+    567                  break;
    \   0000002C   C018               RJMP    ??AlarmSet_22
-    567          
-    568              case INDICATION:
-    569                  SetFsmState(STOP);
+    568          
+    569              case INDICATION:
+    570                  SetFsmState(STOP);
    \                     ??AlarmSet_23:
    \   0000002E   E225               LDI     R18, 37
    \   00000030   018C               MOVW    R17:R16, R25:R24
    \   00000032   ........           CALL    ??SetFsmState
-    570                  break;
+    571                  break;
    \   00000036   C013               RJMP    ??AlarmSet_22
-    571          
-    572              case PREVENTIVE:
-    573                  SetFsmState(WARNING_SIGNAL_START);
+    572          
+    573              case PREVENTIVE:
+    574                  SetFsmState(WARNING_SIGNAL_START);
    \                     ??AlarmSet_24:
    \   00000038   E027               LDI     R18, 7
    \   0000003A   018C               MOVW    R17:R16, R25:R24
    \   0000003C   ........           CALL    ??SetFsmState
-    574                  break;
+    575                  break;
    \   00000040   C00E               RJMP    ??AlarmSet_22
-    575          
-    576              case EMERGENCY:
-    577                  SetFsmState(ALARM_SIGNAL_START);
+    576          
+    577              case EMERGENCY:
+    578                  SetFsmState(ALARM_SIGNAL_START);
    \                     ??AlarmSet_25:
    \   00000042   E02D               LDI     R18, 13
    \   00000044   018C               MOVW    R17:R16, R25:R24
    \   00000046   ........           CALL    ??SetFsmState
-    578                  break;
+    579                  break;
    \   0000004A   C009               RJMP    ??AlarmSet_22
-    579          
-    580              case IND_PREVENTIVE:
-    581                  break;
-    582          
-    583              case IND_EMERGENCY:
-    584                  break;
-    585          
-    586              case ERROR:
-    587                  SetFsmState(ERROR_SIGNAL_START);
+    580          
+    581              case IND_PREVENTIVE:
+    582                  break;
+    583          
+    584              case IND_EMERGENCY:
+    585                  break;
+    586          
+    587              case ERROR:
+    588                  SetFsmState(ERROR_SIGNAL_START);
    \                     ??AlarmSet_26:
    \   0000004C   E123               LDI     R18, 19
    \   0000004E   018C               MOVW    R17:R16, R25:R24
    \   00000050   ........           CALL    ??SetFsmState
-    588                  break;
+    589                  break;
    \   00000054   C004               RJMP    ??AlarmSet_22
-    589          
-    590              case BEEP_SIGNAL:
-    591                  SetFsmState(BEEP_SIGNAL_START);
+    590          
+    591              case BEEP_SIGNAL:
+    592                  SetFsmState(BEEP_SIGNAL_START);
    \                     ??AlarmSet_27:
    \   00000056   E12E               LDI     R18, 30
    \   00000058   018C               MOVW    R17:R16, R25:R24
    \   0000005A   ........           CALL    ??SetFsmState
-    592                  break;
-    593          
-    594              default:
-    595                  break;
-    596              }
-    597          }
+    593                  break;
+    594          
+    595              default:
+    596                  break;
+    597              }
+    598          }
    \                     ??AlarmSet_22:
    \   0000005E   E0E3               LDI     R30, 3
    \   00000060   ........           JMP     ?EPILOGUE_B3_L09
-    598          
-    599          //-----------------------------------------------------------------------------------------------------
+    599          
+    600          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    600          void CBuzzerNotifyerControl::NotifyerNormalOn(void)
+    601          void CBuzzerNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_4:
-    601          {
+    602          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    602              CBuzzer::Off();
+    603              CBuzzer::Off();
    \   00000006   ........           CALL    ??Off
-    603          }
+    604          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    604          
-    605          //-----------------------------------------------------------------------------------------------------
+    605          
+    606          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    606          void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
+    607          void CBuzzerNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_4:
-    607          {
+    608          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    608              CBuzzer::Off();
+    609              CBuzzer::Off();
    \   00000006   ........           CALL    ??Off
-    609          }
+    610          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    610          
-    611          //-----------------------------------------------------------------------------------------------------
+    611          
+    612          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    612          void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
+    613          void CBuzzerNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_4:
-    613          {
+    614          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    614              CBuzzer::LowOn();
+    615              CBuzzer::LowOn();
    \   00000006   ........           CALL    ??LowOn
-    615          }
+    616          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    616          
-    617          //-----------------------------------------------------------------------------------------------------
+    617          
+    618          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    618          void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
+    619          void CBuzzerNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_4:
-    619          {
+    620          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    620              CBuzzer::HighOn();
+    621              CBuzzer::HighOn();
    \   00000006   ........           CALL    ??HighOn
-    621          }
+    622          }
    \   0000000A   9189               LD      R24, Y+
    \   0000000C   9199               LD      R25, Y+
    \   0000000E   9508               RET
-    622          
-    623          //-----------------------------------------------------------------------------------------------------
+    623          
+    624          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    624          void CBuzzerNotifyerControl::NotifyerOff(void)
+    625          void CBuzzerNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_4:
-    625          {
+    626          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    626              CBuzzer::Off();
+    627              CBuzzer::Off();
    \   00000006   ........           CALL    ??Off
-    627              CPss21::BoardWindowsUpdate();
+    628              CPss21::BoardWindowsUpdate();
    \   0000000A   ........           CALL    ??BoardWindowsUpdate
-    628          }
+    629          }
    \   0000000E   9189               LD      R24, Y+
    \   00000010   9199               LD      R25, Y+
    \   00000012   9508               RET
-    629          //-----------------------------------------------------------------------------------------------------
-    630          
+    630          //-----------------------------------------------------------------------------------------------------
     631          
     632          
     633          
     634          
     635          
     636          
-    637          //-----------------------------------------------------------------------------------------------------
+    637          
+    638          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    638          CTestModeNotifyerControl::CTestModeNotifyerControl()
+    639          CTestModeNotifyerControl::CTestModeNotifyerControl()
    \                     ??CTestModeNotifyerControl:
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    639          {
+    640          {
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ....               RCALL   ??CNotifyerControl
    \   0000000A   ....               LDI     R16, LOW(??__vtbl_3)
@@ -2691,36 +2692,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000000E   01FD               MOVW    R31:R30, R27:R26
    \   00000010   8301               STD     Z+1, R16
    \   00000012   8312               STD     Z+2, R17
-    640              SetFsmState(STOP);
+    641              SetFsmState(STOP);
    \   00000014   E225               LDI     R18, 37
    \   00000016   018D               MOVW    R17:R16, R27:R26
    \   00000018   ........           CALL    ??SetFsmState
-    641              SetSavedFsmState(STOP);
+    642              SetSavedFsmState(STOP);
    \   0000001C   E225               LDI     R18, 37
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ........           CALL    ??SetSavedFsmState
-    642          }
+    643          }
    \   00000024   018D               MOVW    R17:R16, R27:R26
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-    643          
+    644          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    644          CTestModeNotifyerControl::~CTestModeNotifyerControl()
+    645          CTestModeNotifyerControl::~CTestModeNotifyerControl()
    \                     `?~CTestModeNotifyerControl`:
-    645          {
+    646          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
    \   00000006   01D9               MOVW    R27:R26, R19:R18
    \   00000008   2F08               MOV     R16, R24
    \   0000000A   2B09               OR      R16, R25
    \   0000000C   F069               BREQ    `?~CTestModeNotifyerControl_1`
-    646              SetFsmState(STOP);
+    647              SetFsmState(STOP);
    \   0000000E   E225               LDI     R18, 37
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    ??SetFsmState
-    647          }
+    648          }
    \   00000016   E020               LDI     R18, 0
    \   00000018   E030               LDI     R19, 0
    \   0000001A   018C               MOVW    R17:R16, R25:R24
@@ -2732,157 +2733,157 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \                     `?~CTestModeNotifyerControl_1`:
    \   00000028   E0E4               LDI     R30, 4
    \   0000002A   ........           JMP     ?EPILOGUE_B4_L09
-    648          
-    649          //-----------------------------------------------------------------------------------------------------
+    649          
+    650          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    650          void CTestModeNotifyerControl::AlarmSet(uint8_t uiAlarmType)
+    651          void CTestModeNotifyerControl::AlarmSet(uint8_t uiAlarmType)
    \                     ??AlarmSet_2:
-    651          {
-    652          //    // Сохраним текущее состояние автомата.
-    653          //    SetSavedFsmState(GetFsmState());
-    654          //    switch (uiAlarmType)
-    655          //    {
-    656          //    case NORMAL:
-    657          //        SetFsmState(STOP);
-    658          //        break;
-    659          //
-    660          //    case INDICATION:
-    661          //        SetFsmState(INDICATION_SIGNAL_START);
-    662          //        break;
-    663          //
-    664          //    case PREVENTIVE:
-    665          //        SetFsmState(WARNING_SIGNAL_START);
-    666          //        break;
-    667          //
-    668          //    case EMERGENCY:
-    669          //        SetFsmState(WARNING_SIGNAL_START);
-    670          //        break;
-    671          //
-    672          //    case IND_PREVENTIVE:
-    673          //        break;
-    674          //
-    675          //    case IND_EMERGENCY:
-    676          //        break;
-    677          //
-    678          //    case ERROR:
-    679          //        break;
-    680          //
-    681          //    case BEEP_SIGNAL:
-    682          //        break;
-    683          //
-    684          //    default:
-    685          //        break;
-    686          //    }
-    687          }
+    652          {
+    653          //    // Сохраним текущее состояние автомата.
+    654          //    SetSavedFsmState(GetFsmState());
+    655          //    switch (uiAlarmType)
+    656          //    {
+    657          //    case NORMAL:
+    658          //        SetFsmState(STOP);
+    659          //        break;
+    660          //
+    661          //    case INDICATION:
+    662          //        SetFsmState(INDICATION_SIGNAL_START);
+    663          //        break;
+    664          //
+    665          //    case PREVENTIVE:
+    666          //        SetFsmState(WARNING_SIGNAL_START);
+    667          //        break;
+    668          //
+    669          //    case EMERGENCY:
+    670          //        SetFsmState(WARNING_SIGNAL_START);
+    671          //        break;
+    672          //
+    673          //    case IND_PREVENTIVE:
+    674          //        break;
+    675          //
+    676          //    case IND_EMERGENCY:
+    677          //        break;
+    678          //
+    679          //    case ERROR:
+    680          //        break;
+    681          //
+    682          //    case BEEP_SIGNAL:
+    683          //        break;
+    684          //
+    685          //    default:
+    686          //        break;
+    687          //    }
+    688          }
    \   00000000   9508               RET
-    688          
-    689          //-----------------------------------------------------------------------------------------------------
+    689          
+    690          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    690          void CTestModeNotifyerControl::NotifyerNormalOn(void)
+    691          void CTestModeNotifyerControl::NotifyerNormalOn(void)
    \                     ??NotifyerNormalOn_2:
-    691          {
+    692          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    692              CPss21::AllAlarmWindowOn(INDICATION);
+    693              CPss21::AllAlarmWindowOn(INDICATION);
    \   00000006   E001               LDI     R16, 1
    \   00000008   ........           CALL    ??AllAlarmWindowOn
-    693              CBuzzer::LowOn();
+    694              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
-    694          }
+    695          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    695          
-    696          //-----------------------------------------------------------------------------------------------------
+    696          
+    697          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    697          void CTestModeNotifyerControl::NotifyerIndicationOn(void)
+    698          void CTestModeNotifyerControl::NotifyerIndicationOn(void)
    \                     ??NotifyerIndicationOn_2:
-    698          {
+    699          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    699              CPss21::AllAlarmWindowOn(INDICATION);
+    700              CPss21::AllAlarmWindowOn(INDICATION);
    \   00000006   E001               LDI     R16, 1
    \   00000008   ........           CALL    ??AllAlarmWindowOn
-    700              CBuzzer::LowOn();
+    701              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
-    701          }
+    702          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    702          
-    703          //-----------------------------------------------------------------------------------------------------
+    703          
+    704          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    704          void CTestModeNotifyerControl::NotifyerPreventiveOn(void)
+    705          void CTestModeNotifyerControl::NotifyerPreventiveOn(void)
    \                     ??NotifyerPreventiveOn_2:
-    705          {
+    706          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    706              CPss21::AllAlarmWindowOn(PREVENTIVE);
+    707              CPss21::AllAlarmWindowOn(PREVENTIVE);
    \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??AllAlarmWindowOn
-    707              CBuzzer::LowOn();
+    708              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
-    708          }
+    709          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    709          
-    710          //-----------------------------------------------------------------------------------------------------
+    710          
+    711          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    711          void CTestModeNotifyerControl::NotifyerEmergencyOn(void)
+    712          void CTestModeNotifyerControl::NotifyerEmergencyOn(void)
    \                     ??NotifyerEmergencyOn_2:
-    712          {
+    713          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    713              CPss21::AllAlarmWindowOn(EMERGENCY);
+    714              CPss21::AllAlarmWindowOn(EMERGENCY);
    \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??AllAlarmWindowOn
-    714              CBuzzer::LowOn();
+    715              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
-    715          }
+    716          }
    \   00000010   9189               LD      R24, Y+
    \   00000012   9199               LD      R25, Y+
    \   00000014   9508               RET
-    716          
-    717          //-----------------------------------------------------------------------------------------------------
+    717          
+    718          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    718          void CTestModeNotifyerControl::NotifyerOff(void)
+    719          void CTestModeNotifyerControl::NotifyerOff(void)
    \                     ??NotifyerOff_2:
-    719          {
+    720          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    720              CBuzzer::Off();
+    721              CBuzzer::Off();
    \   00000006   ........           CALL    ??Off
-    721              CPss21::AllAlarmWindowOff();
+    722              CPss21::AllAlarmWindowOff();
    \   0000000A   ........           CALL    ??AllAlarmWindowOff
-    722              CPss21::BoardWindowsUpdate();
+    723              CPss21::BoardWindowsUpdate();
    \   0000000E   ........           CALL    ??BoardWindowsUpdate
-    723          }
+    724          }
    \   00000012   9189               LD      R24, Y+
    \   00000014   9199               LD      R25, Y+
    \   00000016   9508               RET
-    724          
-    725          //-----------------------------------------------------------------------------------------------------
+    725          
+    726          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    726          void CTestModeNotifyerControl::Fsm(void)
+    727          void CTestModeNotifyerControl::Fsm(void)
    \                     ??Fsm_1:
-    727          {
+    728          {
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    728              switch (GetFsmState())
+    729              switch (GetFsmState())
    \   00000006   018D               MOVW    R17:R16, R27:R26
    \   00000008   ........           CALL    ??GetFsmState
    \   0000000C   5000               SUBI    R16, 0
@@ -2916,14 +2917,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000044   F409               BRNE    $+2+2
    \   00000046   C101               RJMP    ??Fsm_43
    \   00000048   C10F               RJMP    ??Fsm_44
-    729              {
-    730              case IDDLE:
-    731                  break;
+    730              {
+    731              case IDDLE:
+    732                  break;
    \                     ??Fsm_33:
    \   0000004A   C10E               RJMP    ??Fsm_44
-    732          
-    733              case INDICATION_SIGNAL_START:
-    734                  m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
+    733          
+    734              case INDICATION_SIGNAL_START:
+    735                  m_xTimer.Set(NORMAL_SIGNAL_ON_TIME());
    \                     ??Fsm_34:
    \   0000004C   018D               MOVW    R17:R16, R27:R26
    \   0000004E   9611               ADIW    R27:R26, 1
@@ -2941,7 +2942,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000066   5F0A               SUBI    R16, 250
    \   00000068   4F1F               SBCI    R17, 255
    \   0000006A   ........           CALL    ??Set
-    735                  NotifyerIndicationOn();
+    736                  NotifyerIndicationOn();
    \   0000006E   018D               MOVW    R17:R16, R27:R26
    \   00000070   9611               ADIW    R27:R26, 1
    \   00000072   91ED               LD      R30, X+
@@ -2953,15 +2954,15 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000007E   9737               SBIW    R31:R30, 7
    \   00000080   01F9               MOVW    R31:R30, R19:R18
    \   00000082   9509               ICALL
-    736                  SetFsmState(INDICATION_SIGNAL_ON);
+    737                  SetFsmState(INDICATION_SIGNAL_ON);
    \   00000084   E022               LDI     R18, 2
    \   00000086   018D               MOVW    R17:R16, R27:R26
    \   00000088   ........           CALL    ??SetFsmState
-    737                  break;
+    738                  break;
    \   0000008C   C0ED               RJMP    ??Fsm_44
-    738          
-    739              case INDICATION_SIGNAL_ON:
-    740                  if (m_xTimer.IsOverflow())
+    739          
+    740              case INDICATION_SIGNAL_ON:
+    741                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_35:
    \   0000008E   018D               MOVW    R17:R16, R27:R26
    \   00000090   5F0A               SUBI    R16, 250
@@ -2969,8 +2970,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000094   ........           CALL    ??IsOverflow
    \   00000098   2300               TST     R16
    \   0000009A   F101               BREQ    ??Fsm_45
-    741                  {
-    742                      m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
+    742                  {
+    743                      m_xTimer.Set(NORMAL_SIGNAL_OFF_TIME());
    \   0000009C   018D               MOVW    R17:R16, R27:R26
    \   0000009E   9611               ADIW    R27:R26, 1
    \   000000A0   91ED               LD      R30, X+
@@ -2987,7 +2988,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000B6   5F0A               SUBI    R16, 250
    \   000000B8   4F1F               SBCI    R17, 255
    \   000000BA   ........           CALL    ??Set
-    743                      NotifyerOff();
+    744                      NotifyerOff();
    \   000000BE   018D               MOVW    R17:R16, R27:R26
    \   000000C0   9611               ADIW    R27:R26, 1
    \   000000C2   91ED               LD      R30, X+
@@ -2999,17 +3000,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000CE   973D               SBIW    R31:R30, 13
    \   000000D0   01F9               MOVW    R31:R30, R19:R18
    \   000000D2   9509               ICALL
-    744                      SetFsmState(INDICATION_SIGNAL_OFF);
+    745                      SetFsmState(INDICATION_SIGNAL_OFF);
    \   000000D4   E023               LDI     R18, 3
    \   000000D6   018D               MOVW    R17:R16, R27:R26
    \   000000D8   ........           CALL    ??SetFsmState
-    745                  }
-    746                  break;
+    746                  }
+    747                  break;
    \                     ??Fsm_45:
    \   000000DC   C0C5               RJMP    ??Fsm_44
-    747          
-    748              case INDICATION_SIGNAL_OFF:
-    749                  if (m_xTimer.IsOverflow())
+    748          
+    749              case INDICATION_SIGNAL_OFF:
+    750                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_36:
    \   000000DE   018D               MOVW    R17:R16, R27:R26
    \   000000E0   5F0A               SUBI    R16, 250
@@ -3017,18 +3018,18 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000000E4   ........           CALL    ??IsOverflow
    \   000000E8   2300               TST     R16
    \   000000EA   F021               BREQ    ??Fsm_46
-    750                  {
-    751                      SetFsmState(WARNING_SIGNAL_START);
+    751                  {
+    752                      SetFsmState(WARNING_SIGNAL_START);
    \   000000EC   E027               LDI     R18, 7
    \   000000EE   018D               MOVW    R17:R16, R27:R26
    \   000000F0   ........           CALL    ??SetFsmState
-    752                  }
-    753                  break;
+    753                  }
+    754                  break;
    \                     ??Fsm_46:
    \   000000F4   C0B9               RJMP    ??Fsm_44
-    754          
-    755              case WARNING_SIGNAL_START:
-    756                  m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
+    755          
+    756              case WARNING_SIGNAL_START:
+    757                  m_xTimer.Set(WARNING_SIGNAL_ON_TIME());
    \                     ??Fsm_37:
    \   000000F6   018D               MOVW    R17:R16, R27:R26
    \   000000F8   9611               ADIW    R27:R26, 1
@@ -3046,7 +3047,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000110   5F0A               SUBI    R16, 250
    \   00000112   4F1F               SBCI    R17, 255
    \   00000114   ........           CALL    ??Set
-    757                  NotifyerPreventiveOn();
+    758                  NotifyerPreventiveOn();
    \   00000118   018D               MOVW    R17:R16, R27:R26
    \   0000011A   9611               ADIW    R27:R26, 1
    \   0000011C   91ED               LD      R30, X+
@@ -3058,15 +3059,15 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000128   9739               SBIW    R31:R30, 9
    \   0000012A   01F9               MOVW    R31:R30, R19:R18
    \   0000012C   9509               ICALL
-    758                  SetFsmState(WARNING_SIGNAL_ON);
+    759                  SetFsmState(WARNING_SIGNAL_ON);
    \   0000012E   E028               LDI     R18, 8
    \   00000130   018D               MOVW    R17:R16, R27:R26
    \   00000132   ........           CALL    ??SetFsmState
-    759                  break;
+    760                  break;
    \   00000136   C098               RJMP    ??Fsm_44
-    760          
-    761              case WARNING_SIGNAL_ON:
-    762                  if (m_xTimer.IsOverflow())
+    761          
+    762              case WARNING_SIGNAL_ON:
+    763                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_38:
    \   00000138   018D               MOVW    R17:R16, R27:R26
    \   0000013A   5F0A               SUBI    R16, 250
@@ -3074,8 +3075,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000013E   ........           CALL    ??IsOverflow
    \   00000142   2300               TST     R16
    \   00000144   F101               BREQ    ??Fsm_47
-    763                  {
-    764                      m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
+    764                  {
+    765                      m_xTimer.Set(WARNING_SIGNAL_OFF_TIME());
    \   00000146   018D               MOVW    R17:R16, R27:R26
    \   00000148   9611               ADIW    R27:R26, 1
    \   0000014A   91ED               LD      R30, X+
@@ -3092,7 +3093,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000160   5F0A               SUBI    R16, 250
    \   00000162   4F1F               SBCI    R17, 255
    \   00000164   ........           CALL    ??Set
-    765                      NotifyerOff();
+    766                      NotifyerOff();
    \   00000168   018D               MOVW    R17:R16, R27:R26
    \   0000016A   9611               ADIW    R27:R26, 1
    \   0000016C   91ED               LD      R30, X+
@@ -3104,17 +3105,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000178   973D               SBIW    R31:R30, 13
    \   0000017A   01F9               MOVW    R31:R30, R19:R18
    \   0000017C   9509               ICALL
-    766                      SetFsmState(WARNING_SIGNAL_OFF);
+    767                      SetFsmState(WARNING_SIGNAL_OFF);
    \   0000017E   E029               LDI     R18, 9
    \   00000180   018D               MOVW    R17:R16, R27:R26
    \   00000182   ........           CALL    ??SetFsmState
-    767                  }
-    768                  break;
+    768                  }
+    769                  break;
    \                     ??Fsm_47:
    \   00000186   C070               RJMP    ??Fsm_44
-    769          
-    770              case WARNING_SIGNAL_OFF:
-    771                  if (m_xTimer.IsOverflow())
+    770          
+    771              case WARNING_SIGNAL_OFF:
+    772                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_39:
    \   00000188   018D               MOVW    R17:R16, R27:R26
    \   0000018A   5F0A               SUBI    R16, 250
@@ -3122,18 +3123,18 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000018E   ........           CALL    ??IsOverflow
    \   00000192   2300               TST     R16
    \   00000194   F021               BREQ    ??Fsm_48
-    772                  {
-    773                      SetFsmState(ALARM_SIGNAL_START);
+    773                  {
+    774                      SetFsmState(ALARM_SIGNAL_START);
    \   00000196   E02D               LDI     R18, 13
    \   00000198   018D               MOVW    R17:R16, R27:R26
    \   0000019A   ........           CALL    ??SetFsmState
-    774                  }
-    775                  break;
+    775                  }
+    776                  break;
    \                     ??Fsm_48:
    \   0000019E   C064               RJMP    ??Fsm_44
-    776          
-    777              case ALARM_SIGNAL_START:
-    778                  m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
+    777          
+    778              case ALARM_SIGNAL_START:
+    779                  m_xTimer.Set(ALARM_SIGNAL_ON_TIME());
    \                     ??Fsm_40:
    \   000001A0   018D               MOVW    R17:R16, R27:R26
    \   000001A2   9611               ADIW    R27:R26, 1
@@ -3151,7 +3152,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000001BA   5F0A               SUBI    R16, 250
    \   000001BC   4F1F               SBCI    R17, 255
    \   000001BE   ........           CALL    ??Set
-    779                  NotifyerEmergencyOn();
+    780                  NotifyerEmergencyOn();
    \   000001C2   018D               MOVW    R17:R16, R27:R26
    \   000001C4   9611               ADIW    R27:R26, 1
    \   000001C6   91ED               LD      R30, X+
@@ -3163,15 +3164,15 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000001D2   973B               SBIW    R31:R30, 11
    \   000001D4   01F9               MOVW    R31:R30, R19:R18
    \   000001D6   9509               ICALL
-    780                  SetFsmState(ALARM_SIGNAL_ON);
+    781                  SetFsmState(ALARM_SIGNAL_ON);
    \   000001D8   E02E               LDI     R18, 14
    \   000001DA   018D               MOVW    R17:R16, R27:R26
    \   000001DC   ........           CALL    ??SetFsmState
-    781                  break;
+    782                  break;
    \   000001E0   C043               RJMP    ??Fsm_44
-    782          
-    783              case ALARM_SIGNAL_ON:
-    784                  if (m_xTimer.IsOverflow())
+    783          
+    784              case ALARM_SIGNAL_ON:
+    785                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_41:
    \   000001E2   018D               MOVW    R17:R16, R27:R26
    \   000001E4   5F0A               SUBI    R16, 250
@@ -3179,8 +3180,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   000001E8   ........           CALL    ??IsOverflow
    \   000001EC   2300               TST     R16
    \   000001EE   F1E1               BREQ    ??Fsm_44
-    785                  {
-    786                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
+    786                  {
+    787                      m_xTimer.Set(ALARM_SIGNAL_OFF_TIME());
    \   000001F0   018D               MOVW    R17:R16, R27:R26
    \   000001F2   9611               ADIW    R27:R26, 1
    \   000001F4   91ED               LD      R30, X+
@@ -3197,7 +3198,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000020A   5F0A               SUBI    R16, 250
    \   0000020C   4F1F               SBCI    R17, 255
    \   0000020E   ........           CALL    ??Set
-    787                      NotifyerOff();
+    788                      NotifyerOff();
    \   00000212   018D               MOVW    R17:R16, R27:R26
    \   00000214   9611               ADIW    R27:R26, 1
    \   00000216   91ED               LD      R30, X+
@@ -3209,16 +3210,16 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000222   973D               SBIW    R31:R30, 13
    \   00000224   01F9               MOVW    R31:R30, R19:R18
    \   00000226   9509               ICALL
-    788                      SetFsmState(ALARM_SIGNAL_OFF);
+    789                      SetFsmState(ALARM_SIGNAL_OFF);
    \   00000228   E02F               LDI     R18, 15
    \   0000022A   018D               MOVW    R17:R16, R27:R26
    \   0000022C   ........           CALL    ??SetFsmState
-    789                  }
-    790                  break;
+    790                  }
+    791                  break;
    \   00000230   C01B               RJMP    ??Fsm_44
-    791          
-    792              case ALARM_SIGNAL_OFF:
-    793                  if (m_xTimer.IsOverflow())
+    792          
+    793              case ALARM_SIGNAL_OFF:
+    794                  if (m_xTimer.IsOverflow())
    \                     ??Fsm_42:
    \   00000232   018D               MOVW    R17:R16, R27:R26
    \   00000234   5F0A               SUBI    R16, 250
@@ -3226,17 +3227,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000238   ........           CALL    ??IsOverflow
    \   0000023C   2300               TST     R16
    \   0000023E   F0A1               BREQ    ??Fsm_44
-    794                  {
-    795                      SetFsmState(STOP);
+    795                  {
+    796                      SetFsmState(STOP);
    \   00000240   E225               LDI     R18, 37
    \   00000242   018D               MOVW    R17:R16, R27:R26
    \   00000244   ........           CALL    ??SetFsmState
-    796                  }
-    797                  break;
+    797                  }
+    798                  break;
    \   00000248   C00F               RJMP    ??Fsm_44
-    798          
-    799              case STOP:
-    800                  NotifyerOff();
+    799          
+    800              case STOP:
+    801                  NotifyerOff();
    \                     ??Fsm_43:
    \   0000024A   018D               MOVW    R17:R16, R27:R26
    \   0000024C   9611               ADIW    R27:R26, 1
@@ -3249,16 +3250,16 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000025A   973D               SBIW    R31:R30, 13
    \   0000025C   01F9               MOVW    R31:R30, R19:R18
    \   0000025E   9509               ICALL
-    801                  SetFsmState(IDDLE);
+    802                  SetFsmState(IDDLE);
    \   00000260   E020               LDI     R18, 0
    \   00000262   018D               MOVW    R17:R16, R27:R26
    \   00000264   ........           CALL    ??SetFsmState
-    802                  break;
-    803          
-    804              default:
-    805                  break;
-    806              };
-    807          }
+    803                  break;
+    804          
+    805              default:
+    806                  break;
+    807              };
+    808          }
    \                     ??Fsm_44:
    \   00000268   91A9               LD      R26, Y+
    \   0000026A   91B9               LD      R27, Y+
@@ -3465,9 +3466,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000012   E000               LDI     R16, 0
    \   00000014   E010               LDI     R17, 0
    \   00000016   9508               RET
-    808          //-----------------------------------------------------------------------------------------------------
-    809          
+    809          //-----------------------------------------------------------------------------------------------------
     810          
+    811          
 
    Maximum stack usage in bytes:
 
