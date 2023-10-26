@@ -2,159 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include\Alarm.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\DataTypes.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5204" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="src\DataBase.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6255" topLine="162" />
-		</Cursor>
-	</File>
-	<File name="include\DataStore.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="983" topLine="94" />
-		</Cursor>
-	</File>
-	<File name="Modbus\ModbusRTU.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9337" topLine="57" />
-		</Cursor>
-	</File>
-	<File name="include\AlarmWindow.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1556" topLine="54" />
-		</Cursor>
-	</File>
-	<File name="include\Driver.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1141" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="include\DataTypes.h" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8417" topLine="201" />
-		</Cursor>
-	</File>
-	<File name="src\AlarmWindow.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="650" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="Flow48Color.txt" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5610" topLine="94" />
-		</Cursor>
-	</File>
-	<File name="include\Dm163.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6035" topLine="208" />
-		</Cursor>
-	</File>
-	<File name="src\InputDevice.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="13221" topLine="454" />
-		</Cursor>
-	</File>
-	<File name="include\Buzzer.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="561" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="src\Platform.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10135" topLine="815" />
-		</Cursor>
-	</File>
-	<File name="include\Pixel.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1159" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="src\DataStore.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="14129" topLine="371" />
-		</Cursor>
-	</File>
-	<File name="include\ModuleMrXX.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5277" topLine="94" />
-		</Cursor>
-	</File>
-	<File name="src\Mvsn21.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4859" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="include\DM134.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="695" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Buzzer.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1374" topLine="38" />
-		</Cursor>
-	</File>
-	<File name="include\HammingCodes.h" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3434" topLine="72" />
-		</Cursor>
-	</File>
-	<File name="src\HammingCodes.cpp" open="0" top="0" tabpos="46" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10341" topLine="229" />
-		</Cursor>
-	</File>
-	<File name="src\Pixel.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1884" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\LinkControl.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4299" topLine="22" />
-		</Cursor>
-	</File>
-	<File name="src\LightBoard.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7388" topLine="293" />
-		</Cursor>
-	</File>
-	<File name="include\LinkControl.h" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="866" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="src\Alarm.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10020" topLine="248" />
-		</Cursor>
-	</File>
-	<File name="include\NotifyerControl.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1535" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="src\Pss21.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="54801" topLine="1644" />
-		</Cursor>
-	</File>
-	<File name="Modbus\modbus.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22770" topLine="854" />
-		</Cursor>
-	</File>
-	<File name="include\Mvsn21.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2183" topLine="35" />
-		</Cursor>
-	</File>
-	<File name="include\Dfa.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="872" topLine="0" />
+			<Cursor1 position="12320" topLine="299" />
 		</Cursor>
 	</File>
 	<File name="src\Event.cpp" open="0" top="0" tabpos="44" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -162,99 +12,9 @@
 			<Cursor1 position="2881" topLine="39" />
 		</Cursor>
 	</File>
-	<File name="include\Configuration.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\HammingCodes.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1514" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="include\Timer.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1021" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="Modbus\errno-base.h" open="0" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3261" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="include\Crc.h" open="0" top="0" tabpos="45" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="959" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\Dfa.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="889" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="src\Timer.cpp" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1296" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="Modbus\ModbusRTU.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3929" topLine="46" />
-		</Cursor>
-	</File>
-	<File name="include\Platform.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17096" topLine="610" />
-		</Cursor>
-	</File>
-	<File name="src\NotifyerControl.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="18975" topLine="788" />
-		</Cursor>
-	</File>
-	<File name="src\Task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="123" />
-		</Cursor>
-	</File>
-	<File name="include\InputDevice.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6963" topLine="224" />
-		</Cursor>
-	</File>
-	<File name="include\LightBoard.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="728" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="include\Pss21.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10100" topLine="287" />
-		</Cursor>
-	</File>
-	<File name="Modbus\modbus.h" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6462" topLine="308" />
-		</Cursor>
-	</File>
-	<File name="src\ModuleMrXX.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11880" topLine="280" />
-		</Cursor>
-	</File>
-	<File name="src\main.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="963" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include\Event.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="925" topLine="23" />
-		</Cursor>
-	</File>
-	<File name="src\DM134.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="958" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="src\Driver.cpp" open="0" top="0" tabpos="42" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="115" topLine="0" />
+			<Cursor1 position="4385" topLine="109" />
 		</Cursor>
 	</File>
 	<File name="src\Dm163.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -262,14 +22,254 @@
 			<Cursor1 position="203" topLine="57" />
 		</Cursor>
 	</File>
+	<File name="Modbus\modbus.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="22770" topLine="854" />
+		</Cursor>
+	</File>
+	<File name="src\DM134.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="958" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="include\LinkControl.h" open="0" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="866" topLine="28" />
+		</Cursor>
+	</File>
+	<File name="include\Platform.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17096" topLine="610" />
+		</Cursor>
+	</File>
+	<File name="Flow48Color.txt" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6580" topLine="95" />
+		</Cursor>
+	</File>
 	<File name="include\DataBase.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="674" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="src\Buzzer.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1374" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="include\LightBoard.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="728" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="include\Pixel.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1159" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="include\Configuration.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5345" topLine="113" />
+		</Cursor>
+	</File>
+	<File name="src\main.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="963" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\ModuleMrXX.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2779" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="include\DataStore.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="983" topLine="94" />
+		</Cursor>
+	</File>
+	<File name="src\Pixel.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1884" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="src\Crc.cpp" open="0" top="0" tabpos="38" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="146" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="Modbus\errno-base.h" open="0" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3261" topLine="77" />
+		</Cursor>
+	</File>
+	<File name="include\Dm163.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6035" topLine="208" />
+		</Cursor>
+	</File>
+	<File name="include\NotifyerControl.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3876" topLine="132" />
+		</Cursor>
+	</File>
+	<File name="Modbus\ModbusRTU.h" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3929" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="src\LightBoard.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7101" topLine="258" />
+		</Cursor>
+	</File>
+	<File name="include\ModuleMrXX.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5277" topLine="94" />
+		</Cursor>
+	</File>
+	<File name="src\HammingCodes.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3325" topLine="82" />
+		</Cursor>
+	</File>
+	<File name="src\Task.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="123" />
+		</Cursor>
+	</File>
+	<File name="include\Crc.h" open="0" top="0" tabpos="45" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="959" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\Driver.cpp" open="0" top="0" tabpos="42" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="115" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\InputDevice.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6963" topLine="224" />
+		</Cursor>
+	</File>
+	<File name="include\Pss21.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6064" topLine="186" />
+		</Cursor>
+	</File>
+	<File name="include\AlarmWindow.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1556" topLine="54" />
+		</Cursor>
+	</File>
+	<File name="src\Dfa.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="889" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="include\Mvsn21.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2183" topLine="35" />
+		</Cursor>
+	</File>
+	<File name="src\DataStore.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14402" topLine="337" />
+		</Cursor>
+	</File>
+	<File name="include\Alarm.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1399" topLine="49" />
+		</Cursor>
+	</File>
+	<File name="src\Alarm.cpp" open="1" top="1" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15764" topLine="357" />
+		</Cursor>
+	</File>
+	<File name="include\Driver.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1705" topLine="56" />
+		</Cursor>
+	</File>
+	<File name="src\DataBase.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6255" topLine="162" />
+		</Cursor>
+	</File>
+	<File name="include\Dfa.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="872" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\AlarmWindow.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="650" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="include\Event.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="925" topLine="23" />
+		</Cursor>
+	</File>
+	<File name="include\Timer.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1021" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="include\Buzzer.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="561" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src\Pss21.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="52271" topLine="1242" />
+		</Cursor>
+	</File>
+	<File name="src\NotifyerControl.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="18278" topLine="702" />
+		</Cursor>
+	</File>
+	<File name="Modbus\ModbusRTU.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9337" topLine="57" />
+		</Cursor>
+	</File>
+	<File name="src\Platform.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10135" topLine="815" />
+		</Cursor>
+	</File>
+	<File name="src\Mvsn21.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1936" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="include\DM134.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="695" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src\LinkControl.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4303" topLine="109" />
+		</Cursor>
+	</File>
+	<File name="Modbus\modbus.h" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6462" topLine="308" />
+		</Cursor>
+	</File>
+	<File name="src\InputDevice.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="13221" topLine="454" />
+		</Cursor>
+	</File>
+	<File name="src\Timer.cpp" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1296" topLine="39" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

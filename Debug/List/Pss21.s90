@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  18:41:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          26/Oct/2023  16:00:50
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW212B.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW5528.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -132,13 +132,11 @@
         PUBWEAK ??SetAlarmType
         PUBLIC ??SetAlarmWindowColor
         PUBWEAK ??SetAlarmWindowIndex
-        PUBWEAK ??SetAlarmWindowIndex_1
         PUBLIC ??SetAlarmWindowType
         PUBLIC ??SetBytesFromBits
         PUBWEAK ??SetDiscreteSignalsReceipt
         PUBWEAK ??SetDiscreteSignalsReset
         PUBWEAK ??SetDiscreteStateIndex
-        PUBWEAK ??SetDiscreteStateIndex_1
         PUBLIC ??SetErrorAlarmState
         PUBWEAK ??SetErrorCode
         PUBWEAK ??SetExternalReceipt
@@ -322,56 +320,56 @@
         PUBWEAK __?EEDR
         PUBLIC uiMapTestCounter
 
-`?<Name CPlatform 191>` SYMBOL "CPlatform"
-??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 191>`
-`?<Name CPss21 255>` SYMBOL "CPss21"
-??m_apxAlarmDfa     SYMBOL "m_apxAlarmDfa", `?<Name CPss21 255>`
-??m_apxDrivers      SYMBOL "m_apxDrivers", `?<Name CPss21 255>`
-??m_apxErrorAlarmDfa SYMBOL "m_apxErrorAlarmDfa", `?<Name CPss21 255>`
-??m_aucRtuDiscreteDataArray SYMBOL "m_aucRtuDiscreteDataArray", `?<Name CPss21 255>`
-??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 255>`
-??m_aucRtuInputRegistersArray SYMBOL "m_aucRtuInputRegistersArray", `?<Name CPss21 255>`
-??m_auiErrorAlarmDataArray SYMBOL "m_auiErrorAlarmDataArray", `?<Name CPss21 255>`
-??m_auiErrorLedOn   SYMBOL "m_auiErrorLedOn", `?<Name CPss21 255>`
-??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 255>`
-??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 255>`
-??m_auiSpiRxBuffer  SYMBOL "m_auiSpiRxBuffer", `?<Name CPss21 255>`
-??m_auiSpiTxBuffer  SYMBOL "m_auiSpiTxBuffer", `?<Name CPss21 255>`
-??m_axAlarmWindowControl SYMBOL "m_axAlarmWindowControl", `?<Name CPss21 255>`
-??m_axDiscreteOutputControl SYMBOL "m_axDiscreteOutputControl", `?<Name CPss21 255>`
-??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 255>`
-??m_uiCommonAlarmTypePrevious SYMBOL "m_uiCommonAlarmTypePrevious", `?<Name CPss21 255>`
-??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 255>`
-??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 255>`
-??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 255>`
-??m_uiExternalReceipt SYMBOL "m_uiExternalReceipt", `?<Name CPss21 255>`
-??m_uiExternalReset SYMBOL "m_uiExternalReset", `?<Name CPss21 255>`
-??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 255>`
-??m_uiModbusReceipt SYMBOL "m_uiModbusReceipt", `?<Name CPss21 255>`
-??m_uiModbusReset   SYMBOL "m_uiModbusReset", `?<Name CPss21 255>`
-??m_uiModuleIndex   SYMBOL "m_uiModuleIndex", `?<Name CPss21 255>`
-??m_uiPanelReceipt  SYMBOL "m_uiPanelReceipt", `?<Name CPss21 255>`
-??m_uiPanelReset    SYMBOL "m_uiPanelReset", `?<Name CPss21 255>`
-??m_uiType          SYMBOL "m_uiType", `?<Name CPss21 255>`
-??m_xBuzzerNotifyerControl SYMBOL "m_xBuzzerNotifyerControl", `?<Name CPss21 255>`
-??m_xCheckKey       SYMBOL "m_xCheckKey", `?<Name CPss21 255>`
-??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 255>`
-??m_xDeviceConfiguration SYMBOL "m_xDeviceConfiguration", `?<Name CPss21 255>`
-??m_xDeviceState    SYMBOL "m_xDeviceState", `?<Name CPss21 255>`
-??m_xDiscreteOutputDataBase SYMBOL "m_xDiscreteOutputDataBase", `?<Name CPss21 255>`
-??m_xEmergencyAlarmWindowNotifyerControl SYMBOL "m_xEmergencyAlarmWindowNotifyerControl", `?<Name CPss21 255>`
-??m_xEventUniteLogicAndOne SYMBOL "m_xEventUniteLogicAndOne", `?<Name CPss21 255>`
-??m_xExternalKey    SYMBOL "m_xExternalKey", `?<Name CPss21 255>`
-??m_xMainCycleTimer SYMBOL "m_xMainCycleTimer", `?<Name CPss21 255>`
-??m_xModbusRtuLinkControl SYMBOL "m_xModbusRtuLinkControl", `?<Name CPss21 255>`
-??m_xModbusRtuOne   SYMBOL "m_xModbusRtuOne", `?<Name CPss21 255>`
-??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 255>`
-??m_xPreventiveAlarmWindowNotifyerControl SYMBOL "m_xPreventiveAlarmWindowNotifyerControl", `?<Name CPss21 255>`
-??m_xReceiptKey     SYMBOL "m_xReceiptKey", `?<Name CPss21 255>`
-??m_xResetKey       SYMBOL "m_xResetKey", `?<Name CPss21 255>`
-??m_xStatusLedNotifyerControl SYMBOL "m_xStatusLedNotifyerControl", `?<Name CPss21 255>`
-??m_xTestModeNotifyerControl SYMBOL "m_xTestModeNotifyerControl", `?<Name CPss21 255>`
-??m_xUart1          SYMBOL "m_xUart1", `?<Name CPss21 255>`
+`?<Name CPlatform 188>` SYMBOL "CPlatform"
+??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 188>`
+`?<Name CPss21 252>` SYMBOL "CPss21"
+??m_apxAlarmDfa     SYMBOL "m_apxAlarmDfa", `?<Name CPss21 252>`
+??m_apxDrivers      SYMBOL "m_apxDrivers", `?<Name CPss21 252>`
+??m_apxErrorAlarmDfa SYMBOL "m_apxErrorAlarmDfa", `?<Name CPss21 252>`
+??m_aucRtuDiscreteDataArray SYMBOL "m_aucRtuDiscreteDataArray", `?<Name CPss21 252>`
+??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 252>`
+??m_aucRtuInputRegistersArray SYMBOL "m_aucRtuInputRegistersArray", `?<Name CPss21 252>`
+??m_auiErrorAlarmDataArray SYMBOL "m_auiErrorAlarmDataArray", `?<Name CPss21 252>`
+??m_auiErrorLedOn   SYMBOL "m_auiErrorLedOn", `?<Name CPss21 252>`
+??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 252>`
+??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 252>`
+??m_auiSpiRxBuffer  SYMBOL "m_auiSpiRxBuffer", `?<Name CPss21 252>`
+??m_auiSpiTxBuffer  SYMBOL "m_auiSpiTxBuffer", `?<Name CPss21 252>`
+??m_axAlarmWindowControl SYMBOL "m_axAlarmWindowControl", `?<Name CPss21 252>`
+??m_axDiscreteOutputControl SYMBOL "m_axDiscreteOutputControl", `?<Name CPss21 252>`
+??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 252>`
+??m_uiCommonAlarmTypePrevious SYMBOL "m_uiCommonAlarmTypePrevious", `?<Name CPss21 252>`
+??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 252>`
+??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 252>`
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 252>`
+??m_uiExternalReceipt SYMBOL "m_uiExternalReceipt", `?<Name CPss21 252>`
+??m_uiExternalReset SYMBOL "m_uiExternalReset", `?<Name CPss21 252>`
+??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 252>`
+??m_uiModbusReceipt SYMBOL "m_uiModbusReceipt", `?<Name CPss21 252>`
+??m_uiModbusReset   SYMBOL "m_uiModbusReset", `?<Name CPss21 252>`
+??m_uiModuleIndex   SYMBOL "m_uiModuleIndex", `?<Name CPss21 252>`
+??m_uiPanelReceipt  SYMBOL "m_uiPanelReceipt", `?<Name CPss21 252>`
+??m_uiPanelReset    SYMBOL "m_uiPanelReset", `?<Name CPss21 252>`
+??m_uiType          SYMBOL "m_uiType", `?<Name CPss21 252>`
+??m_xBuzzerNotifyerControl SYMBOL "m_xBuzzerNotifyerControl", `?<Name CPss21 252>`
+??m_xCheckKey       SYMBOL "m_xCheckKey", `?<Name CPss21 252>`
+??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 252>`
+??m_xDeviceConfiguration SYMBOL "m_xDeviceConfiguration", `?<Name CPss21 252>`
+??m_xDeviceState    SYMBOL "m_xDeviceState", `?<Name CPss21 252>`
+??m_xDiscreteOutputDataBase SYMBOL "m_xDiscreteOutputDataBase", `?<Name CPss21 252>`
+??m_xEmergencyAlarmWindowNotifyerControl SYMBOL "m_xEmergencyAlarmWindowNotifyerControl", `?<Name CPss21 252>`
+??m_xEventUniteLogicAndOne SYMBOL "m_xEventUniteLogicAndOne", `?<Name CPss21 252>`
+??m_xExternalKey    SYMBOL "m_xExternalKey", `?<Name CPss21 252>`
+??m_xMainCycleTimer SYMBOL "m_xMainCycleTimer", `?<Name CPss21 252>`
+??m_xModbusRtuLinkControl SYMBOL "m_xModbusRtuLinkControl", `?<Name CPss21 252>`
+??m_xModbusRtuOne   SYMBOL "m_xModbusRtuOne", `?<Name CPss21 252>`
+??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 252>`
+??m_xPreventiveAlarmWindowNotifyerControl SYMBOL "m_xPreventiveAlarmWindowNotifyerControl", `?<Name CPss21 252>`
+??m_xReceiptKey     SYMBOL "m_xReceiptKey", `?<Name CPss21 252>`
+??m_xResetKey       SYMBOL "m_xResetKey", `?<Name CPss21 252>`
+??m_xStatusLedNotifyerControl SYMBOL "m_xStatusLedNotifyerControl", `?<Name CPss21 252>`
+??m_xTestModeNotifyerControl SYMBOL "m_xTestModeNotifyerControl", `?<Name CPss21 252>`
+??m_xUart1          SYMBOL "m_xUart1", `?<Name CPss21 252>`
 
         EXTERN ??AlarmSet
         EXTERN ??AlarmSet_1
@@ -382,7 +380,6 @@
         EXTERN ??CEmergencyAlarmHighLevelDfa
         EXTERN ??CEmergencyAlarmLowLevelDfa
         EXTERN ??CEmergencyAlarmWindowNotifyerControl
-        EXTERN ??CErrorAlarmDfa
         EXTERN ??CEventUniteLogicAnd
         EXTERN ??CIndicationAlarmHighLevelDfa
         EXTERN ??CIndicationAlarmLowLevelDfa
@@ -2712,17 +2709,17 @@ _A_PINF:
 //  969 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
 //  970 //    uiIndex++;
 //  971 
-//  972     // Создадим автоматы обработки ошибок.
-//  973     for (uint8_t i = 0;
-//  974             i < HANDLED_ERROR_NUMBER;
-//  975             i++)
-//  976     {
-//  977         m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
-//  978         // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-//  979         m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
-//  980         // Установим индекс источника состояния ошибки.
-//  981         m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
-//  982     };
+//  972 //    // Создадим автоматы обработки ошибок.
+//  973 //    for (uint8_t i = 0;
+//  974 //            i < HANDLED_ERROR_NUMBER;
+//  975 //            i++)
+//  976 //    {
+//  977 //        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+//  978 //        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//  979 //        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+//  980 //        // Установим индекс источника состояния ошибки.
+//  981 //        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+//  982 //    };
 //  983 }
 //  984 
 //  985 //-----------------------------------------------------------------------------------------------------
@@ -2989,7 +2986,7 @@ _A_PINF:
 // 1246 {
 // 1247     DiscreteOutputControlClear();
 // 1248     AlarmsProcessing();
-// 1249     ErrorAlarmsProcessing();
+// 1249 //    ErrorAlarmsProcessing();
 // 1250     SetDiscreteSignalsReceipt(0);
 // 1251     SetDiscreteSignalsReset(0);
 // 1252 }
@@ -4575,57 +4572,6 @@ _A_PINF:
         LDI     R16, LOW(??m_xDeviceState)
         LDI     R17, (??m_xDeviceState) >> 8
         CALL    memcpy
-        CLR     R4
-??ConfigurationInit_50:
-        LDI     R16, 2
-        CP      R4, R16
-        BRCC    ??ConfigurationInit_51
-        LDI     R16, 5
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    ??ConfigurationInit_52
-        CALL    ??CErrorAlarmDfa
-        RJMP    ??ConfigurationInit_53
-??ConfigurationInit_52:
-        LDI     R16, 0
-        LDI     R17, 0
-??ConfigurationInit_53:
-        MOV     R18, R4
-        LDI     R19, 0
-        LSL     R18
-        ROL     R19
-        MOVW    R31:R30, R19:R18
-        SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        MOV     R18, R4
-        MOV     R16, R4
-        LDI     R17, 0
-        LSL     R16
-        ROL     R17
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-        LD      R16, Z
-        LDD     R17, Z+1
-        CALL    ??SetAlarmWindowIndex_1
-        MOV     R18, R4
-        MOV     R16, R4
-        LDI     R17, 0
-        LSL     R16
-        ROL     R17
-        MOVW    R31:R30, R17:R16
-        SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-        LD      R16, Z
-        LDD     R17, Z+1
-        CALL    ??SetDiscreteStateIndex_1
-        INC     R4
-        RJMP    ??ConfigurationInit_50
-??ConfigurationInit_51:
         LDI     R30, 6
         JMP     ?EPILOGUE_B6_L09
 
@@ -5221,7 +5167,6 @@ _A_PINF:
 ??DiscreteSignalsProcessing:
         RCALL   ??DiscreteOutputControlClear
         RCALL   ??AlarmsProcessing
-        RCALL   ??ErrorAlarmsProcessing
         LDI     R16, 0
         CALL    ??SetDiscreteSignalsReceipt
         LDI     R16, 0
@@ -6623,20 +6568,6 @@ uiMapTestCounter:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CErrorAlarmDfa::SetDiscreteStateIndex(uint8_t)
-??SetDiscreteStateIndex_1:
-        MOVW    R31:R30, R17:R16
-        STD     Z+4, R18
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
-// __version_3 void CErrorAlarmDfa::SetAlarmWindowIndex(uint8_t)
-??SetAlarmWindowIndex_1:
-        MOVW    R31:R30, R17:R16
-        STD     Z+3, R18
-        RET
-
-        RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint8_t CPss21::GetFsmState()
 ??GetFsmState_1:
         LDS     R16, ??m_uiFsmState
@@ -6899,7 +6830,7 @@ __?EEARH:
 // 1732 
 // 
 //   105 bytes in segment ABSOLUTE
-// 6 984 bytes in segment CODE
+// 6 868 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -6908,7 +6839,7 @@ __?EEARH:
 // 1 756 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 6 776 bytes of CODE memory (+ 434 bytes shared)
+// 6 672 bytes of CODE memory (+ 422 bytes shared)
 // 1 846 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

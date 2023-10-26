@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Oct/2023  18:41:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           26/Oct/2023  16:00:50
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW212B.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW5528.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #        --cpu=m128a -ms -o
@@ -833,20 +833,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \                     ??GetLinkedDiscreteOutputsPointer:
    \   00000000   5F0C               SUBI    R16, 252
    \   00000002   4F1F               SBCI    R17, 255
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CErrorAlarmDfa::SetDiscreteStateIndex(uint8_t)
-   \                     ??SetDiscreteStateIndex_1:
-   \   00000000   01F8               MOVW    R31:R30, R17:R16
-   \   00000002   8324               STD     Z+4, R18
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CErrorAlarmDfa::SetAlarmWindowIndex(uint8_t)
-   \                     ??SetAlarmWindowIndex_1:
-   \   00000000   01F8               MOVW    R31:R30, R17:R16
-   \   00000002   8323               STD     Z+3, R18
    \   00000004   9508               RET
 
       virtual bool IsSolved(void) {};
@@ -4166,71 +4152,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     969          //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
     970          //    uiIndex++;
     971          
-    972              // Создадим автоматы обработки ошибок.
-    973              for (uint8_t i = 0;
-   \   000003E6   2444               CLR     R4
-    974                      i < HANDLED_ERROR_NUMBER;
-   \                     ??ConfigurationInit_50:
-   \   000003E8   E002               LDI     R16, 2
-   \   000003EA   1640               CP      R4, R16
-   \   000003EC   F578               BRCC    ??ConfigurationInit_51
-    975                      i++)
-    976              {
-    977                  m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
-   \   000003EE   E005               LDI     R16, 5
-   \   000003F0   E010               LDI     R17, 0
-   \   000003F2   ........           CALL    `??operator new`
-   \   000003F6   2F20               MOV     R18, R16
-   \   000003F8   2B21               OR      R18, R17
-   \   000003FA   F019               BREQ    ??ConfigurationInit_52
-   \   000003FC   ........           CALL    ??CErrorAlarmDfa
-   \   00000400   C002               RJMP    ??ConfigurationInit_53
-   \                     ??ConfigurationInit_52:
-   \   00000402   E000               LDI     R16, 0
-   \   00000404   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_53:
-   \   00000406   2D24               MOV     R18, R4
-   \   00000408   E030               LDI     R19, 0
-   \   0000040A   0F22               LSL     R18
-   \   0000040C   1F33               ROL     R19
-   \   0000040E   01F9               MOVW    R31:R30, R19:R18
-   \   00000410   ....               SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-   \   00000412   ....               SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-   \   00000414   8300               ST      Z, R16
-   \   00000416   8311               STD     Z+1, R17
-    978                  // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-    979                  m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
-   \   00000418   2D24               MOV     R18, R4
-   \   0000041A   2D04               MOV     R16, R4
-   \   0000041C   E010               LDI     R17, 0
-   \   0000041E   0F00               LSL     R16
-   \   00000420   1F11               ROL     R17
-   \   00000422   01F8               MOVW    R31:R30, R17:R16
-   \   00000424   ....               SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-   \   00000426   ....               SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-   \   00000428   8100               LD      R16, Z
-   \   0000042A   8111               LDD     R17, Z+1
-   \   0000042C   ........           CALL    ??SetAlarmWindowIndex_1
-    980                  // Установим индекс источника состояния ошибки.
-    981                  m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
-   \   00000430   2D24               MOV     R18, R4
-   \   00000432   2D04               MOV     R16, R4
-   \   00000434   E010               LDI     R17, 0
-   \   00000436   0F00               LSL     R16
-   \   00000438   1F11               ROL     R17
-   \   0000043A   01F8               MOVW    R31:R30, R17:R16
-   \   0000043C   ....               SUBI    R30, LOW((-(??m_apxErrorAlarmDfa) & 0xFFFF))
-   \   0000043E   ....               SBCI    R31, (-(??m_apxErrorAlarmDfa) & 0xFFFF) >> 8
-   \   00000440   8100               LD      R16, Z
-   \   00000442   8111               LDD     R17, Z+1
-   \   00000444   ........           CALL    ??SetDiscreteStateIndex_1
-    982              };
-   \   00000448   9443               INC     R4
-   \   0000044A   CFCE               RJMP    ??ConfigurationInit_50
+    972          //    // Создадим автоматы обработки ошибок.
+    973          //    for (uint8_t i = 0;
+    974          //            i < HANDLED_ERROR_NUMBER;
+    975          //            i++)
+    976          //    {
+    977          //        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+    978          //        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+    979          //        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+    980          //        // Установим индекс источника состояния ошибки.
+    981          //        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+    982          //    };
     983          }
-   \                     ??ConfigurationInit_51:
-   \   0000044C   E0E6               LDI     R30, 6
-   \   0000044E   ........           JMP     ?EPILOGUE_B6_L09
+   \   000003E6   E0E6               LDI     R30, 6
+   \   000003E8   ........           JMP     ?EPILOGUE_B6_L09
     984          
     985          //-----------------------------------------------------------------------------------------------------
 
@@ -5089,16 +5024,15 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   00000000   ....               RCALL   ??DiscreteOutputControlClear
    1248              AlarmsProcessing();
    \   00000002   ....               RCALL   ??AlarmsProcessing
-   1249              ErrorAlarmsProcessing();
-   \   00000004   ....               RCALL   ??ErrorAlarmsProcessing
+   1249          //    ErrorAlarmsProcessing();
    1250              SetDiscreteSignalsReceipt(0);
-   \   00000006   E000               LDI     R16, 0
-   \   00000008   ........           CALL    ??SetDiscreteSignalsReceipt
+   \   00000004   E000               LDI     R16, 0
+   \   00000006   ........           CALL    ??SetDiscreteSignalsReceipt
    1251              SetDiscreteSignalsReset(0);
-   \   0000000C   E000               LDI     R16, 0
-   \   0000000E   ........           CALL    ??SetDiscreteSignalsReset
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   ........           CALL    ??SetDiscreteSignalsReset
    1252          }
-   \   00000012   9508               RET
+   \   00000010   9508               RET
    1253          
    1254          //-----------------------------------------------------------------------------------------------------
 
@@ -6378,8 +6312,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
       0      2   CDriver::SetModbusReset(uint8_t)
       0      2   CDriver::SetReceipt(uint8_t)
       0      2   CDriver::SetReset(uint8_t)
-      0      2   CErrorAlarmDfa::SetAlarmWindowIndex(uint8_t)
-      0      2   CErrorAlarmDfa::SetDiscreteStateIndex(uint8_t)
       0      2   CPlatform::ExternalKeyState()
       0      2   CPlatform::KeyOneState()
       0      2   CPlatform::KeyThreeState()
@@ -6460,9 +6392,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
         6      2   -> CDataBase::ReadBlock(uint8_t *, uint8_t)
         6      2   -> CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
         6      2   -> CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
-        6      2   -> CErrorAlarmDfa::CErrorAlarmDfa()
-        6      2   -> CErrorAlarmDfa::SetAlarmWindowIndex(uint8_t)
-        6      2   -> CErrorAlarmDfa::SetDiscreteStateIndex(uint8_t)
         6      2   -> CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
         6      2   -> CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
         6      2   -> CNormalAlarmDfa::CNormalAlarmDfa()
@@ -6506,7 +6435,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
       0      2   CPss21::DiscreteSignalsProcessing()
         0      2   -> CPss21::AlarmsProcessing()
         0      2   -> CPss21::DiscreteOutputControlClear()
-        0      2   -> CPss21::ErrorAlarmsProcessing()
         0      2   -> CPss21::SetDiscreteSignalsReceipt(uint8_t)
         0      2   -> CPss21::SetDiscreteSignalsReset(uint8_t)
       1      2   CPss21::ErrorAlarmsProcessing()
@@ -6801,8 +6729,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
        6  CDriver::SetModbusReset(uint8_t)
        6  CDriver::SetReceipt(uint8_t)
        6  CDriver::SetReset(uint8_t)
-       6  CErrorAlarmDfa::SetAlarmWindowIndex(uint8_t)
-       6  CErrorAlarmDfa::SetDiscreteStateIndex(uint8_t)
       12  CPlatform::ExternalKeyState()
       12  CPlatform::KeyOneState()
       12  CPlatform::KeyThreeState()
@@ -6836,14 +6762,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
       74  CPss21::AllAlarmWindowOff()
      110  CPss21::AllAlarmWindowOn(uint8_t)
       10  CPss21::BoardWindowsUpdate()
-    1106  CPss21::ConfigurationInit()
+    1004  CPss21::ConfigurationInit()
       74  CPss21::ConnectDevice(uint8_t)
      364  CPss21::CreateDevices()
       18  CPss21::DestroyDevices(uint8_t)
       26  CPss21::DisconnectDevice()
       98  CPss21::DiscreteOutputControlClear()
      214  CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
-      20  CPss21::DiscreteSignalsProcessing()
+      18  CPss21::DiscreteSignalsProcessing()
       72  CPss21::ErrorAlarmsProcessing()
       64  CPss21::ErrorMainCycle()
      212  CPss21::ErrorWindowOn(uint8_t)
@@ -7045,7 +6971,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 
  
    105 bytes in segment ABSOLUTE
- 6 984 bytes in segment CODE
+ 6 868 bytes in segment CODE
      2 bytes in segment DIFUNCT
     14 bytes in segment INITTAB
     70 bytes in segment NEAR_F
@@ -7054,7 +6980,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
  1 756 bytes in segment NEAR_Z
     50 bytes in segment SWITCH
  
- 6 776 bytes of CODE memory (+ 434 bytes shared)
+ 6 672 bytes of CODE memory (+ 422 bytes shared)
  1 846 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

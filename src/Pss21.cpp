@@ -969,17 +969,17 @@ void CPss21::ConfigurationInit(void)
 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
 //    uiIndex++;
 
-    // Создадим автоматы обработки ошибок.
-    for (uint8_t i = 0;
-            i < HANDLED_ERROR_NUMBER;
-            i++)
-    {
-        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
-        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
-        // Установим индекс источника состояния ошибки.
-        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
-    };
+//    // Создадим автоматы обработки ошибок.
+//    for (uint8_t i = 0;
+//            i < HANDLED_ERROR_NUMBER;
+//            i++)
+//    {
+//        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+//        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+//        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+//        // Установим индекс источника состояния ошибки.
+//        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+//    };
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1246,7 +1246,7 @@ void CPss21::DiscreteSignalsProcessing(void)
 {
     DiscreteOutputControlClear();
     AlarmsProcessing();
-    ErrorAlarmsProcessing();
+//    ErrorAlarmsProcessing();
     SetDiscreteSignalsReceipt(0);
     SetDiscreteSignalsReset(0);
 }
