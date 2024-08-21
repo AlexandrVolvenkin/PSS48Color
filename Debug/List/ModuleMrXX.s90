@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  18:05:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2024  12:48:38
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW2BB9.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWDED5.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //        --cpu=m128a -ms -o
@@ -803,31 +803,31 @@ _A_PINF:
 //   32 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   33 void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
+//   33 void CModuleMrXXDriver::Allocate(TMemoryAllocationContext &xMemoryAllocationContext)
 ??Allocate:
 //   34 {
         MOVW    R3:R2, R27:R26
         MOVW    R27:R26, R17:R16
-//   35     m_uiAddress = xMemoryAllocationConext.uiAddress;
+//   35     m_uiAddress = xMemoryAllocationContext.uiAddress;
         MOVW    R31:R30, R19:R18
         LD      R16, Z
         MOVW    R31:R30, R27:R26
         STD     Z+16, R16
-//   36     m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
+//   36     m_puiRxBuffer = xMemoryAllocationContext.puiRxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+1
         LDD     R17, Z+2
         MOVW    R31:R30, R27:R26
         STD     Z+17, R16
         STD     Z+18, R17
-//   37     m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
+//   37     m_puiTxBuffer = xMemoryAllocationContext.puiTxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+3
         LDD     R17, Z+4
         MOVW    R31:R30, R27:R26
         STD     Z+19, R16
         STD     Z+20, R17
-//   38     m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
+//   38     m_puiErrorCode = xMemoryAllocationContext.puiErrorCode;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+5
         LDD     R17, Z+6
@@ -835,7 +835,7 @@ _A_PINF:
         STD     Z+5, R16
         STD     Z+6, R17
 //   39     // Получим указатель на массив дискретных входов.
-//   40     m_puiDiscreteInputs = xMemoryAllocationConext.puiDiscreteInputs;
+//   40     m_puiDiscreteInputs = xMemoryAllocationContext.puiDiscreteInputs;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+7
         LDD     R17, Z+8
@@ -844,7 +844,7 @@ _A_PINF:
         STD     Z+22, R17
 //   41 
 //   42     // Получим указатель на массив базы данных.
-//   43     m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;//debag//
+//   43     m_pxDiscreteOutputDataBase = xMemoryAllocationContext.pxDiscreteOutputDataBase;//debag//
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+16
         LDD     R17, Z+17
@@ -852,7 +852,7 @@ _A_PINF:
         STD     Z+27, R16
         STD     Z+28, R17
 //   44 
-//   45     m_puiDiscreteOutputState = xMemoryAllocationConext.puiDiscreteOutputState;
+//   45     m_puiDiscreteOutputState = xMemoryAllocationContext.puiDiscreteOutputState;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+10
         LDD     R17, Z+11
@@ -862,8 +862,8 @@ _A_PINF:
 //   46 
 //   47     // Получим указатель на место в массиве дискретных выходов для текущего модуля.
 //   48     m_pxDiscreteOutputControl =
-//   49         &xMemoryAllocationConext.
-//   50         pxDiscreteOutputControl[xMemoryAllocationConext.uiUsedDiscreteOutputs];
+//   49         &xMemoryAllocationContext.
+//   50         pxDiscreteOutputControl[xMemoryAllocationContext.uiUsedDiscreteOutputs];
         MOVW    R31:R30, R19:R18
         LDD     R20, Z+13
         LDD     R21, Z+14
@@ -878,7 +878,7 @@ _A_PINF:
         STD     Z+25, R20
         STD     Z+26, R21
 //   51     // Увеличим общий объём выделенной памяти.
-//   52     xMemoryAllocationConext.
+//   52     xMemoryAllocationContext.
 //   53     uiUsedDiscreteOutputs +=
 //   54         MR_DISCRETE_OUTPUT_NUMBER;
         MOVW    R31:R30, R19:R18
@@ -887,8 +887,8 @@ _A_PINF:
         STD     Z+15, R16
 //   55 
 //   56     m_pxDiscreteOutputDataBase =
-//   57         &xMemoryAllocationConext.
-//   58         pxDiscreteOutputDataBase[xMemoryAllocationConext.uiUsedDiscreteOutputDataBase];
+//   57         &xMemoryAllocationContext.
+//   58         pxDiscreteOutputDataBase[xMemoryAllocationContext.uiUsedDiscreteOutputDataBase];
         MOVW    R31:R30, R19:R18
         LDD     R22, Z+16
         LDD     R23, Z+17
@@ -904,7 +904,7 @@ _A_PINF:
         STD     Z+27, R22
         STD     Z+28, R23
 //   59     // Увеличим общий объём выделенной памяти.
-//   60     xMemoryAllocationConext.
+//   60     xMemoryAllocationContext.
 //   61     uiUsedDiscreteOutputDataBase +=
 //   62         MR_DISCRETE_OUTPUT_NUMBER;
         MOVW    R31:R30, R19:R18
@@ -913,7 +913,7 @@ _A_PINF:
         STD     Z+18, R16
 //   63 
 //   64     m_puiErrorAlarmDataArray =
-//   65         &xMemoryAllocationConext.
+//   65         &xMemoryAllocationContext.
 //   66         puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+19

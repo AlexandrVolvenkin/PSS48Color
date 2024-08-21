@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           26/Oct/2023  16:00:50
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2024  12:48:38
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW5528.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWDFC4.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #        --cpu=m128a -ms -o
@@ -2144,24 +2144,24 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     299          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    300          void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationConext)
+    300          void CPss21::InitAllocationContext(TMemoryAllocationContext &xMemoryAllocationContext)
    \                     ??InitAllocationContext:
     301          {
     302              // Подготовим к отправке текущие адреса объектов системы используемых драйверами устройств.
     303          
-    304              xMemoryAllocationConext.puiRxBuffer = m_auiSpiRxBuffer;
+    304              xMemoryAllocationContext.puiRxBuffer = m_auiSpiRxBuffer;
    \   00000000   ....               LDI     R18, LOW(??m_auiSpiRxBuffer)
    \   00000002   ....               LDI     R19, (??m_auiSpiRxBuffer) >> 8
    \   00000004   01F8               MOVW    R31:R30, R17:R16
    \   00000006   8321               STD     Z+1, R18
    \   00000008   8332               STD     Z+2, R19
-    305              xMemoryAllocationConext.puiTxBuffer = m_auiSpiTxBuffer;
+    305              xMemoryAllocationContext.puiTxBuffer = m_auiSpiTxBuffer;
    \   0000000A   ....               LDI     R18, LOW(??m_auiSpiTxBuffer)
    \   0000000C   ....               LDI     R19, (??m_auiSpiTxBuffer) >> 8
    \   0000000E   01F8               MOVW    R31:R30, R17:R16
    \   00000010   8323               STD     Z+3, R18
    \   00000012   8334               STD     Z+4, R19
-    306              xMemoryAllocationConext.puiErrorCode = &m_uiErrorCode;
+    306              xMemoryAllocationContext.puiErrorCode = &m_uiErrorCode;
    \   00000014   ....               LDI     R18, LOW(??m_uiErrorCode)
    \   00000016   ....               LDI     R19, (??m_uiErrorCode) >> 8
    \   00000018   01F8               MOVW    R31:R30, R17:R16
@@ -2169,12 +2169,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000001C   8336               STD     Z+6, R19
     307          
     308              // Обнулим общий объём выделенной памяти.
-    309              xMemoryAllocationConext.uiUsedDiscreteInputs = 0;
+    309              xMemoryAllocationContext.uiUsedDiscreteInputs = 0;
    \   0000001E   01F8               MOVW    R31:R30, R17:R16
    \   00000020   E020               LDI     R18, 0
    \   00000022   8721               STD     Z+9, R18
     310              // Подключим буфер для хранения состояний дискретных входов.
-    311              xMemoryAllocationConext.puiDiscreteInputs =
+    311              xMemoryAllocationContext.puiDiscreteInputs =
     312                  &m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
    \   00000024   ....               LDI     R18, LOW((??m_aucRtuDiscreteDataArray + 16))
    \   00000026   ....               LDI     R19, HIGH((??m_aucRtuDiscreteDataArray + 16))
@@ -2183,12 +2183,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000002C   8730               STD     Z+8, R19
     313          
     314              // Обнулим общий объём выделенной памяти.
-    315              xMemoryAllocationConext.uiUsedDiscreteOutputState = 0;
+    315              xMemoryAllocationContext.uiUsedDiscreteOutputState = 0;
    \   0000002E   01F8               MOVW    R31:R30, R17:R16
    \   00000030   E020               LDI     R18, 0
    \   00000032   8724               STD     Z+12, R18
     316              // Подключим буфер для хранения состояний дискретных выходов.
-    317              xMemoryAllocationConext.puiDiscreteOutputState =
+    317              xMemoryAllocationContext.puiDiscreteOutputState =
     318                  &m_aucRtuDiscreteDataArray[DISCRETE_OUTPUT_BIT_ARRAY_OFFSET];
    \   00000034   ....               LDI     R18, LOW((??m_aucRtuDiscreteDataArray + 112))
    \   00000036   ....               LDI     R19, HIGH((??m_aucRtuDiscreteDataArray + 112))
@@ -2197,12 +2197,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000003C   8733               STD     Z+11, R19
     319          
     320              // Обнулим общий объём выделенной памяти.
-    321              xMemoryAllocationConext.uiUsedDiscreteOutputs = 0;
+    321              xMemoryAllocationContext.uiUsedDiscreteOutputs = 0;
    \   0000003E   01F8               MOVW    R31:R30, R17:R16
    \   00000040   E020               LDI     R18, 0
    \   00000042   8727               STD     Z+15, R18
     322              // Подключим буфер для управления дискретными выходами.
-    323              xMemoryAllocationConext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
+    323              xMemoryAllocationContext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
    \   00000044   ....               LDI     R18, LOW(??m_axDiscreteOutputControl)
    \   00000046   ....               LDI     R19, (??m_axDiscreteOutputControl) >> 8
    \   00000048   01F8               MOVW    R31:R30, R17:R16
@@ -2210,12 +2210,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000004C   8736               STD     Z+14, R19
     324          
     325              // Обнулим общий объём выделенной памяти.
-    326              xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
+    326              xMemoryAllocationContext.uiUsedDiscreteOutputDataBase = 0;
    \   0000004E   01F8               MOVW    R31:R30, R17:R16
    \   00000050   E020               LDI     R18, 0
    \   00000052   8B22               STD     Z+18, R18
     327              // Подключим буфер с базой данных модулей дискретных выходов.
-    328              xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
+    328              xMemoryAllocationContext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
    \   00000054   ....               LDI     R18, LOW(??m_xDiscreteOutputDataBase)
    \   00000056   ....               LDI     R19, (??m_xDiscreteOutputDataBase) >> 8
    \   00000058   01F8               MOVW    R31:R30, R17:R16
@@ -2223,12 +2223,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000005C   8B31               STD     Z+17, R19
     329          
     330              // Обнулим общий объём выделенной памяти.
-    331              xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
+    331              xMemoryAllocationContext.uiUsedErrorAlarmDataArray = 0;
    \   0000005E   01F8               MOVW    R31:R30, R17:R16
    \   00000060   E020               LDI     R18, 0
    \   00000062   8B25               STD     Z+21, R18
     332              // Подключим буфер для хранения состояний ошибок.
-    333              xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
+    333              xMemoryAllocationContext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
    \   00000064   ....               LDI     R18, LOW(??m_auiErrorAlarmDataArray)
    \   00000066   ....               LDI     R19, (??m_auiErrorAlarmDataArray) >> 8
    \   00000068   01F8               MOVW    R31:R30, R17:R16
@@ -2246,8 +2246,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   00000000   93AA               ST      -Y, R26
    \   00000002   938A               ST      -Y, R24
    \   00000004   9766               SBIW    R29:R28, 22
-    339              TMemoryAllocationConext xMemoryAllocationConext;
-    340              InitAllocationContext(xMemoryAllocationConext);
+    339              TMemoryAllocationContext xMemoryAllocationContext;
+    340              InitAllocationContext(xMemoryAllocationContext);
    \   00000006   018E               MOVW    R17:R16, R29:R28
    \   00000008   ....               RCALL   ??InitAllocationContext
     341          
@@ -2327,7 +2327,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000007A   ....               SBCI    R31, (-(??m_apxDrivers) & 0xFFFF) >> 8
    \   0000007C   8300               ST      Z, R16
    \   0000007E   8311               STD     Z+1, R17
-    360                          xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+    360                          xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
    \   00000080   2F0A               MOV     R16, R26
    \   00000082   E010               LDI     R17, 0
    \   00000084   0F00               LSL     R16
@@ -2337,8 +2337,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   0000008C   ....               SBCI    R31, (-(??m_xDeviceConfigSearch) & 0xFFFF) >> 8
    \   0000008E   8102               LDD     R16, Z+2
    \   00000090   8308               ST      Y, R16
-    361          //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-    362                          m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+    361          //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+    362                          m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
    \   00000092   019E               MOVW    R19:R18, R29:R28
    \   00000094   2F0A               MOV     R16, R26
    \   00000096   E010               LDI     R17, 0
@@ -2413,7 +2413,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   00000106   ....               SBCI    R31, (-(??m_apxDrivers) & 0xFFFF) >> 8
    \   00000108   8300               ST      Z, R16
    \   0000010A   8311               STD     Z+1, R17
-    378                          xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+    378                          xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
    \   0000010C   2F0A               MOV     R16, R26
    \   0000010E   E010               LDI     R17, 0
    \   00000110   0F00               LSL     R16
@@ -2423,8 +2423,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   00000118   ....               SBCI    R31, (-(??m_xDeviceConfigSearch) & 0xFFFF) >> 8
    \   0000011A   8102               LDD     R16, Z+2
    \   0000011C   8308               ST      Y, R16
-    379          //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-    380                          m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+    379          //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+    380                          m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
    \   0000011E   019E               MOVW    R19:R18, R29:R28
    \   00000120   2F0A               MOV     R16, R26
    \   00000122   E010               LDI     R17, 0
@@ -6417,7 +6417,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
        24      2   -> CModuleMrXXDriver::CModuleMrXXDriver(uint8_t)
        24      2   -> CMvsn21Driver::CMvsn21Driver(uint8_t)
        24      2   -> CPlatform::WatchdogReset()
-       24      2   -> CPss21::InitAllocationContext(TMemoryAllocationConext &)
+       24      2   -> CPss21::InitAllocationContext(TMemoryAllocationContext &)
        24      2   -> operator new(unsigned int)
       0      2   CPss21::DestroyDevices(uint8_t)
       0      2   CPss21::DisconnectDevice()
@@ -6477,7 +6477,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
         0      2   -> CPss21::AllAlarmWindowOff()
         0      2   -> CPss21::SetErrorCode(uint8_t)
         0      2   -> memset
-      0      2   CPss21::InitAllocationContext(TMemoryAllocationConext &)
+      0      2   CPss21::InitAllocationContext(TMemoryAllocationContext &)
       1      2   CPss21::KeyStateProcessing()
         1      2   -> CBuzzerNotifyerControl::AlarmSet(uint8_t)
         1      2   -> CEventUniteLogicAnd::IsHappened(uint8_t, uint8_t)
@@ -6788,7 +6788,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
        6  CPss21::GetPanelReset()
       16  CPss21::GetTimeoutModbusRtuLinkControl()
       46  CPss21::Init()
-     112  CPss21::InitAllocationContext(TMemoryAllocationConext &)
+     112  CPss21::InitAllocationContext(TMemoryAllocationContext &)
      348  CPss21::KeyStateProcessing()
       32  CPss21::LinkControlErrorMainCycle()
      560  CPss21::MainFsm()

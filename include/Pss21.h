@@ -71,7 +71,7 @@ public:
     static void ModbusDefaultInit(void);
     static void Init(void);
     static void SearchModules(void);
-    static void InitAllocationContext(TMemoryAllocationConext & );
+    static void InitAllocationContext(TMemoryAllocationContext & );
     static void CreateDevices(void);
     static void DestroyDevices(uint8_t uiLength);
     static void AddressBusInit(void);

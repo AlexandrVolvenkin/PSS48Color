@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          26/Oct/2023  16:00:50
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2024  12:48:38
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW5528.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWDFC4.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -2037,47 +2037,47 @@ _A_PINF:
 //  297 };
 //  298 
 //  299 //-----------------------------------------------------------------------------------------------------
-//  300 void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationConext)
+//  300 void CPss21::InitAllocationContext(TMemoryAllocationContext &xMemoryAllocationContext)
 //  301 {
 //  302     // Подготовим к отправке текущие адреса объектов системы используемых драйверами устройств.
 //  303 
-//  304     xMemoryAllocationConext.puiRxBuffer = m_auiSpiRxBuffer;
-//  305     xMemoryAllocationConext.puiTxBuffer = m_auiSpiTxBuffer;
-//  306     xMemoryAllocationConext.puiErrorCode = &m_uiErrorCode;
+//  304     xMemoryAllocationContext.puiRxBuffer = m_auiSpiRxBuffer;
+//  305     xMemoryAllocationContext.puiTxBuffer = m_auiSpiTxBuffer;
+//  306     xMemoryAllocationContext.puiErrorCode = &m_uiErrorCode;
 //  307 
 //  308     // Обнулим общий объём выделенной памяти.
-//  309     xMemoryAllocationConext.uiUsedDiscreteInputs = 0;
+//  309     xMemoryAllocationContext.uiUsedDiscreteInputs = 0;
 //  310     // Подключим буфер для хранения состояний дискретных входов.
-//  311     xMemoryAllocationConext.puiDiscreteInputs =
+//  311     xMemoryAllocationContext.puiDiscreteInputs =
 //  312         &m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
 //  313 
 //  314     // Обнулим общий объём выделенной памяти.
-//  315     xMemoryAllocationConext.uiUsedDiscreteOutputState = 0;
+//  315     xMemoryAllocationContext.uiUsedDiscreteOutputState = 0;
 //  316     // Подключим буфер для хранения состояний дискретных выходов.
-//  317     xMemoryAllocationConext.puiDiscreteOutputState =
+//  317     xMemoryAllocationContext.puiDiscreteOutputState =
 //  318         &m_aucRtuDiscreteDataArray[DISCRETE_OUTPUT_BIT_ARRAY_OFFSET];
 //  319 
 //  320     // Обнулим общий объём выделенной памяти.
-//  321     xMemoryAllocationConext.uiUsedDiscreteOutputs = 0;
+//  321     xMemoryAllocationContext.uiUsedDiscreteOutputs = 0;
 //  322     // Подключим буфер для управления дискретными выходами.
-//  323     xMemoryAllocationConext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
+//  323     xMemoryAllocationContext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
 //  324 
 //  325     // Обнулим общий объём выделенной памяти.
-//  326     xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
+//  326     xMemoryAllocationContext.uiUsedDiscreteOutputDataBase = 0;
 //  327     // Подключим буфер с базой данных модулей дискретных выходов.
-//  328     xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
+//  328     xMemoryAllocationContext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
 //  329 
 //  330     // Обнулим общий объём выделенной памяти.
-//  331     xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
+//  331     xMemoryAllocationContext.uiUsedErrorAlarmDataArray = 0;
 //  332     // Подключим буфер для хранения состояний ошибок.
-//  333     xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
+//  333     xMemoryAllocationContext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
 //  334 };
 //  335 
 //  336 //-----------------------------------------------------------------------------------------------------
 //  337 void CPss21::CreateDevices(void)
 //  338 {
-//  339     TMemoryAllocationConext xMemoryAllocationConext;
-//  340     InitAllocationContext(xMemoryAllocationConext);
+//  339     TMemoryAllocationContext xMemoryAllocationContext;
+//  340     InitAllocationContext(xMemoryAllocationContext);
 //  341 
 //  342     for (uint8_t i = 0;
 //  343             i < (m_xDeviceConfigSearch.uiModulesQuantity);
@@ -2097,9 +2097,9 @@ _A_PINF:
 //  357 //            m_apxDevices[i] = new CMvsn21;
 //  358 //            m_apxDevices[i] -> m_pxDriver = new CMvsn21Driver(uiType);
 //  359                 m_apxDrivers[i] = new CMvsn21Driver(uiType);
-//  360                 xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
-//  361 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-//  362                 m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+//  360                 xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//  361 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+//  362                 m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
 //  363                 m_xDeviceConfigSearch.uiDiscreteInputQuantity += 1;
 //  364             }
 //  365             break;
@@ -2115,9 +2115,9 @@ _A_PINF:
 //  375 //            m_apxDevices[i] = new CModuleMrXX;
 //  376 //            m_apxDevices[i] -> m_pxDriver = new CModuleMrXXDriver(uiType);
 //  377                 m_apxDrivers[i] = new CModuleMrXXDriver(uiType);
-//  378                 xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
-//  379 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-//  380                 m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+//  378                 xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//  379 //            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+//  380                 m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
 //  381                 m_xDeviceConfigSearch.uiDiscreteOutputQuantity += 1;
 //  382             }
 //  383             break;

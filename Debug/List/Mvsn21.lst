@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           12/Oct/2023  18:05:23
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           21/Aug/2024  12:48:38
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW2BD9.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWDEE6.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #        --cpu=m128a -ms -o
@@ -615,31 +615,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
      26          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-     27          void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
+     27          void CMvsn21Driver::Allocate(TMemoryAllocationContext &xMemoryAllocationContext)
    \                     ??Allocate:
      28          {
    \   00000000   01BD               MOVW    R23:R22, R27:R26
    \   00000002   01D8               MOVW    R27:R26, R17:R16
-     29              m_uiAddress = xMemoryAllocationConext.uiAddress;
+     29              m_uiAddress = xMemoryAllocationContext.uiAddress;
    \   00000004   01F9               MOVW    R31:R30, R19:R18
    \   00000006   8100               LD      R16, Z
    \   00000008   01FD               MOVW    R31:R30, R27:R26
    \   0000000A   8B00               STD     Z+16, R16
-     30              m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
+     30              m_puiRxBuffer = xMemoryAllocationContext.puiRxBuffer;
    \   0000000C   01F9               MOVW    R31:R30, R19:R18
    \   0000000E   8101               LDD     R16, Z+1
    \   00000010   8112               LDD     R17, Z+2
    \   00000012   01FD               MOVW    R31:R30, R27:R26
    \   00000014   8B01               STD     Z+17, R16
    \   00000016   8B12               STD     Z+18, R17
-     31              m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
+     31              m_puiTxBuffer = xMemoryAllocationContext.puiTxBuffer;
    \   00000018   01F9               MOVW    R31:R30, R19:R18
    \   0000001A   8103               LDD     R16, Z+3
    \   0000001C   8114               LDD     R17, Z+4
    \   0000001E   01FD               MOVW    R31:R30, R27:R26
    \   00000020   8B03               STD     Z+19, R16
    \   00000022   8B14               STD     Z+20, R17
-     32              m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
+     32              m_puiErrorCode = xMemoryAllocationContext.puiErrorCode;
    \   00000024   01F9               MOVW    R31:R30, R19:R18
    \   00000026   8105               LDD     R16, Z+5
    \   00000028   8116               LDD     R17, Z+6
@@ -648,8 +648,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
    \   0000002E   8316               STD     Z+6, R17
      33              // Получим указатель на место в массиве дискретных входов для текущего модуля.
      34              m_puiDiscreteInputs =
-     35                  &xMemoryAllocationConext.
-     36                  puiDiscreteInputs[xMemoryAllocationConext.uiUsedDiscreteInputs];
+     35                  &xMemoryAllocationContext.
+     36                  puiDiscreteInputs[xMemoryAllocationContext.uiUsedDiscreteInputs];
    \   00000030   01F9               MOVW    R31:R30, R19:R18
    \   00000032   8147               LDD     R20, Z+7
    \   00000034   8550               LDD     R21, Z+8
@@ -662,7 +662,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
    \   00000042   8B45               STD     Z+21, R20
    \   00000044   8B56               STD     Z+22, R21
      37              // Увеличим общий объём выделенной памяти.
-     38              xMemoryAllocationConext.
+     38              xMemoryAllocationContext.
      39              uiUsedDiscreteInputs +=
      40                  MVSN21_DISCRETE_INPUTS_NUMBER;
    \   00000046   01F9               MOVW    R31:R30, R19:R18
@@ -672,7 +672,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
      41          
      42              // Получим указатель на место в массиве состояний ошибок для текущего модуля.
      43              m_puiErrorAlarmDataArray =
-     44                  &xMemoryAllocationConext.
+     44                  &xMemoryAllocationContext.
      45                  puiErrorAlarmDataArray[DISCRETE_INPUT_MODULE_FAILURE];
    \   0000004E   01F9               MOVW    R31:R30, R19:R18
    \   00000050   8903               LDD     R16, Z+19
@@ -935,7 +935,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
    CSTACK RSTACK Function
    ------ ------ --------
       0      2   CDriver::SetErrorAlarmData(uint8_t)
-      0      2   CMvsn21Driver::Allocate(TMemoryAllocationConext &)
+      0      2   CMvsn21Driver::Allocate(TMemoryAllocationContext &)
       4      2   CMvsn21Driver::CMvsn21Driver(uint8_t)
         4      2   -> CDfa::CDfa()
       4      2   CMvsn21Driver::DataExchange()
@@ -960,7 +960,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
    Bytes  Function/Label
    -----  --------------
       14  CDriver::SetErrorAlarmData(uint8_t)
-     100  CMvsn21Driver::Allocate(TMemoryAllocationConext &)
+     100  CMvsn21Driver::Allocate(TMemoryAllocationContext &)
       48  CMvsn21Driver::CMvsn21Driver(uint8_t)
      256  CMvsn21Driver::DataExchange()
       32  CMvsn21Driver::new CMvsn21Driver(uint8_t)

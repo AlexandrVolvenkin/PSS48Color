@@ -115,7 +115,7 @@ public:
     CModuleMrXXDriver(uint8_t uiType);
     CModuleMrXXDriver();
     virtual ~CModuleMrXXDriver();
-    void Allocate(TMemoryAllocationConext &xMemoryAllocationConext);
+    void Allocate(TMemoryAllocationContext &xMemoryAllocationContext);
     uint8_t WriteDataBase(void);
     uint8_t DataExchange(void);
     uint8_t Exchange(void);

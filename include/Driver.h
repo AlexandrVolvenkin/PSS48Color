@@ -15,7 +15,7 @@
 class CDriver
 {
 public:
-    virtual void Allocate(TMemoryAllocationConext &xMemoryAllocationConext) = 0;
+    virtual void Allocate(TMemoryAllocationContext &xMemoryAllocationContext) = 0;
     virtual uint8_t DataExchange(void) = 0;
 
     void SetReceipt(uint8_t uiData)

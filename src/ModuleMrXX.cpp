@@ -30,39 +30,39 @@ CModuleMrXXDriver::~CModuleMrXXDriver()
 }
 
 //-----------------------------------------------------------------------------------------------------
-void CModuleMrXXDriver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
+void CModuleMrXXDriver::Allocate(TMemoryAllocationContext &xMemoryAllocationContext)
 {
-    m_uiAddress = xMemoryAllocationConext.uiAddress;
-    m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
-    m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
-    m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
+    m_uiAddress = xMemoryAllocationContext.uiAddress;
+    m_puiRxBuffer = xMemoryAllocationContext.puiRxBuffer;
+    m_puiTxBuffer = xMemoryAllocationContext.puiTxBuffer;
+    m_puiErrorCode = xMemoryAllocationContext.puiErrorCode;
     // Получим указатель на массив дискретных входов.
-    m_puiDiscreteInputs = xMemoryAllocationConext.puiDiscreteInputs;
+    m_puiDiscreteInputs = xMemoryAllocationContext.puiDiscreteInputs;
 
     // Получим указатель на массив базы данных.
-    m_pxDiscreteOutputDataBase = xMemoryAllocationConext.pxDiscreteOutputDataBase;//debag//
+    m_pxDiscreteOutputDataBase = xMemoryAllocationContext.pxDiscreteOutputDataBase;//debag//
 
-    m_puiDiscreteOutputState = xMemoryAllocationConext.puiDiscreteOutputState;
+    m_puiDiscreteOutputState = xMemoryAllocationContext.puiDiscreteOutputState;
 
     // Получим указатель на место в массиве дискретных выходов для текущего модуля.
     m_pxDiscreteOutputControl =
-        &xMemoryAllocationConext.
-        pxDiscreteOutputControl[xMemoryAllocationConext.uiUsedDiscreteOutputs];
+        &xMemoryAllocationContext.
+        pxDiscreteOutputControl[xMemoryAllocationContext.uiUsedDiscreteOutputs];
     // Увеличим общий объём выделенной памяти.
-    xMemoryAllocationConext.
+    xMemoryAllocationContext.
     uiUsedDiscreteOutputs +=
         MR_DISCRETE_OUTPUT_NUMBER;
 
     m_pxDiscreteOutputDataBase =
-        &xMemoryAllocationConext.
-        pxDiscreteOutputDataBase[xMemoryAllocationConext.uiUsedDiscreteOutputDataBase];
+        &xMemoryAllocationContext.
+        pxDiscreteOutputDataBase[xMemoryAllocationContext.uiUsedDiscreteOutputDataBase];
     // Увеличим общий объём выделенной памяти.
-    xMemoryAllocationConext.
+    xMemoryAllocationContext.
     uiUsedDiscreteOutputDataBase +=
         MR_DISCRETE_OUTPUT_NUMBER;
 
     m_puiErrorAlarmDataArray =
-        &xMemoryAllocationConext.
+        &xMemoryAllocationContext.
         puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
 
     m_uiBadAnswerCounter = 0;

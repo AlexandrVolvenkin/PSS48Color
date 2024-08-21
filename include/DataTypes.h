@@ -292,7 +292,7 @@ struct TConfigDataPackOneOld
 };
 #pragma pack(pop)
 
-struct TMemoryAllocationConext
+struct TMemoryAllocationContext
 {
     uint8_t uiAddress;
     uint8_t *puiRxBuffer;

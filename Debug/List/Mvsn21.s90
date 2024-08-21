@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2023  18:05:23
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          21/Aug/2024  12:48:38
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW2BD9.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWDEE6.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //        --cpu=m128a -ms -o
@@ -725,31 +725,31 @@ _A_PINF:
 //   26 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//   27 void CMvsn21Driver::Allocate(TMemoryAllocationConext &xMemoryAllocationConext)
+//   27 void CMvsn21Driver::Allocate(TMemoryAllocationContext &xMemoryAllocationContext)
 ??Allocate:
 //   28 {
         MOVW    R23:R22, R27:R26
         MOVW    R27:R26, R17:R16
-//   29     m_uiAddress = xMemoryAllocationConext.uiAddress;
+//   29     m_uiAddress = xMemoryAllocationContext.uiAddress;
         MOVW    R31:R30, R19:R18
         LD      R16, Z
         MOVW    R31:R30, R27:R26
         STD     Z+16, R16
-//   30     m_puiRxBuffer = xMemoryAllocationConext.puiRxBuffer;
+//   30     m_puiRxBuffer = xMemoryAllocationContext.puiRxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+1
         LDD     R17, Z+2
         MOVW    R31:R30, R27:R26
         STD     Z+17, R16
         STD     Z+18, R17
-//   31     m_puiTxBuffer = xMemoryAllocationConext.puiTxBuffer;
+//   31     m_puiTxBuffer = xMemoryAllocationContext.puiTxBuffer;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+3
         LDD     R17, Z+4
         MOVW    R31:R30, R27:R26
         STD     Z+19, R16
         STD     Z+20, R17
-//   32     m_puiErrorCode = xMemoryAllocationConext.puiErrorCode;
+//   32     m_puiErrorCode = xMemoryAllocationContext.puiErrorCode;
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+5
         LDD     R17, Z+6
@@ -758,8 +758,8 @@ _A_PINF:
         STD     Z+6, R17
 //   33     // Получим указатель на место в массиве дискретных входов для текущего модуля.
 //   34     m_puiDiscreteInputs =
-//   35         &xMemoryAllocationConext.
-//   36         puiDiscreteInputs[xMemoryAllocationConext.uiUsedDiscreteInputs];
+//   35         &xMemoryAllocationContext.
+//   36         puiDiscreteInputs[xMemoryAllocationContext.uiUsedDiscreteInputs];
         MOVW    R31:R30, R19:R18
         LDD     R20, Z+7
         LDD     R21, Z+8
@@ -772,7 +772,7 @@ _A_PINF:
         STD     Z+21, R20
         STD     Z+22, R21
 //   37     // Увеличим общий объём выделенной памяти.
-//   38     xMemoryAllocationConext.
+//   38     xMemoryAllocationContext.
 //   39     uiUsedDiscreteInputs +=
 //   40         MVSN21_DISCRETE_INPUTS_NUMBER;
         MOVW    R31:R30, R19:R18
@@ -782,7 +782,7 @@ _A_PINF:
 //   41 
 //   42     // Получим указатель на место в массиве состояний ошибок для текущего модуля.
 //   43     m_puiErrorAlarmDataArray =
-//   44         &xMemoryAllocationConext.
+//   44         &xMemoryAllocationContext.
 //   45         puiErrorAlarmDataArray[DISCRETE_INPUT_MODULE_FAILURE];
         MOVW    R31:R30, R19:R18
         LDD     R16, Z+19

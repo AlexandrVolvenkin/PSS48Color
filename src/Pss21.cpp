@@ -297,47 +297,47 @@ void CPss21::SearchModules(void)
 };
 
 //-----------------------------------------------------------------------------------------------------
-void CPss21::InitAllocationContext(TMemoryAllocationConext &xMemoryAllocationConext)
+void CPss21::InitAllocationContext(TMemoryAllocationContext &xMemoryAllocationContext)
 {
     // Подготовим к отправке текущие адреса объектов системы используемых драйверами устройств.
 
-    xMemoryAllocationConext.puiRxBuffer = m_auiSpiRxBuffer;
-    xMemoryAllocationConext.puiTxBuffer = m_auiSpiTxBuffer;
-    xMemoryAllocationConext.puiErrorCode = &m_uiErrorCode;
+    xMemoryAllocationContext.puiRxBuffer = m_auiSpiRxBuffer;
+    xMemoryAllocationContext.puiTxBuffer = m_auiSpiTxBuffer;
+    xMemoryAllocationContext.puiErrorCode = &m_uiErrorCode;
 
     // Обнулим общий объём выделенной памяти.
-    xMemoryAllocationConext.uiUsedDiscreteInputs = 0;
+    xMemoryAllocationContext.uiUsedDiscreteInputs = 0;
     // Подключим буфер для хранения состояний дискретных входов.
-    xMemoryAllocationConext.puiDiscreteInputs =
+    xMemoryAllocationContext.puiDiscreteInputs =
         &m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
 
     // Обнулим общий объём выделенной памяти.
-    xMemoryAllocationConext.uiUsedDiscreteOutputState = 0;
+    xMemoryAllocationContext.uiUsedDiscreteOutputState = 0;
     // Подключим буфер для хранения состояний дискретных выходов.
-    xMemoryAllocationConext.puiDiscreteOutputState =
+    xMemoryAllocationContext.puiDiscreteOutputState =
         &m_aucRtuDiscreteDataArray[DISCRETE_OUTPUT_BIT_ARRAY_OFFSET];
 
     // Обнулим общий объём выделенной памяти.
-    xMemoryAllocationConext.uiUsedDiscreteOutputs = 0;
+    xMemoryAllocationContext.uiUsedDiscreteOutputs = 0;
     // Подключим буфер для управления дискретными выходами.
-    xMemoryAllocationConext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
+    xMemoryAllocationContext.pxDiscreteOutputControl = m_axDiscreteOutputControl;
 
     // Обнулим общий объём выделенной памяти.
-    xMemoryAllocationConext.uiUsedDiscreteOutputDataBase = 0;
+    xMemoryAllocationContext.uiUsedDiscreteOutputDataBase = 0;
     // Подключим буфер с базой данных модулей дискретных выходов.
-    xMemoryAllocationConext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
+    xMemoryAllocationContext.pxDiscreteOutputDataBase = &m_xDiscreteOutputDataBase;
 
     // Обнулим общий объём выделенной памяти.
-    xMemoryAllocationConext.uiUsedErrorAlarmDataArray = 0;
+    xMemoryAllocationContext.uiUsedErrorAlarmDataArray = 0;
     // Подключим буфер для хранения состояний ошибок.
-    xMemoryAllocationConext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
+    xMemoryAllocationContext.puiErrorAlarmDataArray = m_auiErrorAlarmDataArray;
 };
 
 //-----------------------------------------------------------------------------------------------------
 void CPss21::CreateDevices(void)
 {
-    TMemoryAllocationConext xMemoryAllocationConext;
-    InitAllocationContext(xMemoryAllocationConext);
+    TMemoryAllocationContext xMemoryAllocationContext;
+    InitAllocationContext(xMemoryAllocationContext);
 
     for (uint8_t i = 0;
             i < (m_xDeviceConfigSearch.uiModulesQuantity);
@@ -357,9 +357,9 @@ void CPss21::CreateDevices(void)
 //            m_apxDevices[i] = new CMvsn21;
 //            m_apxDevices[i] -> m_pxDriver = new CMvsn21Driver(uiType);
                 m_apxDrivers[i] = new CMvsn21Driver(uiType);
-                xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
-//            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-                m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+                xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+                m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
                 m_xDeviceConfigSearch.uiDiscreteInputQuantity += 1;
             }
             break;
@@ -375,9 +375,9 @@ void CPss21::CreateDevices(void)
 //            m_apxDevices[i] = new CModuleMrXX;
 //            m_apxDevices[i] -> m_pxDriver = new CModuleMrXXDriver(uiType);
                 m_apxDrivers[i] = new CModuleMrXXDriver(uiType);
-                xMemoryAllocationConext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
-//            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationConext);
-                m_apxDrivers[i] -> Allocate(xMemoryAllocationConext);
+                xMemoryAllocationContext.uiAddress = m_xDeviceConfigSearch.axModulesContext[i].uiAddress;
+//            m_apxDevices[i] -> m_pxDriver -> Allocate(xMemoryAllocationContext);
+                m_apxDrivers[i] -> Allocate(xMemoryAllocationContext);
                 m_xDeviceConfigSearch.uiDiscreteOutputQuantity += 1;
             }
             break;

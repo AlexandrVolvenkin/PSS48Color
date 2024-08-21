@@ -58,7 +58,7 @@ public:
 
     CMvsn21Driver(uint8_t uiType);
     virtual ~CMvsn21Driver();
-    void Allocate(TMemoryAllocationConext &xMemoryAllocationConext);
+    void Allocate(TMemoryAllocationContext &xMemoryAllocationContext);
     uint8_t DataExchange(void);
 
 protected:
