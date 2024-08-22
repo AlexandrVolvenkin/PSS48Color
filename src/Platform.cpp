@@ -456,7 +456,7 @@ __interrupt void EEPROM_EE_READY(void)
 TDataBase __flash CFlash::xMainDataBase =
 {
     {
-        2,1,48,false,false,false,0,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0 }
+        2,1,48,false,false,false,false,0,0,{ 0,0,0,0,0,0,0,0,0,0,0,0 }
     },0x0A6F,
 
 //    {

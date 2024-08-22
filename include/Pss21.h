@@ -99,6 +99,7 @@ public:
     static void DiscreteOutputControlClear(void);
     static void ConfigurationInit(void);
     static void AlarmTypeChange(void);
+    static void AlarmTypeChange(uint8_t uiAlarmType);
     static void AlarmTypeErrorChange(void);
     static void AlarmTypeReceipt(void);
     static uint8_t GetDiscreteInputState(uint8_t uiIndex);
@@ -108,6 +109,7 @@ public:
     static void AlarmTypeReset(void);
     static void NotifyersControlProcessing(void);
     static void SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType);
+    static uint8_t GetAlarmWindowType(uint8_t uiAlarmWindowIndex);
     static void SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColor);
     static void SaveContextNotifyerControl(void);
     static void RestoreContextNotifyerControl(void);
@@ -274,6 +276,9 @@ private:
     // Тип сигнализации.
     static uint8_t m_uiCommonAlarmType;
     static uint8_t m_uiCommonAlarmTypePrevious;
+//    static bool m_bIsPreventiveAlarmActive;
+//    static bool m_bIsEmergencyAlarmActive;
+//    static bool m_bIsErrorAlarmActive;
     static CAlarmDfa *m_apxAlarmDfa[DISCRETE_SIGNALS_NUMBER];
     static CErrorAlarmDfa *m_apxErrorAlarmDfa[HANDLED_ERROR_NUMBER];
     static uint8_t m_auiErrorAlarmDataArray[HANDLED_ERROR_NUMBER];

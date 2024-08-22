@@ -36,20 +36,81 @@ void CAlarmDfa::Fsm(void)
         {
             // Установим связанные дискретный выходы - новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-            // чем тип общей сигнализации?
-            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
-                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
-            {
-                // Установим тип общей сигнализацию.
-                CPss21::SetCommonAlarmType(ALARM_TYPE());
-                // Изменим тип общей сигнализацию.
-                CPss21::AlarmTypeChange();
-            }
+//            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//            // чем тип общей сигнализации?
+//            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+//                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+//            {
+//                // Установим тип общей сигнализацию.
+//                CPss21::SetCommonAlarmType(ALARM_TYPE());
+//                // Изменим тип общей сигнализацию.
+//                CPss21::AlarmTypeChange();
+//            }
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
             CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-            SetFsmState(RECEIPT_OR_RESET_WAITING);
+            // Запрограммирован режим автоматического сброса предупредительой и аварийной
+            // сигнализации при переходе дискретного сигнала в неактивное состояние?
+            if (CPss21::m_xDeviceConfiguration.AutoUnset)
+            {
+                SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+            }
+            else
+            {
+                SetFsmState(RECEIPT_OR_RESET_WAITING);
+            }
+        }
+        break;
+
+    case RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING:
+        // Запрограммирован режим автоматического сброса предупредительой и аварийной
+        // сигнализации при переходе дискретного сигнала в неактивное состояние.
+        // Дискретный сигнал активен?
+        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        {
+            // Установим связанные дискретный выходы - не новое нарушение.
+            CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//            // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//            // чем тип общей сигнализации?
+//            if ((CPss21::GetCommonAlarmType() != EMERGENCY) &&
+//                    (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+//            {
+//                // Установим тип общей сигнализацию.
+//                CPss21::SetCommonAlarmType(ALARM_TYPE());
+//                // Изменим тип общей сигнализацию.
+//                CPss21::AlarmTypeChange();
+//            }
+//            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//            CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+        }
+        else
+        {
+//            // Переведём автоматы сигнализаций в состояние - сброшено.
+//            CPss21::AlarmTypeReset();
+            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+            SetFsmState(ACTIVE_STATE_WAITING);
+            break;
+        }
+
+        // Событие сброшено?
+        if (CPss21::GetDiscreteSignalsReset())
+        {
+//            // Переведём автоматы сигнализаций в состояние - квитировано.
+//            CPss21::AlarmTypeReceipt();
+            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+            SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+        }
+        // Событие квитировано?
+        else if (CPss21::GetDiscreteSignalsReceipt())
+        {
+//            // Переведём автоматы сигнализаций в состояние - квитировано.
+//            CPss21::AlarmTypeReceipt();
+            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+            SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
         }
         break;
 
@@ -64,8 +125,8 @@ void CAlarmDfa::Fsm(void)
         // Событие сброшено?
         if (CPss21::GetDiscreteSignalsReset())
         {
-            // Переведём автоматы сигнализаций в состояние - квитировано.
-            CPss21::AlarmTypeReceipt();
+//            // Переведём автоматы сигнализаций в состояние - квитировано.
+//            CPss21::AlarmTypeReceipt();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
@@ -73,8 +134,8 @@ void CAlarmDfa::Fsm(void)
         // Событие квитировано?
         else if (CPss21::GetDiscreteSignalsReceipt())
         {
-            // Переведём автоматы сигнализаций в состояние - квитировано.
-            CPss21::AlarmTypeReceipt();
+//            // Переведём автоматы сигнализаций в состояние - квитировано.
+//            CPss21::AlarmTypeReceipt();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
@@ -103,8 +164,8 @@ void CAlarmDfa::Fsm(void)
         // Дискретный сигнал не активен?
         if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
         {
-            // Переведём автоматы сигнализаций в состояние - сброшено.
-            CPss21::AlarmTypeReset();
+//            // Переведём автоматы сигнализаций в состояние - сброшено.
+//            CPss21::AlarmTypeReset();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
             SetFsmState(ACTIVE_STATE_WAITING);
@@ -127,8 +188,8 @@ void CAlarmDfa::Fsm(void)
         // Событие сброшено?
         if (CPss21::GetDiscreteSignalsReset())
         {
-            // Переведём автоматы сигнализаций в состояние - сброшено.
-            CPss21::AlarmTypeReset();
+//            // Переведём автоматы сигнализаций в состояние - сброшено.
+//            CPss21::AlarmTypeReset();
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
             SetFsmState(ACTIVE_STATE_WAITING);

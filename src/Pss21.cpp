@@ -76,6 +76,9 @@ CModbusRtuLinkControl CPss21::m_xModbusRtuLinkControl;
 
 uint8_t CPss21::m_uiCommonAlarmType;
 uint8_t CPss21::m_uiCommonAlarmTypePrevious;
+//bool CPss21::m_bIsPreventiveAlarmActive;
+//bool CPss21::m_bIsEmergencyAlarmActive;
+//bool CPss21::m_bIsErrorAlarmActive;
 //CLightBoard CPss21::m_xLightBoard;
 TConfigDataPackOne CPss21::m_xDeviceConfigSearch;
 TDevConfig CPss21::m_xDeviceConfiguration;
@@ -1064,13 +1067,54 @@ void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNew
 //-----------------------------------------------------------------------------------------------------
 void CPss21::AlarmsProcessing(void)
 {
+//    m_bIsPreventiveAlarmActive = false;
+//    m_bIsEmergencyAlarmActive = false;
+//    m_bIsErrorAlarmActive = false;
+    uint8_t uiCurrentCommonAlarmType = NORMAL;
+
     // Обработаем все дискретные сигналы.
     for (uint8_t i = 0;
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
         m_apxAlarmDfa[i] -> Fsm();
+
+//        switch (GetAlarmWindowType(i))
+//        {
+//        case NORMAL:
+//            break;
+//
+//        case PREVENTIVE:
+//            m_bIsPreventiveAlarmActive = true;
+//            break;
+//
+//        case EMERGENCY:
+//            m_bIsEmergencyAlarmActive = true;
+//            break;
+//
+//        default:
+//            break;
+//        }
+
+        // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+        // чем тип текущей общей сигнализации?
+        if (uiCurrentCommonAlarmType < GetAlarmWindowType(i))
+        {
+            // Установим тип текущей общей сигнализацию.
+            uiCurrentCommonAlarmType = GetAlarmWindowType(i);
+        }
     }
+
+//    // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//    // чем тип общей сигнализации?
+//    if (CPss21::GetCommonAlarmType() < uiCurrentCommonAlarmType)
+//    {
+//    // Установим тип общей сигнализацию.
+//    CPss21::SetCommonAlarmType(uiCurrentCommonAlarmType);
+//    // Изменим тип общей сигнализацию.
+//    CPss21::AlarmTypeChange();
+    CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
+//    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1147,6 +1191,21 @@ void CPss21::AlarmTypeChange(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::AlarmTypeChange(uint8_t uiAlarmType)
+{
+    if (uiAlarmType != m_uiCommonAlarmType)
+    {
+        m_uiCommonAlarmType = uiAlarmType;
+
+        if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+        {
+            m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+            AlarmTypeSet(m_uiCommonAlarmType);
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::AlarmTypeErrorChange(void)
 {
     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
@@ -1192,6 +1251,12 @@ void CPss21::NotifyersControlProcessing(void)
 void CPss21::SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType)
 {
     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmType(uiAlarmType);
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CPss21::GetAlarmWindowType(uint8_t uiAlarmWindowIndex)
+{
+    return (GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> GetAlarmType());
 }
 
 //-----------------------------------------------------------------------------------------------------

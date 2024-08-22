@@ -48,7 +48,8 @@ struct TDevConfig
     unsigned short FixConfig:     1;	// Признак фиксированной конфигурации
     unsigned short MBusMaster:    1;	// Признак режима ModBus-Master
     unsigned short ExtUnsetOnly:  1;       // Признак только сброса по внешней кнопке
-    unsigned short 	    : 13;	// РЕЗЕРВ
+    unsigned short AutoUnset:     1;       // Признак автосброса предупр. / аварийной сигнализации		<-
+    unsigned short 	    : 12;	// РЕЗЕРВ							<-
 
     unsigned char MBTimeout;		// Таймаут канала ModBus
     unsigned char PRTimeout;               // Таймаут автоквитирования предупредительной сигнализации
