@@ -321,7 +321,7 @@
                 </tool>
                 <tool>
                     <name>ICCAVR</name>
-                    <file> 124</file>
+                    <file> 46 124 102</file>
                 </tool>
             </outputs>
             <inputs>

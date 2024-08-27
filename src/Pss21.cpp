@@ -1127,6 +1127,26 @@ void CPss21::ErrorAlarmsProcessing(void)
     {
         m_apxErrorAlarmDfa[i] -> Fsm();
     }
+
+//    uint8_t uiCurrentCommonAlarmType = NORMAL;
+//
+//    // Обработаем все дискретные сигналы.
+//    for (uint8_t i = 0;
+//            i < HANDLED_ERROR_NUMBER;
+//            i++)
+//    {
+//        m_apxErrorAlarmDfa[i] -> Fsm();
+//
+//        // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//        // чем тип текущей общей сигнализации?
+//        if (uiCurrentCommonAlarmType < GetAlarmWindowType(i))
+//        {
+//            // Установим тип текущей общей сигнализацию.
+//            uiCurrentCommonAlarmType = GetAlarmWindowType(i);
+//        }
+//    }
+//
+//    CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
 }
 
 //-----------------------------------------------------------------------------------------------------
