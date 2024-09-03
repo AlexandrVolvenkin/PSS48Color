@@ -160,15 +160,15 @@ __flash TPixelColorData CLightBoard::m_xPixelColorBlack =
 __flash TPixelColorData CLightBoard::m_xPixelColorRed =
 {
     0,
-    255,
     0,
+    255,
 };
 
 __flash TPixelColorData CLightBoard::m_xPixelColorGreen =
 {
     0,
-    0,
     255,
+    0,
 };
 
 __flash TPixelColorData CLightBoard::m_xPixelColorBlue =
