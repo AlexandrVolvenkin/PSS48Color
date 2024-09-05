@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           05/Sep/2024  12:01:55
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           05/Sep/2024  12:03:50
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWE9FB.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWADE0.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #        --cpu=m128a -ms -o
@@ -764,22 +764,22 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
    \                                 In  segment NEAR_F, align 1, keep-with-next, root
     160          __flash TPixelColorData CLightBoard::m_xPixelColorRed =
    \                     ??m_xPixelColorRed:
-   \   00000000   0000FF             DC8 0, 0, 255
+   \   00000000   FF0000             DC8 0, 255, 0
     161          {
     162              0,
-    163              0,
-    164              255,
+    163              255,
+    164              0,
     165          };
     166          
 
    \                                 In  segment NEAR_F, align 1, keep-with-next, root
     167          __flash TPixelColorData CLightBoard::m_xPixelColorGreen =
    \                     ??m_xPixelColorGreen:
-   \   00000000   FF0000             DC8 0, 255, 0
+   \   00000000   0000FF             DC8 0, 0, 255
     168          {
     169              0,
-    170              255,
-    171              0,
+    170              0,
+    171              255,
     172          };
     173          
 
