@@ -1098,22 +1098,38 @@ void CPss21::AlarmsProcessing(void)
 
         // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
         // чем тип текущей общей сигнализации?
-        if (uiCurrentCommonAlarmType < GetAlarmWindowType(i))
+        if (uiCurrentCommonAlarmType < GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex()))
         {
             // ”становим тип текущей общей сигнализацию.
-            uiCurrentCommonAlarmType = GetAlarmWindowType(i);
+            uiCurrentCommonAlarmType = GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex());
         }
+
+//        // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//        // чем тип текущей общей сигнализации?
+//        if (uiCurrentCommonAlarmType != EMERGENCY)
+//        {
+//            // ”становим тип текущей общей сигнализацию.
+//            uiCurrentCommonAlarmType = EMERGENCY;
+//        }
     }
 
 //    // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
 //    // чем тип общей сигнализации?
 //    if (CPss21::GetCommonAlarmType() < uiCurrentCommonAlarmType)
 //    {
-//    // ”становим тип общей сигнализацию.
-//    CPss21::SetCommonAlarmType(uiCurrentCommonAlarmType);
-//    // »зменим тип общей сигнализацию.
-//    CPss21::AlarmTypeChange();
+//        // ”становим тип общей сигнализацию.
+//        CPss21::SetCommonAlarmType(uiCurrentCommonAlarmType);
+//        // »зменим тип общей сигнализацию.
+//        CPss21::AlarmTypeChange();
     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
+//    }
+
+//    if (CPss21::GetCommonAlarmType() != EMERGENCY)
+//    {
+//        // ”становим тип общей сигнализацию.
+//        CPss21::SetCommonAlarmType(EMERGENCY);
+//        // »зменим тип общей сигнализацию.
+//        CPss21::AlarmTypeChange();
 //    }
 }
 
