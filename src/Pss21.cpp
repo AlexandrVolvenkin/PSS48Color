@@ -76,9 +76,6 @@ CModbusRtuLinkControl CPss21::m_xModbusRtuLinkControl;
 
 uint8_t CPss21::m_uiCommonAlarmType;
 uint8_t CPss21::m_uiCommonAlarmTypePrevious;
-//bool CPss21::m_bIsPreventiveAlarmActive;
-//bool CPss21::m_bIsEmergencyAlarmActive;
-//bool CPss21::m_bIsErrorAlarmActive;
 //CLightBoard CPss21::m_xLightBoard;
 TConfigDataPackOne CPss21::m_xDeviceConfigSearch;
 TDevConfig CPss21::m_xDeviceConfiguration;
@@ -1067,9 +1064,6 @@ void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNew
 //-----------------------------------------------------------------------------------------------------
 void CPss21::AlarmsProcessing(void)
 {
-//    m_bIsPreventiveAlarmActive = false;
-//    m_bIsEmergencyAlarmActive = false;
-//    m_bIsErrorAlarmActive = false;
     uint8_t uiCurrentCommonAlarmType = NORMAL;
 
     // ќбработаем все дискретные сигналы.
@@ -1079,23 +1073,6 @@ void CPss21::AlarmsProcessing(void)
     {
         m_apxAlarmDfa[i] -> Fsm();
 
-//        switch (GetAlarmWindowType(i))
-//        {
-//        case NORMAL:
-//            break;
-//
-//        case PREVENTIVE:
-//            m_bIsPreventiveAlarmActive = true;
-//            break;
-//
-//        case EMERGENCY:
-//            m_bIsEmergencyAlarmActive = true;
-//            break;
-//
-//        default:
-//            break;
-//        }
-
         // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
         // чем тип текущей общей сигнализации?
         if (uiCurrentCommonAlarmType < GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex()))
@@ -1103,34 +1080,10 @@ void CPss21::AlarmsProcessing(void)
             // ”становим тип текущей общей сигнализацию.
             uiCurrentCommonAlarmType = GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex());
         }
-
-//        // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-//        // чем тип текущей общей сигнализации?
-//        if (uiCurrentCommonAlarmType != EMERGENCY)
-//        {
-//            // ”становим тип текущей общей сигнализацию.
-//            uiCurrentCommonAlarmType = EMERGENCY;
-//        }
     }
 
-//    // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-//    // чем тип общей сигнализации?
-//    if (CPss21::GetCommonAlarmType() < uiCurrentCommonAlarmType)
-//    {
-//        // ”становим тип общей сигнализацию.
-//        CPss21::SetCommonAlarmType(uiCurrentCommonAlarmType);
-//        // »зменим тип общей сигнализацию.
-//        CPss21::AlarmTypeChange();
+    // »зменим тип общей сигнализацию.
     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
-//    }
-
-//    if (CPss21::GetCommonAlarmType() != EMERGENCY)
-//    {
-//        // ”становим тип общей сигнализацию.
-//        CPss21::SetCommonAlarmType(EMERGENCY);
-//        // »зменим тип общей сигнализацию.
-//        CPss21::AlarmTypeChange();
-//    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1143,26 +1096,6 @@ void CPss21::ErrorAlarmsProcessing(void)
     {
         m_apxErrorAlarmDfa[i] -> Fsm();
     }
-
-//    uint8_t uiCurrentCommonAlarmType = NORMAL;
-//
-//    // ќбработаем все дискретные сигналы.
-//    for (uint8_t i = 0;
-//            i < HANDLED_ERROR_NUMBER;
-//            i++)
-//    {
-//        m_apxErrorAlarmDfa[i] -> Fsm();
-//
-//        // “ип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-//        // чем тип текущей общей сигнализации?
-//        if (uiCurrentCommonAlarmType < GetAlarmWindowType(i))
-//        {
-//            // ”становим тип текущей общей сигнализацию.
-//            uiCurrentCommonAlarmType = GetAlarmWindowType(i);
-//        }
-//    }
-//
-//    CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
 }
 
 //-----------------------------------------------------------------------------------------------------

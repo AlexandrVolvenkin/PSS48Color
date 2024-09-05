@@ -276,9 +276,6 @@ private:
     // Тип сигнализации.
     static uint8_t m_uiCommonAlarmType;
     static uint8_t m_uiCommonAlarmTypePrevious;
-//    static bool m_bIsPreventiveAlarmActive;
-//    static bool m_bIsEmergencyAlarmActive;
-//    static bool m_bIsErrorAlarmActive;
     static CAlarmDfa *m_apxAlarmDfa[DISCRETE_SIGNALS_NUMBER];
     static CErrorAlarmDfa *m_apxErrorAlarmDfa[HANDLED_ERROR_NUMBER];
     static uint8_t m_auiErrorAlarmDataArray[HANDLED_ERROR_NUMBER];
