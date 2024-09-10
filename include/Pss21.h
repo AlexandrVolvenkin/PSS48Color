@@ -125,6 +125,7 @@ public:
     static void AllAlarmWindowOn(uint8_t uiAlarmType);
     static void ErrorWindowOn(uint8_t uiIndex);
     static void AllAlarmWindowOff(void);
+    static void NormalAlarmWindowOff(void);
     static void TestMainCycle(void);
     static void ErrorMainCycle(void);
     static void LinkControlErrorMainCycle(void);

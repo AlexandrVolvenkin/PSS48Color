@@ -1167,6 +1167,7 @@ void CPss21::AlarmsProcessing(void)
         }
     }
 
+    CPss21::NormalAlarmWindowOff();
     // Изменим тип общей сигнализацию.
     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
 }
@@ -1501,6 +1502,24 @@ void CPss21::AllAlarmWindowOff(void)
         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
         m_axAlarmWindowControl[i].SetActivityState(0);
+    };
+
+    BoardWindowsUpdate();
+}
+
+//-----------------------------------------------------------------------------------------------------
+void CPss21::NormalAlarmWindowOff(void)
+{
+    for (uint8_t i = 0;
+            i < ALARM_WINDOWS_NUMBER;
+            i++)
+    {
+        // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+        if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
+        {
+            // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+            m_axAlarmWindowControl[i].SetActivityState(0);
+        }
     };
 
     BoardWindowsUpdate();
