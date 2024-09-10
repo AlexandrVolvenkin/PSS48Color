@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  08:31:15
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  15:24:56
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWA8F6.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW65DB.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 //        --cpu=m128a -ms -o
@@ -40,7 +40,6 @@
 
         EXTERN ?EPILOGUE_B4_L09
         EXTERN ?PROLOGUE4_L09
-        EXTERN ?SS_SHR_L02
 
         PUBLIC ??Allocate
         PUBLIC ??CMvsn21Driver
@@ -908,34 +907,33 @@ _A_PINF:
 //   84             // отправим полученные от модуля данные в рабочий массив прибора.
 //   85             uint8_t *puiDestination = m_puiDiscreteInputs;
         MOVW    R31:R30, R27:R26
-        LDD     R22, Z+21
-        LDD     R23, Z+22
+        LDD     R20, Z+21
+        LDD     R21, Z+22
 //   86             uint8_t *puiDestinationBadState = m_puiDiscreteInputsBadState;
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+23
         LDD     R25, Z+24
 //   87 
 //   88             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
-        CLR     R2
+        LDI     R18, 0
 ??DataExchange_2:
-        LDI     R16, 6
-        CP      R2, R16
+        CPI     R18, 6
         BRCC    ??DataExchange_3
 //   89             {
 //   90                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+17
         LDD     R17, Z+18
-        CLR     R3
-        ADD     R16, R2
-        ADC     R17, R3
+        LDI     R19, 0
+        ADD     R16, R18
+        ADC     R17, R19
         MOVW    R31:R30, R17:R16
-        LDD     R21, Z+2
+        LDD     R19, Z+2
 //   91 
 //   92                 for (uint8_t j = 0; j < (DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY / 2); j++)
-        LDI     R18, 0
+        LDI     R16, 0
 ??DataExchange_4:
-        CPI     R18, 4
+        CPI     R16, 4
         BRCC    ??DataExchange_5
 //   93                 {
 //   94 //                    // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
@@ -969,62 +967,60 @@ _A_PINF:
 //  122 //        OFF		= 0x00,			// Дективация датчика
 //  123 //        SHORT_CIRCUIT	= 0x03			// Короткое замыкание
 //  124 //    };
-//  125                     uint8_t uiResult = ((uiData >> (j * 2)) & 0x03);
-        MOV     R16, R21
-        LDI     R17, 0
-        LDI     R19, 2
-        MUL     R18, R19
-        MOV     R20, R0
-        CALL    ?SS_SHR_L02
-        ANDI    R16, 0x03
-//  126                     *puiDestinationBadState++ = uiResult;
+//  125                     uint8_t uiResult = (uiData & 0x03);
+        MOV     R17, R19
+        ANDI    R17, 0x03
+//  126                     uiData >>= 2;
+        LSR     R19
+        LSR     R19
+//  127                     *puiDestinationBadState++ = uiResult;
         MOVW    R31:R30, R25:R24
-        ST      Z, R16
+        ST      Z, R17
         ADIW    R25:R24, 1
-//  127 //                    *puiDestination++ = (uiResult & 0x01);
-//  128                 }
-        INC     R18
+//  128 //                    *puiDestination++ = (uiResult & 0x01);
+//  129                 }
+        INC     R16
         RJMP    ??DataExchange_4
-//  129             }
+//  130             }
 ??DataExchange_5:
-        INC     R2
+        INC     R18
         RJMP    ??DataExchange_2
-//  130             return 1;
+//  131             return 1;
 ??DataExchange_3:
         LDI     R16, 1
         RJMP    ??DataExchange_6
-//  131         }
-//  132         break;
-//  133 
-//  134     case DATA_NOT_READY:
-//  135         break;
-//  136 
-//  137     default:
-//  138         break;
-//  139     };
-//  140 
-//  141     // модуль не признан неисправным?
-//  142     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+//  132         }
+//  133         break;
+//  134 
+//  135     case DATA_NOT_READY:
+//  136         break;
+//  137 
+//  138     default:
+//  139         break;
+//  140     };
+//  141 
+//  142     // модуль не признан неисправным?
+//  143     if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
 ??DataExchange_1:
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+25
         CPI     R16, 20
         BRCC    ??DataExchange_7
-//  143     {
-//  144         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-//  145         m_uiBadAnswerCounter++;
+//  144     {
+//  145         // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+//  146         m_uiBadAnswerCounter++;
         MOVW    R31:R30, R27:R26
         LDD     R16, Z+25
         INC     R16
         STD     Z+25, R16
-//  146         return 0;
+//  147         return 0;
         LDI     R16, 0
         RJMP    ??DataExchange_6
-//  147     }
-//  148     else
-//  149     {
-//  150         // модуль признан неисправным.
-//  151         *m_puiErrorCode = IMD_ERROR;
+//  148     }
+//  149     else
+//  150     {
+//  151         // модуль признан неисправным.
+//  152         *m_puiErrorCode = IMD_ERROR;
 ??DataExchange_7:
         ADIW    R27:R26, 5
         LD      R30, X+
@@ -1032,17 +1028,17 @@ _A_PINF:
         SBIW    R27:R26, 6
         LDI     R16, 1
         ST      Z, R16
-//  152         SetErrorAlarmData(1);
+//  153         SetErrorAlarmData(1);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetErrorAlarmData
-//  153         return 0;
+//  154         return 0;
         LDI     R16, 0
 ??DataExchange_6:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  154     }
-//  155 }
+//  155     }
+//  156 }
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CDriver::SetErrorAlarmData(uint8_t)
@@ -1089,10 +1085,10 @@ __?EEARH:
         END
 // 
 // 105 bytes in segment ABSOLUTE
-// 518 bytes in segment CODE
+// 508 bytes in segment CODE
 //  32 bytes in segment NEAR_F
 // 
-// 530 bytes of CODE memory (+  20 bytes shared)
+// 520 bytes of CODE memory (+  20 bytes shared)
 //   0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

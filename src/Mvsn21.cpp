@@ -122,7 +122,8 @@ uint8_t CMvsn21Driver::DataExchange(void)
 //        OFF		= 0x00,			// Дективация датчика
 //        SHORT_CIRCUIT	= 0x03			// Короткое замыкание
 //    };
-                    uint8_t uiResult = ((uiData >> (j * 2)) & 0x03);
+                    uint8_t uiResult = (uiData & 0x03);
+                    uiData >>= 2;
                     *puiDestinationBadState++ = uiResult;
 //                    *puiDestination++ = (uiResult & 0x01);
                 }

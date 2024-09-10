@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  08:30:04
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  15:25:47
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW9502.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW2C22.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //        --cpu=m128a -ms -o
@@ -1625,8 +1625,6 @@ uiInterruptCounter:
         DC8 0
         DC16 27899
         DC8 0, 0, 0, 0, 0, 0, 0, 0
-        DC16 61630
-        DC8 0, 0, 0, 0, 0, 0, 0, 0
         DC16 2880
 //  457 {
 //  458     {
@@ -1863,9 +1861,9 @@ uiInterruptCounter:
 //  689         }
 //  690     },0x6CFB,
 //  691 
-//  692     {
-//  693         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-//  694     },0xF0BE,
+//  692 //    {
+//  693 //        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+//  694 //    },0xF0BE,
 //  695 
 //  696     false, {0,0,0,0,0,0,0},0x0B40,
 //  697 };
@@ -1897,8 +1895,6 @@ uiInterruptCounter:
         DC16 567
         DC8 10, 8
         DC16 650
-        DC8 11, 8
-        DC16 660
 //  701 {
 //  702     { 0, sizeof(xMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
 //  703     { 1, sizeof(xMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
@@ -1910,60 +1906,60 @@ uiInterruptCounter:
 //  709     { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
 //  710     { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
 //  711     { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-//  712     { 10, sizeof(xMainDataBase.NamurInputs),	  offsetof(TDataBase,NamurInputs)  	},
-//  713     { 11, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
-//  714 };
-//  715 
-//  716 //----------------------------------------- Flash ----------------------------------------------------------------
-//  717 //CFlash::CFlash()
-//  718 //{
-//  719 //
-//  720 //}
-//  721 //
-//  722 ////-----------------------------------------------------------------------------------------------------
-//  723 //CFlash::~CFlash()
-//  724 //{
-//  725 //
-//  726 //}
-//  727 
-//  728 //-----------------------------------------------------------------------------------------------------
-//  729 uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
-//  730 {
-//  731     // Скопируем данные из флеш в буфер Ram.
-//  732     for (uint16_t i = 0; i < uiLength; i++)
-//  733     {
-//  734         puiDestination[i] = uiSource[i];
-//  735     }
-//  736     return 1;
-//  737 }
-//  738 
-//  739 //-----------------------------------------------------------------------------------------------------
-//  740 uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
-//  741 {
-//  742     // Прочитаем блок из флеш вместе с Crc.
-//  743     Read(puiDestination,
-//  744          GetBlockPointer(uiBlock),
-//  745          (GetBlockLength(uiBlock) + CRC_LENGTH));
-//  746 
-//  747     // Получим контрольную сумму блока во флеш.
-//  748     uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
-//  749     uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
-//  750     // Вычислим контрольную сумму блока.
-//  751     // Блок не повреждён?
-//  752     if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
-//  753     {
-//  754         return GetBlockLength(uiBlock);
-//  755     }
-//  756     else
-//  757     {
-//  758         CPss21::SetErrorCode(DB_ERROR);
-//  759         // Нет данных.
-//  760         return 0;
-//  761     }
-//  762 }
-//  763 
-//  764 //-----------------------------------------------------------------------------------------------------
-//  765 
+//  712 //    { 10, sizeof(xMainDataBase.NamurInputs),	  offsetof(TDataBase,NamurInputs)  	},
+//  713 //    { 11, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+//  714     { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+//  715 };
+//  716 
+//  717 //----------------------------------------- Flash ----------------------------------------------------------------
+//  718 //CFlash::CFlash()
+//  719 //{
+//  720 //
+//  721 //}
+//  722 //
+//  723 ////-----------------------------------------------------------------------------------------------------
+//  724 //CFlash::~CFlash()
+//  725 //{
+//  726 //
+//  727 //}
+//  728 
+//  729 //-----------------------------------------------------------------------------------------------------
+//  730 uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
+//  731 {
+//  732     // Скопируем данные из флеш в буфер Ram.
+//  733     for (uint16_t i = 0; i < uiLength; i++)
+//  734     {
+//  735         puiDestination[i] = uiSource[i];
+//  736     }
+//  737     return 1;
+//  738 }
+//  739 
+//  740 //-----------------------------------------------------------------------------------------------------
+//  741 uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+//  742 {
+//  743     // Прочитаем блок из флеш вместе с Crc.
+//  744     Read(puiDestination,
+//  745          GetBlockPointer(uiBlock),
+//  746          (GetBlockLength(uiBlock) + CRC_LENGTH));
+//  747 
+//  748     // Получим контрольную сумму блока во флеш.
+//  749     uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
+//  750     uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
+//  751     // Вычислим контрольную сумму блока.
+//  752     // Блок не повреждён?
+//  753     if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
+//  754     {
+//  755         return GetBlockLength(uiBlock);
+//  756     }
+//  757     else
+//  758     {
+//  759         CPss21::SetErrorCode(DB_ERROR);
+//  760         // Нет данных.
+//  761         return 0;
+//  762     }
+//  763 }
+//  764 
+//  765 //-----------------------------------------------------------------------------------------------------
 //  766 
 //  767 
 //  768 
@@ -1971,19 +1967,20 @@ uiInterruptCounter:
 //  770 
 //  771 
 //  772 
-//  773 //----------------------------------------- CSpi ----------------------------------------------------------------
+//  773 
+//  774 //----------------------------------------- CSpi ----------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  774 CSpi::CSpi()
+//  775 CSpi::CSpi()
 ??CSpi:
-//  775 {
+//  776 {
         LDI     R18, LOW(??__vtbl_6)
         LDI     R19, (??__vtbl_6) >> 8
         MOVW    R31:R30, R17:R16
         ST      Z, R18
         STD     Z+1, R19
-//  776 
-//  777 }
+//  777 
+//  778 }
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -2001,134 +1998,134 @@ uiInterruptCounter:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  778 
-//  779 //-----------------------------------------------------------------------------------------------------
-//  780 CSpi::~CSpi()
-//  781 {
-//  782 
-//  783 }
-//  784 
-//  785 //-----------------------------------------------------------------------------------------------------
-//  786 void CSpi::Init(void)
-//  787 {
-//  788     // Master mode.
-//  789 //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
-//  790     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
-//  791 
-//  792     DDRB |= (Bit(MOSI) | Bit(SCK));
-//  793     PORTB |= (Bit(MOSI) | Bit(SCK));
-//  794 };
-//  795 
-//  796 //-----------------------------------------------------------------------------------------------------
-//  797 void CSpi::Enable(void)
-//  798 {
-//  799     // разрешим SPI.
-//  800     SPCR  |= BIT(SPE);
-//  801 }
-//  802 
-//  803 //-----------------------------------------------------------------------------------------------------
-//  804 void CSpi::Disable(void)
-//  805 {
-//  806     SPCR &= ~BIT(SPE);
-//  807 }
-//  808 
-//  809 //-----------------------------------------------------------------------------------------------------
-//  810 uint8_t CSpi::Exchange(uint8_t uiData)
-//  811 {
-//  812     SPDR = uiData;
-//  813 
-//  814     uint8_t uiGuardCounter = 0;
-//  815 
-//  816     while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
-//  817     {
-//  818         CPlatform::WatchdogReset();
-//  819 
-//  820         if (uiGuardCounter < 200)
-//  821         {
-//  822             uiGuardCounter++;
-//  823         }
-//  824         else
-//  825         {
-//  826             return  SPDR;
-//  827         }
-//  828     };
-//  829 
-//  830     delay_us(100);
-//  831 
-//  832     return  SPDR;
-//  833 }
-//  834 
-//  835 //-----------------------------------------------------------------------------------------------------
-//  836 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
-//  837 {
-//  838     if (uiLength > BUFFER_LENGTH)
-//  839     {
-//  840         return 0;
-//  841     }
-//  842 
-//  843     for (uint16_t i = 0; i < uiLength; i++)
-//  844     {
-//  845         puiDestination[i] = Exchange(pucSource[i]);
-//  846     }
-//  847     return 1;
-//  848 }
-//  849 
-//  850 //-----------------------------------------------------------------------------------------------------
-//  851 uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
-//  852 {
-//  853 
-//  854     return 1;
-//  855 }
-//  856 //-----------------------------------------------------------------------------------------------------
-//  857 
+//  779 
+//  780 //-----------------------------------------------------------------------------------------------------
+//  781 CSpi::~CSpi()
+//  782 {
+//  783 
+//  784 }
+//  785 
+//  786 //-----------------------------------------------------------------------------------------------------
+//  787 void CSpi::Init(void)
+//  788 {
+//  789     // Master mode.
+//  790 //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
+//  791     SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
+//  792 
+//  793     DDRB |= (Bit(MOSI) | Bit(SCK));
+//  794     PORTB |= (Bit(MOSI) | Bit(SCK));
+//  795 };
+//  796 
+//  797 //-----------------------------------------------------------------------------------------------------
+//  798 void CSpi::Enable(void)
+//  799 {
+//  800     // разрешим SPI.
+//  801     SPCR  |= BIT(SPE);
+//  802 }
+//  803 
+//  804 //-----------------------------------------------------------------------------------------------------
+//  805 void CSpi::Disable(void)
+//  806 {
+//  807     SPCR &= ~BIT(SPE);
+//  808 }
+//  809 
+//  810 //-----------------------------------------------------------------------------------------------------
+//  811 uint8_t CSpi::Exchange(uint8_t uiData)
+//  812 {
+//  813     SPDR = uiData;
+//  814 
+//  815     uint8_t uiGuardCounter = 0;
+//  816 
+//  817     while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
+//  818     {
+//  819         CPlatform::WatchdogReset();
+//  820 
+//  821         if (uiGuardCounter < 200)
+//  822         {
+//  823             uiGuardCounter++;
+//  824         }
+//  825         else
+//  826         {
+//  827             return  SPDR;
+//  828         }
+//  829     };
+//  830 
+//  831     delay_us(100);
+//  832 
+//  833     return  SPDR;
+//  834 }
+//  835 
+//  836 //-----------------------------------------------------------------------------------------------------
+//  837 uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
+//  838 {
+//  839     if (uiLength > BUFFER_LENGTH)
+//  840     {
+//  841         return 0;
+//  842     }
+//  843 
+//  844     for (uint16_t i = 0; i < uiLength; i++)
+//  845     {
+//  846         puiDestination[i] = Exchange(pucSource[i]);
+//  847     }
+//  848     return 1;
+//  849 }
+//  850 
+//  851 //-----------------------------------------------------------------------------------------------------
+//  852 uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
+//  853 {
+//  854 
+//  855     return 1;
+//  856 }
+//  857 //-----------------------------------------------------------------------------------------------------
 //  858 
 //  859 
 //  860 
 //  861 
 //  862 
 //  863 
-//  864 //-----------------------------------------------------------------------------------------------------
-//  865 // delay
-//  866 void delay_ms(uint16_t millisecs)
-//  867 {
-//  868     while(millisecs--)
-//  869     {
-//  870         delay_us(1000);
-//  871     }
-//  872 }
-//  873 void delay_s(uint16_t secs)
-//  874 {
-//  875     while(secs--)
-//  876     {
-//  877         __delay_cycles(F_CPU);
-//  878     }
-//  879 }
-//  880 void delay_mins(uint16_t minutes)
-//  881 {
-//  882     while(minutes--)
-//  883     {
-//  884         __delay_cycles(60*F_CPU);
-//  885     }
-//  886 }
-//  887 
-//  888 //-----------------------------------------------------------------------------------------------------
+//  864 
+//  865 //-----------------------------------------------------------------------------------------------------
+//  866 // delay
+//  867 void delay_ms(uint16_t millisecs)
+//  868 {
+//  869     while(millisecs--)
+//  870     {
+//  871         delay_us(1000);
+//  872     }
+//  873 }
+//  874 void delay_s(uint16_t secs)
+//  875 {
+//  876     while(secs--)
+//  877     {
+//  878         __delay_cycles(F_CPU);
+//  879     }
+//  880 }
+//  881 void delay_mins(uint16_t minutes)
+//  882 {
+//  883     while(minutes--)
+//  884     {
+//  885         __delay_cycles(60*F_CPU);
+//  886     }
+//  887 }
+//  888 
+//  889 //-----------------------------------------------------------------------------------------------------
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//  889 uint16_t CPlatform::m_uiSystemTick;
+//  890 uint16_t CPlatform::m_uiSystemTick;
 ??m_uiSystemTick:
         DS8 2
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//  890 uint8_t CPlatform::m_uiWatchDogStepID;
+//  891 uint8_t CPlatform::m_uiWatchDogStepID;
 ??m_uiWatchDogStepID:
         DS8 1
-//  891 //CUart* CPlatform::m_pxUart0;
+//  892 //CUart* CPlatform::m_pxUart0;
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-//  892 CUart* CPlatform::m_pxUart1;
+//  893 CUart* CPlatform::m_pxUart1;
 ??m_pxUart1:
         DS8 2
 
@@ -3242,19 +3239,19 @@ uiInterruptCounter:
         RJMP    ??delay_mins_1
 ??delay_mins_2:
         RET
-//  893 
-//  894 //-----------------------------------------------------------------------------------------------------
-//  895 CPlatform::CPlatform()
-//  896 {
-//  897 
-//  898 }
-//  899 
-//  900 //-----------------------------------------------------------------------------------------------------
+//  894 
+//  895 //-----------------------------------------------------------------------------------------------------
+//  896 CPlatform::CPlatform()
+//  897 {
+//  898 
+//  899 }
+//  900 
+//  901 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  901 CPlatform::~CPlatform()
+//  902 CPlatform::~CPlatform()
 `?~CPlatform`:
-//  902 {
+//  903 {
         ST      -Y, R25
         ST      -Y, R24
         MOVW    R25:R24, R17:R16
@@ -3263,8 +3260,8 @@ uiInterruptCounter:
         BREQ    `?~CPlatform_1`
         BST     R18, 0
         BRTC    `?~CPlatform_1`
-//  903 
-//  904 }
+//  904 
+//  905 }
         MOVW    R17:R16, R25:R24
         CALL    `??operator delete`
 `?~CPlatform_1`:
@@ -3296,75 +3293,75 @@ uiInterruptCounter:
         REQUIRE _A_OCR2
         REQUIRE _A_TCCR2
         REQUIRE _A_TIMSK
-//  905 
-//  906 //-----------------------------------------------------------------------------------------------------
+//  906 
+//  907 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  907 void CPlatform::Init(void)
+//  908 void CPlatform::Init(void)
 ??Init_2:
-//  908 {
-//  909     SystemTickInit();
+//  909 {
+//  910     SystemTickInit();
         RCALL   ??SystemTickInit
-//  910     StatusLedSetPinOutput();
+//  911     StatusLedSetPinOutput();
         CALL    ??StatusLedSetPinOutput
-//  911     TxLedSetPinOutput();
+//  912     TxLedSetPinOutput();
         CALL    ??TxLedSetPinOutput
-//  912     TxLedOff();
+//  913     TxLedOff();
         CALL    ??TxLedOff
-//  913     KeyOneSetPinInput();
+//  914     KeyOneSetPinInput();
         CALL    ??KeyOneSetPinInput
-//  914     KeyTwoSetPinInput();
+//  915     KeyTwoSetPinInput();
         CALL    ??KeyTwoSetPinInput
-//  915     KeyThreeSetPinInput();
+//  916     KeyThreeSetPinInput();
         CALL    ??KeyThreeSetPinInput
-//  916     ExternalKeySetPinInput();
+//  917     ExternalKeySetPinInput();
         CALL    ??ExternalKeySetPinInput
-//  917     CPlatform::InterruptEnable();
+//  918     CPlatform::InterruptEnable();
         CALL    ??InterruptEnable
-//  918 }
+//  919 }
         RET
-//  919 
-//  920 // Сирена
-//  921 ////-----------------------------------------------------------------------------------------------------
-//  922 //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
-//  923 //{
-//  924 //    unsigned short usCompareMatch;
-//  925 //
-//  926 //    // half-period time.
-//  927 //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-//  928 //    // Срабатывает по Top совпадению значения в ICR3.
-//  929 //    // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
-//  930 //    ICR3 = usCompareMatch * 2;
-//  931 //    OCR3A = usCompareMatch;
-//  932 //    OCR3B = usCompareMatch;
-//  933 //
-//  934 //    // Fast PWM Mode Top OCRn, prescaller - 1,
-//  935 //    // Clear OC3B on compare match (set output to low level).
-//  936 //    // Set OC3A on compare match (set output to high level).
-//  937 //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
-//  938 //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-//  939 //};
-//  940 //
-//  941 ////-----------------------------------------------------------------------------------------------------
-//  942 //void CPlatform::BuzzerTimerStop(void)
-//  943 //{
-//  944 //    // timer off.
-//  945 //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
-//  946 //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-//  947 //};
-//  948 
-//  949 // color variant
+//  920 
+//  921 // Сирена
+//  922 ////-----------------------------------------------------------------------------------------------------
+//  923 //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+//  924 //{
+//  925 //    unsigned short usCompareMatch;
+//  926 //
+//  927 //    // half-period time.
+//  928 //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+//  929 //    // Срабатывает по Top совпадению значения в ICR3.
+//  930 //    // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
+//  931 //    ICR3 = usCompareMatch * 2;
+//  932 //    OCR3A = usCompareMatch;
+//  933 //    OCR3B = usCompareMatch;
+//  934 //
+//  935 //    // Fast PWM Mode Top OCRn, prescaller - 1,
+//  936 //    // Clear OC3B on compare match (set output to low level).
+//  937 //    // Set OC3A on compare match (set output to high level).
+//  938 //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+//  939 //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+//  940 //};
+//  941 //
+//  942 ////-----------------------------------------------------------------------------------------------------
+//  943 //void CPlatform::BuzzerTimerStop(void)
+//  944 //{
+//  945 //    // timer off.
+//  946 //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
+//  947 //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+//  948 //};
+//  949 
+//  950 // color variant
 
         RSEG CODE:CODE:NOROOT(1)
-//  950 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+//  951 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
 ??BuzzerTimerFrequencySet:
-//  951 {
+//  952 {
         CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
-//  952     unsigned short usCompareMatch;
-//  953 
-//  954     // half-period time.
-//  955     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+//  953     unsigned short usCompareMatch;
+//  954 
+//  955     // half-period time.
+//  956     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
         MOVW    R21:R20, R25:R24
         LDI     R22, 0
         LDI     R23, 0
@@ -3380,30 +3377,30 @@ uiInterruptCounter:
         SUBI    R16, 1
         SBCI    R17, 0
         MOVW    R27:R26, R17:R16
-//  956 
-//  957     OCR3A = usCompareMatch * 2;
+//  957 
+//  958     OCR3A = usCompareMatch * 2;
         MOVW    R17:R16, R27:R26
         LSL     R16
         ROL     R17
         STS     (_A_OCR3A + 1), R17
         STS     _A_OCR3A, R16
-//  958     OCR3B = usCompareMatch;
+//  959     OCR3B = usCompareMatch;
         STS     (_A_OCR3B + 1), R27
         STS     _A_OCR3B, R26
-//  959     OCR3C = usCompareMatch;
+//  960     OCR3C = usCompareMatch;
         STS     (_A_OCR3C + 1), R27
         STS     _A_OCR3C, R26
-//  960 
-//  961     // Fast PWM Mode, prescaller - 1,
-//  962     // Clear OC3B on compare match (set output to low level).
-//  963     // Set OC3C on compare match (set output to high level).
-//  964     TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+//  961 
+//  962     // Fast PWM Mode, prescaller - 1,
+//  963     // Clear OC3B on compare match (set output to low level).
+//  964     // Set OC3C on compare match (set output to high level).
+//  965     TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
         LDI     R16, 47
         STS     _A_TCCR3A, R16
-//  965     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+//  966     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
         LDI     R16, 25
         STS     _A_TCCR3B, R16
-//  966 }
+//  967 }
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
         REQUIRE _A_OCR3A
@@ -3411,143 +3408,143 @@ uiInterruptCounter:
         REQUIRE _A_OCR3C
         REQUIRE _A_TCCR3A
         REQUIRE _A_TCCR3B
-//  967 
+//  968 
 
         RSEG CODE:CODE:NOROOT(1)
-//  968 void CPlatform::BuzzerTimerStop(void)
+//  969 void CPlatform::BuzzerTimerStop(void)
 ??BuzzerTimerStop:
-//  969 {
-//  970     // timer off.
-//  971     TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+//  970 {
+//  971     // timer off.
+//  972     TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
         LDS     R16, _A_TCCR3A
         ANDI    R16, 0xD0
         STS     _A_TCCR3A, R16
-//  972     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+//  973     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
         LDS     R16, _A_TCCR3B
         ANDI    R16, 0xE6
         STS     _A_TCCR3B, R16
-//  973 }
+//  974 }
         RET
         REQUIRE _A_TCCR3A
         REQUIRE _A_TCCR3B
-//  974 
-//  975 //-----------------------------------------------------------------------------------------------------
-//  976 void CPlatform::SystemTickInit(void)
-//  977 {
-//  978 #define MAIN_TIMER_TICK_RATE_HZ 1000
-//  979 
-//  980 //#define TIMER1_INTERRUPT
-//  981 #define TIMER2_INTERRUPT
-//  982 
+//  975 
+//  976 //-----------------------------------------------------------------------------------------------------
+//  977 void CPlatform::SystemTickInit(void)
+//  978 {
+//  979 #define MAIN_TIMER_TICK_RATE_HZ 1000
+//  980 
+//  981 //#define TIMER1_INTERRUPT
+//  982 #define TIMER2_INTERRUPT
 //  983 
-//  984 #ifdef TIMER2_INTERRUPT
-//  985     /* Hardware constants for timer 2. */
-//  986 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
-//  987 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
-//  988 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
-//  989 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
-//  990 #endif //TIMER2_INTERRUPT
-//  991 
-//  992 #ifdef TIMER1_INTERRUPT
-//  993     /* Hardware constants for timer 1. */
-//  994 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
-//  995 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
-//  996 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
-//  997 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
-//  998 #endif //TIMER1_INTERRUPT
-//  999 
-// 1000 #ifdef TIMER2_INTERRUPT
-// 1001 
-// 1002     /*
-// 1003      * Setup timer 2 compare match A to generate a tick interrupt.
-// 1004      */
-// 1005 //  TMR2 mega128a
-// 1006     unsigned long ulCompareMatch;
-// 1007     unsigned char ucLowByte;
-// 1008 
-// 1009     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
-// 1010     selected for the configCPU_CLOCK_HZ clock. */
-// 1011 
-// 1012 //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
-// 1013 
-// 1014     ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
-// 1015 
-// 1016     /* We only have 16 bits so have to scale to get our required tick rate. */
-// 1017     ulCompareMatch /= portCLOCK_PRESCALER;
-// 1018 
-// 1019     /* Adjust for correct value. */
-// 1020     ulCompareMatch -= ( unsigned long ) 1;
-// 1021 
-// 1022     /* Setup compare match value for compare match A.  Interrupts are disabled
-// 1023     before this is called so we need not worry here. */
-// 1024     OCR2 = ulCompareMatch;
-// 1025 
-// 1026     /* Setup clock Source and compare match behaviour. */
-// 1027     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
-// 1028     TCCR2 = ucLowByte;
-// 1029 
-// 1030     /* Enable the interrupt - this is okay as interrupt are currently globally
-// 1031     disabled. */
-// 1032     ucLowByte = TIMSK;
-// 1033     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
-// 1034     TIMSK = ucLowByte;
-// 1035 
-// 1036 #endif //TIMER2_INTERRUPT
-// 1037 
-// 1038 #ifdef TIMER1_INTERRUPT
-// 1039 
-// 1040 // mega128a
-// 1041     unsigned long ulCompareMatch;
-// 1042     unsigned char ucLowByte;
-// 1043 
-// 1044     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
-// 1045     selected for the configCPU_CLOCK_HZ clock. */
-// 1046 
-// 1047     ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
-// 1048 
-// 1049     /* We only have 16 bits so have to scale to get our required tick rate. */
-// 1050     ulCompareMatch /= portCLOCK_PRESCALER;
-// 1051 
-// 1052     /* Adjust for correct value. */
-// 1053     ulCompareMatch -= ( unsigned long ) 1;
-// 1054 
-// 1055     /* Setup compare match value for compare match A.  Interrupts are disabled
-// 1056     before this is called so we need not worry here. */
-// 1057     OCR1A = ulCompareMatch;
-// 1058 
-// 1059     /* Setup clock Source and compare match behaviour. */
-// 1060     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
-// 1061     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
-// 1062     TCCR1B = ucLowByte;
-// 1063 
-// 1064     /* Enable the interrupt - this is okay as interrupt are currently globally
-// 1065     disabled. */
-// 1066     ucLowByte = TIMSK;
-// 1067     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
-// 1068     TIMSK = ucLowByte;
-// 1069 
-// 1070 #endif //TIMER1_INTERRUPT
-// 1071 
-// 1072 }
-// 1073 
-// 1074 //-----------------------------------------------------------------------------------------------------
-// 1075 #ifdef TIMER1_INTERRUPT
-// 1076 // Прерывание TIMER1_COMPA_vect
-// 1077 __interrupt void SystemTickInterrupt(void)
-// 1078 {
-// 1079     CPlatform::IncrementSystemTick();
-// 1080 }
-// 1081 #endif //TIMER1_INTERRUPT
-// 1082 //-----------------------------------------------------------------------------------------------------
-// 1083 #ifdef TIMER2_INTERRUPT
-// 1084 // Прерывание TIMER2_COMP_vect
-// 1085 #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
+//  984 
+//  985 #ifdef TIMER2_INTERRUPT
+//  986     /* Hardware constants for timer 2. */
+//  987 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
+//  988 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
+//  989 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  990 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
+//  991 #endif //TIMER2_INTERRUPT
+//  992 
+//  993 #ifdef TIMER1_INTERRUPT
+//  994     /* Hardware constants for timer 1. */
+//  995 #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
+//  996 #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
+//  997 #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+//  998 #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
+//  999 #endif //TIMER1_INTERRUPT
+// 1000 
+// 1001 #ifdef TIMER2_INTERRUPT
+// 1002 
+// 1003     /*
+// 1004      * Setup timer 2 compare match A to generate a tick interrupt.
+// 1005      */
+// 1006 //  TMR2 mega128a
+// 1007     unsigned long ulCompareMatch;
+// 1008     unsigned char ucLowByte;
+// 1009 
+// 1010     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+// 1011     selected for the configCPU_CLOCK_HZ clock. */
+// 1012 
+// 1013 //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
+// 1014 
+// 1015     ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+// 1016 
+// 1017     /* We only have 16 bits so have to scale to get our required tick rate. */
+// 1018     ulCompareMatch /= portCLOCK_PRESCALER;
+// 1019 
+// 1020     /* Adjust for correct value. */
+// 1021     ulCompareMatch -= ( unsigned long ) 1;
+// 1022 
+// 1023     /* Setup compare match value for compare match A.  Interrupts are disabled
+// 1024     before this is called so we need not worry here. */
+// 1025     OCR2 = ulCompareMatch;
+// 1026 
+// 1027     /* Setup clock Source and compare match behaviour. */
+// 1028     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+// 1029     TCCR2 = ucLowByte;
+// 1030 
+// 1031     /* Enable the interrupt - this is okay as interrupt are currently globally
+// 1032     disabled. */
+// 1033     ucLowByte = TIMSK;
+// 1034     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+// 1035     TIMSK = ucLowByte;
+// 1036 
+// 1037 #endif //TIMER2_INTERRUPT
+// 1038 
+// 1039 #ifdef TIMER1_INTERRUPT
+// 1040 
+// 1041 // mega128a
+// 1042     unsigned long ulCompareMatch;
+// 1043     unsigned char ucLowByte;
+// 1044 
+// 1045     /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+// 1046     selected for the configCPU_CLOCK_HZ clock. */
+// 1047 
+// 1048     ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+// 1049 
+// 1050     /* We only have 16 bits so have to scale to get our required tick rate. */
+// 1051     ulCompareMatch /= portCLOCK_PRESCALER;
+// 1052 
+// 1053     /* Adjust for correct value. */
+// 1054     ulCompareMatch -= ( unsigned long ) 1;
+// 1055 
+// 1056     /* Setup compare match value for compare match A.  Interrupts are disabled
+// 1057     before this is called so we need not worry here. */
+// 1058     OCR1A = ulCompareMatch;
+// 1059 
+// 1060     /* Setup clock Source and compare match behaviour. */
+// 1061     TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
+// 1062     ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+// 1063     TCCR1B = ucLowByte;
+// 1064 
+// 1065     /* Enable the interrupt - this is okay as interrupt are currently globally
+// 1066     disabled. */
+// 1067     ucLowByte = TIMSK;
+// 1068     ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+// 1069     TIMSK = ucLowByte;
+// 1070 
+// 1071 #endif //TIMER1_INTERRUPT
+// 1072 
+// 1073 }
+// 1074 
+// 1075 //-----------------------------------------------------------------------------------------------------
+// 1076 #ifdef TIMER1_INTERRUPT
+// 1077 // Прерывание TIMER1_COMPA_vect
+// 1078 __interrupt void SystemTickInterrupt(void)
+// 1079 {
+// 1080     CPlatform::IncrementSystemTick();
+// 1081 }
+// 1082 #endif //TIMER1_INTERRUPT
+// 1083 //-----------------------------------------------------------------------------------------------------
+// 1084 #ifdef TIMER2_INTERRUPT
+// 1085 // Прерывание TIMER2_COMP_vect
+// 1086 #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
 
         RSEG CODE:CODE:NOROOT(1)
         CALL_GRAPH_ROOT ??SystemTickInterrupt, "interrupt"
-// 1086 __interrupt void SystemTickInterrupt(void)
+// 1087 __interrupt void SystemTickInterrupt(void)
 ??SystemTickInterrupt:
-// 1087 {
+// 1088 {
         ST      -Y, R25
         ST      -Y, R24
         ST      -Y, R31
@@ -3566,9 +3563,9 @@ uiInterruptCounter:
         ST      -Y, R16
         IN      R24, 0x3F
         IN      R25, 0x3B
-// 1088     CPlatform::IncrementSystemTick();
+// 1089     CPlatform::IncrementSystemTick();
         CALL    ??IncrementSystemTick
-// 1089 }
+// 1090 }
         OUT     0x3B, R25
         OUT     0x3F, R24
         LD      R16, Y+
@@ -3854,19 +3851,19 @@ __?EEARH:
         REQUIRE ?need_segment_init
 
         END
-// 1090 #endif //TIMER2_INTERRUPT
-// 1091 
+// 1091 #endif //TIMER2_INTERRUPT
 // 1092 
 // 1093 
+// 1094 
 // 
 //   105 bytes in segment ABSOLUTE
 // 2 838 bytes in segment CODE
 //     7 bytes in segment INITTAB
 //    20 bytes in segment INTVEC
-//   748 bytes in segment NEAR_F
+//   734 bytes in segment NEAR_F
 //    15 bytes in segment NEAR_Z
 // 
-// 3 344 bytes of CODE memory (+ 269 bytes shared)
+// 3 330 bytes of CODE memory (+ 269 bytes shared)
 //    15 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
