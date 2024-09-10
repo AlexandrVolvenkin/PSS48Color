@@ -27,6 +27,7 @@ public:
         RESETED_NOT_ACTIVE_STATE_WAITING,
         RECEIPTED_RESET_WAITING,
         NOT_ACTIVE_STATE_WAITING,
+        NAMUR_INPUT_CORRECT_STATE_WAITING,
     };
 
     enum
@@ -41,6 +42,11 @@ public:
     };
 
     virtual uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    virtual uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };
@@ -80,6 +86,8 @@ private:
     uint8_t m_auiLinkedDiscreteOutputs[DISCRETE_OUTPUT_MODULE_MAX_NUMBER];
     // Источник дискретного сигнала.
     uint8_t m_uiDiscreteStateIndex;
+    // Источник данных достоверности дискретного сигнала.
+    uint8_t m_uiDiscreteInputsBadStateIndex;
 };
 //-----------------------------------------------------------------------------------------------------
 
@@ -101,6 +109,11 @@ public:
     };
 
     uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };
@@ -131,6 +144,11 @@ public:
     };
 
     uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };
@@ -166,8 +184,84 @@ public:
         return 1;
     };
 
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 0;
+    };
+
     CPreventiveAlarmHighLevelDfa();
     virtual ~CPreventiveAlarmHighLevelDfa();
+
+protected:
+private:
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CPreventiveAlarmLowLevelNamurDfa : public CAlarmDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return PREVENTIVE;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CPreventiveAlarmLowLevelNamurDfa();
+    virtual ~CPreventiveAlarmLowLevelNamurDfa();
+
+
+protected:
+private:
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CPreventiveAlarmHighLevelNamurDfa : public CAlarmDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return PREVENTIVE;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 1;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CPreventiveAlarmHighLevelNamurDfa();
+    virtual ~CPreventiveAlarmHighLevelNamurDfa();
 
 protected:
 private:
@@ -192,6 +286,11 @@ public:
     };
 
     uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };
@@ -226,8 +325,83 @@ public:
         return 1;
     };
 
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 0;
+    };
+
     CEmergencyAlarmHighLevelDfa();
     virtual ~CEmergencyAlarmHighLevelDfa();
+
+protected:
+private:
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CEmergencyAlarmLowLevelNamurDfa : public CAlarmDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return EMERGENCY;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CEmergencyAlarmLowLevelNamurDfa();
+    virtual ~CEmergencyAlarmLowLevelNamurDfa();
+
+protected:
+private:
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CEmergencyAlarmHighLevelNamurDfa : public CAlarmDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return EMERGENCY;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 1;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CEmergencyAlarmHighLevelNamurDfa();
+    virtual ~CEmergencyAlarmHighLevelNamurDfa();
 
 protected:
 private:
@@ -252,6 +426,11 @@ public:
     };
 
     uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };
@@ -287,8 +466,84 @@ public:
         return 1;
     };
 
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 0;
+    };
+
     CIndicationAlarmHighLevelDfa();
     virtual ~CIndicationAlarmHighLevelDfa();
+
+protected:
+private:
+};
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CIndicationAlarmLowLevelNamurDfa : public CIndicationAlarmLowLevelDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return INDICATION;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CIndicationAlarmLowLevelNamurDfa();
+    virtual ~CIndicationAlarmLowLevelNamurDfa();
+
+protected:
+private:
+};
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+class CIndicationAlarmHighLevelNamurDfa : public CIndicationAlarmLowLevelDfa
+{
+public:
+
+    uint8_t ALARM_TYPE(void)
+    {
+        return INDICATION;
+    };
+
+    uint8_t ACTIVE_LEVEL(void)
+    {
+        return 1;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
+    {
+        return 1;
+    };
+
+    CIndicationAlarmHighLevelNamurDfa();
+    virtual ~CIndicationAlarmHighLevelNamurDfa();
 
 protected:
 private:
@@ -321,6 +576,11 @@ public:
     };
 
     virtual uint8_t ACTIVE_LEVEL(void)
+    {
+        return 0;
+    };
+
+    uint8_t IS_NAMUR_ON(void)
     {
         return 0;
     };

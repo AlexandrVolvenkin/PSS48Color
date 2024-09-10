@@ -39,6 +39,15 @@ void CMvsn21Driver::Allocate(TMemoryAllocationContext &xMemoryAllocationContext)
     uiUsedDiscreteInputs +=
         MVSN21_DISCRETE_INPUTS_NUMBER;
 
+    // Получим указатель на место в массиве достоверности дискретных входов для текущего модуля.
+    m_puiDiscreteInputsBadState =
+        &xMemoryAllocationContext.
+        puiDiscreteInputsBadState[xMemoryAllocationContext.uiUsedDiscreteInputsBadState];
+    // Увеличим общий объём выделенной памяти.
+    xMemoryAllocationContext.
+    uiUsedDiscreteInputsBadState +=
+        MVSN21_DISCRETE_INPUTS_NUMBER;
+
     // Получим указатель на место в массиве состояний ошибок для текущего модуля.
     m_puiErrorAlarmDataArray =
         &xMemoryAllocationContext.
@@ -74,32 +83,48 @@ uint8_t CMvsn21Driver::DataExchange(void)
             SetErrorAlarmData(0);
             // отправим полученные от модуля данные в рабочий массив прибора.
             uint8_t *puiDestination = m_puiDiscreteInputs;
+            uint8_t *puiDestinationBadState = m_puiDiscreteInputsBadState;
+
             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
             {
                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
 
-                for (uint8_t j = 0; j < DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY; j++)
+                for (uint8_t j = 0; j < (DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY / 2); j++)
                 {
+//                    // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
+//                    // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
+//                    // бит нечётный?
+//                    if (j & 0x01)
+//                    {
+//                        // бит достоверен? 0 - достоверно, 1 - недостоверно.
+//                        *puiDestinationBadState++ = ((uiData & (1 << j)) ? 1 : 0);
+//                    }
+//                    else
+//                    {
+//                        //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
+//                        if ((uiData & (1 << j)))
+//                        {
+//                            *puiDestination++ = 1;
+//                        }
+//                        else
+//                        {
+//                            *puiDestination++ = 0;
+//                        }
+//                    }
+
                     // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
                     // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
-                    // бит нечётный?
-                    if (j & 0x01)
-                    {
-                        //                            // бит достоверен? 0 - достоверно, 1 - недостоверно.
-//                            *puiDestination2++ = ((uiData & (1 << j)) ? 1 : 0);
-                    }
-                    else
-                    {
-                        //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
-                        if ((uiData & (1 << j)))
-                        {
-                            *puiDestination++ = 1;
-                        }
-                        else
-                        {
-                            *puiDestination++ = 0;
-                        }
-                    }
+//  коды состояния одного входа передаваемые в двух битах модулем ввода дискретных сигналов Mvsn21
+//    enum INPUT_STATE_CODE
+//    {
+//        WIRE_BREAK	= 0x02,			// Обрыв линии
+//        ON		= 0x01,			// Срабатывание датчика
+//        OFF		= 0x00,			// Дективация датчика
+//        SHORT_CIRCUIT	= 0x03			// Короткое замыкание
+//    };
+                    uint8_t uiResult = ((uiData >> (j * 2)) & 0x03);
+                    *puiDestinationBadState++ = uiResult;
+//                    *puiDestination++ = (uiResult & 0x01);
                 }
             }
             return 1;

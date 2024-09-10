@@ -102,7 +102,9 @@ public:
     static void AlarmTypeChange(uint8_t uiAlarmType);
     static void AlarmTypeErrorChange(void);
     static void AlarmTypeReceipt(void);
+    static void SetDiscreteInputState(uint8_t uiIndex, uint8_t uiData);
     static uint8_t GetDiscreteInputState(uint8_t uiIndex);
+    static uint8_t GetDiscreteInputsBadState(uint8_t uiIndex);
     static void SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData);
     static uint8_t GetErrorAlarmState(uint8_t uiIndex);
     static void AlarmTypeSet(uint8_t uiAlarmType);
@@ -312,6 +314,8 @@ public:
     static uint8_t m_auiIntermediateBuff[256];
     static uint8_t m_auiSpiRxBuffer[SPI_BUFFER_LENGTH];
     static uint8_t m_auiSpiTxBuffer[SPI_BUFFER_LENGTH];
+
+    static uint8_t m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH];
 };
 
 //-----------------------------------------------------------------------------------------------------

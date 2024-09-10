@@ -111,16 +111,16 @@ union TChannelSetting
 
     unsigned char Byte;
 
-    enum TYPE_INDICATION
-    {
-        NORMAL		 = 0,			// Нет отображения
-        INDICATION	 = 1,			// Индикация
-        PREVENTIVE	 = 2,			// Предупредительная сигнализация
-        EMERGENCY	 = 3,			// Аварийная сигнализация
-
-        IND_PREVENTIVE = 4,			// Индикация + предупредительная сигнализация
-        IND_EMERGENCY  = 5			// Индикация + аварийная сигнализация
-    };
+//    enum TYPE_INDICATION
+//    {
+//        NORMAL		 = 0,			// Нет отображения
+//        INDICATION	 = 1,			// Индикация
+//        PREVENTIVE	 = 2,			// Предупредительная сигнализация
+//        EMERGENCY	 = 3,			// Аварийная сигнализация
+//
+//        IND_PREVENTIVE = 4,			// Индикация + предупредительная сигнализация
+//        IND_EMERGENCY  = 5			// Индикация + аварийная сигнализация
+//    };
 };
 
 // Описатель настроек канала модуля вывода
@@ -232,9 +232,12 @@ struct TDataBase
     // Список запросов сброса.
     TMBMRequestList UnsetList;
     unsigned short  CRC9;
+    // Входы типа NAMUR
+    unsigned char   NamurInputs[8];
+    unsigned short  CRC10;
     // Состояние устройства хранимое в EEPROM.
     TDeviceState DeviceState;
-    unsigned short CRC10;
+    unsigned short CRC11;
 
     enum DB_FIELDS
     {
@@ -248,8 +251,9 @@ struct TDataBase
         INPUT_LIST	= 7,			// Запросы сбора данных
         RECEIPT_LIST	= 8,			// Запросы квитирования
         UNSET_LIST	= 9,			// Запросы сброса
-        DEVICE_STATE = 10,			// Состояние устройства хранимое в EEPROM.
-        BLOCKS_QUANTITY = 11
+        NAMUR_INPUTS  = 10,                                               // Входы типа NAMUR
+        DEVICE_STATE = 11,			// Состояние устройства хранимое в EEPROM.
+        BLOCKS_QUANTITY = 12
     };
 };
 #pragma pack(pop)
@@ -301,6 +305,8 @@ struct TMemoryAllocationContext
     uint8_t *puiErrorCode;
     uint8_t *puiDiscreteInputs;
     uint8_t uiUsedDiscreteInputs;
+    uint8_t *puiDiscreteInputsBadState;
+    uint8_t uiUsedDiscreteInputsBadState;
     uint8_t *puiDiscreteOutputState;
     uint8_t uiUsedDiscreteOutputState;
     TDiscreteOutputControl *pxDiscreteOutputControl;

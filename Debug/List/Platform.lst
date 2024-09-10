@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           05/Sep/2024  12:01:55
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           10/Sep/2024  08:30:04
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWEBA8.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW9502.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #        --cpu=m128a -ms -o
@@ -2355,7 +2355,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000288   6CFB               DC16 27899
    \   0000028A   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0
    \              0000        
-   \   00000292   0B40               DC16 2880
+   \   00000292   F0BE               DC16 61630
+   \   00000294   000000000000       DC8 0, 0, 0, 0, 0, 0, 0, 0
+   \              0000        
+   \   0000029C   0B40               DC16 2880
     457          {
     458              {
     459                  2,1,48,false,false,false,false,0,0,{ 0,0,0,0,0,0,0,0,0,0,0,0 }
@@ -2591,13 +2594,17 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     689                  }
     690              },0x6CFB,
     691          
-    692              false, {0,0,0,0,0,0,0},0x0B40,
-    693          };
-    694          
-    695          //-----------------------------------------------------------------------------------------------------
+    692              {
+    693                  0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+    694              },0xF0BE,
+    695          
+    696              false, {0,0,0,0,0,0,0},0x0B40,
+    697          };
+    698          
+    699          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment NEAR_F, align 1, keep-with-next, root
-    696          TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
+    700          TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
    \                     ??axDataBaseBlocksPositionData:
    \   00000000   1400               DC8 0, 20
    \   00000002   0000               DC16 0
@@ -2621,52 +2628,55 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000026   0237               DC16 567
    \   00000028   080A               DC8 10, 8
    \   0000002A   028A               DC16 650
-    697          {
-    698              { 0, sizeof(xMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
-    699              { 1, sizeof(xMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
-    700              { 2, sizeof(xMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
-    701              { 3, sizeof(xMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
-    702              { 4, sizeof(xMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
-    703              { 5, sizeof(xMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
-    704              { 6, sizeof(xMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
-    705              { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
-    706              { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
-    707              { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    708              { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
-    709          };
-    710          
-    711          //----------------------------------------- Flash ----------------------------------------------------------------
-    712          //CFlash::CFlash()
-    713          //{
-    714          //
-    715          //}
-    716          //
-    717          ////-----------------------------------------------------------------------------------------------------
-    718          //CFlash::~CFlash()
-    719          //{
-    720          //
-    721          //}
-    722          
-    723          //-----------------------------------------------------------------------------------------------------
+   \   0000002C   080B               DC8 11, 8
+   \   0000002E   0294               DC16 660
+    701          {
+    702              { 0, sizeof(xMainDataBase.DevConfig),	  offsetof(TDataBase,DevConfig)	 	},
+    703              { 1, sizeof(xMainDataBase.MBSet),	  offsetof(TDataBase,MBSet)	 	},
+    704              { 2, sizeof(xMainDataBase.ActivityLevel),	  offsetof(TDataBase,ActivityLevel)		},
+    705              { 3, sizeof(xMainDataBase.AlarmWindowIndex),	  offsetof(TDataBase,AlarmWindowIndex)	 	},
+    706              { 4, sizeof(xMainDataBase.AlarmType), offsetof(TDataBase,AlarmType) 	},
+    707              { 5, sizeof(xMainDataBase.OutConfig),	  offsetof(TDataBase,OutConfig)  	},
+    708              { 6, sizeof(xMainDataBase.Relay),	  offsetof(TDataBase,Relay)       	},
+    709              { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
+    710              { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
+    711              { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
+    712              { 10, sizeof(xMainDataBase.NamurInputs),	  offsetof(TDataBase,NamurInputs)  	},
+    713              { 11, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+    714          };
+    715          
+    716          //----------------------------------------- Flash ----------------------------------------------------------------
+    717          //CFlash::CFlash()
+    718          //{
+    719          //
+    720          //}
+    721          //
+    722          ////-----------------------------------------------------------------------------------------------------
+    723          //CFlash::~CFlash()
+    724          //{
+    725          //
+    726          //}
+    727          
+    728          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    724          uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
+    729          uint8_t CFlash::Read(uint8_t *puiDestination, uint8_t __farflash *uiSource, uint16_t uiLength)
    \                     ??Read_2:
-    725          {
+    730          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   0108               MOVW    R1:R0, R17:R16
    \   00000006   0119               MOVW    R3:R2, R19:R18
-    726              // Скопируем данные из флеш в буфер Ram.
-    727              for (uint16_t i = 0; i < uiLength; i++)
+    731              // Скопируем данные из флеш в буфер Ram.
+    732              for (uint16_t i = 0; i < uiLength; i++)
    \   00000008   E080               LDI     R24, 0
    \   0000000A   E090               LDI     R25, 0
    \                     ??Read_13:
    \   0000000C   1582               CP      R24, R2
    \   0000000E   0593               CPC     R25, R3
    \   00000010   F460               BRCC    ??Read_14
-    728              {
-    729                  puiDestination[i] = uiSource[i];
+    733              {
+    734                  puiDestination[i] = uiSource[i];
    \   00000012   01FA               MOVW    R31:R30, R21:R20
    \   00000014   2F36               MOV     R19, R22
    \   00000016   0FE8               ADD     R30, R24
@@ -2677,31 +2687,31 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000020   0FE8               ADD     R30, R24
    \   00000022   1FF9               ADC     R31, R25
    \   00000024   8300               ST      Z, R16
-    730              }
+    735              }
    \   00000026   9601               ADIW    R25:R24, 1
    \   00000028   CFF1               RJMP    ??Read_13
-    731              return 1;
+    736              return 1;
    \                     ??Read_14:
    \   0000002A   E001               LDI     R16, 1
    \   0000002C   9189               LD      R24, Y+
    \   0000002E   9199               LD      R25, Y+
    \   00000030   9508               RET
-    732          }
-    733          
-    734          //-----------------------------------------------------------------------------------------------------
+    737          }
+    738          
+    739          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    735          uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
+    740          uint16_t CFlash::ReadBlock(uint8_t *puiDestination, uint8_t uiBlock)
    \                     ??ReadBlock:
-    736          {
+    741          {
    \   00000000   ........           CALL    ?PROLOGUE5_L09
    \   00000004                      REQUIRE ?Register_R4_is_cg_reg
    \   00000004   01D8               MOVW    R27:R26, R17:R16
    \   00000006   2E42               MOV     R4, R18
-    737              // Прочитаем блок из флеш вместе с Crc.
-    738              Read(puiDestination,
-    739                   GetBlockPointer(uiBlock),
-    740                   (GetBlockLength(uiBlock) + CRC_LENGTH));
+    742              // Прочитаем блок из флеш вместе с Crc.
+    743              Read(puiDestination,
+    744                   GetBlockPointer(uiBlock),
+    745                   (GetBlockLength(uiBlock) + CRC_LENGTH));
    \   00000008   2D04               MOV     R16, R4
    \   0000000A   ........           CALL    ??GetBlockLength
    \   0000000E   01C8               MOVW    R25:R24, R17:R16
@@ -2713,9 +2723,9 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000001C   019C               MOVW    R19:R18, R25:R24
    \   0000001E   018D               MOVW    R17:R16, R27:R26
    \   00000020   ....               RCALL   ??Read_2
-    741          
-    742              // Получим контрольную сумму блока во флеш.
-    743              uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
+    746          
+    747              // Получим контрольную сумму блока во флеш.
+    748              uint16_t uiCrc = static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock)]);
    \   00000022   2D04               MOV     R16, R4
    \   00000024   ........           CALL    ??GetBlockLength
    \   00000028   01FD               MOVW    R31:R30, R27:R26
@@ -2723,7 +2733,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000002C   1FF1               ADC     R31, R17
    \   0000002E   8180               LD      R24, Z
    \   00000030   E090               LDI     R25, 0
-    744              uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
+    749              uiCrc |= (static_cast<uint16_t>(puiDestination[GetBlockLength(uiBlock) + 1]) << 8);
    \   00000032   2D04               MOV     R16, R4
    \   00000034   ........           CALL    ??GetBlockLength
    \   00000038   01FD               MOVW    R31:R30, R27:R26
@@ -2733,9 +2743,9 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000040   E000               LDI     R16, 0
    \   00000042   2B80               OR      R24, R16
    \   00000044   2B91               OR      R25, R17
-    745              // Вычислим контрольную сумму блока.
-    746              // Блок не повреждён?
-    747              if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
+    750              // Вычислим контрольную сумму блока.
+    751              // Блок не повреждён?
+    752              if (uiCrc == usCrc16(puiDestination, GetBlockLength(uiBlock)))
    \   00000046   2D04               MOV     R16, R4
    \   00000048   ........           CALL    ??GetBlockLength
    \   0000004C   0198               MOVW    R19:R18, R17:R16
@@ -2744,58 +2754,58 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000054   1780               CP      R24, R16
    \   00000056   0791               CPC     R25, R17
    \   00000058   F421               BRNE    ??ReadBlock_1
-    748              {
-    749                  return GetBlockLength(uiBlock);
+    753              {
+    754                  return GetBlockLength(uiBlock);
    \   0000005A   2D04               MOV     R16, R4
    \   0000005C   ........           CALL    ??GetBlockLength
    \   00000060   C005               RJMP    ??ReadBlock_2
-    750              }
-    751              else
-    752              {
-    753                  CPss21::SetErrorCode(DB_ERROR);
+    755              }
+    756              else
+    757              {
+    758                  CPss21::SetErrorCode(DB_ERROR);
    \                     ??ReadBlock_1:
    \   00000062   E004               LDI     R16, 4
    \   00000064   ........           CALL    ??SetErrorCode
-    754                  // Нет данных.
-    755                  return 0;
+    759                  // Нет данных.
+    760                  return 0;
    \   00000068   E000               LDI     R16, 0
    \   0000006A   E010               LDI     R17, 0
    \                     ??ReadBlock_2:
    \   0000006C   E0E5               LDI     R30, 5
    \   0000006E   ........           JMP     ?EPILOGUE_B5_L09
-    756              }
-    757          }
-    758          
-    759          //-----------------------------------------------------------------------------------------------------
-    760          
-    761          
-    762          
+    761              }
+    762          }
     763          
-    764          
+    764          //-----------------------------------------------------------------------------------------------------
     765          
     766          
     767          
-    768          //----------------------------------------- CSpi ----------------------------------------------------------------
+    768          
+    769          
+    770          
+    771          
+    772          
+    773          //----------------------------------------- CSpi ----------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    769          CSpi::CSpi()
+    774          CSpi::CSpi()
    \                     ??CSpi:
-    770          {
+    775          {
    \   00000000   ....               LDI     R18, LOW(??__vtbl_6)
    \   00000002   ....               LDI     R19, (??__vtbl_6) >> 8
    \   00000004   01F8               MOVW    R31:R30, R17:R16
    \   00000006   8320               ST      Z, R18
    \   00000008   8331               STD     Z+1, R19
-    771          
-    772          }
+    776          
+    777          }
    \   0000000A   9508               RET
-    773          
-    774          //-----------------------------------------------------------------------------------------------------
+    778          
+    779          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    775          CSpi::~CSpi()
+    780          CSpi::~CSpi()
    \                     `?~CSpi`:
-    776          {
+    781          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
@@ -2804,114 +2814,114 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000000A   F029               BREQ    `?~CSpi_1`
    \   0000000C   FB20               BST     R18, 0
    \   0000000E   F41E               BRTC    `?~CSpi_1`
-    777          
-    778          }
+    782          
+    783          }
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    `??operator delete`
    \                     `?~CSpi_1`:
    \   00000016   9189               LD      R24, Y+
    \   00000018   9199               LD      R25, Y+
    \   0000001A   9508               RET
-    779          
-    780          //-----------------------------------------------------------------------------------------------------
+    784          
+    785          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    781          void CSpi::Init(void)
+    786          void CSpi::Init(void)
    \                     ??Init_1:
-    782          {
-    783              // Master mode.
-    784          //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
-    785              SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
+    787          {
+    788              // Master mode.
+    789          //    SPCR = (BIT(MSTR) | BIT(SPR1));		// master,  115200.
+    790              SPCR = (BIT(MSTR) | BIT(SPR1) | BIT(SPR0));		// master,  57600.
    \   00000000   E103               LDI     R16, 19
    \   00000002   B90D               OUT     0x0D, R16
-    786          
-    787              DDRB |= (Bit(MOSI) | Bit(SCK));
+    791          
+    792              DDRB |= (Bit(MOSI) | Bit(SCK));
    \   00000004   B307               IN      R16, 0x17
    \   00000006   6006               ORI     R16, 0x06
    \   00000008   BB07               OUT     0x17, R16
-    788              PORTB |= (Bit(MOSI) | Bit(SCK));
+    793              PORTB |= (Bit(MOSI) | Bit(SCK));
    \   0000000A   B308               IN      R16, 0x18
    \   0000000C   6006               ORI     R16, 0x06
    \   0000000E   BB08               OUT     0x18, R16
-    789          };
+    794          };
    \   00000010   9508               RET
    \   00000012                      REQUIRE _A_SPCR
    \   00000012                      REQUIRE _A_DDRB
    \   00000012                      REQUIRE _A_PORTB
-    790          
-    791          //-----------------------------------------------------------------------------------------------------
+    795          
+    796          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    792          void CSpi::Enable(void)
+    797          void CSpi::Enable(void)
    \                     ??Enable_1:
-    793          {
-    794              // разрешим SPI.
-    795              SPCR  |= BIT(SPE);
+    798          {
+    799              // разрешим SPI.
+    800              SPCR  |= BIT(SPE);
    \   00000000   9A6E               SBI     0x0D, 0x06
-    796          }
+    801          }
    \   00000002   9508               RET
    \   00000004                      REQUIRE _A_SPCR
-    797          
-    798          //-----------------------------------------------------------------------------------------------------
+    802          
+    803          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    799          void CSpi::Disable(void)
+    804          void CSpi::Disable(void)
    \                     ??Disable_1:
-    800          {
-    801              SPCR &= ~BIT(SPE);
+    805          {
+    806              SPCR &= ~BIT(SPE);
    \   00000000   986E               CBI     0x0D, 0x06
-    802          }
+    807          }
    \   00000002   9508               RET
    \   00000004                      REQUIRE _A_SPCR
-    803          
-    804          //-----------------------------------------------------------------------------------------------------
+    808          
+    809          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    805          uint8_t CSpi::Exchange(uint8_t uiData)
+    810          uint8_t CSpi::Exchange(uint8_t uiData)
    \                     ??Exchange:
-    806          {
+    811          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   2F90               MOV     R25, R16
-    807              SPDR = uiData;
+    812              SPDR = uiData;
    \   00000006   B99F               OUT     0x0F, R25
-    808          
-    809              uint8_t uiGuardCounter = 0;
+    813          
+    814              uint8_t uiGuardCounter = 0;
    \   00000008   E080               LDI     R24, 0
-    810          
-    811              while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
+    815          
+    816              while(!(SPSR & BIT(SPIF)))		// Ожидание конца передачи
    \                     ??Exchange_2:
    \   0000000A   9977               SBIC    0x0E, 0x07
    \   0000000C   C008               RJMP    ??Exchange_3
-    812              {
-    813                  CPlatform::WatchdogReset();
+    817              {
+    818                  CPlatform::WatchdogReset();
    \   0000000E   ........           CALL    ??WatchdogReset
-    814          
-    815                  if (uiGuardCounter < 200)
+    819          
+    820                  if (uiGuardCounter < 200)
    \   00000012   3C88               CPI     R24, 200
    \   00000014   F410               BRCC    ??Exchange_4
-    816                  {
-    817                      uiGuardCounter++;
+    821                  {
+    822                      uiGuardCounter++;
    \   00000016   9583               INC     R24
    \   00000018   CFF8               RJMP    ??Exchange_2
-    818                  }
-    819                  else
-    820                  {
-    821                      return  SPDR;
+    823                  }
+    824                  else
+    825                  {
+    826                      return  SPDR;
    \                     ??Exchange_4:
    \   0000001A   B10F               IN      R16, 0x0F
    \   0000001C   C005               RJMP    ??Exchange_5
-    822                  }
-    823              };
-    824          
-    825              delay_us(100);
+    827                  }
+    828              };
+    829          
+    830              delay_us(100);
    \                     ??Exchange_3:
    \   0000001E   EE09               LDI     R16, 233
    \   00000020   950A               DEC     R16
    \   00000022   F7F1               BRNE    $-2
    \   00000024   0000               NOP
-    826          
-    827              return  SPDR;
+    831          
+    832              return  SPDR;
    \   00000026   B10F               IN      R16, 0x0F
    \                     ??Exchange_5:
    \   00000028   9189               LD      R24, Y+
@@ -2919,14 +2929,14 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000002C   9508               RET
    \   0000002E                      REQUIRE _A_SPDR
    \   0000002E                      REQUIRE _A_SPSR
-    828          }
-    829          
-    830          //-----------------------------------------------------------------------------------------------------
+    833          }
+    834          
+    835          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    831          uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
+    836          uint8_t CSpi::Exchange(uint8_t *puiDestination, uint8_t *pucSource, uint16_t uiLength)
    \                     ??Exchange_1:
-    832          {
+    837          {
    \   00000000   ........           CALL    ?PROLOGUE8_L09
    \   00000004                      REQUIRE ?Register_R4_is_cg_reg
    \   00000004                      REQUIRE ?Register_R5_is_cg_reg
@@ -2935,18 +2945,18 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000004   0138               MOVW    R7:R6, R17:R16
    \   00000006   0129               MOVW    R5:R4, R19:R18
    \   00000008   01DA               MOVW    R27:R26, R21:R20
-    833              if (uiLength > BUFFER_LENGTH)
+    838              if (uiLength > BUFFER_LENGTH)
    \   0000000A   34A1               CPI     R26, 65
    \   0000000C   E000               LDI     R16, 0
    \   0000000E   07B0               CPC     R27, R16
    \   00000010   F010               BRCS    ??Exchange_6
-    834              {
-    835                  return 0;
+    839              {
+    840                  return 0;
    \   00000012   E000               LDI     R16, 0
    \   00000014   C011               RJMP    ??Exchange_7
-    836              }
-    837          
-    838              for (uint16_t i = 0; i < uiLength; i++)
+    841              }
+    842          
+    843              for (uint16_t i = 0; i < uiLength; i++)
    \                     ??Exchange_6:
    \   00000016   E080               LDI     R24, 0
    \   00000018   E090               LDI     R25, 0
@@ -2954,8 +2964,8 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000001A   178A               CP      R24, R26
    \   0000001C   079B               CPC     R25, R27
    \   0000001E   F458               BRCC    ??Exchange_9
-    839              {
-    840                  puiDestination[i] = Exchange(pucSource[i]);
+    844              {
+    845                  puiDestination[i] = Exchange(pucSource[i]);
    \   00000020   01F2               MOVW    R31:R30, R5:R4
    \   00000022   0FE8               ADD     R30, R24
    \   00000024   1FF9               ADC     R31, R25
@@ -2965,54 +2975,54 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000002C   0FE8               ADD     R30, R24
    \   0000002E   1FF9               ADC     R31, R25
    \   00000030   8300               ST      Z, R16
-    841              }
+    846              }
    \   00000032   9601               ADIW    R25:R24, 1
    \   00000034   CFF2               RJMP    ??Exchange_8
-    842              return 1;
+    847              return 1;
    \                     ??Exchange_9:
    \   00000036   E001               LDI     R16, 1
    \                     ??Exchange_7:
    \   00000038   E0E8               LDI     R30, 8
    \   0000003A   ........           JMP     ?EPILOGUE_B8_L09
-    843          }
-    844          
-    845          //-----------------------------------------------------------------------------------------------------
+    848          }
+    849          
+    850          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    846          uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
+    851          uint8_t CSpi::Read(uint8_t *puiDestination, uint16_t uiLength)
    \                     ??Read_3:
-    847          {
+    852          {
    \   00000000   01A8               MOVW    R21:R20, R17:R16
-    848          
-    849              return 1;
+    853          
+    854              return 1;
    \   00000002   E001               LDI     R16, 1
    \   00000004   9508               RET
-    850          }
-    851          //-----------------------------------------------------------------------------------------------------
-    852          
-    853          
-    854          
-    855          
-    856          
+    855          }
+    856          //-----------------------------------------------------------------------------------------------------
     857          
     858          
-    859          //-----------------------------------------------------------------------------------------------------
-    860          // delay
+    859          
+    860          
+    861          
+    862          
+    863          
+    864          //-----------------------------------------------------------------------------------------------------
+    865          // delay
 
    \                                 In  segment CODE, align 2, keep-with-next
-    861          void delay_ms(uint16_t millisecs)
+    866          void delay_ms(uint16_t millisecs)
    \                     ??delay_ms:
    \                     ??delay_ms_1:
-    862          {
-    863              while(millisecs--)
+    867          {
+    868              while(millisecs--)
    \   00000000   0198               MOVW    R19:R18, R17:R16
    \   00000002   0189               MOVW    R17:R16, R19:R18
    \   00000004   5001               SUBI    R16, 1
    \   00000006   4010               SBCI    R17, 0
    \   00000008   2B23               OR      R18, R19
    \   0000000A   F041               BREQ    ??delay_ms_2
-    864              {
-    865                  delay_us(1000);
+    869              {
+    870                  delay_us(1000);
    \   0000000C   ED25               LDI     R18, 213
    \   0000000E   E036               LDI     R19, 6
    \   00000010   5021               SUBI    R18, 1
@@ -3021,25 +3031,25 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000016   C000               RJMP    $+2
    \   00000018   0000               NOP
    \   0000001A   CFF2               RJMP    ??delay_ms_1
-    866              }
-    867          }
+    871              }
+    872          }
    \                     ??delay_ms_2:
    \   0000001C   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-    868          void delay_s(uint16_t secs)
+    873          void delay_s(uint16_t secs)
    \                     ??delay_s:
    \                     ??delay_s_1:
-    869          {
-    870              while(secs--)
+    874          {
+    875              while(secs--)
    \   00000000   0198               MOVW    R19:R18, R17:R16
    \   00000002   0189               MOVW    R17:R16, R19:R18
    \   00000004   5001               SUBI    R16, 1
    \   00000006   4010               SBCI    R17, 0
    \   00000008   2B23               OR      R18, R19
    \   0000000A   F051               BREQ    ??delay_s_2
-    871              {
-    872                  __delay_cycles(F_CPU);
+    876              {
+    877                  __delay_cycles(F_CPU);
    \   0000000C   EF4F               LDI     R20, 255
    \   0000000E   E75F               LDI     R21, 127
    \   00000010   E166               LDI     R22, 22
@@ -3050,25 +3060,25 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000001A   C000               RJMP    $+2
    \   0000001C   0000               NOP
    \   0000001E   CFF0               RJMP    ??delay_s_1
-    873              }
-    874          }
+    878              }
+    879          }
    \                     ??delay_s_2:
    \   00000020   9508               RET
 
    \                                 In  segment CODE, align 2, keep-with-next
-    875          void delay_mins(uint16_t minutes)
+    880          void delay_mins(uint16_t minutes)
    \                     ??delay_mins:
    \                     ??delay_mins_1:
-    876          {
-    877              while(minutes--)
+    881          {
+    882              while(minutes--)
    \   00000000   0198               MOVW    R19:R18, R17:R16
    \   00000002   0189               MOVW    R17:R16, R19:R18
    \   00000004   5001               SUBI    R16, 1
    \   00000006   4010               SBCI    R17, 0
    \   00000008   2B23               OR      R18, R19
    \   0000000A   F061               BREQ    ??delay_mins_2
-    878              {
-    879                  __delay_cycles(60*F_CPU);
+    883              {
+    884                  __delay_cycles(60*F_CPU);
    \   0000000C   EF4F               LDI     R20, 255
    \   0000000E   EF5F               LDI     R21, 255
    \   00000010   E664               LDI     R22, 100
@@ -3081,53 +3091,53 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000001E   C000               RJMP    $+2
    \   00000020   0000               NOP
    \   00000022   CFEE               RJMP    ??delay_mins_1
-    880              }
-    881          }
+    885              }
+    886          }
    \                     ??delay_mins_2:
    \   00000024   9508               RET
-    882          
-    883          //-----------------------------------------------------------------------------------------------------
+    887          
+    888          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment NEAR_Z, align 1, keep-with-next, root
    \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
-    884          uint16_t CPlatform::m_uiSystemTick;
+    889          uint16_t CPlatform::m_uiSystemTick;
    \                     ??m_uiSystemTick:
    \   00000000                      DS8 2
 
    \                                 In  segment NEAR_Z, align 1, keep-with-next, root
    \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
-    885          uint8_t CPlatform::m_uiWatchDogStepID;
+    890          uint8_t CPlatform::m_uiWatchDogStepID;
    \                     ??m_uiWatchDogStepID:
    \   00000000                      DS8 1
-    886          //CUart* CPlatform::m_pxUart0;
+    891          //CUart* CPlatform::m_pxUart0;
 
    \                                 In  segment NEAR_Z, align 1, keep-with-next, root
    \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
-    887          CUart* CPlatform::m_pxUart1;
+    892          CUart* CPlatform::m_pxUart1;
    \                     ??m_pxUart1:
    \   00000000                      DS8 2
-    888          
-    889          //-----------------------------------------------------------------------------------------------------
+    893          
+    894          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    890          CPlatform::CPlatform()
+    895          CPlatform::CPlatform()
    \                     ??CPlatform:
-    891          {
+    896          {
    \   00000000   ....               LDI     R18, LOW(??__vtbl_2)
    \   00000002   ....               LDI     R19, (??__vtbl_2) >> 8
    \   00000004   01F8               MOVW    R31:R30, R17:R16
    \   00000006   8320               ST      Z, R18
    \   00000008   8331               STD     Z+1, R19
-    892          
-    893          }
+    897          
+    898          }
    \   0000000A   9508               RET
-    894          
-    895          //-----------------------------------------------------------------------------------------------------
+    899          
+    900          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    896          CPlatform::~CPlatform()
+    901          CPlatform::~CPlatform()
    \                     `?~CPlatform`:
-    897          {
+    902          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
@@ -3136,83 +3146,83 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000000A   F029               BREQ    `?~CPlatform_1`
    \   0000000C   FB20               BST     R18, 0
    \   0000000E   F41E               BRTC    `?~CPlatform_1`
-    898          
-    899          }
+    903          
+    904          }
    \   00000010   018C               MOVW    R17:R16, R25:R24
    \   00000012   ........           CALL    `??operator delete`
    \                     `?~CPlatform_1`:
    \   00000016   9189               LD      R24, Y+
    \   00000018   9199               LD      R25, Y+
    \   0000001A   9508               RET
-    900          
-    901          //-----------------------------------------------------------------------------------------------------
+    905          
+    906          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    902          void CPlatform::Init(void)
+    907          void CPlatform::Init(void)
    \                     ??Init_2:
-    903          {
-    904              SystemTickInit();
+    908          {
+    909              SystemTickInit();
    \   00000000   ....               RCALL   ??SystemTickInit
-    905              StatusLedSetPinOutput();
+    910              StatusLedSetPinOutput();
    \   00000002   ........           CALL    ??StatusLedSetPinOutput
-    906              TxLedSetPinOutput();
+    911              TxLedSetPinOutput();
    \   00000006   ........           CALL    ??TxLedSetPinOutput
-    907              TxLedOff();
+    912              TxLedOff();
    \   0000000A   ........           CALL    ??TxLedOff
-    908              KeyOneSetPinInput();
+    913              KeyOneSetPinInput();
    \   0000000E   ........           CALL    ??KeyOneSetPinInput
-    909              KeyTwoSetPinInput();
+    914              KeyTwoSetPinInput();
    \   00000012   ........           CALL    ??KeyTwoSetPinInput
-    910              KeyThreeSetPinInput();
+    915              KeyThreeSetPinInput();
    \   00000016   ........           CALL    ??KeyThreeSetPinInput
-    911              ExternalKeySetPinInput();
+    916              ExternalKeySetPinInput();
    \   0000001A   ........           CALL    ??ExternalKeySetPinInput
-    912              CPlatform::InterruptEnable();
+    917              CPlatform::InterruptEnable();
    \   0000001E   ........           CALL    ??InterruptEnable
-    913          }
+    918          }
    \   00000022   9508               RET
-    914          
-    915          // Сирена
-    916          ////-----------------------------------------------------------------------------------------------------
-    917          //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
-    918          //{
-    919          //    unsigned short usCompareMatch;
-    920          //
-    921          //    // half-period time.
-    922          //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-    923          //    // Срабатывает по Top совпадению значения в ICR3.
-    924          //    // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
-    925          //    ICR3 = usCompareMatch * 2;
-    926          //    OCR3A = usCompareMatch;
-    927          //    OCR3B = usCompareMatch;
-    928          //
-    929          //    // Fast PWM Mode Top OCRn, prescaller - 1,
-    930          //    // Clear OC3B on compare match (set output to low level).
-    931          //    // Set OC3A on compare match (set output to high level).
-    932          //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
-    933          //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-    934          //};
-    935          //
-    936          ////-----------------------------------------------------------------------------------------------------
-    937          //void CPlatform::BuzzerTimerStop(void)
-    938          //{
-    939          //    // timer off.
-    940          //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
-    941          //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-    942          //};
-    943          
-    944          // color variant
+    919          
+    920          // Сирена
+    921          ////-----------------------------------------------------------------------------------------------------
+    922          //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+    923          //{
+    924          //    unsigned short usCompareMatch;
+    925          //
+    926          //    // half-period time.
+    927          //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+    928          //    // Срабатывает по Top совпадению значения в ICR3.
+    929          //    // Если Top по совпадению значения в OCR3A, то нельзя использовать COM3A вывод.
+    930          //    ICR3 = usCompareMatch * 2;
+    931          //    OCR3A = usCompareMatch;
+    932          //    OCR3B = usCompareMatch;
+    933          //
+    934          //    // Fast PWM Mode Top OCRn, prescaller - 1,
+    935          //    // Clear OC3B on compare match (set output to low level).
+    936          //    // Set OC3A on compare match (set output to high level).
+    937          //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+    938          //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+    939          //};
+    940          //
+    941          ////-----------------------------------------------------------------------------------------------------
+    942          //void CPlatform::BuzzerTimerStop(void)
+    943          //{
+    944          //    // timer off.
+    945          //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
+    946          //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+    947          //};
+    948          
+    949          // color variant
 
    \                                 In  segment CODE, align 2, keep-with-next
-    945          void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+    950          void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
    \                     ??BuzzerTimerFrequencySet:
-    946          {
+    951          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    947              unsigned short usCompareMatch;
-    948          
-    949              // half-period time.
-    950              usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+    952              unsigned short usCompareMatch;
+    953          
+    954              // half-period time.
+    955              usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
    \   00000006   01AC               MOVW    R21:R20, R25:R24
    \   00000008   E060               LDI     R22, 0
    \   0000000A   E070               LDI     R23, 0
@@ -3228,30 +3238,30 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000020   5001               SUBI    R16, 1
    \   00000022   4010               SBCI    R17, 0
    \   00000024   01D8               MOVW    R27:R26, R17:R16
-    951          
-    952              OCR3A = usCompareMatch * 2;
+    956          
+    957              OCR3A = usCompareMatch * 2;
    \   00000026   018D               MOVW    R17:R16, R27:R26
    \   00000028   0F00               LSL     R16
    \   0000002A   1F11               ROL     R17
    \   0000002C   9310....           STS     (_A_OCR3A + 1), R17
    \   00000030   9300....           STS     _A_OCR3A, R16
-    953              OCR3B = usCompareMatch;
+    958              OCR3B = usCompareMatch;
    \   00000034   93B0....           STS     (_A_OCR3B + 1), R27
    \   00000038   93A0....           STS     _A_OCR3B, R26
-    954              OCR3C = usCompareMatch;
+    959              OCR3C = usCompareMatch;
    \   0000003C   93B0....           STS     (_A_OCR3C + 1), R27
    \   00000040   93A0....           STS     _A_OCR3C, R26
-    955          
-    956              // Fast PWM Mode, prescaller - 1,
-    957              // Clear OC3B on compare match (set output to low level).
-    958              // Set OC3C on compare match (set output to high level).
-    959              TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+    960          
+    961              // Fast PWM Mode, prescaller - 1,
+    962              // Clear OC3B on compare match (set output to low level).
+    963              // Set OC3C on compare match (set output to high level).
+    964              TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
    \   00000044   E20F               LDI     R16, 47
    \   00000046   9300....           STS     _A_TCCR3A, R16
-    960              TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+    965              TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
    \   0000004A   E109               LDI     R16, 25
    \   0000004C   9300....           STS     _A_TCCR3B, R16
-    961          }
+    966          }
    \   00000050   E0E4               LDI     R30, 4
    \   00000052   ........           JMP     ?EPILOGUE_B4_L09
    \   00000056                      REQUIRE _A_OCR3A
@@ -3259,167 +3269,167 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000056                      REQUIRE _A_OCR3C
    \   00000056                      REQUIRE _A_TCCR3A
    \   00000056                      REQUIRE _A_TCCR3B
-    962          
+    967          
 
    \                                 In  segment CODE, align 2, keep-with-next
-    963          void CPlatform::BuzzerTimerStop(void)
+    968          void CPlatform::BuzzerTimerStop(void)
    \                     ??BuzzerTimerStop:
-    964          {
-    965              // timer off.
-    966              TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+    969          {
+    970              // timer off.
+    971              TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
    \   00000000   9100....           LDS     R16, _A_TCCR3A
    \   00000004   7D00               ANDI    R16, 0xD0
    \   00000006   9300....           STS     _A_TCCR3A, R16
-    967              TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+    972              TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
    \   0000000A   9100....           LDS     R16, _A_TCCR3B
    \   0000000E   7E06               ANDI    R16, 0xE6
    \   00000010   9300....           STS     _A_TCCR3B, R16
-    968          }
+    973          }
    \   00000014   9508               RET
    \   00000016                      REQUIRE _A_TCCR3A
    \   00000016                      REQUIRE _A_TCCR3B
-    969          
-    970          //-----------------------------------------------------------------------------------------------------
+    974          
+    975          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    971          void CPlatform::SystemTickInit(void)
+    976          void CPlatform::SystemTickInit(void)
    \                     ??SystemTickInit:
-    972          {
-    973          #define MAIN_TIMER_TICK_RATE_HZ 1000
-    974          
-    975          //#define TIMER1_INTERRUPT
-    976          #define TIMER2_INTERRUPT
-    977          
-    978          
-    979          #ifdef TIMER2_INTERRUPT
-    980              /* Hardware constants for timer 2. */
-    981          #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
-    982          #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
-    983          #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
-    984          #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
-    985          #endif //TIMER2_INTERRUPT
-    986          
-    987          #ifdef TIMER1_INTERRUPT
-    988              /* Hardware constants for timer 1. */
-    989          #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
-    990          #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
-    991          #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
-    992          #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
-    993          #endif //TIMER1_INTERRUPT
-    994          
-    995          #ifdef TIMER2_INTERRUPT
-    996          
-    997              /*
-    998               * Setup timer 2 compare match A to generate a tick interrupt.
-    999               */
-   1000          //  TMR2 mega128a
-   1001              unsigned long ulCompareMatch;
-   1002              unsigned char ucLowByte;
-   1003          
-   1004              /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
-   1005              selected for the configCPU_CLOCK_HZ clock. */
-   1006          
-   1007          //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
+    977          {
+    978          #define MAIN_TIMER_TICK_RATE_HZ 1000
+    979          
+    980          //#define TIMER1_INTERRUPT
+    981          #define TIMER2_INTERRUPT
+    982          
+    983          
+    984          #ifdef TIMER2_INTERRUPT
+    985              /* Hardware constants for timer 2. */
+    986          #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM21) )
+    987          #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS21) | _BV(CS20)) )
+    988          #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+    989          #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE2) )
+    990          #endif //TIMER2_INTERRUPT
+    991          
+    992          #ifdef TIMER1_INTERRUPT
+    993              /* Hardware constants for timer 1. */
+    994          #define portCLEAR_COUNTER_ON_MATCH              ( ( unsigned char ) _BV(WGM12) )
+    995          #define portPRESCALE_64                         ( ( unsigned char ) (_BV(CS11) | _BV(CS10)) )
+    996          #define portCLOCK_PRESCALER                     ( ( unsigned long ) 64 )
+    997          #define portCOMPARE_MATCH_A_INTERRUPT_ENABLE    ( ( unsigned char ) _BV(OCIE1A) )
+    998          #endif //TIMER1_INTERRUPT
+    999          
+   1000          #ifdef TIMER2_INTERRUPT
+   1001          
+   1002              /*
+   1003               * Setup timer 2 compare match A to generate a tick interrupt.
+   1004               */
+   1005          //  TMR2 mega128a
+   1006              unsigned long ulCompareMatch;
+   1007              unsigned char ucLowByte;
    1008          
-   1009              ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+   1009              /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+   1010              selected for the configCPU_CLOCK_HZ clock. */
+   1011          
+   1012          //ulCompareMatch  = (configCPU_CLOCK_HZ / prescaller) / period
+   1013          
+   1014              ulCompareMatch = F_CPU / MAIN_TIMER_TICK_RATE_HZ;
    \   00000000   EC0C               LDI     R16, 204
    \   00000002   E11C               LDI     R17, 28
    \   00000004   E020               LDI     R18, 0
    \   00000006   E030               LDI     R19, 0
-   1010          
-   1011              /* We only have 16 bits so have to scale to get our required tick rate. */
-   1012              ulCompareMatch /= portCLOCK_PRESCALER;
+   1015          
+   1016              /* We only have 16 bits so have to scale to get our required tick rate. */
+   1017              ulCompareMatch /= portCLOCK_PRESCALER;
    \   00000008   E046               LDI     R20, 6
    \   0000000A   ........           CALL    ?UL_SHR_L03
-   1013          
-   1014              /* Adjust for correct value. */
-   1015              ulCompareMatch -= ( unsigned long ) 1;
+   1018          
+   1019              /* Adjust for correct value. */
+   1020              ulCompareMatch -= ( unsigned long ) 1;
    \   0000000E   5001               SUBI    R16, 1
    \   00000010   4010               SBCI    R17, 0
    \   00000012   4020               SBCI    R18, 0
    \   00000014   4030               SBCI    R19, 0
-   1016          
-   1017              /* Setup compare match value for compare match A.  Interrupts are disabled
-   1018              before this is called so we need not worry here. */
-   1019              OCR2 = ulCompareMatch;
+   1021          
+   1022              /* Setup compare match value for compare match A.  Interrupts are disabled
+   1023              before this is called so we need not worry here. */
+   1024              OCR2 = ulCompareMatch;
    \   00000016   01B8               MOVW    R23:R22, R17:R16
    \   00000018   BD63               OUT     0x23, R22
-   1020          
-   1021              /* Setup clock Source and compare match behaviour. */
-   1022              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+   1025          
+   1026              /* Setup clock Source and compare match behaviour. */
+   1027              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
    \   0000001A   E05B               LDI     R21, 11
-   1023              TCCR2 = ucLowByte;
+   1028              TCCR2 = ucLowByte;
    \   0000001C   BD55               OUT     0x25, R21
-   1024          
-   1025              /* Enable the interrupt - this is okay as interrupt are currently globally
-   1026              disabled. */
-   1027              ucLowByte = TIMSK;
+   1029          
+   1030              /* Enable the interrupt - this is okay as interrupt are currently globally
+   1031              disabled. */
+   1032              ucLowByte = TIMSK;
    \   0000001E   B747               IN      R20, 0x37
    \   00000020   2F54               MOV     R21, R20
-   1028              ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+   1033              ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
    \   00000022   6850               ORI     R21, 0x80
-   1029              TIMSK = ucLowByte;
+   1034              TIMSK = ucLowByte;
    \   00000024   BF57               OUT     0x37, R21
-   1030          
-   1031          #endif //TIMER2_INTERRUPT
-   1032          
-   1033          #ifdef TIMER1_INTERRUPT
-   1034          
-   1035          // mega128a
-   1036              unsigned long ulCompareMatch;
-   1037              unsigned char ucLowByte;
-   1038          
-   1039              /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
-   1040              selected for the configCPU_CLOCK_HZ clock. */
-   1041          
-   1042              ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+   1035          
+   1036          #endif //TIMER2_INTERRUPT
+   1037          
+   1038          #ifdef TIMER1_INTERRUPT
+   1039          
+   1040          // mega128a
+   1041              unsigned long ulCompareMatch;
+   1042              unsigned char ucLowByte;
    1043          
-   1044              /* We only have 16 bits so have to scale to get our required tick rate. */
-   1045              ulCompareMatch /= portCLOCK_PRESCALER;
+   1044              /* Using 16bit timer 1 to generate the tick.  Correct fuses must be
+   1045              selected for the configCPU_CLOCK_HZ clock. */
    1046          
-   1047              /* Adjust for correct value. */
-   1048              ulCompareMatch -= ( unsigned long ) 1;
-   1049          
-   1050              /* Setup compare match value for compare match A.  Interrupts are disabled
-   1051              before this is called so we need not worry here. */
-   1052              OCR1A = ulCompareMatch;
-   1053          
-   1054              /* Setup clock Source and compare match behaviour. */
-   1055              TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
-   1056              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
-   1057              TCCR1B = ucLowByte;
+   1047              ulCompareMatch = CPlatform::F_CPU / MAIN_TIMER_TICK_RATE_HZ;
+   1048          
+   1049              /* We only have 16 bits so have to scale to get our required tick rate. */
+   1050              ulCompareMatch /= portCLOCK_PRESCALER;
+   1051          
+   1052              /* Adjust for correct value. */
+   1053              ulCompareMatch -= ( unsigned long ) 1;
+   1054          
+   1055              /* Setup compare match value for compare match A.  Interrupts are disabled
+   1056              before this is called so we need not worry here. */
+   1057              OCR1A = ulCompareMatch;
    1058          
-   1059              /* Enable the interrupt - this is okay as interrupt are currently globally
-   1060              disabled. */
-   1061              ucLowByte = TIMSK;
-   1062              ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
-   1063              TIMSK = ucLowByte;
-   1064          
-   1065          #endif //TIMER1_INTERRUPT
-   1066          
-   1067          }
+   1059              /* Setup clock Source and compare match behaviour. */
+   1060              TCCR1A &= ~(_BV(WGM11) | _BV(WGM10));
+   1061              ucLowByte = portCLEAR_COUNTER_ON_MATCH | portPRESCALE_64;
+   1062              TCCR1B = ucLowByte;
+   1063          
+   1064              /* Enable the interrupt - this is okay as interrupt are currently globally
+   1065              disabled. */
+   1066              ucLowByte = TIMSK;
+   1067              ucLowByte |= portCOMPARE_MATCH_A_INTERRUPT_ENABLE;
+   1068              TIMSK = ucLowByte;
+   1069          
+   1070          #endif //TIMER1_INTERRUPT
+   1071          
+   1072          }
    \   00000026   9508               RET
    \   00000028                      REQUIRE _A_OCR2
    \   00000028                      REQUIRE _A_TCCR2
    \   00000028                      REQUIRE _A_TIMSK
-   1068          
-   1069          //-----------------------------------------------------------------------------------------------------
-   1070          #ifdef TIMER1_INTERRUPT
-   1071          // Прерывание TIMER1_COMPA_vect
-   1072          __interrupt void SystemTickInterrupt(void)
-   1073          {
-   1074              CPlatform::IncrementSystemTick();
-   1075          }
-   1076          #endif //TIMER1_INTERRUPT
-   1077          //-----------------------------------------------------------------------------------------------------
-   1078          #ifdef TIMER2_INTERRUPT
-   1079          // Прерывание TIMER2_COMP_vect
-   1080          #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
+   1073          
+   1074          //-----------------------------------------------------------------------------------------------------
+   1075          #ifdef TIMER1_INTERRUPT
+   1076          // Прерывание TIMER1_COMPA_vect
+   1077          __interrupt void SystemTickInterrupt(void)
+   1078          {
+   1079              CPlatform::IncrementSystemTick();
+   1080          }
+   1081          #endif //TIMER1_INTERRUPT
+   1082          //-----------------------------------------------------------------------------------------------------
+   1083          #ifdef TIMER2_INTERRUPT
+   1084          // Прерывание TIMER2_COMP_vect
+   1085          #pragma vector = TIMER2_COMP_vect	// Прерывание по совпадению TMR2 с OCR2
 
    \                                 In  segment CODE, align 2, keep-with-next
-   1081          __interrupt void SystemTickInterrupt(void)
+   1086          __interrupt void SystemTickInterrupt(void)
    \                     ??SystemTickInterrupt:
-   1082          {
+   1087          {
    \   00000000   939A               ST      -Y, R25
    \   00000002   938A               ST      -Y, R24
    \   00000004   93FA               ST      -Y, R31
@@ -3438,9 +3448,9 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000001E   930A               ST      -Y, R16
    \   00000020   B78F               IN      R24, 0x3F
    \   00000022   B79B               IN      R25, 0x3B
-   1083              CPlatform::IncrementSystemTick();
+   1088              CPlatform::IncrementSystemTick();
    \   00000024   ........           CALL    ??IncrementSystemTick
-   1084          }
+   1089          }
    \   00000028   BF9B               OUT     0x3B, R25
    \   0000002A   BF8F               OUT     0x3F, R24
    \   0000002C   9109               LD      R16, Y+
@@ -3604,10 +3614,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000012   E000               LDI     R16, 0
    \   00000014   E010               LDI     R17, 0
    \   00000016   9508               RET
-   1085          #endif //TIMER2_INTERRUPT
-   1086          
-   1087          
-   1088          
+   1090          #endif //TIMER2_INTERRUPT
+   1091          
+   1092          
+   1093          
 
    Maximum stack usage in bytes:
 
@@ -3791,8 +3801,8 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
       34  CFlash::GetBlockPointer(uint8_t)
       50  CFlash::Read(uint8_t *, uint8_t __farflash *, uint16_t)
      114  CFlash::ReadBlock(uint8_t *, uint8_t)
-      44  CFlash::axDataBaseBlocksPositionData
-     660  CFlash::xMainDataBase
+      48  CFlash::axDataBaseBlocksPositionData
+     670  CFlash::xMainDataBase
       86  CPlatform::BuzzerTimerFrequencySet(uint16_t)
       22  CPlatform::BuzzerTimerStop()
       12  CPlatform::CPlatform()
@@ -3957,10 +3967,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
  2 838 bytes in segment CODE
      7 bytes in segment INITTAB
     20 bytes in segment INTVEC
-   734 bytes in segment NEAR_F
+   748 bytes in segment NEAR_F
     15 bytes in segment NEAR_Z
  
- 3 330 bytes of CODE memory (+ 269 bytes shared)
+ 3 344 bytes of CODE memory (+ 269 bytes shared)
     15 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

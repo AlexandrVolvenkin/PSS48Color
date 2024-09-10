@@ -275,7 +275,10 @@ void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
             {
             case INDICATION:
                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
+                break;
 
+            case NAMUR_INDICATION:
+                CPss48BoardPixel::SetData(&m_xPixelColorBlue);
                 break;
 
             case PREVENTIVE:

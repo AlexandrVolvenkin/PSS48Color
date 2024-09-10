@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          05/Sep/2024  12:01:55
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  08:30:04
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWE9FB.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9364.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //        --cpu=m128a -ms -o
@@ -1072,9 +1072,11 @@ _A_PINF:
         BREQ    ??Set_7
         DEC     R16
         BREQ    ??Set_8
-        SUBI    R16, 3
+        DEC     R16
         BREQ    ??Set_9
-        RJMP    ??Set_10
+        SUBI    R16, 3
+        BREQ    ??Set_10
+        RJMP    ??Set_11
 //  275             {
 //  276             case INDICATION:
 //  277                 CPss48BoardPixel::SetData(&m_xPixelColorGreen);
@@ -1083,76 +1085,85 @@ _A_PINF:
         LDI     R17, (??m_xPixelColorGreen) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  278 
-//  279                 break;
-        RJMP    ??Set_11
-//  280 
-//  281             case PREVENTIVE:
-//  282                 CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+//  278                 break;
+        RJMP    ??Set_12
+//  279 
+//  280             case NAMUR_INDICATION:
+//  281                 CPss48BoardPixel::SetData(&m_xPixelColorBlue);
 ??Set_7:
+        LDI     R16, LOW(??m_xPixelColorBlue)
+        LDI     R17, (??m_xPixelColorBlue) >> 8
+        LDI     R18, 0
+        CALL    ??SetData
+//  282                 break;
+        RJMP    ??Set_12
+//  283 
+//  284             case PREVENTIVE:
+//  285                 CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+??Set_8:
         LDI     R16, LOW(??m_xPixelColorYellow)
         LDI     R17, (??m_xPixelColorYellow) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  283                 break;
-        RJMP    ??Set_11
-//  284 
-//  285             case EMERGENCY:
-//  286                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
-??Set_8:
+//  286                 break;
+        RJMP    ??Set_12
+//  287 
+//  288             case EMERGENCY:
+//  289                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
+??Set_9:
         LDI     R16, LOW(??m_xPixelColorRed)
         LDI     R17, (??m_xPixelColorRed) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  287                 break;
-        RJMP    ??Set_11
-//  288 
-//  289             case ERROR:
-//  290                 CPss48BoardPixel::SetData(&m_xPixelColorWhite);
-??Set_9:
+//  290                 break;
+        RJMP    ??Set_12
+//  291 
+//  292             case ERROR:
+//  293                 CPss48BoardPixel::SetData(&m_xPixelColorWhite);
+??Set_10:
         LDI     R16, LOW(??m_xPixelColorWhite)
         LDI     R17, (??m_xPixelColorWhite) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  291                 break;
-        RJMP    ??Set_11
-//  292 
-//  293             default:
-//  294                 CPss48BoardPixel::SetData(&m_xPixelColorBlack);
-??Set_10:
+//  294                 break;
+        RJMP    ??Set_12
+//  295 
+//  296             default:
+//  297                 CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+??Set_11:
         LDI     R16, LOW(??m_xPixelColorBlack)
         LDI     R17, (??m_xPixelColorBlack) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  295                 break;
-        RJMP    ??Set_11
-//  296             }
-//  297 
-//  298         }
-//  299         else
-//  300         {
-//  301             CPss48BoardPixel::SetData(&m_xPixelColorBlack);
+//  298                 break;
+        RJMP    ??Set_12
+//  299             }
+//  300 
+//  301         }
+//  302         else
+//  303         {
+//  304             CPss48BoardPixel::SetData(&m_xPixelColorBlack);
 ??Set_5:
         LDI     R16, LOW(??m_xPixelColorBlack)
         LDI     R17, (??m_xPixelColorBlack) >> 8
         LDI     R18, 0
         CALL    ??SetData
-//  302         }
-//  303     };
-??Set_11:
+//  305         }
+//  306     };
+??Set_12:
         INC     R26
         RJMP    ??Set_3
-//  304 
-//  305     CPins::SetPinLAT_B();
+//  307 
+//  308     CPins::SetPinLAT_B();
 ??Set_4:
         CALL    ??SetPinLAT_B
-//  306     CDm163::PulseDelayLAT_B();
+//  309     CDm163::PulseDelayLAT_B();
         CALL    ??PulseDelayLAT_B
-//  307     CPins::ClearPinLAT_B();
+//  310     CPins::ClearPinLAT_B();
         CALL    ??ClearPinLAT_B
-//  308     CPins::ClearPinEN_B();
+//  311     CPins::ClearPinEN_B();
         CALL    ??ClearPinEN_B
-//  309 }
+//  312 }
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -1176,17 +1187,17 @@ __?EEARH:
         REQUIRE ?need_segment_init
 
         END
-//  310 
-//  311 
-//  312 //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
+//  313 
+//  314 
+//  315 //        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
 // 
 // 105 bytes in segment ABSOLUTE
-// 288 bytes in segment CODE
+// 304 bytes in segment CODE
 //   7 bytes in segment INITTAB
 //  91 bytes in segment NEAR_F
 //  64 bytes in segment NEAR_Z
 // 
-// 327 bytes of CODE memory (+  59 bytes shared)
+// 343 bytes of CODE memory (+  59 bytes shared)
 //  64 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

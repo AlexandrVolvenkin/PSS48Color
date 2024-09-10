@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          05/Sep/2024  12:01:55
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  08:30:04
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWEACA.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9424.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\ModuleMrXX.cpp
 //        --cpu=m128a -ms -o
@@ -846,16 +846,16 @@ _A_PINF:
 //   42     // ѕолучим указатель на массив базы данных.
 //   43     m_pxDiscreteOutputDataBase = xMemoryAllocationContext.pxDiscreteOutputDataBase;//debag//
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+16
-        LDD     R17, Z+17
+        LDD     R16, Z+19
+        LDD     R17, Z+20
         MOVW    R31:R30, R27:R26
         STD     Z+27, R16
         STD     Z+28, R17
 //   44 
 //   45     m_puiDiscreteOutputState = xMemoryAllocationContext.puiDiscreteOutputState;
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+10
-        LDD     R17, Z+11
+        LDD     R16, Z+13
+        LDD     R17, Z+14
         MOVW    R31:R30, R27:R26
         STD     Z+23, R16
         STD     Z+24, R17
@@ -865,10 +865,10 @@ _A_PINF:
 //   49         &xMemoryAllocationContext.
 //   50         pxDiscreteOutputControl[xMemoryAllocationContext.uiUsedDiscreteOutputs];
         MOVW    R31:R30, R19:R18
-        LDD     R20, Z+13
-        LDD     R21, Z+14
+        LDD     R20, Z+16
+        LDD     R21, Z+17
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+15
+        LDD     R16, Z+18
         LDI     R17, 0
         LSL     R16
         ROL     R17
@@ -882,18 +882,18 @@ _A_PINF:
 //   53     uiUsedDiscreteOutputs +=
 //   54         MR_DISCRETE_OUTPUT_NUMBER;
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+15
+        LDD     R16, Z+18
         SUBI    R16, 248
-        STD     Z+15, R16
+        STD     Z+18, R16
 //   55 
 //   56     m_pxDiscreteOutputDataBase =
 //   57         &xMemoryAllocationContext.
 //   58         pxDiscreteOutputDataBase[xMemoryAllocationContext.uiUsedDiscreteOutputDataBase];
         MOVW    R31:R30, R19:R18
-        LDD     R22, Z+16
-        LDD     R23, Z+17
+        LDD     R22, Z+19
+        LDD     R23, Z+20
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+18
+        LDD     R16, Z+21
         LDI     R17, 0
         LDI     R20, 24
         LDI     R21, 0
@@ -908,16 +908,16 @@ _A_PINF:
 //   61     uiUsedDiscreteOutputDataBase +=
 //   62         MR_DISCRETE_OUTPUT_NUMBER;
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+18
+        LDD     R16, Z+21
         SUBI    R16, 248
-        STD     Z+18, R16
+        STD     Z+21, R16
 //   63 
 //   64     m_puiErrorAlarmDataArray =
 //   65         &xMemoryAllocationContext.
 //   66         puiErrorAlarmDataArray[DISCRETE_OUTPUT_MODULE_FAILURE];
         MOVW    R31:R30, R19:R18
-        LDD     R16, Z+19
-        LDD     R17, Z+20
+        LDD     R16, Z+22
+        LDD     R17, Z+23
         SUBI    R16, 255
         SBCI    R17, 255
         MOVW    R31:R30, R27:R26

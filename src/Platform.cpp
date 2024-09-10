@@ -689,6 +689,10 @@ TDataBase __flash CFlash::xMainDataBase =
         }
     },0x6CFB,
 
+    {
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+    },0xF0BE,
+
     false, {0,0,0,0,0,0,0},0x0B40,
 };
 
@@ -705,7 +709,8 @@ TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
     { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
     { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
     { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+    { 10, sizeof(xMainDataBase.NamurInputs),	  offsetof(TDataBase,NamurInputs)  	},
+    { 11, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
 };
 
 //----------------------------------------- Flash ----------------------------------------------------------------

@@ -25,30 +25,163 @@ CAlarmDfa::~CAlarmDfa()
 // Автомат обработки сигнализации дискретного сигнала.
 void CAlarmDfa::Fsm(void)
 {
+    bool bIsDiscreteInputStateActive = false;
+    // тип текущего дискретного сигнала namur?
+    if (IS_NAMUR_ON())
+    {
+        switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
+        {
+        case OFF:
+        case ON:
+            // Дискретный сигнал активен?
+            // уровень сигналы типа "namur"  определяем по состояниям дискретного входа:
+            // 0 - OFF(разомкнуто), и 1 - ON(замкнуто).
+            if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) ^ ACTIVE_LEVEL())
+            {
+                bIsDiscreteInputStateActive = true;
+                // установим значение текущего дискретного входа отображаемое в пространстве модбас
+                // интерпретированное с учетом условия активности.
+                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+            }
+            else
+            {
+                bIsDiscreteInputStateActive = false;
+                // установим значение текущего дискретного входа отображаемое в пространстве модбас
+                // интерпретированное с учетом условия активности.
+                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+            }
+            break;
+
+        case WIRE_BREAK:
+        case SHORT_CIRCUIT:
+            bIsDiscreteInputStateActive = false;
+            // установим значение текущего дискретного входа отображаемое в пространстве модбас
+            // интерпретированное с учетом условия активности.
+            CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+            break;
+
+        default:
+            break;
+        }
+    }
+    else
+    {
+        // Дискретный сигнал активен?
+        // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+        // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
+        if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) >> 1) & 0x01) ^ ACTIVE_LEVEL())
+        {
+            bIsDiscreteInputStateActive = true;
+            // установим значение текущего дискретного входа отображаемое в пространстве модбас
+            // интерпретированное с учетом условия активности.
+            CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+        }
+        else
+        {
+            bIsDiscreteInputStateActive = false;
+            // установим значение текущего дискретного входа отображаемое в пространстве модбас
+            // интерпретированное с учетом условия активности.
+            CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+        }
+    }
+
     switch (GetFsmState())
     {
     case START:
         break;
 
+//    case ACTIVE_STATE_CHECK:
+//        break;
+
     case ACTIVE_STATE_WAITING:
-        // Дискретный сигнал активен?
-        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        // тип текущего дискретного сигнала namur?
+        if (IS_NAMUR_ON())
         {
-            // Установим связанные дискретный выходы - новое нарушение.
-            CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-            CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-            CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-            // Запрограммирован режим автоматического сброса предупредительой и аварийной
-            // сигнализации при переходе дискретного сигнала в неактивное состояние?
-            if (CPss21::m_xDeviceConfiguration.AutoUnset)
+            switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
             {
-                SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+            // дискретный сигнал достоверен
+            case OFF:
+            case ON:
+                // Дискретный сигнал активен?
+//                if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) ^ ACTIVE_LEVEL())
+                if (bIsDiscreteInputStateActive)
+                {
+//                    // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//                    // интерпретированное с учетом условия активности.
+//                    CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+                    // Установим связанные дискретный выходы - новое нарушение.
+                    CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+                    // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+                    CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+                    CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+                    // Запрограммирован режим автоматического сброса предупредительой и аварийной
+                    // сигнализации при переходе дискретного сигнала в неактивное состояние?
+                    if (CPss21::m_xDeviceConfiguration.AutoUnset)
+                    {
+                        SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+                    }
+                    else
+                    {
+                        SetFsmState(RECEIPT_OR_RESET_WAITING);
+                    }
+                }
+//                else
+//                {
+//                    // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//                    // интерпретированное с учетом условия активности.
+//                    CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+//                }
+                break;
+
+            // дискретный сигнал не достоверен
+            case WIRE_BREAK:
+            case SHORT_CIRCUIT:
+//                // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//                // интерпретированное с учетом условия активности.
+//                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+                // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+                CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+                CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), NAMUR_INDICATION);
+                SetFsmState(NAMUR_INPUT_CORRECT_STATE_WAITING);
+                break;
+
+            default:
+                break;
             }
-            else
+        }
+        else
+        {
+            // Дискретный сигнал активен?
+            // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+            // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
+            //            if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) >> 1) & 0x01) ^ ACTIVE_LEVEL())
+            if (bIsDiscreteInputStateActive)
             {
-                SetFsmState(RECEIPT_OR_RESET_WAITING);
+//                // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//                // интерпретированное с учетом условия активности.
+//                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+                // Установим связанные дискретный выходы - новое нарушение.
+                CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+                // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+                CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+                CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+                // Запрограммирован режим автоматического сброса предупредительой и аварийной
+                // сигнализации при переходе дискретного сигнала в неактивное состояние?
+                if (CPss21::m_xDeviceConfiguration.AutoUnset)
+                {
+                    SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+                }
+                else
+                {
+                    SetFsmState(RECEIPT_OR_RESET_WAITING);
+                }
             }
+//            else
+//            {
+//                // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//                // интерпретированное с учетом условия активности.
+//                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+//            }
         }
         break;
 
@@ -56,7 +189,8 @@ void CAlarmDfa::Fsm(void)
         // Запрограммирован режим автоматического сброса предупредительой и аварийной
         // сигнализации при переходе дискретного сигнала в неактивное состояние.
         // Дискретный сигнал активен?
-        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+//        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        if (bIsDiscreteInputStateActive)
         {
             // Установим связанные дискретный выходы - не новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
@@ -87,7 +221,8 @@ void CAlarmDfa::Fsm(void)
 
     case RECEIPT_OR_RESET_WAITING:
         // Дискретный сигнал активен?
-        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+//        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        if (bIsDiscreteInputStateActive)
         {
             // Установим связанные дискретный выходы - не новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
@@ -116,7 +251,7 @@ void CAlarmDfa::Fsm(void)
             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
         }
         // Дискретный сигнал не активен?
-        else if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+        else if (!(bIsDiscreteInputStateActive))//if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
         {
             SetFsmState(RECEIPTED_RESET_WAITING);
         }
@@ -129,7 +264,8 @@ void CAlarmDfa::Fsm(void)
 
     case RESETED_NOT_ACTIVE_STATE_WAITING:
         // Дискретный сигнал не активен?
-        if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+//        if (!(CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+        if (!(bIsDiscreteInputStateActive))
         {
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
@@ -144,7 +280,8 @@ void CAlarmDfa::Fsm(void)
 
     case RECEIPTED_RESET_WAITING:
         // Дискретный сигнал активен?
-        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        //        if (CPss21::GetDiscreteInputState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+        if (bIsDiscreteInputStateActive)
         {
             // Установим связанные дискретный выходы - не новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
@@ -156,6 +293,26 @@ void CAlarmDfa::Fsm(void)
             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
             SetFsmState(ACTIVE_STATE_WAITING);
+        }
+        break;
+
+    case NAMUR_INPUT_CORRECT_STATE_WAITING:
+        // тип текущего дискретного сигнала namur?
+        if (IS_NAMUR_ON())
+        {
+            switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
+            {
+            // дискретный сигнал достоверен
+            case OFF:
+            case ON:
+                // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+                CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+                SetFsmState(ACTIVE_STATE_WAITING);
+                break;
+
+            default:
+                break;
+            }
         }
         break;
 
@@ -216,8 +373,31 @@ CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
 {
     //dtor
 }
-//-----------------------------------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------------------------------
+CPreventiveAlarmLowLevelNamurDfa::CPreventiveAlarmLowLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CPreventiveAlarmLowLevelNamurDfa::~CPreventiveAlarmLowLevelNamurDfa()
+{
+    //dtor
+}
+
+//-----------------------------------------------------------------------------------------------------
+CPreventiveAlarmHighLevelNamurDfa::CPreventiveAlarmHighLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CPreventiveAlarmHighLevelNamurDfa::~CPreventiveAlarmHighLevelNamurDfa()
+{
+    //dtor
+}
+//-----------------------------------------------------------------------------------------------------
 
 
 
@@ -245,6 +425,31 @@ CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
 
 //-----------------------------------------------------------------------------------------------------
 CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+{
+    //dtor
+}
+
+
+//-----------------------------------------------------------------------------------------------------
+CEmergencyAlarmLowLevelNamurDfa::CEmergencyAlarmLowLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CEmergencyAlarmLowLevelNamurDfa::~CEmergencyAlarmLowLevelNamurDfa()
+{
+    //dtor
+}
+
+//-----------------------------------------------------------------------------------------------------
+CEmergencyAlarmHighLevelNamurDfa::CEmergencyAlarmHighLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CEmergencyAlarmHighLevelNamurDfa::~CEmergencyAlarmHighLevelNamurDfa()
 {
     //dtor
 }
@@ -338,6 +543,29 @@ CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
 }
 //-----------------------------------------------------------------------------------------------------
 
+
+//-----------------------------------------------------------------------------------------------------
+CIndicationAlarmLowLevelNamurDfa::CIndicationAlarmLowLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CIndicationAlarmLowLevelNamurDfa::~CIndicationAlarmLowLevelNamurDfa()
+{
+    //dtor
+}
+//-----------------------------------------------------------------------------------------------------
+CIndicationAlarmHighLevelNamurDfa::CIndicationAlarmHighLevelNamurDfa()
+{
+    SetFsmState(ACTIVE_STATE_WAITING);
+}
+
+//-----------------------------------------------------------------------------------------------------
+CIndicationAlarmHighLevelNamurDfa::~CIndicationAlarmHighLevelNamurDfa()
+{
+    //dtor
+}
 
 
 

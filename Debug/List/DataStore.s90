@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          05/Sep/2024  12:01:54
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          10/Sep/2024  08:30:04
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\DataStore.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWE8FE.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9276.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\DataStore.cpp
 //        --cpu=m128a -ms -o
@@ -708,14 +708,14 @@ _A_PINF:
         REQUIRE `?<Segment init: NEAR_Z>`
 //   17 CDataStore::TBlocksControlData CDataStore::m_xBlocksControlData;
 ??m_xBlocksControlData:
-        DS8 100
+        DS8 108
 //   18 // Массив контрольных сумм блоков.
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
 //   19 uint16_t CDataStore::m_auiBlocksCurrentCrc[MAX_BLOCKS_NUMBER];
 ??m_auiBlocksCurrentCrc:
-        DS8 24
+        DS8 26
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
@@ -812,7 +812,7 @@ _A_PINF:
 //   47     memset(reinterpret_cast<uint8_t*>(&m_xBlocksControlData),
 //   48            0,
 //   49            sizeof(m_xBlocksControlData));
-        LDI     R20, 100
+        LDI     R20, 108
         LDI     R21, 0
         LDI     R18, 0
         LDI     R19, 0
@@ -834,7 +834,7 @@ _A_PINF:
 //   56     axBlockPositionData[BLOCKS_CONTROL_DATA].uiLength = sizeof(struct TBlocksControlData);
         LDI     R30, LOW(??m_xBlocksControlData)
         LDI     R31, (??m_xBlocksControlData) >> 8
-        LDI     R16, 100
+        LDI     R16, 108
         LDI     R17, 0
         STD     Z+6, R16
         STD     Z+7, R17
@@ -848,7 +848,7 @@ _A_PINF:
 //   64     m_xBlocksControlData.
 //   65     axBlockPositionData[BLOCKS_CONTROL_DATA].uiEncodedLength =
 //   66         (CHammingCodes::CalculateEncodedDataLength(sizeof(struct TBlocksControlData) + CRC_LENGTH));
-        LDI     R16, 102
+        LDI     R16, 110
         LDI     R17, 0
         CALL    ??CalculateEncodedDataLength
         LDI     R30, LOW(??m_xBlocksControlData)
@@ -859,7 +859,7 @@ _A_PINF:
 //   68     m_xBlocksControlData.uiFreeSpaceOffset =
 //   69         (BLOCKS_CONTROL_DATA_BEGIN +
 //   70          CHammingCodes::CalculateEncodedDataLength(sizeof(struct TBlocksControlData) + CRC_LENGTH));
-        LDI     R16, 102
+        LDI     R16, 110
         LDI     R17, 0
         CALL    ??CalculateEncodedDataLength
         SUBI    R16, 240
@@ -900,7 +900,7 @@ _A_PINF:
         MOV     R8, R18
 //   78     // Произошёл выход за границы буфера?
 //   79     if (uiBlock >= MAX_BLOCKS_NUMBER)
-        LDI     R16, 12
+        LDI     R16, 13
         CP      R8, R16
         BRCS    ??ReadBlock_1
 //   80     {
@@ -1101,7 +1101,7 @@ _A_PINF:
         MOV     R6, R20
 //  143     // Произошёл выход за границы буфера?
 //  144     if (uiBlock >= MAX_BLOCKS_NUMBER)
-        LDI     R16, 12
+        LDI     R16, 13
         CP      R6, R16
         BRCS    ??Write_1
 //  145     {
@@ -1347,7 +1347,7 @@ _A_PINF:
         LDI     R31, 0
 //  223             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
 ??CompareCurrentWithStoredCrc_1:
-        CPI     R30, 11
+        CPI     R30, 12
         LDI     R16, 0
         CPC     R31, R16
         BRCC    ??CompareCurrentWithStoredCrc_2
@@ -1405,7 +1405,7 @@ _A_PINF:
 //  240 {
         ST      -Y, R27
         ST      -Y, R26
-        SBIW    R29:R28, 22
+        SBIW    R29:R28, 24
 //  241     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
 //  242     // Сохраняется при первой и последующих записях любых блоков через программатор.
 //  243     // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
@@ -1419,7 +1419,7 @@ _A_PINF:
         LDI     R31, 0
 //  250             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
 ??CrcOfBlocksCrcCreate_1:
-        CPI     R30, 11
+        CPI     R30, 12
         LDI     R16, 0
         CPC     R31, R16
         BRCC    ??CrcOfBlocksCrcCreate_2
@@ -1455,7 +1455,7 @@ _A_PINF:
 //  259         usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
 //  260                 ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t)));
 ??CrcOfBlocksCrcCreate_2:
-        LDI     R18, 22
+        LDI     R18, 24
         LDI     R19, 0
         MOVW    R17:R16, R29:R28
         CALL    ??usCrc16
@@ -1465,7 +1465,7 @@ _A_PINF:
         STD     Z+1, R17
 //  261 
 //  262 }
-        ADIW    R29:R28, 22
+        ADIW    R29:R28, 24
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -1478,7 +1478,7 @@ _A_PINF:
 //  266 {
         ST      -Y, R27
         ST      -Y, R26
-        SBIW    R29:R28, 22
+        SBIW    R29:R28, 24
 //  267     // Контрольная сумма вычисленная из массива контрольных сумм блоков, не включая служебный.
 //  268     // Сохраняется при первой и последующих записях любых блоков через программатор.
 //  269     // Ноль или её несовпадение свидетельствует о том, что база данных создана по умоланию,
@@ -1492,7 +1492,7 @@ _A_PINF:
         LDI     R31, 0
 //  276             i < (MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER);
 ??CrcOfBlocksCrcCheck_1:
-        CPI     R30, 11
+        CPI     R30, 12
         LDI     R16, 0
         CPC     R31, R16
         BRCC    ??CrcOfBlocksCrcCheck_2
@@ -1528,7 +1528,7 @@ _A_PINF:
 //  285             usCrc16(reinterpret_cast<uint8_t*>(auiBlocksCrc),
 //  286                     ((MAX_BLOCKS_NUMBER - BLOCKS_CONTROL_DATA_BLOCK_NUMBER) * sizeof(uint16_t))))
 ??CrcOfBlocksCrcCheck_2:
-        LDI     R18, 22
+        LDI     R18, 24
         LDI     R19, 0
         MOVW    R17:R16, R29:R28
         CALL    ??usCrc16
@@ -1550,7 +1550,7 @@ _A_PINF:
 ??CrcOfBlocksCrcCheck_3:
         LDI     R16, 0
 ??CrcOfBlocksCrcCheck_4:
-        ADIW    R29:R28, 22
+        ADIW    R29:R28, 24
         LD      R26, Y+
         LD      R27, Y+
         RET
@@ -1630,7 +1630,7 @@ _A_PINF:
         RET
 ??Fsm_5:
         LDI     R20, 0
-        LDI     R18, 100
+        LDI     R18, 108
         LDI     R19, 0
         LDI     R16, LOW(??m_xBlocksControlData)
         LDI     R17, (??m_xBlocksControlData) >> 8
@@ -1762,7 +1762,7 @@ _A_PINF:
 //  329             // Проверены не все блоки?
 //  330             if (uiBlockCounter < MAX_BLOCKS_NUMBER)
 ??Check_4:
-        CPI     R27, 12
+        CPI     R27, 13
         BRCC    ??Check_11
 //  331             {
 //  332                 uiLength = ReadBlock(m_puiIntermediateBuff, uiBlockCounter);
@@ -2188,10 +2188,10 @@ __?EEARH:
 //    22 bytes in segment NEAR_F
 //     6 bytes in segment NEAR_I
 //     6 bytes in segment NEAR_ID
-//   136 bytes in segment NEAR_Z
+//   146 bytes in segment NEAR_Z
 // 
 // 1 596 bytes of CODE memory (+ 106 bytes shared)
-//   142 bytes of DATA memory (+ 105 bytes shared)
+//   152 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
 //Warnings: 7
