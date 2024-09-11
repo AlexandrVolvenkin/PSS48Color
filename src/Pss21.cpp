@@ -777,6 +777,10 @@ void CPss21::ConfigurationInit(void)
             if (((uiData >> j) & 0x01))
             {
                 puiAlarmDfaInit[i] |= 0x80;
+            }
+
+            if ((i == 0) || (i == 23))
+            {
                 puiAlarmDfaInit[i] |= 0x40;
             }
 
@@ -785,28 +789,28 @@ void CPss21::ConfigurationInit(void)
         puiTempBuffer++;
     }
 
-//    // Установим тип текущего дискретного сигнала как namur.
-//    // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
-//    CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
-//    for (uint8_t i = 0;
-//            i < DISCRETE_INPUTS_NUMBER;
-//        )
-//    {
-//        uint8_t uiData = *puiTempBuffer;
-//        for (uint8_t j = 0;
-//                j < 8;
-//                j++)
-//        {
-//            // Установим тип текущего дискретного сигнала как namur.
-//            if (((uiData >> j) & 0x01))
-//            {
-//                puiAlarmDfaInit[i] |= 0x40;
-//            }
-//
-//            i++;
-//        }
-//        puiTempBuffer++;
-//    }
+    // Установим тип текущего дискретного сигнала как namur.
+    // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
+    for (uint8_t i = 0;
+            i < DISCRETE_INPUTS_NUMBER;
+        )
+    {
+        uint8_t uiData = *puiTempBuffer;
+        for (uint8_t j = 0;
+                j < 8;
+                j++)
+        {
+            // Установим тип текущего дискретного сигнала как namur.
+            if (((uiData >> j) & 0x01))
+            {
+                puiAlarmDfaInit[i] |= 0x40;
+            }
+
+            i++;
+        }
+        puiTempBuffer++;
+    }
 
     puiTempBuffer = m_auiIntermediateBuff;
     // Привяжем окна сигнализации к дискретным сигналам.

@@ -232,9 +232,9 @@ struct TDataBase
     // Список запросов сброса.
     TMBMRequestList UnsetList;
     unsigned short  CRC9;
-//    // Входы типа NAMUR
-//    unsigned char   NamurInputs[8];
-//    unsigned short  CRC10;
+    // Входы типа NAMUR
+    unsigned char   NamurInputs[8];
+    unsigned short  CRC10;
     // Состояние устройства хранимое в EEPROM.
     TDeviceState DeviceState;
     unsigned short CRC11;
@@ -251,12 +251,12 @@ struct TDataBase
         INPUT_LIST	= 7,			// Запросы сбора данных
         RECEIPT_LIST	= 8,			// Запросы квитирования
         UNSET_LIST	= 9,			// Запросы сброса
-//        NAMUR_INPUTS  = 10,                                               // Входы типа NAMUR
-        DEVICE_STATE = 10,			// Состояние устройства хранимое в EEPROM.
-        BLOCKS_QUANTITY = 11
-//        NAMUR_INPUTS  = 10,                                               // Входы типа NAMUR
-//        DEVICE_STATE = 11,			// Состояние устройства хранимое в EEPROM.
-//        BLOCKS_QUANTITY = 12
+////        NAMUR_INPUTS  = 10,                                               // Входы типа NAMUR
+//        DEVICE_STATE = 10,			// Состояние устройства хранимое в EEPROM.
+//        BLOCKS_QUANTITY = 11
+        NAMUR_INPUTS  = 10,                                               // Входы типа NAMUR
+        DEVICE_STATE = 11,			// Состояние устройства хранимое в EEPROM.
+        BLOCKS_QUANTITY = 12
     };
 };
 #pragma pack(pop)
