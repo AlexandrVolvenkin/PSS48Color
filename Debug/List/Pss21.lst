@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           11/Sep/2024  06:58:04
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           11/Sep/2024  18:31:02
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWAAC3.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW199A.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #        --cpu=m128a -ms -o
@@ -3567,154 +3567,120 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   000000B2   CFD9               RJMP    ??ConfigurationInit_1
     790              }
     791          
-    792              // Установим тип текущего дискретного сигнала как namur.
-    793              // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
-    794              CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
-   \                     ??ConfigurationInit_2:
-   \   000000B4   E02A               LDI     R18, 10
-   \   000000B6   018D               MOVW    R17:R16, R27:R26
-   \   000000B8   ........           CALL    ??ReadBlock
-    795              for (uint8_t i = 0;
-   \   000000BC   E060               LDI     R22, 0
-    796                      i < DISCRETE_INPUTS_NUMBER;
-   \                     ??ConfigurationInit_8:
-   \   000000BE   3360               CPI     R22, 48
-   \   000000C0   F4C0               BRCC    ??ConfigurationInit_9
-    797                  )
-    798              {
-    799                  uint8_t uiData = *puiTempBuffer;
-   \   000000C2   913C               LD      R19, X
-    800                  for (uint8_t j = 0;
-   \   000000C4   E020               LDI     R18, 0
-    801                          j < 8;
-   \                     ??ConfigurationInit_10:
-   \   000000C6   3028               CPI     R18, 8
-   \   000000C8   F490               BRCC    ??ConfigurationInit_11
-    802                          j++)
-    803                  {
-    804                      // Установим тип текущего дискретного сигнала как namur.
-    805                      if (((uiData >> j) & 0x01))
-   \   000000CA   2F03               MOV     R16, R19
-   \   000000CC   E010               LDI     R17, 0
-   \   000000CE   2F42               MOV     R20, R18
-   \   000000D0   ........           CALL    ?SS_SHR_L02
-   \   000000D4   7001               ANDI    R16, 0x01
-   \   000000D6   2300               TST     R16
-   \   000000D8   F039               BREQ    ??ConfigurationInit_12
-    806                      {
-    807                          puiAlarmDfaInit[i] |= 0x40;
-   \   000000DA   E070               LDI     R23, 0
-   \   000000DC   01FC               MOVW    R31:R30, R25:R24
-   \   000000DE   0FE6               ADD     R30, R22
-   \   000000E0   1FF7               ADC     R31, R23
-   \   000000E2   8100               LD      R16, Z
-   \   000000E4   6400               ORI     R16, 0x40
-   \   000000E6   8300               ST      Z, R16
-    808                      }
-    809          
-    810                      i++;
-   \                     ??ConfigurationInit_12:
-   \   000000E8   9563               INC     R22
-    811                  }
-   \   000000EA   9523               INC     R18
-   \   000000EC   CFEC               RJMP    ??ConfigurationInit_10
-    812                  puiTempBuffer++;
-   \                     ??ConfigurationInit_11:
-   \   000000EE   9611               ADIW    R27:R26, 1
-   \   000000F0   CFE6               RJMP    ??ConfigurationInit_8
-    813              }
+    792          //    // Установим тип текущего дискретного сигнала как namur.
+    793          //    // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
+    794          //    CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
+    795          //    for (uint8_t i = 0;
+    796          //            i < DISCRETE_INPUTS_NUMBER;
+    797          //        )
+    798          //    {
+    799          //        uint8_t uiData = *puiTempBuffer;
+    800          //        for (uint8_t j = 0;
+    801          //                j < 8;
+    802          //                j++)
+    803          //        {
+    804          //            // Установим тип текущего дискретного сигнала как namur.
+    805          //            if (((uiData >> j) & 0x01))
+    806          //            {
+    807          //                puiAlarmDfaInit[i] |= 0x40;
+    808          //            }
+    809          //
+    810          //            i++;
+    811          //        }
+    812          //        puiTempBuffer++;
+    813          //    }
     814          
     815              puiTempBuffer = m_auiIntermediateBuff;
-   \                     ??ConfigurationInit_9:
-   \   000000F2   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
-   \   000000F4   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
-   \   000000F6   01D8               MOVW    R27:R26, R17:R16
+   \                     ??ConfigurationInit_2:
+   \   000000B4   ....               LDI     R16, LOW(??m_auiIntermediateBuff)
+   \   000000B6   ....               LDI     R17, (??m_auiIntermediateBuff) >> 8
+   \   000000B8   01D8               MOVW    R27:R26, R17:R16
     816              // Привяжем окна сигнализации к дискретным сигналам.
     817              // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
     818              CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
-   \   000000F8   E023               LDI     R18, 3
-   \   000000FA   018D               MOVW    R17:R16, R27:R26
-   \   000000FC   ........           CALL    ??ReadBlock
+   \   000000BA   E023               LDI     R18, 3
+   \   000000BC   018D               MOVW    R17:R16, R27:R26
+   \   000000BE   ........           CALL    ??ReadBlock
     819              for (uint8_t i = 0;
-   \   00000100   E000               LDI     R16, 0
+   \   000000C2   E000               LDI     R16, 0
     820                      i < DISCRETE_SIGNALS_NUMBER;
-   \                     ??ConfigurationInit_13:
-   \   00000102   3600               CPI     R16, 96
-   \   00000104   F480               BRCC    ??ConfigurationInit_14
+   \                     ??ConfigurationInit_8:
+   \   000000C4   3600               CPI     R16, 96
+   \   000000C6   F480               BRCC    ??ConfigurationInit_9
     821                      i++)
     822              {
     823                  // Привяжем окно сигнализации к текущему дискретному сигналу.
     824                  puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0xC0));
-   \   00000106   E010               LDI     R17, 0
-   \   00000108   01FD               MOVW    R31:R30, R27:R26
-   \   0000010A   0FE0               ADD     R30, R16
-   \   0000010C   1FF1               ADC     R31, R17
-   \   0000010E   8110               LD      R17, Z
-   \   00000110   731F               ANDI    R17, 0x3F
-   \   00000112   2F20               MOV     R18, R16
-   \   00000114   E030               LDI     R19, 0
-   \   00000116   01FC               MOVW    R31:R30, R25:R24
-   \   00000118   0FE2               ADD     R30, R18
-   \   0000011A   1FF3               ADC     R31, R19
-   \   0000011C   8120               LD      R18, Z
-   \   0000011E   2B21               OR      R18, R17
-   \   00000120   8320               ST      Z, R18
+   \   000000C8   E010               LDI     R17, 0
+   \   000000CA   01FD               MOVW    R31:R30, R27:R26
+   \   000000CC   0FE0               ADD     R30, R16
+   \   000000CE   1FF1               ADC     R31, R17
+   \   000000D0   8110               LD      R17, Z
+   \   000000D2   731F               ANDI    R17, 0x3F
+   \   000000D4   2F20               MOV     R18, R16
+   \   000000D6   E030               LDI     R19, 0
+   \   000000D8   01FC               MOVW    R31:R30, R25:R24
+   \   000000DA   0FE2               ADD     R30, R18
+   \   000000DC   1FF3               ADC     R31, R19
+   \   000000DE   8120               LD      R18, Z
+   \   000000E0   2B21               OR      R18, R17
+   \   000000E2   8320               ST      Z, R18
     825              }
-   \   00000122   9503               INC     R16
-   \   00000124   CFEE               RJMP    ??ConfigurationInit_13
+   \   000000E4   9503               INC     R16
+   \   000000E6   CFEE               RJMP    ??ConfigurationInit_8
     826          
     827              // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
     828              CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_TYPE);
-   \                     ??ConfigurationInit_14:
-   \   00000126   E024               LDI     R18, 4
-   \   00000128   018D               MOVW    R17:R16, R27:R26
-   \   0000012A   ........           CALL    ??ReadBlock
+   \                     ??ConfigurationInit_9:
+   \   000000E8   E024               LDI     R18, 4
+   \   000000EA   018D               MOVW    R17:R16, R27:R26
+   \   000000EC   ........           CALL    ??ReadBlock
     829              for (uint8_t i = 0;
-   \   0000012E   E020               LDI     R18, 0
+   \   000000F0   E020               LDI     R18, 0
     830                      i < DISCRETE_SIGNALS_NUMBER;
-   \                     ??ConfigurationInit_15:
-   \   00000130   3620               CPI     R18, 96
-   \   00000132   F528               BRCC    ??ConfigurationInit_16
+   \                     ??ConfigurationInit_10:
+   \   000000F2   3620               CPI     R18, 96
+   \   000000F4   F528               BRCC    ??ConfigurationInit_11
     831                      i++)
     832              {
     833                  uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0xC0));
-   \   00000134   E030               LDI     R19, 0
-   \   00000136   01FC               MOVW    R31:R30, R25:R24
-   \   00000138   0FE2               ADD     R30, R18
-   \   0000013A   1FF3               ADC     R31, R19
-   \   0000013C   8100               LD      R16, Z
-   \   0000013E   730F               ANDI    R16, 0x3F
+   \   000000F6   E030               LDI     R19, 0
+   \   000000F8   01FC               MOVW    R31:R30, R25:R24
+   \   000000FA   0FE2               ADD     R30, R18
+   \   000000FC   1FF3               ADC     R31, R19
+   \   000000FE   8100               LD      R16, Z
+   \   00000100   730F               ANDI    R16, 0x3F
     834                  // Для текущего дискретного сигнала запрограммирована сигнализация?
     835                  if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
-   \   00000140   3300               CPI     R16, 48
-   \   00000142   F4A0               BRCC    ??ConfigurationInit_17
+   \   00000102   3300               CPI     R16, 48
+   \   00000104   F4A0               BRCC    ??ConfigurationInit_12
     836                  {
     837                      // Очистим индекс привязанного окна, больше не нужен.
     838                      // Оставим уровень дискретного сигнала интерпретируемый как активный.
     839                      // тип текущего дискретного сигнала как namur.
     840                      puiAlarmDfaInit[i] &= 0xC0;
-   \   00000144   E030               LDI     R19, 0
-   \   00000146   01FC               MOVW    R31:R30, R25:R24
-   \   00000148   0FE2               ADD     R30, R18
-   \   0000014A   1FF3               ADC     R31, R19
-   \   0000014C   8110               LD      R17, Z
-   \   0000014E   7C10               ANDI    R17, 0xC0
-   \   00000150   8310               ST      Z, R17
+   \   00000106   E030               LDI     R19, 0
+   \   00000108   01FC               MOVW    R31:R30, R25:R24
+   \   0000010A   0FE2               ADD     R30, R18
+   \   0000010C   1FF3               ADC     R31, R19
+   \   0000010E   8110               LD      R17, Z
+   \   00000110   7C10               ANDI    R17, 0xC0
+   \   00000112   8310               ST      Z, R17
     841                      // Установим тип сигнализации по привязанному окну.
     842                      puiAlarmDfaInit[i] |= puiTempBuffer[uiWindowIndex];
-   \   00000152   E010               LDI     R17, 0
-   \   00000154   01FD               MOVW    R31:R30, R27:R26
-   \   00000156   0FE0               ADD     R30, R16
-   \   00000158   1FF1               ADC     R31, R17
-   \   0000015A   8100               LD      R16, Z
-   \   0000015C   E030               LDI     R19, 0
-   \   0000015E   01FC               MOVW    R31:R30, R25:R24
-   \   00000160   0FE2               ADD     R30, R18
-   \   00000162   1FF3               ADC     R31, R19
-   \   00000164   8110               LD      R17, Z
-   \   00000166   2B10               OR      R17, R16
-   \   00000168   8310               ST      Z, R17
-   \   0000016A   C007               RJMP    ??ConfigurationInit_18
+   \   00000114   E010               LDI     R17, 0
+   \   00000116   01FD               MOVW    R31:R30, R27:R26
+   \   00000118   0FE0               ADD     R30, R16
+   \   0000011A   1FF1               ADC     R31, R17
+   \   0000011C   8100               LD      R16, Z
+   \   0000011E   E030               LDI     R19, 0
+   \   00000120   01FC               MOVW    R31:R30, R25:R24
+   \   00000122   0FE2               ADD     R30, R18
+   \   00000124   1FF3               ADC     R31, R19
+   \   00000126   8110               LD      R17, Z
+   \   00000128   2B10               OR      R17, R16
+   \   0000012A   8310               ST      Z, R17
+   \   0000012C   C007               RJMP    ??ConfigurationInit_13
     843                  }
     844                  else
     845                  {
@@ -3722,151 +3688,151 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     847                      // Оставим уровень дискретного сигнала интерпретируемый как активный.
     848                      // тип текущего дискретного сигнала как namur.
     849                      puiAlarmDfaInit[i] &= 0xC0;
-   \                     ??ConfigurationInit_17:
-   \   0000016C   E030               LDI     R19, 0
-   \   0000016E   01FC               MOVW    R31:R30, R25:R24
-   \   00000170   0FE2               ADD     R30, R18
-   \   00000172   1FF3               ADC     R31, R19
-   \   00000174   8110               LD      R17, Z
-   \   00000176   7C10               ANDI    R17, 0xC0
-   \   00000178   8310               ST      Z, R17
+   \                     ??ConfigurationInit_12:
+   \   0000012E   E030               LDI     R19, 0
+   \   00000130   01FC               MOVW    R31:R30, R25:R24
+   \   00000132   0FE2               ADD     R30, R18
+   \   00000134   1FF3               ADC     R31, R19
+   \   00000136   8110               LD      R17, Z
+   \   00000138   7C10               ANDI    R17, 0xC0
+   \   0000013A   8310               ST      Z, R17
     850                  }
     851              }
-   \                     ??ConfigurationInit_18:
-   \   0000017A   9523               INC     R18
-   \   0000017C   CFD9               RJMP    ??ConfigurationInit_15
+   \                     ??ConfigurationInit_13:
+   \   0000013C   9523               INC     R18
+   \   0000013E   CFD9               RJMP    ??ConfigurationInit_10
     852          
     853              // Создадим объекты автоматов обработки сигнализаций дискретных сигналов.
     854              for (uint8_t i = 0;
-   \                     ??ConfigurationInit_16:
-   \   0000017E   2444               CLR     R4
+   \                     ??ConfigurationInit_11:
+   \   00000140   2444               CLR     R4
     855                      i < DISCRETE_SIGNALS_NUMBER;
-   \                     ??ConfigurationInit_19:
-   \   00000180   E600               LDI     R16, 96
-   \   00000182   1640               CP      R4, R16
-   \   00000184   F008               BRCS    $+2+2
-   \   00000186   C117               RJMP    ??ConfigurationInit_20
+   \                     ??ConfigurationInit_14:
+   \   00000142   E600               LDI     R16, 96
+   \   00000144   1640               CP      R4, R16
+   \   00000146   F008               BRCS    $+2+2
+   \   00000148   C117               RJMP    ??ConfigurationInit_15
     856                      i++)
     857              {
     858                  // Какой тип сигнализации связан с дискретным сигналом?
     859                  switch (puiAlarmDfaInit[i] & 0x03)
-   \   00000188   2455               CLR     R5
-   \   0000018A   01FC               MOVW    R31:R30, R25:R24
-   \   0000018C   0DE4               ADD     R30, R4
-   \   0000018E   1DF5               ADC     R31, R5
-   \   00000190   8100               LD      R16, Z
-   \   00000192   E010               LDI     R17, 0
-   \   00000194   7003               ANDI    R16, 0x03
-   \   00000196   7010               ANDI    R17, 0x00
-   \   00000198   5000               SUBI    R16, 0
-   \   0000019A   F031               BREQ    ??ConfigurationInit_21
-   \   0000019C   950A               DEC     R16
-   \   0000019E   F0D1               BREQ    ??ConfigurationInit_22
-   \   000001A0   5002               SUBI    R16, 2
-   \   000001A2   F409               BRNE    $+2+2
-   \   000001A4   C084               RJMP    ??ConfigurationInit_23
-   \   000001A6   C0F0               RJMP    ??ConfigurationInit_24
+   \   0000014A   2455               CLR     R5
+   \   0000014C   01FC               MOVW    R31:R30, R25:R24
+   \   0000014E   0DE4               ADD     R30, R4
+   \   00000150   1DF5               ADC     R31, R5
+   \   00000152   8100               LD      R16, Z
+   \   00000154   E010               LDI     R17, 0
+   \   00000156   7003               ANDI    R16, 0x03
+   \   00000158   7010               ANDI    R17, 0x00
+   \   0000015A   5000               SUBI    R16, 0
+   \   0000015C   F031               BREQ    ??ConfigurationInit_16
+   \   0000015E   950A               DEC     R16
+   \   00000160   F0D1               BREQ    ??ConfigurationInit_17
+   \   00000162   5002               SUBI    R16, 2
+   \   00000164   F409               BRNE    $+2+2
+   \   00000166   C084               RJMP    ??ConfigurationInit_18
+   \   00000168   C0F0               RJMP    ??ConfigurationInit_19
     860                  {
     861                  case NORMAL:
     862                      m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+   \                     ??ConfigurationInit_16:
+   \   0000016A   E007               LDI     R16, 7
+   \   0000016C   E010               LDI     R17, 0
+   \   0000016E   ........           CALL    `??operator new`
+   \   00000172   2F20               MOV     R18, R16
+   \   00000174   2B21               OR      R18, R17
+   \   00000176   F019               BREQ    ??ConfigurationInit_20
+   \   00000178   ........           CALL    ??CNormalAlarmDfa
+   \   0000017C   C002               RJMP    ??ConfigurationInit_21
+   \                     ??ConfigurationInit_20:
+   \   0000017E   E000               LDI     R16, 0
+   \   00000180   E010               LDI     R17, 0
    \                     ??ConfigurationInit_21:
-   \   000001A8   E007               LDI     R16, 7
-   \   000001AA   E010               LDI     R17, 0
-   \   000001AC   ........           CALL    `??operator new`
-   \   000001B0   2F20               MOV     R18, R16
-   \   000001B2   2B21               OR      R18, R17
-   \   000001B4   F019               BREQ    ??ConfigurationInit_25
-   \   000001B6   ........           CALL    ??CNormalAlarmDfa
-   \   000001BA   C002               RJMP    ??ConfigurationInit_26
-   \                     ??ConfigurationInit_25:
-   \   000001BC   E000               LDI     R16, 0
-   \   000001BE   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_26:
-   \   000001C0   2D24               MOV     R18, R4
-   \   000001C2   E030               LDI     R19, 0
-   \   000001C4   0F22               LSL     R18
-   \   000001C6   1F33               ROL     R19
-   \   000001C8   01F9               MOVW    R31:R30, R19:R18
-   \   000001CA   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   000001CC   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   000001CE   8300               ST      Z, R16
-   \   000001D0   8311               STD     Z+1, R17
+   \   00000182   2D24               MOV     R18, R4
+   \   00000184   E030               LDI     R19, 0
+   \   00000186   0F22               LSL     R18
+   \   00000188   1F33               ROL     R19
+   \   0000018A   01F9               MOVW    R31:R30, R19:R18
+   \   0000018C   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   0000018E   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000190   8300               ST      Z, R16
+   \   00000192   8311               STD     Z+1, R17
     863                      break;
-   \   000001D2   C0EF               RJMP    ??ConfigurationInit_27
+   \   00000194   C0EF               RJMP    ??ConfigurationInit_22
     864          
     865                  case INDICATION:
     866                      // Уровень дискретного сигнала интерпретируемый как активный - высокий?
     867                      if (puiAlarmDfaInit[i] & 0x80)
-   \                     ??ConfigurationInit_22:
-   \   000001D4   2455               CLR     R5
-   \   000001D6   01FC               MOVW    R31:R30, R25:R24
-   \   000001D8   0DE4               ADD     R30, R4
-   \   000001DA   1DF5               ADC     R31, R5
-   \   000001DC   8100               LD      R16, Z
-   \   000001DE   FF07               SBRS    R16, 7
-   \   000001E0   C033               RJMP    ??ConfigurationInit_28
+   \                     ??ConfigurationInit_17:
+   \   00000196   2455               CLR     R5
+   \   00000198   01FC               MOVW    R31:R30, R25:R24
+   \   0000019A   0DE4               ADD     R30, R4
+   \   0000019C   1DF5               ADC     R31, R5
+   \   0000019E   8100               LD      R16, Z
+   \   000001A0   FF07               SBRS    R16, 7
+   \   000001A2   C033               RJMP    ??ConfigurationInit_23
     868                      {
     869          //                m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
     870                          // тип текущего дискретного сигнала как namur - запрограммирован?
     871                          if (puiAlarmDfaInit[i] & 0x40)
-   \   000001E2   2455               CLR     R5
-   \   000001E4   01FC               MOVW    R31:R30, R25:R24
-   \   000001E6   0DE4               ADD     R30, R4
-   \   000001E8   1DF5               ADC     R31, R5
-   \   000001EA   8100               LD      R16, Z
-   \   000001EC   FF06               SBRS    R16, 6
-   \   000001EE   C016               RJMP    ??ConfigurationInit_29
+   \   000001A4   2455               CLR     R5
+   \   000001A6   01FC               MOVW    R31:R30, R25:R24
+   \   000001A8   0DE4               ADD     R30, R4
+   \   000001AA   1DF5               ADC     R31, R5
+   \   000001AC   8100               LD      R16, Z
+   \   000001AE   FF06               SBRS    R16, 6
+   \   000001B0   C016               RJMP    ??ConfigurationInit_24
     872                          {
     873                              m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelNamurDfa;
-   \   000001F0   E007               LDI     R16, 7
-   \   000001F2   E010               LDI     R17, 0
-   \   000001F4   ........           CALL    `??operator new`
-   \   000001F8   2F20               MOV     R18, R16
-   \   000001FA   2B21               OR      R18, R17
-   \   000001FC   F019               BREQ    ??ConfigurationInit_30
-   \   000001FE   ........           CALL    ??CIndicationAlarmHighLevelNamurDfa
-   \   00000202   C002               RJMP    ??ConfigurationInit_31
-   \                     ??ConfigurationInit_30:
-   \   00000204   E000               LDI     R16, 0
-   \   00000206   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_31:
-   \   00000208   2D24               MOV     R18, R4
-   \   0000020A   E030               LDI     R19, 0
-   \   0000020C   0F22               LSL     R18
-   \   0000020E   1F33               ROL     R19
-   \   00000210   01F9               MOVW    R31:R30, R19:R18
-   \   00000212   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000214   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000216   8300               ST      Z, R16
-   \   00000218   8311               STD     Z+1, R17
-   \   0000021A   C0CB               RJMP    ??ConfigurationInit_27
+   \   000001B2   E007               LDI     R16, 7
+   \   000001B4   E010               LDI     R17, 0
+   \   000001B6   ........           CALL    `??operator new`
+   \   000001BA   2F20               MOV     R18, R16
+   \   000001BC   2B21               OR      R18, R17
+   \   000001BE   F019               BREQ    ??ConfigurationInit_25
+   \   000001C0   ........           CALL    ??CIndicationAlarmHighLevelNamurDfa
+   \   000001C4   C002               RJMP    ??ConfigurationInit_26
+   \                     ??ConfigurationInit_25:
+   \   000001C6   E000               LDI     R16, 0
+   \   000001C8   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_26:
+   \   000001CA   2D24               MOV     R18, R4
+   \   000001CC   E030               LDI     R19, 0
+   \   000001CE   0F22               LSL     R18
+   \   000001D0   1F33               ROL     R19
+   \   000001D2   01F9               MOVW    R31:R30, R19:R18
+   \   000001D4   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000001D6   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000001D8   8300               ST      Z, R16
+   \   000001DA   8311               STD     Z+1, R17
+   \   000001DC   C0CB               RJMP    ??ConfigurationInit_22
     874                          }
     875                          else
     876                          {
     877                              m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
-   \                     ??ConfigurationInit_29:
-   \   0000021C   E007               LDI     R16, 7
-   \   0000021E   E010               LDI     R17, 0
-   \   00000220   ........           CALL    `??operator new`
-   \   00000224   2F20               MOV     R18, R16
-   \   00000226   2B21               OR      R18, R17
-   \   00000228   F019               BREQ    ??ConfigurationInit_32
-   \   0000022A   ........           CALL    ??CIndicationAlarmHighLevelDfa
-   \   0000022E   C002               RJMP    ??ConfigurationInit_33
-   \                     ??ConfigurationInit_32:
-   \   00000230   E000               LDI     R16, 0
-   \   00000232   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_33:
-   \   00000234   2D24               MOV     R18, R4
-   \   00000236   E030               LDI     R19, 0
-   \   00000238   0F22               LSL     R18
-   \   0000023A   1F33               ROL     R19
-   \   0000023C   01F9               MOVW    R31:R30, R19:R18
-   \   0000023E   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000240   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000242   8300               ST      Z, R16
-   \   00000244   8311               STD     Z+1, R17
-   \   00000246   C0B5               RJMP    ??ConfigurationInit_27
+   \                     ??ConfigurationInit_24:
+   \   000001DE   E007               LDI     R16, 7
+   \   000001E0   E010               LDI     R17, 0
+   \   000001E2   ........           CALL    `??operator new`
+   \   000001E6   2F20               MOV     R18, R16
+   \   000001E8   2B21               OR      R18, R17
+   \   000001EA   F019               BREQ    ??ConfigurationInit_27
+   \   000001EC   ........           CALL    ??CIndicationAlarmHighLevelDfa
+   \   000001F0   C002               RJMP    ??ConfigurationInit_28
+   \                     ??ConfigurationInit_27:
+   \   000001F2   E000               LDI     R16, 0
+   \   000001F4   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_28:
+   \   000001F6   2D24               MOV     R18, R4
+   \   000001F8   E030               LDI     R19, 0
+   \   000001FA   0F22               LSL     R18
+   \   000001FC   1F33               ROL     R19
+   \   000001FE   01F9               MOVW    R31:R30, R19:R18
+   \   00000200   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   00000202   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000204   8300               ST      Z, R16
+   \   00000206   8311               STD     Z+1, R17
+   \   00000208   C0B5               RJMP    ??ConfigurationInit_22
     878                          }
     879                      }
     880                      else
@@ -3874,142 +3840,142 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     882          //                m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
     883                          // тип текущего дискретного сигнала как namur - запрограммирован?
     884                          if (puiAlarmDfaInit[i] & 0x40)
-   \                     ??ConfigurationInit_28:
-   \   00000248   2455               CLR     R5
-   \   0000024A   01FC               MOVW    R31:R30, R25:R24
-   \   0000024C   0DE4               ADD     R30, R4
-   \   0000024E   1DF5               ADC     R31, R5
-   \   00000250   8100               LD      R16, Z
-   \   00000252   FF06               SBRS    R16, 6
-   \   00000254   C016               RJMP    ??ConfigurationInit_34
+   \                     ??ConfigurationInit_23:
+   \   0000020A   2455               CLR     R5
+   \   0000020C   01FC               MOVW    R31:R30, R25:R24
+   \   0000020E   0DE4               ADD     R30, R4
+   \   00000210   1DF5               ADC     R31, R5
+   \   00000212   8100               LD      R16, Z
+   \   00000214   FF06               SBRS    R16, 6
+   \   00000216   C016               RJMP    ??ConfigurationInit_29
     885                          {
     886                              m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelNamurDfa;
-   \   00000256   E007               LDI     R16, 7
-   \   00000258   E010               LDI     R17, 0
-   \   0000025A   ........           CALL    `??operator new`
-   \   0000025E   2F20               MOV     R18, R16
-   \   00000260   2B21               OR      R18, R17
-   \   00000262   F019               BREQ    ??ConfigurationInit_35
-   \   00000264   ........           CALL    ??CIndicationAlarmLowLevelNamurDfa
-   \   00000268   C002               RJMP    ??ConfigurationInit_36
-   \                     ??ConfigurationInit_35:
-   \   0000026A   E000               LDI     R16, 0
-   \   0000026C   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_36:
-   \   0000026E   2D24               MOV     R18, R4
-   \   00000270   E030               LDI     R19, 0
-   \   00000272   0F22               LSL     R18
-   \   00000274   1F33               ROL     R19
-   \   00000276   01F9               MOVW    R31:R30, R19:R18
-   \   00000278   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   0000027A   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   0000027C   8300               ST      Z, R16
-   \   0000027E   8311               STD     Z+1, R17
-   \   00000280   C098               RJMP    ??ConfigurationInit_27
+   \   00000218   E007               LDI     R16, 7
+   \   0000021A   E010               LDI     R17, 0
+   \   0000021C   ........           CALL    `??operator new`
+   \   00000220   2F20               MOV     R18, R16
+   \   00000222   2B21               OR      R18, R17
+   \   00000224   F019               BREQ    ??ConfigurationInit_30
+   \   00000226   ........           CALL    ??CIndicationAlarmLowLevelNamurDfa
+   \   0000022A   C002               RJMP    ??ConfigurationInit_31
+   \                     ??ConfigurationInit_30:
+   \   0000022C   E000               LDI     R16, 0
+   \   0000022E   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_31:
+   \   00000230   2D24               MOV     R18, R4
+   \   00000232   E030               LDI     R19, 0
+   \   00000234   0F22               LSL     R18
+   \   00000236   1F33               ROL     R19
+   \   00000238   01F9               MOVW    R31:R30, R19:R18
+   \   0000023A   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   0000023C   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   0000023E   8300               ST      Z, R16
+   \   00000240   8311               STD     Z+1, R17
+   \   00000242   C098               RJMP    ??ConfigurationInit_22
     887                          }
     888                          else
     889                          {
     890                              m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
-   \                     ??ConfigurationInit_34:
-   \   00000282   E007               LDI     R16, 7
-   \   00000284   E010               LDI     R17, 0
-   \   00000286   ........           CALL    `??operator new`
-   \   0000028A   2F20               MOV     R18, R16
-   \   0000028C   2B21               OR      R18, R17
-   \   0000028E   F019               BREQ    ??ConfigurationInit_37
-   \   00000290   ........           CALL    ??CIndicationAlarmLowLevelDfa
-   \   00000294   C002               RJMP    ??ConfigurationInit_38
-   \                     ??ConfigurationInit_37:
-   \   00000296   E000               LDI     R16, 0
-   \   00000298   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_38:
-   \   0000029A   2D24               MOV     R18, R4
-   \   0000029C   E030               LDI     R19, 0
-   \   0000029E   0F22               LSL     R18
-   \   000002A0   1F33               ROL     R19
-   \   000002A2   01F9               MOVW    R31:R30, R19:R18
-   \   000002A4   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   000002A6   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   000002A8   8300               ST      Z, R16
-   \   000002AA   8311               STD     Z+1, R17
+   \                     ??ConfigurationInit_29:
+   \   00000244   E007               LDI     R16, 7
+   \   00000246   E010               LDI     R17, 0
+   \   00000248   ........           CALL    `??operator new`
+   \   0000024C   2F20               MOV     R18, R16
+   \   0000024E   2B21               OR      R18, R17
+   \   00000250   F019               BREQ    ??ConfigurationInit_32
+   \   00000252   ........           CALL    ??CIndicationAlarmLowLevelDfa
+   \   00000256   C002               RJMP    ??ConfigurationInit_33
+   \                     ??ConfigurationInit_32:
+   \   00000258   E000               LDI     R16, 0
+   \   0000025A   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_33:
+   \   0000025C   2D24               MOV     R18, R4
+   \   0000025E   E030               LDI     R19, 0
+   \   00000260   0F22               LSL     R18
+   \   00000262   1F33               ROL     R19
+   \   00000264   01F9               MOVW    R31:R30, R19:R18
+   \   00000266   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   00000268   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   0000026A   8300               ST      Z, R16
+   \   0000026C   8311               STD     Z+1, R17
     891                          }
     892                      }
     893                      break;
-   \   000002AC   C082               RJMP    ??ConfigurationInit_27
+   \   0000026E   C082               RJMP    ??ConfigurationInit_22
     894          
     895                  case PREVENTIVE:
     896                      // Уровень дискретного сигнала интерпретируемый как активный - высокий?
     897                      if (puiAlarmDfaInit[i] & 0x80)
-   \                     ??ConfigurationInit_23:
-   \   000002AE   2455               CLR     R5
-   \   000002B0   01FC               MOVW    R31:R30, R25:R24
-   \   000002B2   0DE4               ADD     R30, R4
-   \   000002B4   1DF5               ADC     R31, R5
-   \   000002B6   8100               LD      R16, Z
-   \   000002B8   FF07               SBRS    R16, 7
-   \   000002BA   C033               RJMP    ??ConfigurationInit_39
+   \                     ??ConfigurationInit_18:
+   \   00000270   2455               CLR     R5
+   \   00000272   01FC               MOVW    R31:R30, R25:R24
+   \   00000274   0DE4               ADD     R30, R4
+   \   00000276   1DF5               ADC     R31, R5
+   \   00000278   8100               LD      R16, Z
+   \   0000027A   FF07               SBRS    R16, 7
+   \   0000027C   C033               RJMP    ??ConfigurationInit_34
     898                      {
     899          //                m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
     900                          // тип текущего дискретного сигнала как namur - запрограммирован?
     901                          if (puiAlarmDfaInit[i] & 0x40)
-   \   000002BC   2455               CLR     R5
-   \   000002BE   01FC               MOVW    R31:R30, R25:R24
-   \   000002C0   0DE4               ADD     R30, R4
-   \   000002C2   1DF5               ADC     R31, R5
-   \   000002C4   8100               LD      R16, Z
-   \   000002C6   FF06               SBRS    R16, 6
-   \   000002C8   C016               RJMP    ??ConfigurationInit_40
+   \   0000027E   2455               CLR     R5
+   \   00000280   01FC               MOVW    R31:R30, R25:R24
+   \   00000282   0DE4               ADD     R30, R4
+   \   00000284   1DF5               ADC     R31, R5
+   \   00000286   8100               LD      R16, Z
+   \   00000288   FF06               SBRS    R16, 6
+   \   0000028A   C016               RJMP    ??ConfigurationInit_35
     902                          {
     903                              m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelNamurDfa;
-   \   000002CA   E007               LDI     R16, 7
-   \   000002CC   E010               LDI     R17, 0
-   \   000002CE   ........           CALL    `??operator new`
-   \   000002D2   2F20               MOV     R18, R16
-   \   000002D4   2B21               OR      R18, R17
-   \   000002D6   F019               BREQ    ??ConfigurationInit_41
-   \   000002D8   ........           CALL    ??CPreventiveAlarmHighLevelNamurDfa
-   \   000002DC   C002               RJMP    ??ConfigurationInit_42
-   \                     ??ConfigurationInit_41:
-   \   000002DE   E000               LDI     R16, 0
-   \   000002E0   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_42:
-   \   000002E2   2D24               MOV     R18, R4
-   \   000002E4   E030               LDI     R19, 0
-   \   000002E6   0F22               LSL     R18
-   \   000002E8   1F33               ROL     R19
-   \   000002EA   01F9               MOVW    R31:R30, R19:R18
-   \   000002EC   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   000002EE   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   000002F0   8300               ST      Z, R16
-   \   000002F2   8311               STD     Z+1, R17
-   \   000002F4   C05E               RJMP    ??ConfigurationInit_27
+   \   0000028C   E007               LDI     R16, 7
+   \   0000028E   E010               LDI     R17, 0
+   \   00000290   ........           CALL    `??operator new`
+   \   00000294   2F20               MOV     R18, R16
+   \   00000296   2B21               OR      R18, R17
+   \   00000298   F019               BREQ    ??ConfigurationInit_36
+   \   0000029A   ........           CALL    ??CPreventiveAlarmHighLevelNamurDfa
+   \   0000029E   C002               RJMP    ??ConfigurationInit_37
+   \                     ??ConfigurationInit_36:
+   \   000002A0   E000               LDI     R16, 0
+   \   000002A2   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_37:
+   \   000002A4   2D24               MOV     R18, R4
+   \   000002A6   E030               LDI     R19, 0
+   \   000002A8   0F22               LSL     R18
+   \   000002AA   1F33               ROL     R19
+   \   000002AC   01F9               MOVW    R31:R30, R19:R18
+   \   000002AE   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000002B0   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000002B2   8300               ST      Z, R16
+   \   000002B4   8311               STD     Z+1, R17
+   \   000002B6   C05E               RJMP    ??ConfigurationInit_22
     904                          }
     905                          else
     906                          {
     907                              m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
-   \                     ??ConfigurationInit_40:
-   \   000002F6   E007               LDI     R16, 7
-   \   000002F8   E010               LDI     R17, 0
-   \   000002FA   ........           CALL    `??operator new`
-   \   000002FE   2F20               MOV     R18, R16
-   \   00000300   2B21               OR      R18, R17
-   \   00000302   F019               BREQ    ??ConfigurationInit_43
-   \   00000304   ........           CALL    ??CPreventiveAlarmHighLevelDfa
-   \   00000308   C002               RJMP    ??ConfigurationInit_44
-   \                     ??ConfigurationInit_43:
-   \   0000030A   E000               LDI     R16, 0
-   \   0000030C   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_44:
-   \   0000030E   2D24               MOV     R18, R4
-   \   00000310   E030               LDI     R19, 0
-   \   00000312   0F22               LSL     R18
-   \   00000314   1F33               ROL     R19
-   \   00000316   01F9               MOVW    R31:R30, R19:R18
-   \   00000318   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   0000031A   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   0000031C   8300               ST      Z, R16
-   \   0000031E   8311               STD     Z+1, R17
-   \   00000320   C048               RJMP    ??ConfigurationInit_27
+   \                     ??ConfigurationInit_35:
+   \   000002B8   E007               LDI     R16, 7
+   \   000002BA   E010               LDI     R17, 0
+   \   000002BC   ........           CALL    `??operator new`
+   \   000002C0   2F20               MOV     R18, R16
+   \   000002C2   2B21               OR      R18, R17
+   \   000002C4   F019               BREQ    ??ConfigurationInit_38
+   \   000002C6   ........           CALL    ??CPreventiveAlarmHighLevelDfa
+   \   000002CA   C002               RJMP    ??ConfigurationInit_39
+   \                     ??ConfigurationInit_38:
+   \   000002CC   E000               LDI     R16, 0
+   \   000002CE   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_39:
+   \   000002D0   2D24               MOV     R18, R4
+   \   000002D2   E030               LDI     R19, 0
+   \   000002D4   0F22               LSL     R18
+   \   000002D6   1F33               ROL     R19
+   \   000002D8   01F9               MOVW    R31:R30, R19:R18
+   \   000002DA   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000002DC   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000002DE   8300               ST      Z, R16
+   \   000002E0   8311               STD     Z+1, R17
+   \   000002E2   C048               RJMP    ??ConfigurationInit_22
     908                          }
     909                      }
     910                      else
@@ -4017,68 +3983,68 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     912          //                m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
     913                          // тип текущего дискретного сигнала как namur - запрограммирован?
     914                          if (puiAlarmDfaInit[i] & 0x40)
-   \                     ??ConfigurationInit_39:
-   \   00000322   2455               CLR     R5
-   \   00000324   01FC               MOVW    R31:R30, R25:R24
-   \   00000326   0DE4               ADD     R30, R4
-   \   00000328   1DF5               ADC     R31, R5
-   \   0000032A   8100               LD      R16, Z
-   \   0000032C   FF06               SBRS    R16, 6
-   \   0000032E   C016               RJMP    ??ConfigurationInit_45
+   \                     ??ConfigurationInit_34:
+   \   000002E4   2455               CLR     R5
+   \   000002E6   01FC               MOVW    R31:R30, R25:R24
+   \   000002E8   0DE4               ADD     R30, R4
+   \   000002EA   1DF5               ADC     R31, R5
+   \   000002EC   8100               LD      R16, Z
+   \   000002EE   FF06               SBRS    R16, 6
+   \   000002F0   C016               RJMP    ??ConfigurationInit_40
     915                          {
     916                              m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelNamurDfa;
-   \   00000330   E007               LDI     R16, 7
-   \   00000332   E010               LDI     R17, 0
-   \   00000334   ........           CALL    `??operator new`
-   \   00000338   2F20               MOV     R18, R16
-   \   0000033A   2B21               OR      R18, R17
-   \   0000033C   F019               BREQ    ??ConfigurationInit_46
-   \   0000033E   ........           CALL    ??CPreventiveAlarmLowLevelNamurDfa
-   \   00000342   C002               RJMP    ??ConfigurationInit_47
-   \                     ??ConfigurationInit_46:
-   \   00000344   E000               LDI     R16, 0
-   \   00000346   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_47:
-   \   00000348   2D24               MOV     R18, R4
-   \   0000034A   E030               LDI     R19, 0
-   \   0000034C   0F22               LSL     R18
-   \   0000034E   1F33               ROL     R19
-   \   00000350   01F9               MOVW    R31:R30, R19:R18
-   \   00000352   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000354   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000356   8300               ST      Z, R16
-   \   00000358   8311               STD     Z+1, R17
-   \   0000035A   C02B               RJMP    ??ConfigurationInit_27
+   \   000002F2   E007               LDI     R16, 7
+   \   000002F4   E010               LDI     R17, 0
+   \   000002F6   ........           CALL    `??operator new`
+   \   000002FA   2F20               MOV     R18, R16
+   \   000002FC   2B21               OR      R18, R17
+   \   000002FE   F019               BREQ    ??ConfigurationInit_41
+   \   00000300   ........           CALL    ??CPreventiveAlarmLowLevelNamurDfa
+   \   00000304   C002               RJMP    ??ConfigurationInit_42
+   \                     ??ConfigurationInit_41:
+   \   00000306   E000               LDI     R16, 0
+   \   00000308   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_42:
+   \   0000030A   2D24               MOV     R18, R4
+   \   0000030C   E030               LDI     R19, 0
+   \   0000030E   0F22               LSL     R18
+   \   00000310   1F33               ROL     R19
+   \   00000312   01F9               MOVW    R31:R30, R19:R18
+   \   00000314   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   00000316   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000318   8300               ST      Z, R16
+   \   0000031A   8311               STD     Z+1, R17
+   \   0000031C   C02B               RJMP    ??ConfigurationInit_22
     917                          }
     918                          else
     919                          {
     920                              m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
-   \                     ??ConfigurationInit_45:
-   \   0000035C   E007               LDI     R16, 7
-   \   0000035E   E010               LDI     R17, 0
-   \   00000360   ........           CALL    `??operator new`
-   \   00000364   2F20               MOV     R18, R16
-   \   00000366   2B21               OR      R18, R17
-   \   00000368   F019               BREQ    ??ConfigurationInit_48
-   \   0000036A   ........           CALL    ??CPreventiveAlarmLowLevelDfa
-   \   0000036E   C002               RJMP    ??ConfigurationInit_49
-   \                     ??ConfigurationInit_48:
-   \   00000370   E000               LDI     R16, 0
-   \   00000372   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_49:
-   \   00000374   2D24               MOV     R18, R4
-   \   00000376   E030               LDI     R19, 0
-   \   00000378   0F22               LSL     R18
-   \   0000037A   1F33               ROL     R19
-   \   0000037C   01F9               MOVW    R31:R30, R19:R18
-   \   0000037E   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000380   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000382   8300               ST      Z, R16
-   \   00000384   8311               STD     Z+1, R17
+   \                     ??ConfigurationInit_40:
+   \   0000031E   E007               LDI     R16, 7
+   \   00000320   E010               LDI     R17, 0
+   \   00000322   ........           CALL    `??operator new`
+   \   00000326   2F20               MOV     R18, R16
+   \   00000328   2B21               OR      R18, R17
+   \   0000032A   F019               BREQ    ??ConfigurationInit_43
+   \   0000032C   ........           CALL    ??CPreventiveAlarmLowLevelDfa
+   \   00000330   C002               RJMP    ??ConfigurationInit_44
+   \                     ??ConfigurationInit_43:
+   \   00000332   E000               LDI     R16, 0
+   \   00000334   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_44:
+   \   00000336   2D24               MOV     R18, R4
+   \   00000338   E030               LDI     R19, 0
+   \   0000033A   0F22               LSL     R18
+   \   0000033C   1F33               ROL     R19
+   \   0000033E   01F9               MOVW    R31:R30, R19:R18
+   \   00000340   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   00000342   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000344   8300               ST      Z, R16
+   \   00000346   8311               STD     Z+1, R17
     921                          }
     922                      }
     923                      break;
-   \   00000386   C015               RJMP    ??ConfigurationInit_27
+   \   00000348   C015               RJMP    ??ConfigurationInit_22
     924          
     925                  case EMERGENCY:
     926                      // Уровень дискретного сигнала интерпретируемый как активный - высокий?
@@ -4120,212 +4086,212 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
     962          
     963                  default:
     964                      m_apxAlarmDfa[i] = new CNormalAlarmDfa;
-   \                     ??ConfigurationInit_24:
-   \   00000388   E007               LDI     R16, 7
-   \   0000038A   E010               LDI     R17, 0
-   \   0000038C   ........           CALL    `??operator new`
-   \   00000390   2F20               MOV     R18, R16
-   \   00000392   2B21               OR      R18, R17
-   \   00000394   F019               BREQ    ??ConfigurationInit_50
-   \   00000396   ........           CALL    ??CNormalAlarmDfa
-   \   0000039A   C002               RJMP    ??ConfigurationInit_51
-   \                     ??ConfigurationInit_50:
-   \   0000039C   E000               LDI     R16, 0
-   \   0000039E   E010               LDI     R17, 0
-   \                     ??ConfigurationInit_51:
-   \   000003A0   2D24               MOV     R18, R4
-   \   000003A2   E030               LDI     R19, 0
-   \   000003A4   0F22               LSL     R18
-   \   000003A6   1F33               ROL     R19
-   \   000003A8   01F9               MOVW    R31:R30, R19:R18
-   \   000003AA   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   000003AC   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   000003AE   8300               ST      Z, R16
-   \   000003B0   8311               STD     Z+1, R17
+   \                     ??ConfigurationInit_19:
+   \   0000034A   E007               LDI     R16, 7
+   \   0000034C   E010               LDI     R17, 0
+   \   0000034E   ........           CALL    `??operator new`
+   \   00000352   2F20               MOV     R18, R16
+   \   00000354   2B21               OR      R18, R17
+   \   00000356   F019               BREQ    ??ConfigurationInit_45
+   \   00000358   ........           CALL    ??CNormalAlarmDfa
+   \   0000035C   C002               RJMP    ??ConfigurationInit_46
+   \                     ??ConfigurationInit_45:
+   \   0000035E   E000               LDI     R16, 0
+   \   00000360   E010               LDI     R17, 0
+   \                     ??ConfigurationInit_46:
+   \   00000362   2D24               MOV     R18, R4
+   \   00000364   E030               LDI     R19, 0
+   \   00000366   0F22               LSL     R18
+   \   00000368   1F33               ROL     R19
+   \   0000036A   01F9               MOVW    R31:R30, R19:R18
+   \   0000036C   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   0000036E   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000370   8300               ST      Z, R16
+   \   00000372   8311               STD     Z+1, R17
     965                      break;
     966                  }
     967              }
-   \                     ??ConfigurationInit_27:
-   \   000003B2   9443               INC     R4
-   \   000003B4   CEE5               RJMP    ??ConfigurationInit_19
+   \                     ??ConfigurationInit_22:
+   \   00000374   9443               INC     R4
+   \   00000376   CEE5               RJMP    ??ConfigurationInit_14
     968          
     969              // Привяжем окна сигнализации к созданным объектам сигнализаций дискретных сигналов.
     970              // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
     971              CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
-   \                     ??ConfigurationInit_20:
-   \   000003B6   E023               LDI     R18, 3
-   \   000003B8   018D               MOVW    R17:R16, R27:R26
-   \   000003BA   ........           CALL    ??ReadBlock
+   \                     ??ConfigurationInit_15:
+   \   00000378   E023               LDI     R18, 3
+   \   0000037A   018D               MOVW    R17:R16, R27:R26
+   \   0000037C   ........           CALL    ??ReadBlock
     972              for (uint8_t i = 0;
-   \   000003BE   2444               CLR     R4
+   \   00000380   2444               CLR     R4
     973                      i < DISCRETE_SIGNALS_NUMBER;
-   \                     ??ConfigurationInit_52:
-   \   000003C0   E600               LDI     R16, 96
-   \   000003C2   1640               CP      R4, R16
-   \   000003C4   F530               BRCC    ??ConfigurationInit_53
+   \                     ??ConfigurationInit_47:
+   \   00000382   E600               LDI     R16, 96
+   \   00000384   1640               CP      R4, R16
+   \   00000386   F530               BRCC    ??ConfigurationInit_48
     974                      i++)
     975              {
     976                  // Для текущего дискретного сигнала запрограммирована сигнализация?
     977                  if (puiTempBuffer[i] < ALARM_WINDOWS_NUMBER)
-   \   000003C6   2455               CLR     R5
-   \   000003C8   01FD               MOVW    R31:R30, R27:R26
-   \   000003CA   0DE4               ADD     R30, R4
-   \   000003CC   1DF5               ADC     R31, R5
-   \   000003CE   8100               LD      R16, Z
-   \   000003D0   3300               CPI     R16, 48
-   \   000003D2   F488               BRCC    ??ConfigurationInit_54
+   \   00000388   2455               CLR     R5
+   \   0000038A   01FD               MOVW    R31:R30, R27:R26
+   \   0000038C   0DE4               ADD     R30, R4
+   \   0000038E   1DF5               ADC     R31, R5
+   \   00000390   8100               LD      R16, Z
+   \   00000392   3300               CPI     R16, 48
+   \   00000394   F488               BRCC    ??ConfigurationInit_49
     978                  {
     979                      // Привяжем окно сигнализации к текущему дискретному сигналу.
     980                      m_apxAlarmDfa[i] ->
     981                      SetAlarmWindowIndex(puiTempBuffer[i]);
-   \   000003D4   2455               CLR     R5
-   \   000003D6   01FD               MOVW    R31:R30, R27:R26
-   \   000003D8   0DE4               ADD     R30, R4
-   \   000003DA   1DF5               ADC     R31, R5
-   \   000003DC   8120               LD      R18, Z
-   \   000003DE   2D04               MOV     R16, R4
-   \   000003E0   E010               LDI     R17, 0
-   \   000003E2   0F00               LSL     R16
-   \   000003E4   1F11               ROL     R17
-   \   000003E6   01F8               MOVW    R31:R30, R17:R16
-   \   000003E8   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   000003EA   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   000003EC   8100               LD      R16, Z
-   \   000003EE   8111               LDD     R17, Z+1
-   \   000003F0   ........           CALL    ??SetAlarmWindowIndex
-   \   000003F4   C00C               RJMP    ??ConfigurationInit_55
+   \   00000396   2455               CLR     R5
+   \   00000398   01FD               MOVW    R31:R30, R27:R26
+   \   0000039A   0DE4               ADD     R30, R4
+   \   0000039C   1DF5               ADC     R31, R5
+   \   0000039E   8120               LD      R18, Z
+   \   000003A0   2D04               MOV     R16, R4
+   \   000003A2   E010               LDI     R17, 0
+   \   000003A4   0F00               LSL     R16
+   \   000003A6   1F11               ROL     R17
+   \   000003A8   01F8               MOVW    R31:R30, R17:R16
+   \   000003AA   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000003AC   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000003AE   8100               LD      R16, Z
+   \   000003B0   8111               LDD     R17, Z+1
+   \   000003B2   ........           CALL    ??SetAlarmWindowIndex
+   \   000003B6   C00C               RJMP    ??ConfigurationInit_50
     982                  }
     983                  else
     984                  {
     985                      m_apxAlarmDfa[i] ->
     986                      SetAlarmWindowIndex(0);
-   \                     ??ConfigurationInit_54:
-   \   000003F6   E020               LDI     R18, 0
-   \   000003F8   2D04               MOV     R16, R4
-   \   000003FA   E010               LDI     R17, 0
-   \   000003FC   0F00               LSL     R16
-   \   000003FE   1F11               ROL     R17
-   \   00000400   01F8               MOVW    R31:R30, R17:R16
-   \   00000402   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000404   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000406   8100               LD      R16, Z
-   \   00000408   8111               LDD     R17, Z+1
-   \   0000040A   ........           CALL    ??SetAlarmWindowIndex
+   \                     ??ConfigurationInit_49:
+   \   000003B8   E020               LDI     R18, 0
+   \   000003BA   2D04               MOV     R16, R4
+   \   000003BC   E010               LDI     R17, 0
+   \   000003BE   0F00               LSL     R16
+   \   000003C0   1F11               ROL     R17
+   \   000003C2   01F8               MOVW    R31:R30, R17:R16
+   \   000003C4   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000003C6   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000003C8   8100               LD      R16, Z
+   \   000003CA   8111               LDD     R17, Z+1
+   \   000003CC   ........           CALL    ??SetAlarmWindowIndex
     987                  }
     988              }
-   \                     ??ConfigurationInit_55:
-   \   0000040E   9443               INC     R4
-   \   00000410   CFD7               RJMP    ??ConfigurationInit_52
+   \                     ??ConfigurationInit_50:
+   \   000003D0   9443               INC     R4
+   \   000003D2   CFD7               RJMP    ??ConfigurationInit_47
     989          
     990              // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
     991              CDataBase::ReadBlock(puiTempBuffer, TDataBase::RELAY);
-   \                     ??ConfigurationInit_53:
-   \   00000412   E026               LDI     R18, 6
-   \   00000414   018D               MOVW    R17:R16, R27:R26
-   \   00000416   ........           CALL    ??ReadBlock
+   \                     ??ConfigurationInit_48:
+   \   000003D4   E026               LDI     R18, 6
+   \   000003D6   018D               MOVW    R17:R16, R27:R26
+   \   000003D8   ........           CALL    ??ReadBlock
     992              // Получим связанные выходы на МР.
     993              for (uint8_t i = 0;
-   \   0000041A   2444               CLR     R4
+   \   000003DC   2444               CLR     R4
     994                      i < DISCRETE_SIGNALS_NUMBER;
-   \                     ??ConfigurationInit_56:
-   \   0000041C   E600               LDI     R16, 96
-   \   0000041E   1640               CP      R4, R16
-   \   00000420   F4A0               BRCC    ??ConfigurationInit_57
+   \                     ??ConfigurationInit_51:
+   \   000003DE   E600               LDI     R16, 96
+   \   000003E0   1640               CP      R4, R16
+   \   000003E2   F4A0               BRCC    ??ConfigurationInit_52
     995                      i++)
     996              {
     997                  *(m_apxAlarmDfa[i] -> GetLinkedDiscreteOutputsPointer()) = puiTempBuffer[i];
-   \   00000422   2D04               MOV     R16, R4
-   \   00000424   E010               LDI     R17, 0
-   \   00000426   0F00               LSL     R16
-   \   00000428   1F11               ROL     R17
-   \   0000042A   01F8               MOVW    R31:R30, R17:R16
-   \   0000042C   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   0000042E   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000430   8100               LD      R16, Z
-   \   00000432   8111               LDD     R17, Z+1
-   \   00000434   ........           CALL    ??GetLinkedDiscreteOutputsPointer
-   \   00000438   2455               CLR     R5
-   \   0000043A   01FD               MOVW    R31:R30, R27:R26
-   \   0000043C   0DE4               ADD     R30, R4
-   \   0000043E   1DF5               ADC     R31, R5
-   \   00000440   8120               LD      R18, Z
-   \   00000442   01F8               MOVW    R31:R30, R17:R16
-   \   00000444   8320               ST      Z, R18
+   \   000003E4   2D04               MOV     R16, R4
+   \   000003E6   E010               LDI     R17, 0
+   \   000003E8   0F00               LSL     R16
+   \   000003EA   1F11               ROL     R17
+   \   000003EC   01F8               MOVW    R31:R30, R17:R16
+   \   000003EE   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   000003F0   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   000003F2   8100               LD      R16, Z
+   \   000003F4   8111               LDD     R17, Z+1
+   \   000003F6   ........           CALL    ??GetLinkedDiscreteOutputsPointer
+   \   000003FA   2455               CLR     R5
+   \   000003FC   01FD               MOVW    R31:R30, R27:R26
+   \   000003FE   0DE4               ADD     R30, R4
+   \   00000400   1DF5               ADC     R31, R5
+   \   00000402   8120               LD      R18, Z
+   \   00000404   01F8               MOVW    R31:R30, R17:R16
+   \   00000406   8320               ST      Z, R18
     998              };
-   \   00000446   9443               INC     R4
-   \   00000448   CFE9               RJMP    ??ConfigurationInit_56
+   \   00000408   9443               INC     R4
+   \   0000040A   CFE9               RJMP    ??ConfigurationInit_51
     999          
    1000              // Получим индексы источников состояния дискретных сигналов - дискретные входы модулей.
    1001              for (uint8_t i = 0;
-   \                     ??ConfigurationInit_57:
-   \   0000044A   2444               CLR     R4
+   \                     ??ConfigurationInit_52:
+   \   0000040C   2444               CLR     R4
    1002                      i < DISCRETE_INPUTS_NUMBER;
-   \                     ??ConfigurationInit_58:
-   \   0000044C   E300               LDI     R16, 48
-   \   0000044E   1640               CP      R4, R16
-   \   00000450   F470               BRCC    ??ConfigurationInit_59
+   \                     ??ConfigurationInit_53:
+   \   0000040E   E300               LDI     R16, 48
+   \   00000410   1640               CP      R4, R16
+   \   00000412   F470               BRCC    ??ConfigurationInit_54
    1003                      i++)
    1004              {
    1005                  m_apxAlarmDfa[i] -> SetDiscreteStateIndex(i);
-   \   00000452   2D24               MOV     R18, R4
-   \   00000454   2D04               MOV     R16, R4
-   \   00000456   E010               LDI     R17, 0
-   \   00000458   0F00               LSL     R16
-   \   0000045A   1F11               ROL     R17
-   \   0000045C   01F8               MOVW    R31:R30, R17:R16
-   \   0000045E   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-   \   00000460   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-   \   00000462   8100               LD      R16, Z
-   \   00000464   8111               LDD     R17, Z+1
-   \   00000466   ........           CALL    ??SetDiscreteStateIndex
+   \   00000414   2D24               MOV     R18, R4
+   \   00000416   2D04               MOV     R16, R4
+   \   00000418   E010               LDI     R17, 0
+   \   0000041A   0F00               LSL     R16
+   \   0000041C   1F11               ROL     R17
+   \   0000041E   01F8               MOVW    R31:R30, R17:R16
+   \   00000420   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+   \   00000422   ....               SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+   \   00000424   8100               LD      R16, Z
+   \   00000426   8111               LDD     R17, Z+1
+   \   00000428   ........           CALL    ??SetDiscreteStateIndex
    1006              };
-   \   0000046A   9443               INC     R4
-   \   0000046C   CFEF               RJMP    ??ConfigurationInit_58
+   \   0000042C   9443               INC     R4
+   \   0000042E   CFEF               RJMP    ??ConfigurationInit_53
    1007              // Получим индексы источников состояния дискретных сигналов - состояние ячеек(coils Modbus).
    1008              for (uint8_t i = 0;
-   \                     ??ConfigurationInit_59:
-   \   0000046E   2444               CLR     R4
+   \                     ??ConfigurationInit_54:
+   \   00000430   2444               CLR     R4
    1009                      i < ALARM_WINDOWS_NUMBER;
-   \                     ??ConfigurationInit_60:
-   \   00000470   E300               LDI     R16, 48
-   \   00000472   1640               CP      R4, R16
-   \   00000474   F478               BRCC    ??ConfigurationInit_61
+   \                     ??ConfigurationInit_55:
+   \   00000432   E300               LDI     R16, 48
+   \   00000434   1640               CP      R4, R16
+   \   00000436   F478               BRCC    ??ConfigurationInit_56
    1010                      i++)
    1011              {
    1012                  m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
-   \   00000476   2D24               MOV     R18, R4
-   \   00000478   5D20               SUBI    R18, 208
-   \   0000047A   2D04               MOV     R16, R4
-   \   0000047C   E010               LDI     R17, 0
-   \   0000047E   0F00               LSL     R16
-   \   00000480   1F11               ROL     R17
-   \   00000482   01F8               MOVW    R31:R30, R17:R16
-   \   00000484   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa + 96) & 0xFFFF))
-   \   00000486   ....               SBCI    R31, HIGH((-(??m_apxAlarmDfa + 96) & 0xFFFF))
-   \   00000488   8100               LD      R16, Z
-   \   0000048A   8111               LDD     R17, Z+1
-   \   0000048C   ........           CALL    ??SetDiscreteStateIndex
+   \   00000438   2D24               MOV     R18, R4
+   \   0000043A   5D20               SUBI    R18, 208
+   \   0000043C   2D04               MOV     R16, R4
+   \   0000043E   E010               LDI     R17, 0
+   \   00000440   0F00               LSL     R16
+   \   00000442   1F11               ROL     R17
+   \   00000444   01F8               MOVW    R31:R30, R17:R16
+   \   00000446   ....               SUBI    R30, LOW((-(??m_apxAlarmDfa + 96) & 0xFFFF))
+   \   00000448   ....               SBCI    R31, HIGH((-(??m_apxAlarmDfa + 96) & 0xFFFF))
+   \   0000044A   8100               LD      R16, Z
+   \   0000044C   8111               LDD     R17, Z+1
+   \   0000044E   ........           CALL    ??SetDiscreteStateIndex
    1013          //        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
    1014              };
-   \   00000490   9443               INC     R4
-   \   00000492   CFEE               RJMP    ??ConfigurationInit_60
+   \   00000452   9443               INC     R4
+   \   00000454   CFEE               RJMP    ??ConfigurationInit_55
    1015          
    1016              // Восстановим  состояние устройства.
    1017              // Считаем во временный буфер блок БД - "Состояние устройства хранимое в EEPROM".
    1018              CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEVICE_STATE);
-   \                     ??ConfigurationInit_61:
-   \   00000494   E02B               LDI     R18, 11
-   \   00000496   018D               MOVW    R17:R16, R27:R26
-   \   00000498   ........           CALL    ??ReadBlock
+   \                     ??ConfigurationInit_56:
+   \   00000456   E02B               LDI     R18, 11
+   \   00000458   018D               MOVW    R17:R16, R27:R26
+   \   0000045A   ........           CALL    ??ReadBlock
    1019              memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceState),
    1020                     puiTempBuffer,
    1021                     sizeof(struct TDeviceState));
-   \   0000049C   E048               LDI     R20, 8
-   \   0000049E   E050               LDI     R21, 0
-   \   000004A0   019D               MOVW    R19:R18, R27:R26
-   \   000004A2   ....               LDI     R16, LOW(??m_xDeviceState)
-   \   000004A4   ....               LDI     R17, (??m_xDeviceState) >> 8
-   \   000004A6   ........           CALL    memcpy
+   \   0000045E   E048               LDI     R20, 8
+   \   00000460   E050               LDI     R21, 0
+   \   00000462   019D               MOVW    R19:R18, R27:R26
+   \   00000464   ....               LDI     R16, LOW(??m_xDeviceState)
+   \   00000466   ....               LDI     R17, (??m_xDeviceState) >> 8
+   \   00000468   ........           CALL    memcpy
    1022          
    1023          //    // Создадим автоматы обработки ошибок.
    1024          //    uint8_t uiIndex = 0;
@@ -4377,8 +4343,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    1070          //        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
    1071          //    };
    1072          }
-   \   000004AA   E0E6               LDI     R30, 6
-   \   000004AC   ........           JMP     ?EPILOGUE_B6_L09
+   \   0000046C   E0E6               LDI     R30, 6
+   \   0000046E   ........           JMP     ?EPILOGUE_B6_L09
    1073          
    1074          //-----------------------------------------------------------------------------------------------------
 
@@ -7202,7 +7168,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
       74  CPss21::AllAlarmWindowOff()
      110  CPss21::AllAlarmWindowOn(uint8_t)
       10  CPss21::BoardWindowsUpdate()
-    1200  CPss21::ConfigurationInit()
+    1138  CPss21::ConfigurationInit()
       74  CPss21::ConnectDevice(uint8_t)
      364  CPss21::CreateDevices()
       18  CPss21::DestroyDevices(uint8_t)
@@ -7416,7 +7382,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 
  
    105 bytes in segment ABSOLUTE
- 7 336 bytes in segment CODE
+ 7 274 bytes in segment CODE
      2 bytes in segment DIFUNCT
     14 bytes in segment INITTAB
     70 bytes in segment NEAR_F
@@ -7425,7 +7391,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
  1 804 bytes in segment NEAR_Z
     50 bytes in segment SWITCH
  
- 7 134 bytes of CODE memory (+ 428 bytes shared)
+ 7 072 bytes of CODE memory (+ 428 bytes shared)
  1 894 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

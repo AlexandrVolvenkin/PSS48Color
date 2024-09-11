@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          11/Sep/2024  06:58:04
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          11/Sep/2024  18:31:02
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWAAC3.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW199A.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -2544,28 +2544,28 @@ _A_PINF:
 //  789         puiTempBuffer++;
 //  790     }
 //  791 
-//  792     // Установим тип текущего дискретного сигнала как namur.
-//  793     // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
-//  794     CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
-//  795     for (uint8_t i = 0;
-//  796             i < DISCRETE_INPUTS_NUMBER;
-//  797         )
-//  798     {
-//  799         uint8_t uiData = *puiTempBuffer;
-//  800         for (uint8_t j = 0;
-//  801                 j < 8;
-//  802                 j++)
-//  803         {
-//  804             // Установим тип текущего дискретного сигнала как namur.
-//  805             if (((uiData >> j) & 0x01))
-//  806             {
-//  807                 puiAlarmDfaInit[i] |= 0x40;
-//  808             }
-//  809 
-//  810             i++;
-//  811         }
-//  812         puiTempBuffer++;
-//  813     }
+//  792 //    // Установим тип текущего дискретного сигнала как namur.
+//  793 //    // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
+//  794 //    CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
+//  795 //    for (uint8_t i = 0;
+//  796 //            i < DISCRETE_INPUTS_NUMBER;
+//  797 //        )
+//  798 //    {
+//  799 //        uint8_t uiData = *puiTempBuffer;
+//  800 //        for (uint8_t j = 0;
+//  801 //                j < 8;
+//  802 //                j++)
+//  803 //        {
+//  804 //            // Установим тип текущего дискретного сигнала как namur.
+//  805 //            if (((uiData >> j) & 0x01))
+//  806 //            {
+//  807 //                puiAlarmDfaInit[i] |= 0x40;
+//  808 //            }
+//  809 //
+//  810 //            i++;
+//  811 //        }
+//  812 //        puiTempBuffer++;
+//  813 //    }
 //  814 
 //  815     puiTempBuffer = m_auiIntermediateBuff;
 //  816     // Привяжем окна сигнализации к дискретным сигналам.
@@ -4317,40 +4317,6 @@ _A_PINF:
         ADIW    R27:R26, 1
         RJMP    ??ConfigurationInit_1
 ??ConfigurationInit_2:
-        LDI     R18, 10
-        MOVW    R17:R16, R27:R26
-        CALL    ??ReadBlock
-        LDI     R22, 0
-??ConfigurationInit_8:
-        CPI     R22, 48
-        BRCC    ??ConfigurationInit_9
-        LD      R19, X
-        LDI     R18, 0
-??ConfigurationInit_10:
-        CPI     R18, 8
-        BRCC    ??ConfigurationInit_11
-        MOV     R16, R19
-        LDI     R17, 0
-        MOV     R20, R18
-        CALL    ?SS_SHR_L02
-        ANDI    R16, 0x01
-        TST     R16
-        BREQ    ??ConfigurationInit_12
-        LDI     R23, 0
-        MOVW    R31:R30, R25:R24
-        ADD     R30, R22
-        ADC     R31, R23
-        LD      R16, Z
-        ORI     R16, 0x40
-        ST      Z, R16
-??ConfigurationInit_12:
-        INC     R22
-        INC     R18
-        RJMP    ??ConfigurationInit_10
-??ConfigurationInit_11:
-        ADIW    R27:R26, 1
-        RJMP    ??ConfigurationInit_8
-??ConfigurationInit_9:
         LDI     R16, LOW(??m_auiIntermediateBuff)
         LDI     R17, (??m_auiIntermediateBuff) >> 8
         MOVW    R27:R26, R17:R16
@@ -4358,9 +4324,9 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??ReadBlock
         LDI     R16, 0
-??ConfigurationInit_13:
+??ConfigurationInit_8:
         CPI     R16, 96
-        BRCC    ??ConfigurationInit_14
+        BRCC    ??ConfigurationInit_9
         LDI     R17, 0
         MOVW    R31:R30, R27:R26
         ADD     R30, R16
@@ -4376,15 +4342,15 @@ _A_PINF:
         OR      R18, R17
         ST      Z, R18
         INC     R16
-        RJMP    ??ConfigurationInit_13
-??ConfigurationInit_14:
+        RJMP    ??ConfigurationInit_8
+??ConfigurationInit_9:
         LDI     R18, 4
         MOVW    R17:R16, R27:R26
         CALL    ??ReadBlock
         LDI     R18, 0
-??ConfigurationInit_15:
+??ConfigurationInit_10:
         CPI     R18, 96
-        BRCC    ??ConfigurationInit_16
+        BRCC    ??ConfigurationInit_11
         LDI     R19, 0
         MOVW    R31:R30, R25:R24
         ADD     R30, R18
@@ -4392,7 +4358,7 @@ _A_PINF:
         LD      R16, Z
         ANDI    R16, 0x3F
         CPI     R16, 48
-        BRCC    ??ConfigurationInit_17
+        BRCC    ??ConfigurationInit_12
         LDI     R19, 0
         MOVW    R31:R30, R25:R24
         ADD     R30, R18
@@ -4412,8 +4378,8 @@ _A_PINF:
         LD      R17, Z
         OR      R17, R16
         ST      Z, R17
-        RJMP    ??ConfigurationInit_18
-??ConfigurationInit_17:
+        RJMP    ??ConfigurationInit_13
+??ConfigurationInit_12:
         LDI     R19, 0
         MOVW    R31:R30, R25:R24
         ADD     R30, R18
@@ -4421,16 +4387,16 @@ _A_PINF:
         LD      R17, Z
         ANDI    R17, 0xC0
         ST      Z, R17
-??ConfigurationInit_18:
+??ConfigurationInit_13:
         INC     R18
-        RJMP    ??ConfigurationInit_15
-??ConfigurationInit_16:
+        RJMP    ??ConfigurationInit_10
+??ConfigurationInit_11:
         CLR     R4
-??ConfigurationInit_19:
+??ConfigurationInit_14:
         LDI     R16, 96
         CP      R4, R16
         BRCS    $+2+2
-        RJMP    ??ConfigurationInit_20
+        RJMP    ??ConfigurationInit_15
         CLR     R5
         MOVW    R31:R30, R25:R24
         ADD     R30, R4
@@ -4440,21 +4406,58 @@ _A_PINF:
         ANDI    R16, 0x03
         ANDI    R17, 0x00
         SUBI    R16, 0
-        BREQ    ??ConfigurationInit_21
+        BREQ    ??ConfigurationInit_16
         DEC     R16
-        BREQ    ??ConfigurationInit_22
+        BREQ    ??ConfigurationInit_17
         SUBI    R16, 2
         BRNE    $+2+2
-        RJMP    ??ConfigurationInit_23
-        RJMP    ??ConfigurationInit_24
+        RJMP    ??ConfigurationInit_18
+        RJMP    ??ConfigurationInit_19
+??ConfigurationInit_16:
+        LDI     R16, 7
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    ??ConfigurationInit_20
+        CALL    ??CNormalAlarmDfa
+        RJMP    ??ConfigurationInit_21
+??ConfigurationInit_20:
+        LDI     R16, 0
+        LDI     R17, 0
 ??ConfigurationInit_21:
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_17:
+        CLR     R5
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        SBRS    R16, 7
+        RJMP    ??ConfigurationInit_23
+        CLR     R5
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        SBRS    R16, 6
+        RJMP    ??ConfigurationInit_24
         LDI     R16, 7
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
         OR      R18, R17
         BREQ    ??ConfigurationInit_25
-        CALL    ??CNormalAlarmDfa
+        CALL    ??CIndicationAlarmHighLevelNamurDfa
         RJMP    ??ConfigurationInit_26
 ??ConfigurationInit_25:
         LDI     R16, 0
@@ -4469,15 +4472,31 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_22:
-        CLR     R5
-        MOVW    R31:R30, R25:R24
-        ADD     R30, R4
-        ADC     R31, R5
-        LD      R16, Z
-        SBRS    R16, 7
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_24:
+        LDI     R16, 7
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    ??ConfigurationInit_27
+        CALL    ??CIndicationAlarmHighLevelDfa
         RJMP    ??ConfigurationInit_28
+??ConfigurationInit_27:
+        LDI     R16, 0
+        LDI     R17, 0
+??ConfigurationInit_28:
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_23:
         CLR     R5
         MOVW    R31:R30, R25:R24
         ADD     R30, R4
@@ -4491,7 +4510,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    ??ConfigurationInit_30
-        CALL    ??CIndicationAlarmHighLevelNamurDfa
+        CALL    ??CIndicationAlarmLowLevelNamurDfa
         RJMP    ??ConfigurationInit_31
 ??ConfigurationInit_30:
         LDI     R16, 0
@@ -4506,7 +4525,7 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
+        RJMP    ??ConfigurationInit_22
 ??ConfigurationInit_29:
         LDI     R16, 7
         LDI     R17, 0
@@ -4514,7 +4533,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    ??ConfigurationInit_32
-        CALL    ??CIndicationAlarmHighLevelDfa
+        CALL    ??CIndicationAlarmLowLevelDfa
         RJMP    ??ConfigurationInit_33
 ??ConfigurationInit_32:
         LDI     R16, 0
@@ -4529,68 +4548,68 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_28:
-        CLR     R5
-        MOVW    R31:R30, R25:R24
-        ADD     R30, R4
-        ADC     R31, R5
-        LD      R16, Z
-        SBRS    R16, 6
-        RJMP    ??ConfigurationInit_34
-        LDI     R16, 7
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    ??ConfigurationInit_35
-        CALL    ??CIndicationAlarmLowLevelNamurDfa
-        RJMP    ??ConfigurationInit_36
-??ConfigurationInit_35:
-        LDI     R16, 0
-        LDI     R17, 0
-??ConfigurationInit_36:
-        MOV     R18, R4
-        LDI     R19, 0
-        LSL     R18
-        ROL     R19
-        MOVW    R31:R30, R19:R18
-        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_34:
-        LDI     R16, 7
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    ??ConfigurationInit_37
-        CALL    ??CIndicationAlarmLowLevelDfa
-        RJMP    ??ConfigurationInit_38
-??ConfigurationInit_37:
-        LDI     R16, 0
-        LDI     R17, 0
-??ConfigurationInit_38:
-        MOV     R18, R4
-        LDI     R19, 0
-        LSL     R18
-        ROL     R19
-        MOVW    R31:R30, R19:R18
-        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_23:
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_18:
         CLR     R5
         MOVW    R31:R30, R25:R24
         ADD     R30, R4
         ADC     R31, R5
         LD      R16, Z
         SBRS    R16, 7
+        RJMP    ??ConfigurationInit_34
+        CLR     R5
+        MOVW    R31:R30, R25:R24
+        ADD     R30, R4
+        ADC     R31, R5
+        LD      R16, Z
+        SBRS    R16, 6
+        RJMP    ??ConfigurationInit_35
+        LDI     R16, 7
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    ??ConfigurationInit_36
+        CALL    ??CPreventiveAlarmHighLevelNamurDfa
+        RJMP    ??ConfigurationInit_37
+??ConfigurationInit_36:
+        LDI     R16, 0
+        LDI     R17, 0
+??ConfigurationInit_37:
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_35:
+        LDI     R16, 7
+        LDI     R17, 0
+        CALL    `??operator new`
+        MOV     R18, R16
+        OR      R18, R17
+        BREQ    ??ConfigurationInit_38
+        CALL    ??CPreventiveAlarmHighLevelDfa
         RJMP    ??ConfigurationInit_39
+??ConfigurationInit_38:
+        LDI     R16, 0
+        LDI     R17, 0
+??ConfigurationInit_39:
+        MOV     R18, R4
+        LDI     R19, 0
+        LSL     R18
+        ROL     R19
+        MOVW    R31:R30, R19:R18
+        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
+        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
+        ST      Z, R16
+        STD     Z+1, R17
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_34:
         CLR     R5
         MOVW    R31:R30, R25:R24
         ADD     R30, R4
@@ -4604,7 +4623,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    ??ConfigurationInit_41
-        CALL    ??CPreventiveAlarmHighLevelNamurDfa
+        CALL    ??CPreventiveAlarmLowLevelNamurDfa
         RJMP    ??ConfigurationInit_42
 ??ConfigurationInit_41:
         LDI     R16, 0
@@ -4619,7 +4638,7 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
+        RJMP    ??ConfigurationInit_22
 ??ConfigurationInit_40:
         LDI     R16, 7
         LDI     R17, 0
@@ -4627,7 +4646,7 @@ _A_PINF:
         MOV     R18, R16
         OR      R18, R17
         BREQ    ??ConfigurationInit_43
-        CALL    ??CPreventiveAlarmHighLevelDfa
+        CALL    ??CPreventiveAlarmLowLevelDfa
         RJMP    ??ConfigurationInit_44
 ??ConfigurationInit_43:
         LDI     R16, 0
@@ -4642,73 +4661,20 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_39:
-        CLR     R5
-        MOVW    R31:R30, R25:R24
-        ADD     R30, R4
-        ADC     R31, R5
-        LD      R16, Z
-        SBRS    R16, 6
-        RJMP    ??ConfigurationInit_45
+        RJMP    ??ConfigurationInit_22
+??ConfigurationInit_19:
         LDI     R16, 7
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
         OR      R18, R17
-        BREQ    ??ConfigurationInit_46
-        CALL    ??CPreventiveAlarmLowLevelNamurDfa
-        RJMP    ??ConfigurationInit_47
-??ConfigurationInit_46:
-        LDI     R16, 0
-        LDI     R17, 0
-??ConfigurationInit_47:
-        MOV     R18, R4
-        LDI     R19, 0
-        LSL     R18
-        ROL     R19
-        MOVW    R31:R30, R19:R18
-        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_45:
-        LDI     R16, 7
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    ??ConfigurationInit_48
-        CALL    ??CPreventiveAlarmLowLevelDfa
-        RJMP    ??ConfigurationInit_49
-??ConfigurationInit_48:
-        LDI     R16, 0
-        LDI     R17, 0
-??ConfigurationInit_49:
-        MOV     R18, R4
-        LDI     R19, 0
-        LSL     R18
-        ROL     R19
-        MOVW    R31:R30, R19:R18
-        SUBI    R30, LOW((-(??m_apxAlarmDfa) & 0xFFFF))
-        SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
-        ST      Z, R16
-        STD     Z+1, R17
-        RJMP    ??ConfigurationInit_27
-??ConfigurationInit_24:
-        LDI     R16, 7
-        LDI     R17, 0
-        CALL    `??operator new`
-        MOV     R18, R16
-        OR      R18, R17
-        BREQ    ??ConfigurationInit_50
+        BREQ    ??ConfigurationInit_45
         CALL    ??CNormalAlarmDfa
-        RJMP    ??ConfigurationInit_51
-??ConfigurationInit_50:
+        RJMP    ??ConfigurationInit_46
+??ConfigurationInit_45:
         LDI     R16, 0
         LDI     R17, 0
-??ConfigurationInit_51:
+??ConfigurationInit_46:
         MOV     R18, R4
         LDI     R19, 0
         LSL     R18
@@ -4718,25 +4684,25 @@ _A_PINF:
         SBCI    R31, (-(??m_apxAlarmDfa) & 0xFFFF) >> 8
         ST      Z, R16
         STD     Z+1, R17
-??ConfigurationInit_27:
+??ConfigurationInit_22:
         INC     R4
-        RJMP    ??ConfigurationInit_19
-??ConfigurationInit_20:
+        RJMP    ??ConfigurationInit_14
+??ConfigurationInit_15:
         LDI     R18, 3
         MOVW    R17:R16, R27:R26
         CALL    ??ReadBlock
         CLR     R4
-??ConfigurationInit_52:
+??ConfigurationInit_47:
         LDI     R16, 96
         CP      R4, R16
-        BRCC    ??ConfigurationInit_53
+        BRCC    ??ConfigurationInit_48
         CLR     R5
         MOVW    R31:R30, R27:R26
         ADD     R30, R4
         ADC     R31, R5
         LD      R16, Z
         CPI     R16, 48
-        BRCC    ??ConfigurationInit_54
+        BRCC    ??ConfigurationInit_49
         CLR     R5
         MOVW    R31:R30, R27:R26
         ADD     R30, R4
@@ -4752,8 +4718,8 @@ _A_PINF:
         LD      R16, Z
         LDD     R17, Z+1
         CALL    ??SetAlarmWindowIndex
-        RJMP    ??ConfigurationInit_55
-??ConfigurationInit_54:
+        RJMP    ??ConfigurationInit_50
+??ConfigurationInit_49:
         LDI     R18, 0
         MOV     R16, R4
         LDI     R17, 0
@@ -4765,18 +4731,18 @@ _A_PINF:
         LD      R16, Z
         LDD     R17, Z+1
         CALL    ??SetAlarmWindowIndex
-??ConfigurationInit_55:
+??ConfigurationInit_50:
         INC     R4
-        RJMP    ??ConfigurationInit_52
-??ConfigurationInit_53:
+        RJMP    ??ConfigurationInit_47
+??ConfigurationInit_48:
         LDI     R18, 6
         MOVW    R17:R16, R27:R26
         CALL    ??ReadBlock
         CLR     R4
-??ConfigurationInit_56:
+??ConfigurationInit_51:
         LDI     R16, 96
         CP      R4, R16
-        BRCC    ??ConfigurationInit_57
+        BRCC    ??ConfigurationInit_52
         MOV     R16, R4
         LDI     R17, 0
         LSL     R16
@@ -4795,13 +4761,13 @@ _A_PINF:
         MOVW    R31:R30, R17:R16
         ST      Z, R18
         INC     R4
-        RJMP    ??ConfigurationInit_56
-??ConfigurationInit_57:
+        RJMP    ??ConfigurationInit_51
+??ConfigurationInit_52:
         CLR     R4
-??ConfigurationInit_58:
+??ConfigurationInit_53:
         LDI     R16, 48
         CP      R4, R16
-        BRCC    ??ConfigurationInit_59
+        BRCC    ??ConfigurationInit_54
         MOV     R18, R4
         MOV     R16, R4
         LDI     R17, 0
@@ -4814,13 +4780,13 @@ _A_PINF:
         LDD     R17, Z+1
         CALL    ??SetDiscreteStateIndex
         INC     R4
-        RJMP    ??ConfigurationInit_58
-??ConfigurationInit_59:
+        RJMP    ??ConfigurationInit_53
+??ConfigurationInit_54:
         CLR     R4
-??ConfigurationInit_60:
+??ConfigurationInit_55:
         LDI     R16, 48
         CP      R4, R16
-        BRCC    ??ConfigurationInit_61
+        BRCC    ??ConfigurationInit_56
         MOV     R18, R4
         SUBI    R18, 208
         MOV     R16, R4
@@ -4834,8 +4800,8 @@ _A_PINF:
         LDD     R17, Z+1
         CALL    ??SetDiscreteStateIndex
         INC     R4
-        RJMP    ??ConfigurationInit_60
-??ConfigurationInit_61:
+        RJMP    ??ConfigurationInit_55
+??ConfigurationInit_56:
         LDI     R18, 11
         MOVW    R17:R16, R27:R26
         CALL    ??ReadBlock
@@ -7259,7 +7225,7 @@ __?EEARH:
 // 1896 
 // 
 //   105 bytes in segment ABSOLUTE
-// 7 336 bytes in segment CODE
+// 7 274 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -7268,7 +7234,7 @@ __?EEARH:
 // 1 804 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 7 134 bytes of CODE memory (+ 428 bytes shared)
+// 7 072 bytes of CODE memory (+ 428 bytes shared)
 // 1 894 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
