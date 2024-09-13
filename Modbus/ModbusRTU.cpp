@@ -78,7 +78,7 @@ void CModbusRTU::Init(CUart* pxDevice,
 
     memset(m_puiCoils, 0, m_uiCoilsNumber * sizeof(uint8_t));
     memset(m_puiDiscreteInputs, 0, m_uiDiscreteInputsNumber * sizeof(uint8_t));
-    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
+//    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
     memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
 
     m_pxDevice -> Init(m_uiBaudRate,

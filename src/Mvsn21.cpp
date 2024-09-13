@@ -70,6 +70,9 @@ uint8_t CMvsn21Driver::DataExchange(void)
                     ONE_BYTE_CRC_LENGTH));
     CPss21::DisconnectDevice();
 
+    uint8_t *puiDestination = m_puiDiscreteInputs;
+    uint8_t *puiDestinationBadState = m_puiDiscreteInputsBadState;
+
     // что ответил модуль?
     switch(m_puiRxBuffer[COMMAND_BYTE_OFFSET])
     {
@@ -82,8 +85,6 @@ uint8_t CMvsn21Driver::DataExchange(void)
             m_uiBadAnswerCounter = 0;
             SetErrorAlarmData(0);
             // отправим полученные от модуля данные в рабочий массив прибора.
-            uint8_t *puiDestination = m_puiDiscreteInputs;
-            uint8_t *puiDestinationBadState = m_puiDiscreteInputsBadState;
 
             for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
             {
@@ -133,9 +134,17 @@ uint8_t CMvsn21Driver::DataExchange(void)
         break;
 
     case DATA_NOT_READY:
+        for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        {
+            *puiDestinationBadState++ = 0;
+        }
         break;
 
     default:
+        for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        {
+            *puiDestinationBadState++ = 0;
+        }
         break;
     };
 

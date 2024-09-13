@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          11/Sep/2024  06:58:03
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          13/Sep/2024  07:48:24
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWA877.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW6E87.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //        --cpu=m128a -ms -o
@@ -1072,9 +1072,9 @@ _A_PINF:
         BREQ    ??Set_7
         DEC     R16
         BREQ    ??Set_8
-        DEC     R16
-        BREQ    ??Set_9
         SUBI    R16, 3
+        BREQ    ??Set_9
+        DEC     R16
         BREQ    ??Set_10
         RJMP    ??Set_11
 //  275             {
@@ -1088,31 +1088,31 @@ _A_PINF:
 //  278                 break;
         RJMP    ??Set_12
 //  279 
-//  280             case NAMUR_INDICATION:
-//  281                 CPss48BoardPixel::SetData(&m_xPixelColorBlue);
+//  280             case PREVENTIVE:
+//  281                 CPss48BoardPixel::SetData(&m_xPixelColorYellow);
 ??Set_7:
-        LDI     R16, LOW(??m_xPixelColorBlue)
-        LDI     R17, (??m_xPixelColorBlue) >> 8
+        LDI     R16, LOW(??m_xPixelColorYellow)
+        LDI     R17, (??m_xPixelColorYellow) >> 8
         LDI     R18, 0
         CALL    ??SetData
 //  282                 break;
         RJMP    ??Set_12
 //  283 
-//  284             case PREVENTIVE:
-//  285                 CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+//  284             case EMERGENCY:
+//  285                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
 ??Set_8:
-        LDI     R16, LOW(??m_xPixelColorYellow)
-        LDI     R17, (??m_xPixelColorYellow) >> 8
+        LDI     R16, LOW(??m_xPixelColorRed)
+        LDI     R17, (??m_xPixelColorRed) >> 8
         LDI     R18, 0
         CALL    ??SetData
 //  286                 break;
         RJMP    ??Set_12
 //  287 
-//  288             case EMERGENCY:
-//  289                 CPss48BoardPixel::SetData(&m_xPixelColorRed);
+//  288             case NAMUR_INDICATION:
+//  289                 CPss48BoardPixel::SetData(&m_xPixelColorBlue);
 ??Set_9:
-        LDI     R16, LOW(??m_xPixelColorRed)
-        LDI     R17, (??m_xPixelColorRed) >> 8
+        LDI     R16, LOW(??m_xPixelColorBlue)
+        LDI     R17, (??m_xPixelColorBlue) >> 8
         LDI     R18, 0
         CALL    ??SetData
 //  290                 break;

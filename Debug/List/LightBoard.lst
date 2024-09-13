@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           11/Sep/2024  06:58:03
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           13/Sep/2024  07:48:24
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWA877.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW6E87.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 #        --cpu=m128a -ms -o
@@ -963,9 +963,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
    \   00000070   F069               BREQ    ??Set_7
    \   00000072   950A               DEC     R16
    \   00000074   F089               BREQ    ??Set_8
-   \   00000076   950A               DEC     R16
+   \   00000076   5003               SUBI    R16, 3
    \   00000078   F0A9               BREQ    ??Set_9
-   \   0000007A   5003               SUBI    R16, 3
+   \   0000007A   950A               DEC     R16
    \   0000007C   F0C9               BREQ    ??Set_10
    \   0000007E   C01E               RJMP    ??Set_11
     275                      {
@@ -979,31 +979,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
     278                          break;
    \   0000008A   C023               RJMP    ??Set_12
     279          
-    280                      case NAMUR_INDICATION:
-    281                          CPss48BoardPixel::SetData(&m_xPixelColorBlue);
+    280                      case PREVENTIVE:
+    281                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
    \                     ??Set_7:
-   \   0000008C   ....               LDI     R16, LOW(??m_xPixelColorBlue)
-   \   0000008E   ....               LDI     R17, (??m_xPixelColorBlue) >> 8
+   \   0000008C   ....               LDI     R16, LOW(??m_xPixelColorYellow)
+   \   0000008E   ....               LDI     R17, (??m_xPixelColorYellow) >> 8
    \   00000090   E020               LDI     R18, 0
    \   00000092   ........           CALL    ??SetData
     282                          break;
    \   00000096   C01D               RJMP    ??Set_12
     283          
-    284                      case PREVENTIVE:
-    285                          CPss48BoardPixel::SetData(&m_xPixelColorYellow);
+    284                      case EMERGENCY:
+    285                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
    \                     ??Set_8:
-   \   00000098   ....               LDI     R16, LOW(??m_xPixelColorYellow)
-   \   0000009A   ....               LDI     R17, (??m_xPixelColorYellow) >> 8
+   \   00000098   ....               LDI     R16, LOW(??m_xPixelColorRed)
+   \   0000009A   ....               LDI     R17, (??m_xPixelColorRed) >> 8
    \   0000009C   E020               LDI     R18, 0
    \   0000009E   ........           CALL    ??SetData
     286                          break;
    \   000000A2   C017               RJMP    ??Set_12
     287          
-    288                      case EMERGENCY:
-    289                          CPss48BoardPixel::SetData(&m_xPixelColorRed);
+    288                      case NAMUR_INDICATION:
+    289                          CPss48BoardPixel::SetData(&m_xPixelColorBlue);
    \                     ??Set_9:
-   \   000000A4   ....               LDI     R16, LOW(??m_xPixelColorRed)
-   \   000000A6   ....               LDI     R17, (??m_xPixelColorRed) >> 8
+   \   000000A4   ....               LDI     R16, LOW(??m_xPixelColorBlue)
+   \   000000A6   ....               LDI     R17, (??m_xPixelColorBlue) >> 8
    \   000000A8   E020               LDI     R18, 0
    \   000000AA   ........           CALL    ??SetData
     290                          break;

@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           11/Sep/2024  06:58:04
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           13/Sep/2024  07:48:24
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWAA43.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW6FC6.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o
@@ -1855,7 +1855,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000001A   F079               BREQ    ??AlarmSet_5
    \   0000001C   950A               DEC     R16
    \   0000001E   F091               BREQ    ??AlarmSet_6
-   \   00000020   5002               SUBI    R16, 2
+   \   00000020   950A               DEC     R16
    \   00000022   F0A9               BREQ    ??AlarmSet_7
    \   00000024   950A               DEC     R16
    \   00000026   F0C1               BREQ    ??AlarmSet_8
@@ -1863,7 +1863,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000002A   F0D1               BREQ    ??AlarmSet_9
    \   0000002C   950A               DEC     R16
    \   0000002E   F0C1               BREQ    ??AlarmSet_9
-   \   00000030   950A               DEC     R16
+   \   00000030   5002               SUBI    R16, 2
    \   00000032   F0B1               BREQ    ??AlarmSet_9
    \   00000034   950A               DEC     R16
    \   00000036   F0A1               BREQ    ??AlarmSet_9
@@ -1961,7 +1961,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     339              CPss21::ActiveAlarmWindowOn(PREVENTIVE);
-   \   00000006   E003               LDI     R16, 3
+   \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
     340          }
    \   0000000C   9189               LD      R24, Y+
@@ -1988,7 +1988,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     351              CPss21::ActiveAlarmWindowOff(PREVENTIVE);
-   \   00000006   E003               LDI     R16, 3
+   \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??ActiveAlarmWindowOff
     352              CPss21::BoardWindowsUpdate();
    \   0000000C   ........           CALL    ??BoardWindowsUpdate
@@ -2083,7 +2083,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000001A   F079               BREQ    ??AlarmSet_10
    \   0000001C   950A               DEC     R16
    \   0000001E   F091               BREQ    ??AlarmSet_11
-   \   00000020   5002               SUBI    R16, 2
+   \   00000020   950A               DEC     R16
    \   00000022   F0A9               BREQ    ??AlarmSet_12
    \   00000024   950A               DEC     R16
    \   00000026   F0C1               BREQ    ??AlarmSet_13
@@ -2091,7 +2091,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000002A   F0D1               BREQ    ??AlarmSet_14
    \   0000002C   950A               DEC     R16
    \   0000002E   F0C1               BREQ    ??AlarmSet_14
-   \   00000030   950A               DEC     R16
+   \   00000030   5002               SUBI    R16, 2
    \   00000032   F0B1               BREQ    ??AlarmSet_14
    \   00000034   950A               DEC     R16
    \   00000036   F0A1               BREQ    ??AlarmSet_14
@@ -2200,7 +2200,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     435              CPss21::ActiveAlarmWindowOn(EMERGENCY);
-   \   00000006   E004               LDI     R16, 4
+   \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??ActiveAlarmWindowOn
     436          }
    \   0000000C   9189               LD      R24, Y+
@@ -2217,7 +2217,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     441              CPss21::ActiveAlarmWindowOff(EMERGENCY);
-   \   00000006   E004               LDI     R16, 4
+   \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??ActiveAlarmWindowOff
     442              CPss21::BoardWindowsUpdate();
    \   0000000C   ........           CALL    ??BoardWindowsUpdate
@@ -2316,7 +2316,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000001A   F079               BREQ    ??AlarmSet_15
    \   0000001C   950A               DEC     R16
    \   0000001E   F091               BREQ    ??AlarmSet_16
-   \   00000020   5002               SUBI    R16, 2
+   \   00000020   950A               DEC     R16
    \   00000022   F0A9               BREQ    ??AlarmSet_17
    \   00000024   950A               DEC     R16
    \   00000026   F0C1               BREQ    ??AlarmSet_18
@@ -2324,7 +2324,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000002A   F0F9               BREQ    ??AlarmSet_19
    \   0000002C   950A               DEC     R16
    \   0000002E   F0E9               BREQ    ??AlarmSet_19
-   \   00000030   950A               DEC     R16
+   \   00000030   5002               SUBI    R16, 2
    \   00000032   F0B9               BREQ    ??AlarmSet_20
    \   00000034   950A               DEC     R16
    \   00000036   F0C9               BREQ    ??AlarmSet_19
@@ -2554,7 +2554,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000001A   F079               BREQ    ??AlarmSet_21
    \   0000001C   950A               DEC     R16
    \   0000001E   F091               BREQ    ??AlarmSet_22
-   \   00000020   5002               SUBI    R16, 2
+   \   00000020   950A               DEC     R16
    \   00000022   F0A9               BREQ    ??AlarmSet_23
    \   00000024   950A               DEC     R16
    \   00000026   F0C1               BREQ    ??AlarmSet_24
@@ -2562,7 +2562,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   0000002A   F121               BREQ    ??AlarmSet_25
    \   0000002C   950A               DEC     R16
    \   0000002E   F111               BREQ    ??AlarmSet_25
-   \   00000030   950A               DEC     R16
+   \   00000030   5002               SUBI    R16, 2
    \   00000032   F0B9               BREQ    ??AlarmSet_26
    \   00000034   950A               DEC     R16
    \   00000036   F0D1               BREQ    ??AlarmSet_27
@@ -2874,7 +2874,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     707              CPss21::AllAlarmWindowOn(PREVENTIVE);
-   \   00000006   E003               LDI     R16, 3
+   \   00000006   E002               LDI     R16, 2
    \   00000008   ........           CALL    ??AllAlarmWindowOn
     708              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
@@ -2893,7 +2893,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
    \   00000002   938A               ST      -Y, R24
    \   00000004   01C8               MOVW    R25:R24, R17:R16
     714              CPss21::AllAlarmWindowOn(EMERGENCY);
-   \   00000006   E004               LDI     R16, 4
+   \   00000006   E003               LDI     R16, 3
    \   00000008   ........           CALL    ??AllAlarmWindowOn
     715              CBuzzer::LowOn();
    \   0000000C   ........           CALL    ??LowOn
