@@ -17,6 +17,19 @@
 class CAlarmDfa : public CDfaLite
 {
 public:
+
+    enum DISCRETE_SIGNAL_STATE_CODE
+    {
+        // дискретный сигнал неактивен
+        DISCRETE_SIGNAL_IS_NOT_ACTIVE = 0,
+        // дискретный сигнал активен
+        DISCRETE_SIGNAL_IS_ACTIVE = 1,
+        // дискретный сигнал недостоверен
+        DISCRETE_SIGNAL_IS_NAMUR_ERROR = 2,
+        // дискретный сигнал недостоверен
+        DISCRETE_SIGNAL_IS_INVALID = 3,
+    };
+
     enum
     {
         START = 0,

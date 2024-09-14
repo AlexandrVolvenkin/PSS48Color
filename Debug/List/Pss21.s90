@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          13/Sep/2024  09:57:16
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          14/Sep/2024  11:01:30
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW6B04.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW9714.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -2538,664 +2538,621 @@ _A_PINF:
 //  779                 puiAlarmDfaInit[i] |= 0x80;
 //  780             }
 //  781 
-//  782 //            if ((i == 0) || (i == 23))
-//  783 //            {
-//  784 //                puiAlarmDfaInit[i] |= 0x40;
-//  785 //            }
+//  782             i++;
+//  783         }
+//  784         puiTempBuffer++;
+//  785     }
 //  786 
-//  787             i++;
-//  788         }
-//  789         puiTempBuffer++;
-//  790     }
-//  791 
-//  792     // Установим тип текущего дискретного сигнала как namur.
-//  793     // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
-//  794     CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
-//  795     for (uint8_t i = 0;
-//  796             i < DISCRETE_INPUTS_NUMBER;
-//  797         )
-//  798     {
-//  799         uint8_t uiData = *puiTempBuffer;
-//  800         for (uint8_t j = 0;
-//  801                 j < 8;
-//  802                 j++)
-//  803         {
-//  804             // Установим тип текущего дискретного сигнала как namur.
-//  805             if (((uiData >> j) & 0x01))
-//  806             {
-//  807                 puiAlarmDfaInit[i] |= 0x40;
-//  808             }
+//  787     // Установим тип текущего дискретного сигнала как namur.
+//  788     // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
+//  789     CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
+//  790     for (uint8_t i = 0;
+//  791             i < DISCRETE_INPUTS_NUMBER;
+//  792         )
+//  793     {
+//  794         uint8_t uiData = *puiTempBuffer;
+//  795         for (uint8_t j = 0;
+//  796                 j < 8;
+//  797                 j++)
+//  798         {
+//  799             // Установим тип текущего дискретного сигнала как namur.
+//  800             if (((uiData >> j) & 0x01))
+//  801             {
+//  802                 puiAlarmDfaInit[i] |= 0x40;
+//  803             }
+//  804 
+//  805             i++;
+//  806         }
+//  807         puiTempBuffer++;
+//  808     }
 //  809 
-//  810             i++;
-//  811         }
-//  812         puiTempBuffer++;
-//  813     }
-//  814 
-//  815     puiTempBuffer = m_auiIntermediateBuff;
-//  816     // Привяжем окна сигнализации к дискретным сигналам.
-//  817     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
-//  818     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
-//  819     for (uint8_t i = 0;
-//  820             i < DISCRETE_SIGNALS_NUMBER;
-//  821             i++)
-//  822     {
-//  823         // Привяжем окно сигнализации к текущему дискретному сигналу.
-//  824         puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0xC0));
-//  825     }
-//  826 
-//  827     // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
-//  828     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_TYPE);
-//  829     for (uint8_t i = 0;
-//  830             i < DISCRETE_SIGNALS_NUMBER;
-//  831             i++)
-//  832     {
-//  833         uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0xC0));
-//  834         // Для текущего дискретного сигнала запрограммирована сигнализация?
-//  835         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
-//  836         {
-//  837             // Очистим индекс привязанного окна, больше не нужен.
-//  838             // Оставим уровень дискретного сигнала интерпретируемый как активный.
-//  839             // тип текущего дискретного сигнала как namur.
-//  840             puiAlarmDfaInit[i] &= 0xC0;
-//  841             // Установим тип сигнализации по привязанному окну.
-//  842             puiAlarmDfaInit[i] |= puiTempBuffer[uiWindowIndex];
-//  843         }
-//  844         else
-//  845         {
-//  846             // Очистим индекс привязанного окна, больше не нужен.
-//  847             // Оставим уровень дискретного сигнала интерпретируемый как активный.
-//  848             // тип текущего дискретного сигнала как namur.
-//  849             puiAlarmDfaInit[i] &= 0xC0;
-//  850         }
-//  851     }
-//  852 //                CPss21::m_aucRtuHoldingRegistersArray[4] = puiTempBuffer[0];
-//  853 //                CPss21::m_aucRtuHoldingRegistersArray[5] = puiAlarmDfaInit[0] & 0xC0;
-//  854 
-//  855     // Создадим объекты автоматов обработки сигнализаций дискретных сигналов.
-//  856     for (uint8_t i = 0;
-//  857             i < DISCRETE_SIGNALS_NUMBER;
-//  858             i++)
-//  859     {
-//  860         // Какой тип сигнализации связан с дискретным сигналом?
-//  861         switch (puiAlarmDfaInit[i] & 0x03)
-//  862         {
-//  863         case NORMAL:
-//  864             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
-//  865             break;
-//  866 
-//  867         case INDICATION:
-//  868             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
-//  869             if (puiAlarmDfaInit[i] & 0x80)
-//  870             {
-//  871 //                m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
-//  872                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  873                 if (puiAlarmDfaInit[i] & 0x40)
-//  874                 {
-//  875                     m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelNamurDfa;
-//  876                 }
-//  877                 else
+//  810     puiTempBuffer = m_auiIntermediateBuff;
+//  811     // Привяжем окна сигнализации к дискретным сигналам.
+//  812     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
+//  813     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+//  814     for (uint8_t i = 0;
+//  815             i < DISCRETE_SIGNALS_NUMBER;
+//  816             i++)
+//  817     {
+//  818         // Привяжем окно сигнализации к текущему дискретному сигналу.
+//  819         puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0xC0));
+//  820     }
+//  821 
+//  822     // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
+//  823     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_TYPE);
+//  824     for (uint8_t i = 0;
+//  825             i < DISCRETE_SIGNALS_NUMBER;
+//  826             i++)
+//  827     {
+//  828         uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0xC0));
+//  829         // Для текущего дискретного сигнала запрограммирована сигнализация?
+//  830         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
+//  831         {
+//  832             // Очистим индекс привязанного окна, больше не нужен.
+//  833             // Оставим уровень дискретного сигнала интерпретируемый как активный.
+//  834             // тип текущего дискретного сигнала как namur.
+//  835             puiAlarmDfaInit[i] &= 0xC0;
+//  836             // Установим тип сигнализации по привязанному окну.
+//  837             puiAlarmDfaInit[i] |= puiTempBuffer[uiWindowIndex];
+//  838         }
+//  839         else
+//  840         {
+//  841             // Очистим индекс привязанного окна, больше не нужен.
+//  842             // Оставим уровень дискретного сигнала интерпретируемый как активный.
+//  843             // тип текущего дискретного сигнала как namur.
+//  844             puiAlarmDfaInit[i] &= 0xC0;
+//  845         }
+//  846     }
+//  847 
+//  848     // Создадим объекты автоматов обработки сигнализаций дискретных сигналов.
+//  849     for (uint8_t i = 0;
+//  850             i < DISCRETE_SIGNALS_NUMBER;
+//  851             i++)
+//  852     {
+//  853         // Какой тип сигнализации связан с дискретным сигналом?
+//  854         switch (puiAlarmDfaInit[i] & 0x03)
+//  855         {
+//  856         case NORMAL:
+//  857             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  858             break;
+//  859 
+//  860         case INDICATION:
+//  861             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  862             if (puiAlarmDfaInit[i] & 0x80)
+//  863             {
+//  864                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  865                 if (puiAlarmDfaInit[i] & 0x40)
+//  866                 {
+//  867                     m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelNamurDfa;
+//  868                 }
+//  869                 else
+//  870                 {
+//  871                     m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
+//  872                 }
+//  873             }
+//  874             else
+//  875             {
+//  876                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  877                 if (puiAlarmDfaInit[i] & 0x40)
 //  878                 {
-//  879                     m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
+//  879                     m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelNamurDfa;
 //  880                 }
-//  881             }
-//  882             else
-//  883             {
-//  884 //                m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
-//  885                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  886                 if (puiAlarmDfaInit[i] & 0x40)
-//  887                 {
-//  888                     m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelNamurDfa;
-//  889                 }
-//  890                 else
-//  891                 {
-//  892                     m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
-//  893                 }
-//  894             }
-//  895             break;
-//  896 
-//  897         case PREVENTIVE:
-//  898 //            if (i < 2)
-//  899 //            {
-//  900 //                CPss21::m_aucRtuHoldingRegistersArray[4] = 2;
-//  901 //                if (m_aucRtuHoldingRegistersArray[4])
-//  902 //                {
-//  903 //                    CPss21::m_aucRtuHoldingRegistersArray[5] = i + 1;
-//  904 //                }
-//  905 //            }
-//  906 
-//  907             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
-//  908             if (puiAlarmDfaInit[i] & 0x80)
-//  909             {
-//  910 //                m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
-//  911                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  912                 if (puiAlarmDfaInit[i] & 0x40)
-//  913                 {
-//  914                     m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelNamurDfa;
-//  915                 }
-//  916                 else
-//  917                 {
-//  918                     m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
-//  919                 }
-//  920             }
-//  921             else
-//  922             {
-//  923 //                m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
-//  924                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  925                 if (puiAlarmDfaInit[i] & 0x40)
+//  881                 else
+//  882                 {
+//  883                     m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
+//  884                 }
+//  885             }
+//  886             break;
+//  887 
+//  888         case PREVENTIVE:
+//  889             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  890             if (puiAlarmDfaInit[i] & 0x80)
+//  891             {
+//  892                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  893                 if (puiAlarmDfaInit[i] & 0x40)
+//  894                 {
+//  895                     m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelNamurDfa;
+//  896                 }
+//  897                 else
+//  898                 {
+//  899                     m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
+//  900                 }
+//  901             }
+//  902             else
+//  903             {
+//  904                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  905                 if (puiAlarmDfaInit[i] & 0x40)
+//  906                 {
+//  907                     m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelNamurDfa;
+//  908                 }
+//  909                 else
+//  910                 {
+//  911                     m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
+//  912                 }
+//  913             }
+//  914             break;
+//  915 
+//  916         case EMERGENCY:
+//  917             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
+//  918             if (puiAlarmDfaInit[i] & 0x80)
+//  919             {
+//  920                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  921                 if (puiAlarmDfaInit[i] & 0x40)
+//  922                 {
+//  923                     m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelNamurDfa;
+//  924                 }
+//  925                 else
 //  926                 {
-//  927                     m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelNamurDfa;
+//  927                     m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
 //  928                 }
-//  929                 else
-//  930                 {
-//  931                     m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
-//  932                 }
-//  933             }
-//  934             break;
-//  935 
-//  936         case EMERGENCY:
-//  937 //            if (i == 0)
-//  938 //            {
-//  939 //                CPss21::m_aucRtuHoldingRegistersArray[6] = 3;
-//  940 //                if (m_aucRtuHoldingRegistersArray[6])
-//  941 //                {
-//  942 //                    CPss21::m_aucRtuHoldingRegistersArray[7] = i + 1;
-//  943 //                }
-//  944 //            }
-//  945             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
-//  946             if (puiAlarmDfaInit[i] & 0x80)
-//  947             {
-//  948 //                m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
-//  949                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  950                 if (puiAlarmDfaInit[i] & 0x40)
-//  951                 {
-//  952                     m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelNamurDfa;
-//  953                 }
-//  954                 else
-//  955                 {
-//  956                     m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
-//  957                 }
-//  958             }
-//  959             else
-//  960             {
-//  961 //                m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
-//  962                 // тип текущего дискретного сигнала как namur - запрограммирован?
-//  963                 if (puiAlarmDfaInit[i] & 0x40)
-//  964                 {
-//  965                     m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelNamurDfa;
-//  966                 }
-//  967                 else
-//  968                 {
-//  969                     m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
-//  970                 }
-//  971             }
-//  972             break;
-//  973 
-//  974         case IND_PREVENTIVE:
-//  975             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
-//  976             break;
-//  977 
-//  978         case IND_EMERGENCY:
-//  979             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
-//  980             break;
-//  981 
-//  982         default:
-//  983             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
-//  984             break;
-//  985         }
-//  986     }
-//  987 
-//  988     // Привяжем окна сигнализации к созданным объектам сигнализаций дискретных сигналов.
-//  989     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
-//  990     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
-//  991     for (uint8_t i = 0;
-//  992             i < DISCRETE_SIGNALS_NUMBER;
-//  993             i++)
-//  994     {
-//  995         // Для текущего дискретного сигнала запрограммирована сигнализация?
-//  996         if (puiTempBuffer[i] < ALARM_WINDOWS_NUMBER)
-//  997         {
-//  998             // Привяжем окно сигнализации к текущему дискретному сигналу.
-//  999             m_apxAlarmDfa[i] ->
-// 1000             SetAlarmWindowIndex(puiTempBuffer[i]);
-// 1001         }
-// 1002         else
-// 1003         {
-// 1004             m_apxAlarmDfa[i] ->
-// 1005             SetAlarmWindowIndex(0);
-// 1006         }
-// 1007     }
-// 1008 
-// 1009     // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
-// 1010     CDataBase::ReadBlock(puiTempBuffer, TDataBase::RELAY);
-// 1011     // Получим связанные выходы на МР.
-// 1012     for (uint8_t i = 0;
-// 1013             i < DISCRETE_SIGNALS_NUMBER;
-// 1014             i++)
-// 1015     {
-// 1016         *(m_apxAlarmDfa[i] -> GetLinkedDiscreteOutputsPointer()) = puiTempBuffer[i];
-// 1017     };
-// 1018 
-// 1019     // Получим индексы источников состояния дискретных сигналов - дискретные входы модулей.
-// 1020     for (uint8_t i = 0;
-// 1021             i < DISCRETE_INPUTS_NUMBER;
-// 1022             i++)
-// 1023     {
-// 1024         m_apxAlarmDfa[i] -> SetDiscreteStateIndex(i);
-// 1025     };
-// 1026     // Получим индексы источников состояния дискретных сигналов - состояние ячеек(coils Modbus).
-// 1027     for (uint8_t i = 0;
-// 1028             i < ALARM_WINDOWS_NUMBER;
-// 1029             i++)
-// 1030     {
-// 1031         m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
-// 1032 //        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
-// 1033     };
-// 1034 
-// 1035     // Восстановим  состояние устройства.
-// 1036     // Считаем во временный буфер блок БД - "Состояние устройства хранимое в EEPROM".
-// 1037     CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEVICE_STATE);
-// 1038     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceState),
-// 1039            puiTempBuffer,
-// 1040            sizeof(struct TDeviceState));
-// 1041 
-// 1042 //    // Создадим автоматы обработки ошибок.
-// 1043 //    uint8_t uiIndex = 0;
-// 1044 //
-// 1045 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
-// 1046 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1047 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(IMD_ERROR);
-// 1048 //    // Установим индекс источника состояния ошибки.
-// 1049 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(IMD_ERROR);
-// 1050 //    uiIndex++;
-// 1051 //
-// 1052 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
-// 1053 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1054 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(OMD_ERROR);
-// 1055 //    // Установим индекс источника состояния ошибки.
-// 1056 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(OMD_ERROR);
-// 1057 //    uiIndex++;
-// 1058 //
-// 1059 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
-// 1060 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1061 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(CFG_ERROR);
-// 1062 //    // Установим индекс источника состояния ошибки.
-// 1063 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(CFG_ERROR);
-// 1064 //    uiIndex++;
-// 1065 //
-// 1066 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
-// 1067 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1068 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(DB_ERROR);
-// 1069 //    // Установим индекс источника состояния ошибки.
-// 1070 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(DB_ERROR);
-// 1071 //    uiIndex++;
-// 1072 //
-// 1073 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
-// 1074 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1075 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(MBS_ERROR);
-// 1076 //    // Установим индекс источника состояния ошибки.
-// 1077 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
-// 1078 //    uiIndex++;
-// 1079 
-// 1080 //    // Создадим автоматы обработки ошибок.
-// 1081 //    for (uint8_t i = 0;
-// 1082 //            i < HANDLED_ERROR_NUMBER;
-// 1083 //            i++)
-// 1084 //    {
-// 1085 //        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
-// 1086 //        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
-// 1087 //        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
-// 1088 //        // Установим индекс источника состояния ошибки.
-// 1089 //        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
-// 1090 //    };
-// 1091 }
-// 1092 
-// 1093 //-----------------------------------------------------------------------------------------------------
-// 1094 void CPss21::DiscreteOutputControlClear(void)
-// 1095 {
-// 1096     // Приведение буферов управления модулями дискретных выходов(реле) в исходное состояние.
-// 1097     for (int j = 0;
-// 1098             j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
-// 1099             j++)
-// 1100     {
-// 1101         // цикл выбора реле.
-// 1102         for (int k = 0;
-// 1103                 k < MR_DISCRETE_OUTPUT_NUMBER;
-// 1104                 k++)
-// 1105         {
-// 1106             // Сбросим флаг - новое нарушение.
-// 1107             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 0;
-// 1108             // Сбросим флаг - требование включения реле.
-// 1109             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 0;
+//  929             }
+//  930             else
+//  931             {
+//  932                 // тип текущего дискретного сигнала как namur - запрограммирован?
+//  933                 if (puiAlarmDfaInit[i] & 0x40)
+//  934                 {
+//  935                     m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelNamurDfa;
+//  936                 }
+//  937                 else
+//  938                 {
+//  939                     m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
+//  940                 }
+//  941             }
+//  942             break;
+//  943 
+//  944         case IND_PREVENTIVE:
+//  945             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  946             break;
+//  947 
+//  948         case IND_EMERGENCY:
+//  949             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  950             break;
+//  951 
+//  952         default:
+//  953             m_apxAlarmDfa[i] = new CNormalAlarmDfa;
+//  954             break;
+//  955         }
+//  956     }
+//  957 
+//  958     // Привяжем окна сигнализации к созданным объектам сигнализаций дискретных сигналов.
+//  959     // Считаем во временный буфер блок БД - "Индекс окна сигнализации которое привязано к текущему дискретному сигналу".
+//  960     CDataBase::ReadBlock(puiTempBuffer, TDataBase::ALARM_WINDOW_INDEX);
+//  961     for (uint8_t i = 0;
+//  962             i < DISCRETE_SIGNALS_NUMBER;
+//  963             i++)
+//  964     {
+//  965         // Для текущего дискретного сигнала запрограммирована сигнализация?
+//  966         if (puiTempBuffer[i] < ALARM_WINDOWS_NUMBER)
+//  967         {
+//  968             // Привяжем окно сигнализации к текущему дискретному сигналу.
+//  969             m_apxAlarmDfa[i] ->
+//  970             SetAlarmWindowIndex(puiTempBuffer[i]);
+//  971         }
+//  972         else
+//  973         {
+//  974             m_apxAlarmDfa[i] ->
+//  975             SetAlarmWindowIndex(0);
+//  976         }
+//  977     }
+//  978 
+//  979     // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
+//  980     CDataBase::ReadBlock(puiTempBuffer, TDataBase::RELAY);
+//  981     // Получим связанные выходы на МР.
+//  982     for (uint8_t i = 0;
+//  983             i < DISCRETE_SIGNALS_NUMBER;
+//  984             i++)
+//  985     {
+//  986         *(m_apxAlarmDfa[i] -> GetLinkedDiscreteOutputsPointer()) = puiTempBuffer[i];
+//  987     };
+//  988 
+//  989     // Получим индексы источников состояния дискретных сигналов - дискретные входы модулей.
+//  990     for (uint8_t i = 0;
+//  991             i < DISCRETE_INPUTS_NUMBER;
+//  992             i++)
+//  993     {
+//  994         m_apxAlarmDfa[i] -> SetDiscreteStateIndex(i);
+//  995     };
+//  996     // Получим индексы источников состояния дискретных сигналов - состояние ячеек(coils Modbus).
+//  997     for (uint8_t i = 0;
+//  998             i < ALARM_WINDOWS_NUMBER;
+//  999             i++)
+// 1000     {
+// 1001         m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
+// 1002 //        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
+// 1003     };
+// 1004 
+// 1005     // Восстановим  состояние устройства.
+// 1006     // Считаем во временный буфер блок БД - "Состояние устройства хранимое в EEPROM".
+// 1007     CDataBase::ReadBlock(puiTempBuffer, TDataBase::DEVICE_STATE);
+// 1008     memcpy(reinterpret_cast<uint8_t*>(&m_xDeviceState),
+// 1009            puiTempBuffer,
+// 1010            sizeof(struct TDeviceState));
+// 1011 
+// 1012 //    // Создадим автоматы обработки ошибок.
+// 1013 //    uint8_t uiIndex = 0;
+// 1014 //
+// 1015 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+// 1016 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1017 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(IMD_ERROR);
+// 1018 //    // Установим индекс источника состояния ошибки.
+// 1019 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(IMD_ERROR);
+// 1020 //    uiIndex++;
+// 1021 //
+// 1022 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+// 1023 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1024 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(OMD_ERROR);
+// 1025 //    // Установим индекс источника состояния ошибки.
+// 1026 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(OMD_ERROR);
+// 1027 //    uiIndex++;
+// 1028 //
+// 1029 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+// 1030 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1031 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(CFG_ERROR);
+// 1032 //    // Установим индекс источника состояния ошибки.
+// 1033 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(CFG_ERROR);
+// 1034 //    uiIndex++;
+// 1035 //
+// 1036 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+// 1037 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1038 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(DB_ERROR);
+// 1039 //    // Установим индекс источника состояния ошибки.
+// 1040 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(DB_ERROR);
+// 1041 //    uiIndex++;
+// 1042 //
+// 1043 //    m_apxErrorAlarmDfa[uiIndex] = new CErrorAlarmDfa;
+// 1044 //    // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1045 //    m_apxErrorAlarmDfa[uiIndex] -> SetAlarmWindowIndex(MBS_ERROR);
+// 1046 //    // Установим индекс источника состояния ошибки.
+// 1047 //    m_apxErrorAlarmDfa[uiIndex] -> SetDiscreteStateIndex(MBS_ERROR);
+// 1048 //    uiIndex++;
+// 1049 
+// 1050 //    // Создадим автоматы обработки ошибок.
+// 1051 //    for (uint8_t i = 0;
+// 1052 //            i < HANDLED_ERROR_NUMBER;
+// 1053 //            i++)
+// 1054 //    {
+// 1055 //        m_apxErrorAlarmDfa[i] = new CErrorAlarmDfa;
+// 1056 //        // Привяжем окно сигнализации к созданному объекту сигнализации ошибки.
+// 1057 //        m_apxErrorAlarmDfa[i] -> SetAlarmWindowIndex(i);
+// 1058 //        // Установим индекс источника состояния ошибки.
+// 1059 //        m_apxErrorAlarmDfa[i] -> SetDiscreteStateIndex(i);
+// 1060 //    };
+// 1061 }
+// 1062 
+// 1063 //-----------------------------------------------------------------------------------------------------
+// 1064 void CPss21::DiscreteOutputControlClear(void)
+// 1065 {
+// 1066     // Приведение буферов управления модулями дискретных выходов(реле) в исходное состояние.
+// 1067     for (int j = 0;
+// 1068             j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+// 1069             j++)
+// 1070     {
+// 1071         // цикл выбора реле.
+// 1072         for (int k = 0;
+// 1073                 k < MR_DISCRETE_OUTPUT_NUMBER;
+// 1074                 k++)
+// 1075         {
+// 1076             // Сбросим флаг - новое нарушение.
+// 1077             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 0;
+// 1078             // Сбросим флаг - требование включения реле.
+// 1079             m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 0;
+// 1080         }
+// 1081     }
+// 1082 }
+// 1083 
+// 1084 //-----------------------------------------------------------------------------------------------------
+// 1085 void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation)
+// 1086 {
+// 1087     // Дискретный сигнал был активен на предыдущем шаге?
+// 1088     if (!uiNewViolation)
+// 1089     {
+// 1090         // Не новое нарушение.
+// 1091         // установим флаги - требования включения, для запрограммированных реле,
+// 1092         // в буфере выходов требований включения реле - блокировка.
+// 1093         // цикл выбора модуля.
+// 1094         for (int j = 0;
+// 1095                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+// 1096                 j++)
+// 1097         {
+// 1098             // цикл выбора реле.
+// 1099             for (int k = 0;
+// 1100                     k < MR_DISCRETE_OUTPUT_NUMBER;
+// 1101                     k++)
+// 1102             {
+// 1103                 // Текущий - (j, k) дискретный выход(реле) привязан?
+// 1104                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
+// 1105                 {
+// 1106                     // установим флаг - требование включения реле.
+// 1107                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
+// 1108                 }
+// 1109             }
 // 1110         }
 // 1111     }
-// 1112 }
-// 1113 
-// 1114 //-----------------------------------------------------------------------------------------------------
-// 1115 void CPss21::DiscreteOutputsSet(uint8_t *puiLinkedDiscreteOutputs, uint8_t uiNewViolation)
-// 1116 {
-// 1117     // Дискретный сигнал был активен на предыдущем шаге?
-// 1118     if (!uiNewViolation)
-// 1119     {
-// 1120         // Не новое нарушение.
-// 1121         // установим флаги - требования включения, для запрограммированных реле,
-// 1122         // в буфере выходов требований включения реле - блокировка.
-// 1123         // цикл выбора модуля.
-// 1124         for (int j = 0;
-// 1125                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
-// 1126                 j++)
-// 1127         {
-// 1128             // цикл выбора реле.
-// 1129             for (int k = 0;
-// 1130                     k < MR_DISCRETE_OUTPUT_NUMBER;
-// 1131                     k++)
-// 1132             {
-// 1133                 // Текущий - (j, k) дискретный выход(реле) привязан?
-// 1134                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
-// 1135                 {
-// 1136                     // установим флаг - требование включения реле.
-// 1137                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
-// 1138                 }
-// 1139             }
-// 1140         }
-// 1141     }
-// 1142     else
-// 1143     {
-// 1144         // новое нарушение.
-// 1145         // установим флаги - новое нарушение, для запрограммированных реле
-// 1146         // в буфере выходов управления реле - новое нарушение.
-// 1147         // установим флаги - требования включения, для запрограммированных реле,
-// 1148         // в буфере выходов требований включения реле - блокировка.
-// 1149         // цикл выбора модуля.
-// 1150         for (int j = 0;
-// 1151                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
-// 1152                 j++)
-// 1153         {
-// 1154             // цикл выбора реле.
-// 1155             for (int k = 0;
-// 1156                     k < MR_DISCRETE_OUTPUT_NUMBER;
-// 1157                     k++)
-// 1158             {
-// 1159                 // Текущий - (j, k) дискретный выход(реле) привязан?
-// 1160                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
-// 1161                 {
-// 1162                     // установим флаг - новое нарушение.
-// 1163                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 1;
-// 1164                     // установим флаг - требование включения реле.
-// 1165                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
-// 1166                 }
-// 1167             }
-// 1168         }
-// 1169     }
-// 1170 }
-// 1171 
-// 1172 //-----------------------------------------------------------------------------------------------------
-// 1173 void CPss21::AlarmsProcessing(void)
-// 1174 {
-// 1175     uint8_t uiCurrentCommonAlarmType = NORMAL;
-// 1176 
-// 1177     // Обработаем все дискретные сигналы.
-// 1178     for (uint8_t i = 0;
-// 1179             i < DISCRETE_SIGNALS_NUMBER;
-// 1180             i++)
-// 1181     {
-// 1182         if (i == 0)
-// 1183         {
-// 1184             CPss21::m_aucRtuHoldingRegistersArray[1] =
-// 1185                 m_axAlarmWindowControl[i].GetActivityState();
-// 1186             CPss21::m_aucRtuHoldingRegistersArray[2] =
-// 1187                 m_axAlarmWindowControl[i].GetAlarmType();
-// 1188             CPss21::m_aucRtuHoldingRegistersArray[3] =
-// 1189                 m_axAlarmWindowControl[i].GetAlarmColor();
-// 1190         }
-// 1191 
-// 1192         m_apxAlarmDfa[i] -> Fsm();
-// 1193 
-// 1194         // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-// 1195         // чем тип текущей общей сигнализации?
-// 1196         if (uiCurrentCommonAlarmType < GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex()))
-// 1197         {
-// 1198             // Установим тип текущей общей сигнализацию.
-// 1199             uiCurrentCommonAlarmType = GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex());
-// 1200         }
-// 1201     }
-// 1202 
-// 1203     CPss21::NormalAlarmWindowOff();
-// 1204     // Изменим тип общей сигнализацию.
-// 1205     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
-// 1206 }
-// 1207 
-// 1208 //-----------------------------------------------------------------------------------------------------
-// 1209 void CPss21::ErrorAlarmsProcessing(void)
-// 1210 {
-// 1211     // Обработаем все дискретные сигналы.
-// 1212     for (uint8_t i = 0;
-// 1213             i < HANDLED_ERROR_NUMBER;
-// 1214             i++)
-// 1215     {
-// 1216         m_apxErrorAlarmDfa[i] -> Fsm();
+// 1112     else
+// 1113     {
+// 1114         // новое нарушение.
+// 1115         // установим флаги - новое нарушение, для запрограммированных реле
+// 1116         // в буфере выходов управления реле - новое нарушение.
+// 1117         // установим флаги - требования включения, для запрограммированных реле,
+// 1118         // в буфере выходов требований включения реле - блокировка.
+// 1119         // цикл выбора модуля.
+// 1120         for (int j = 0;
+// 1121                 j < DISCRETE_OUTPUT_MODULE_MAX_NUMBER;
+// 1122                 j++)
+// 1123         {
+// 1124             // цикл выбора реле.
+// 1125             for (int k = 0;
+// 1126                     k < MR_DISCRETE_OUTPUT_NUMBER;
+// 1127                     k++)
+// 1128             {
+// 1129                 // Текущий - (j, k) дискретный выход(реле) привязан?
+// 1130                 if (puiLinkedDiscreteOutputs[j] & (0x01 << k))
+// 1131                 {
+// 1132                     // установим флаг - новое нарушение.
+// 1133                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiNewActivation = 1;
+// 1134                     // установим флаг - требование включения реле.
+// 1135                     m_axDiscreteOutputControl[(j * MR_DISCRETE_OUTPUT_NUMBER) + k].uiRelayActivationRequest = 1;
+// 1136                 }
+// 1137             }
+// 1138         }
+// 1139     }
+// 1140 }
+// 1141 
+// 1142 //-----------------------------------------------------------------------------------------------------
+// 1143 void CPss21::AlarmsProcessing(void)
+// 1144 {
+// 1145     uint8_t uiCurrentCommonAlarmType = NORMAL;
+// 1146 
+// 1147     // Обработаем все дискретные сигналы.
+// 1148     for (uint8_t i = 0;
+// 1149             i < DISCRETE_SIGNALS_NUMBER;
+// 1150             i++)
+// 1151     {
+// 1152 //        if (i == 0)
+// 1153 //        {
+// 1154 //            CPss21::m_aucRtuHoldingRegistersArray[1] =
+// 1155 //                m_axAlarmWindowControl[i].GetActivityState();
+// 1156 //            CPss21::m_aucRtuHoldingRegistersArray[2] =
+// 1157 //                m_axAlarmWindowControl[i].GetAlarmType();
+// 1158 //            CPss21::m_aucRtuHoldingRegistersArray[3] =
+// 1159 //                m_axAlarmWindowControl[i].GetAlarmColor();
+// 1160 //        }
+// 1161 
+// 1162         m_apxAlarmDfa[i] -> Fsm();
+// 1163 
+// 1164         // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+// 1165         // чем тип текущей общей сигнализации?
+// 1166         if (uiCurrentCommonAlarmType < GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex()))
+// 1167         {
+// 1168             // Установим тип текущей общей сигнализацию.
+// 1169             uiCurrentCommonAlarmType = GetAlarmWindowType(m_apxAlarmDfa[i] -> GetAlarmWindowIndex());
+// 1170         }
+// 1171     }
+// 1172 
+// 1173     CPss21::NormalAlarmWindowOff();
+// 1174     // Изменим тип общей сигнализацию.
+// 1175     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
+// 1176 }
+// 1177 
+// 1178 //-----------------------------------------------------------------------------------------------------
+// 1179 void CPss21::ErrorAlarmsProcessing(void)
+// 1180 {
+// 1181     // Обработаем все дискретные сигналы.
+// 1182     for (uint8_t i = 0;
+// 1183             i < HANDLED_ERROR_NUMBER;
+// 1184             i++)
+// 1185     {
+// 1186         m_apxErrorAlarmDfa[i] -> Fsm();
+// 1187     }
+// 1188 }
+// 1189 
+// 1190 //-----------------------------------------------------------------------------------------------------
+// 1191 void CPss21::SetDiscreteInputState(uint8_t uiIndex, uint8_t uiData)
+// 1192 {
+// 1193     if (uiIndex < DISCRETE_INPUTS_NUMBER)
+// 1194     {
+// 1195         // Получим состояние дискретного сигнала - дискретные входы модулей.
+// 1196         m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex] = uiData;
+// 1197     }
+// 1198     else
+// 1199     {
+// 1200         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+// 1201         m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)] = uiData;
+// 1202     }
+// 1203 }
+// 1204 
+// 1205 //-----------------------------------------------------------------------------------------------------
+// 1206 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
+// 1207 {
+// 1208     if (uiIndex < DISCRETE_INPUTS_NUMBER)
+// 1209     {
+// 1210         // Получим состояние дискретного сигнала - дискретные входы модулей.
+// 1211         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
+// 1212     }
+// 1213     else
+// 1214     {
+// 1215         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+// 1216         return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
 // 1217     }
 // 1218 }
 // 1219 
 // 1220 //-----------------------------------------------------------------------------------------------------
-// 1221 void CPss21::SetDiscreteInputState(uint8_t uiIndex, uint8_t uiData)
+// 1221 uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
 // 1222 {
-// 1223     if (uiIndex < DISCRETE_INPUTS_NUMBER)
-// 1224     {
-// 1225         // Получим состояние дискретного сигнала - дискретные входы модулей.
-// 1226         m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex] = uiData;
-// 1227     }
-// 1228     else
-// 1229     {
-// 1230         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-// 1231         m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)] = uiData;
-// 1232     }
-// 1233 }
-// 1234 
-// 1235 //-----------------------------------------------------------------------------------------------------
-// 1236 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
-// 1237 {
-// 1238 //    // Не вышли за границы массива дискретных сигналов?
-// 1239 //    if ((uiIndex >= 0) &&
-// 1240 //            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
-// 1241 //    {
-// 1242 //        // Получим состояние дискретного сигнала - дискретные входы модулей.
-// 1243 //        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-// 1244 //    }
-// 1245 //    else
-// 1246 //    {
-// 1247 //        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
-// 1248 //        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
-// 1249 //    }
-// 1250 
-// 1251     if (uiIndex < DISCRETE_INPUTS_NUMBER)
-// 1252     {
-// 1253         // Получим состояние дискретного сигнала - дискретные входы модулей.
-// 1254         return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-// 1255     }
-// 1256     else
-// 1257     {
-// 1258         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-// 1259         return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
-// 1260     }
-// 1261 }
-// 1262 
-// 1263 //-----------------------------------------------------------------------------------------------------
-// 1264 uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
-// 1265 {
-// 1266     // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-// 1267     return m_aucDiscreteInputsBadState[uiIndex];
-// 1268 }
-// 1269 
-// 1270 //-----------------------------------------------------------------------------------------------------
-// 1271 void CPss21::SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData)
-// 1272 {
-// 1273     // Установим состояние источника ошибки.
-// 1274     m_auiErrorAlarmDataArray[uiIndex] = uiData;
-// 1275 }
-// 1276 
-// 1277 //-----------------------------------------------------------------------------------------------------
-// 1278 uint8_t CPss21::GetErrorAlarmState(uint8_t uiIndex)
-// 1279 {
-// 1280     // Получим состояние источника ошибки.
-// 1281     return m_auiErrorAlarmDataArray[uiIndex];
-// 1282 }
-// 1283 
-// 1284 //-----------------------------------------------------------------------------------------------------
-// 1285 void CPss21::AlarmTypeSet(uint8_t uiAlarmType)
-// 1286 {
-// 1287     m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
-// 1288     m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
-// 1289     m_xStatusLedNotifyerControl.AlarmSet(uiAlarmType);
-// 1290     m_xBuzzerNotifyerControl.AlarmSet(uiAlarmType);
-// 1291 }
-// 1292 
-// 1293 //-----------------------------------------------------------------------------------------------------
-// 1294 void CPss21::AlarmTypeChange(void)
-// 1295 {
-// 1296     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
-// 1297     {
-// 1298         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
-// 1299         AlarmTypeSet(m_uiCommonAlarmType);
-// 1300     }
-// 1301 }
-// 1302 
-// 1303 //-----------------------------------------------------------------------------------------------------
-// 1304 void CPss21::AlarmTypeChange(uint8_t uiAlarmType)
-// 1305 {
-// 1306     if (uiAlarmType != m_uiCommonAlarmType)
-// 1307     {
-// 1308         m_uiCommonAlarmType = uiAlarmType;
-// 1309 
-// 1310         if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
-// 1311         {
-// 1312             m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
-// 1313             AlarmTypeSet(m_uiCommonAlarmType);
-// 1314         }
-// 1315     }
-// 1316 }
-// 1317 
-// 1318 //-----------------------------------------------------------------------------------------------------
-// 1319 void CPss21::AlarmTypeErrorChange(void)
-// 1320 {
-// 1321     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
-// 1322     {
-// 1323         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
-// 1324 
-// 1325         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1326         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1327         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
-// 1328         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
-// 1329     }
-// 1330 }
-// 1331 
-// 1332 //-----------------------------------------------------------------------------------------------------
-// 1333 void CPss21::AlarmTypeReceipt(void)
-// 1334 {
-// 1335     m_uiCommonAlarmType = INDICATION;
-// 1336     m_uiCommonAlarmTypePrevious = INDICATION;
-// 1337     AlarmTypeSet(INDICATION);
-// 1338 }
-// 1339 
-// 1340 //-----------------------------------------------------------------------------------------------------
-// 1341 void CPss21::AlarmTypeReset(void)
-// 1342 {
-// 1343     m_uiCommonAlarmType = NORMAL;
-// 1344     m_uiCommonAlarmTypePrevious = NORMAL;
-// 1345     AlarmTypeSet(NORMAL);
-// 1346 }
-// 1347 
-// 1348 //-----------------------------------------------------------------------------------------------------
-// 1349 void CPss21::NotifyersControlProcessing(void)
-// 1350 {
-// 1351     m_xPreventiveAlarmWindowNotifyerControl.Fsm();
-// 1352     CPss21::m_xModbusRtuOne.Fsm();
-// 1353     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
-// 1354     CPss21::m_xModbusRtuOne.Fsm();
-// 1355     m_xStatusLedNotifyerControl.Fsm();
-// 1356     CPss21::m_xModbusRtuOne.Fsm();
-// 1357     m_xBuzzerNotifyerControl.Fsm();
-// 1358 }
-// 1359 
-// 1360 //-----------------------------------------------------------------------------------------------------
-// 1361 void CPss21::SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType)
-// 1362 {
-// 1363     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmType(uiAlarmType);
-// 1364 }
-// 1365 
-// 1366 //-----------------------------------------------------------------------------------------------------
-// 1367 uint8_t CPss21::GetAlarmWindowType(uint8_t uiAlarmWindowIndex)
-// 1368 {
-// 1369     return (GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> GetAlarmType());
-// 1370 }
-// 1371 
-// 1372 //-----------------------------------------------------------------------------------------------------
-// 1373 void CPss21::SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColor)
-// 1374 {
-// 1375     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmColor(uiAlarmColor);
-// 1376 }
-// 1377 
-// 1378 //-----------------------------------------------------------------------------------------------------
-// 1379 void CPss21::SaveContextNotifyerControl(void)
-// 1380 {
-// 1381 //    // Сохраним текущее состояние автоматов управления извещателями.
-// 1382 //    m_xPreventiveAlarmWindowNotifyerControl.SetSavedFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetFsmState());
-// 1383 //    m_xEmergencyAlarmWindowNotifyerControl.SetSavedFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetFsmState());
-// 1384 //    m_xStatusLedNotifyerControl.SetSavedFsmState(m_xStatusLedNotifyerControl.GetFsmState());
-// 1385 //    m_xBuzzerNotifyerControl.SetSavedFsmState(m_xBuzzerNotifyerControl.GetFsmState());
-// 1386 
-// 1387     // Сохраним текущее состояние извещателей - окон сигнализации.
-// 1388     for (uint8_t i = 0;
-// 1389             i < ALARM_WINDOWS_NUMBER;
-// 1390             i++)
-// 1391     {
-// 1392         m_axAlarmWindowControl[i].SetSavedAlarmType(m_axAlarmWindowControl[i].GetAlarmType());
-// 1393         m_axAlarmWindowControl[i].SetSavedActivityState(m_axAlarmWindowControl[i].GetActivityState());
-// 1394         m_axAlarmWindowControl[i].SetSavedAlarmColor(m_axAlarmWindowControl[i].GetAlarmColor());
-// 1395     };
-// 1396 }
-// 1397 
-// 1398 //-----------------------------------------------------------------------------------------------------
-// 1399 void CPss21::RestoreContextNotifyerControl(void)
-// 1400 {
-// 1401 //    // Восстановим предыдущее состояние автоматов управления извещателями.
-// 1402 //    m_xPreventiveAlarmWindowNotifyerControl.SetFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetSavedFsmState());
-// 1403 //    m_xEmergencyAlarmWindowNotifyerControl.SetFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetSavedFsmState());
-// 1404 //    m_xStatusLedNotifyerControl.SetFsmState(m_xStatusLedNotifyerControl.GetSavedFsmState());
-// 1405 //    m_xBuzzerNotifyerControl.SetFsmState(m_xBuzzerNotifyerControl.GetSavedFsmState());
-// 1406     AlarmTypeSet(GetCommonAlarmType());
-// 1407 
-// 1408     // Восстановим предыдущее состояние извещателей - окон сигнализации.
-// 1409     for (uint8_t i = 0;
-// 1410             i < ALARM_WINDOWS_NUMBER;
-// 1411             i++)
-// 1412     {
-// 1413         m_axAlarmWindowControl[i].SetAlarmType(m_axAlarmWindowControl[i].GetSavedAlarmType());
-// 1414         m_axAlarmWindowControl[i].SetActivityState(m_axAlarmWindowControl[i].GetSavedActivityState());
-// 1415         m_axAlarmWindowControl[i].SetAlarmColor(m_axAlarmWindowControl[i].GetSavedAlarmColor());
-// 1416     };
-// 1417 }
-// 1418 
-// 1419 //-----------------------------------------------------------------------------------------------------
-// 1420 void CPss21::DiscreteSignalsProcessing(void)
-// 1421 {
-// 1422     DiscreteOutputControlClear();
-// 1423     AlarmsProcessing();
-// 1424 //    ErrorAlarmsProcessing();
-// 1425     SetDiscreteSignalsReceipt(0);
-// 1426     SetDiscreteSignalsReset(0);
-// 1427 }
-// 1428 
-// 1429 //-----------------------------------------------------------------------------------------------------
+// 1223     // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+// 1224     return m_aucDiscreteInputsBadState[uiIndex];
+// 1225 }
+// 1226 
+// 1227 //-----------------------------------------------------------------------------------------------------
+// 1228 void CPss21::SetErrorAlarmState(uint8_t uiIndex, uint8_t uiData)
+// 1229 {
+// 1230     // Установим состояние источника ошибки.
+// 1231     m_auiErrorAlarmDataArray[uiIndex] = uiData;
+// 1232 }
+// 1233 
+// 1234 //-----------------------------------------------------------------------------------------------------
+// 1235 uint8_t CPss21::GetErrorAlarmState(uint8_t uiIndex)
+// 1236 {
+// 1237     // Получим состояние источника ошибки.
+// 1238     return m_auiErrorAlarmDataArray[uiIndex];
+// 1239 }
+// 1240 
+// 1241 //-----------------------------------------------------------------------------------------------------
+// 1242 void CPss21::AlarmTypeSet(uint8_t uiAlarmType)
+// 1243 {
+// 1244     m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
+// 1245     m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(uiAlarmType);
+// 1246     m_xStatusLedNotifyerControl.AlarmSet(uiAlarmType);
+// 1247     m_xBuzzerNotifyerControl.AlarmSet(uiAlarmType);
+// 1248 }
+// 1249 
+// 1250 //-----------------------------------------------------------------------------------------------------
+// 1251 void CPss21::AlarmTypeChange(void)
+// 1252 {
+// 1253     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+// 1254     {
+// 1255         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+// 1256         AlarmTypeSet(m_uiCommonAlarmType);
+// 1257     }
+// 1258 }
+// 1259 
+// 1260 //-----------------------------------------------------------------------------------------------------
+// 1261 void CPss21::AlarmTypeChange(uint8_t uiAlarmType)
+// 1262 {
+// 1263     if (uiAlarmType != m_uiCommonAlarmType)
+// 1264     {
+// 1265         m_uiCommonAlarmType = uiAlarmType;
+// 1266 
+// 1267         if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+// 1268         {
+// 1269             m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+// 1270             AlarmTypeSet(m_uiCommonAlarmType);
+// 1271         }
+// 1272     }
+// 1273 }
+// 1274 
+// 1275 //-----------------------------------------------------------------------------------------------------
+// 1276 void CPss21::AlarmTypeErrorChange(void)
+// 1277 {
+// 1278     if (m_uiCommonAlarmType != m_uiCommonAlarmTypePrevious)
+// 1279     {
+// 1280         m_uiCommonAlarmTypePrevious = m_uiCommonAlarmType;
+// 1281 
+// 1282         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1283         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1284         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+// 1285         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+// 1286     }
+// 1287 }
+// 1288 
+// 1289 //-----------------------------------------------------------------------------------------------------
+// 1290 void CPss21::AlarmTypeReceipt(void)
+// 1291 {
+// 1292     m_uiCommonAlarmType = INDICATION;
+// 1293     m_uiCommonAlarmTypePrevious = INDICATION;
+// 1294     AlarmTypeSet(INDICATION);
+// 1295 }
+// 1296 
+// 1297 //-----------------------------------------------------------------------------------------------------
+// 1298 void CPss21::AlarmTypeReset(void)
+// 1299 {
+// 1300     m_uiCommonAlarmType = NORMAL;
+// 1301     m_uiCommonAlarmTypePrevious = NORMAL;
+// 1302     AlarmTypeSet(NORMAL);
+// 1303 }
+// 1304 
+// 1305 //-----------------------------------------------------------------------------------------------------
+// 1306 void CPss21::NotifyersControlProcessing(void)
+// 1307 {
+// 1308     m_xPreventiveAlarmWindowNotifyerControl.Fsm();
+// 1309     CPss21::m_xModbusRtuOne.Fsm();
+// 1310     m_xEmergencyAlarmWindowNotifyerControl.Fsm();
+// 1311     CPss21::m_xModbusRtuOne.Fsm();
+// 1312     m_xStatusLedNotifyerControl.Fsm();
+// 1313     CPss21::m_xModbusRtuOne.Fsm();
+// 1314     m_xBuzzerNotifyerControl.Fsm();
+// 1315 }
+// 1316 
+// 1317 //-----------------------------------------------------------------------------------------------------
+// 1318 void CPss21::SetAlarmWindowType(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmType)
+// 1319 {
+// 1320     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmType(uiAlarmType);
+// 1321 }
+// 1322 
+// 1323 //-----------------------------------------------------------------------------------------------------
+// 1324 uint8_t CPss21::GetAlarmWindowType(uint8_t uiAlarmWindowIndex)
+// 1325 {
+// 1326     return (GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> GetAlarmType());
+// 1327 }
+// 1328 
+// 1329 //-----------------------------------------------------------------------------------------------------
+// 1330 void CPss21::SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColor)
+// 1331 {
+// 1332     GetAlarmWindowControlPointer(uiAlarmWindowIndex) -> SetAlarmColor(uiAlarmColor);
+// 1333 }
+// 1334 
+// 1335 //-----------------------------------------------------------------------------------------------------
+// 1336 void CPss21::SaveContextNotifyerControl(void)
+// 1337 {
+// 1338 //    // Сохраним текущее состояние автоматов управления извещателями.
+// 1339 //    m_xPreventiveAlarmWindowNotifyerControl.SetSavedFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetFsmState());
+// 1340 //    m_xEmergencyAlarmWindowNotifyerControl.SetSavedFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetFsmState());
+// 1341 //    m_xStatusLedNotifyerControl.SetSavedFsmState(m_xStatusLedNotifyerControl.GetFsmState());
+// 1342 //    m_xBuzzerNotifyerControl.SetSavedFsmState(m_xBuzzerNotifyerControl.GetFsmState());
+// 1343 
+// 1344     // Сохраним текущее состояние извещателей - окон сигнализации.
+// 1345     for (uint8_t i = 0;
+// 1346             i < ALARM_WINDOWS_NUMBER;
+// 1347             i++)
+// 1348     {
+// 1349         m_axAlarmWindowControl[i].SetSavedAlarmType(m_axAlarmWindowControl[i].GetAlarmType());
+// 1350         m_axAlarmWindowControl[i].SetSavedActivityState(m_axAlarmWindowControl[i].GetActivityState());
+// 1351         m_axAlarmWindowControl[i].SetSavedAlarmColor(m_axAlarmWindowControl[i].GetAlarmColor());
+// 1352     };
+// 1353 }
+// 1354 
+// 1355 //-----------------------------------------------------------------------------------------------------
+// 1356 void CPss21::RestoreContextNotifyerControl(void)
+// 1357 {
+// 1358 //    // Восстановим предыдущее состояние автоматов управления извещателями.
+// 1359 //    m_xPreventiveAlarmWindowNotifyerControl.SetFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetSavedFsmState());
+// 1360 //    m_xEmergencyAlarmWindowNotifyerControl.SetFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetSavedFsmState());
+// 1361 //    m_xStatusLedNotifyerControl.SetFsmState(m_xStatusLedNotifyerControl.GetSavedFsmState());
+// 1362 //    m_xBuzzerNotifyerControl.SetFsmState(m_xBuzzerNotifyerControl.GetSavedFsmState());
+// 1363     AlarmTypeSet(GetCommonAlarmType());
+// 1364 
+// 1365     // Восстановим предыдущее состояние извещателей - окон сигнализации.
+// 1366     for (uint8_t i = 0;
+// 1367             i < ALARM_WINDOWS_NUMBER;
+// 1368             i++)
+// 1369     {
+// 1370         m_axAlarmWindowControl[i].SetAlarmType(m_axAlarmWindowControl[i].GetSavedAlarmType());
+// 1371         m_axAlarmWindowControl[i].SetActivityState(m_axAlarmWindowControl[i].GetSavedActivityState());
+// 1372         m_axAlarmWindowControl[i].SetAlarmColor(m_axAlarmWindowControl[i].GetSavedAlarmColor());
+// 1373     };
+// 1374 }
+// 1375 
+// 1376 //-----------------------------------------------------------------------------------------------------
+// 1377 void CPss21::DiscreteSignalsProcessing(void)
+// 1378 {
+// 1379     DiscreteOutputControlClear();
+// 1380     AlarmsProcessing();
+// 1381 //    ErrorAlarmsProcessing();
+// 1382     SetDiscreteSignalsReceipt(0);
+// 1383     SetDiscreteSignalsReset(0);
+// 1384 }
+// 1385 
+// 1386 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1430 void CPss21::BoardWindowsUpdate(void)
+// 1387 void CPss21::BoardWindowsUpdate(void)
 ??BoardWindowsUpdate:
-// 1431 {
-// 1432     CLightBoard::Set(m_axAlarmWindowControl);
+// 1388 {
+// 1389     CLightBoard::Set(m_axAlarmWindowControl);
         LDI     R16, LOW(??m_axAlarmWindowControl)
         LDI     R17, (??m_axAlarmWindowControl) >> 8
         CALL    ??Set
-// 1433 }
+// 1390 }
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -5248,59 +5205,7 @@ _A_PINF:
         LDI     R26, 0
 ??AlarmsProcessing_1:
         CPI     R26, 96
-        BRCS    $+2+2
-        RJMP    ??AlarmsProcessing_2
-        TST     R26
-        BRNE    ??AlarmsProcessing_3
-        MOV     R16, R26
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R19:R18, R17:R16
-        LDI     R16, LOW(??m_axAlarmWindowControl)
-        LDI     R17, (??m_axAlarmWindowControl) >> 8
-        ADD     R16, R18
-        ADC     R17, R19
-        CALL    ??GetActivityState
-        LDI     R17, 0
-        LDI     R30, LOW(??m_aucRtuHoldingRegistersArray)
-        LDI     R31, (??m_aucRtuHoldingRegistersArray) >> 8
-        STD     Z+2, R16
-        STD     Z+3, R17
-        MOV     R16, R26
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R19:R18, R17:R16
-        LDI     R16, LOW(??m_axAlarmWindowControl)
-        LDI     R17, (??m_axAlarmWindowControl) >> 8
-        ADD     R16, R18
-        ADC     R17, R19
-        CALL    ??GetAlarmType
-        LDI     R17, 0
-        LDI     R30, LOW(??m_aucRtuHoldingRegistersArray)
-        LDI     R31, (??m_aucRtuHoldingRegistersArray) >> 8
-        STD     Z+4, R16
-        STD     Z+5, R17
-        MOV     R16, R26
-        LDI     R17, 0
-        LDI     R20, 8
-        LDI     R21, 0
-        CALL    ?S_EC_MUL_L02
-        MOVW    R19:R18, R17:R16
-        LDI     R16, LOW(??m_axAlarmWindowControl)
-        LDI     R17, (??m_axAlarmWindowControl) >> 8
-        ADD     R16, R18
-        ADC     R17, R19
-        CALL    ??GetAlarmColor
-        LDI     R17, 0
-        LDI     R30, LOW(??m_aucRtuHoldingRegistersArray)
-        LDI     R31, (??m_aucRtuHoldingRegistersArray) >> 8
-        STD     Z+6, R16
-        STD     Z+7, R17
-??AlarmsProcessing_3:
+        BRCC    ??AlarmsProcessing_2
         MOV     R16, R26
         LDI     R17, 0
         LSL     R16
@@ -5341,7 +5246,7 @@ _A_PINF:
         CALL    ??GetAlarmWindowIndex
         RCALL   ??GetAlarmWindowType
         CP      R24, R16
-        BRCC    ??AlarmsProcessing_4
+        BRCC    ??AlarmsProcessing_3
         MOV     R16, R26
         LDI     R17, 0
         LSL     R16
@@ -5354,7 +5259,7 @@ _A_PINF:
         CALL    ??GetAlarmWindowIndex
         RCALL   ??GetAlarmWindowType
         MOV     R24, R16
-??AlarmsProcessing_4:
+??AlarmsProcessing_3:
         INC     R26
         RJMP    ??AlarmsProcessing_1
 ??AlarmsProcessing_2:
@@ -5762,26 +5667,26 @@ _A_PINF:
         LDI     R16, 0
         CALL    ??SetDiscreteSignalsReset
         RET
-// 1434 
-// 1435 //-----------------------------------------------------------------------------------------------------
+// 1391 
+// 1392 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1436 void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
+// 1393 void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
 ??ActiveAlarmWindowOn:
-// 1437 {
+// 1394 {
         ST      -Y, R25
         ST      -Y, R24
         MOV     R25, R16
-// 1438     for (uint8_t i = 0;
+// 1395     for (uint8_t i = 0;
         LDI     R24, 0
-// 1439             i < ALARM_WINDOWS_NUMBER;
+// 1396             i < ALARM_WINDOWS_NUMBER;
 ??ActiveAlarmWindowOn_1:
         CPI     R24, 48
         BRCC    ??ActiveAlarmWindowOn_2
-// 1440             i++)
-// 1441     {
-// 1442         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
-// 1443         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
+// 1397             i++)
+// 1398     {
+// 1399         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+// 1400         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
         MOV     R16, R24
         LDI     R17, 0
         LDI     R20, 8
@@ -5795,9 +5700,9 @@ _A_PINF:
         CALL    ??GetAlarmType
         CP      R16, R25
         BRNE    ??ActiveAlarmWindowOn_3
-// 1444         {
-// 1445             // Активизируем окно сигнализации, для отображения извещателем.
-// 1446             m_axAlarmWindowControl[i].SetActivityState(1);
+// 1401         {
+// 1402             // Активизируем окно сигнализации, для отображения извещателем.
+// 1403             m_axAlarmWindowControl[i].SetActivityState(1);
         LDI     R18, 1
         MOV     R16, R24
         LDI     R17, 0
@@ -5810,41 +5715,41 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetActivityState
-// 1447         }
-// 1448 
-// 1449 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
-// 1450     };
+// 1404         }
+// 1405 
+// 1406 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
+// 1407     };
 ??ActiveAlarmWindowOn_3:
         INC     R24
         RJMP    ??ActiveAlarmWindowOn_1
-// 1451 
-// 1452     BoardWindowsUpdate();
+// 1408 
+// 1409     BoardWindowsUpdate();
 ??ActiveAlarmWindowOn_2:
         CALL    ??BoardWindowsUpdate
-// 1453 }
+// 1410 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-// 1454 
-// 1455 //-----------------------------------------------------------------------------------------------------
+// 1411 
+// 1412 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1456 void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
+// 1413 void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
 ??ActiveAlarmWindowOff:
-// 1457 {
+// 1414 {
         ST      -Y, R25
         ST      -Y, R24
         MOV     R25, R16
-// 1458     for (uint8_t i = 0;
+// 1415     for (uint8_t i = 0;
         LDI     R24, 0
-// 1459             i < ALARM_WINDOWS_NUMBER;
+// 1416             i < ALARM_WINDOWS_NUMBER;
 ??ActiveAlarmWindowOff_1:
         CPI     R24, 48
         BRCC    ??ActiveAlarmWindowOff_2
-// 1460             i++)
-// 1461     {
-// 1462         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
-// 1463         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
+// 1417             i++)
+// 1418     {
+// 1419         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+// 1420         if (m_axAlarmWindowControl[i].GetAlarmType() == uiAlarmType)
         MOV     R16, R24
         LDI     R17, 0
         LDI     R20, 8
@@ -5858,9 +5763,9 @@ _A_PINF:
         CALL    ??GetAlarmType
         CP      R16, R25
         BRNE    ??ActiveAlarmWindowOff_3
-// 1464         {
-// 1465             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-// 1466             m_axAlarmWindowControl[i].SetActivityState(0);
+// 1421         {
+// 1422             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1423             m_axAlarmWindowControl[i].SetActivityState(0);
         LDI     R18, 0
         MOV     R16, R24
         LDI     R17, 0
@@ -5874,8 +5779,8 @@ _A_PINF:
         ADC     R17, R21
         CALL    ??SetActivityState
         RJMP    ??ActiveAlarmWindowOff_4
-// 1467         }
-// 1468         else if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
+// 1424         }
+// 1425         else if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
 ??ActiveAlarmWindowOff_3:
         MOV     R16, R24
         LDI     R17, 0
@@ -5890,9 +5795,9 @@ _A_PINF:
         CALL    ??GetAlarmType
         TST     R16
         BRNE    ??ActiveAlarmWindowOff_4
-// 1469         {
-// 1470             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-// 1471             m_axAlarmWindowControl[i].SetActivityState(0);
+// 1426         {
+// 1427             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1428             m_axAlarmWindowControl[i].SetActivityState(0);
         LDI     R18, 0
         MOV     R16, R24
         LDI     R17, 0
@@ -5905,43 +5810,43 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetActivityState
-// 1472         }
-// 1473 
-// 1474 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
-// 1475     };
+// 1429         }
+// 1430 
+// 1431 //        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
+// 1432     };
 ??ActiveAlarmWindowOff_4:
         INC     R24
         RJMP    ??ActiveAlarmWindowOff_1
-// 1476 
-// 1477     BoardWindowsUpdate();
+// 1433 
+// 1434     BoardWindowsUpdate();
 ??ActiveAlarmWindowOff_2:
         CALL    ??BoardWindowsUpdate
-// 1478 }
+// 1435 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-// 1479 
-// 1480 //-----------------------------------------------------------------------------------------------------
+// 1436 
+// 1437 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1481 void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
+// 1438 void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
 ??AllAlarmWindowOn:
-// 1482 {
+// 1439 {
         ST      -Y, R25
         ST      -Y, R24
         MOV     R25, R16
-// 1483 //    CAlarmWindow axAlarmWindowControl[ALARM_WINDOWS_NUMBER];
-// 1484 
-// 1485     for (uint8_t i = 0;
+// 1440 //    CAlarmWindow axAlarmWindowControl[ALARM_WINDOWS_NUMBER];
+// 1441 
+// 1442     for (uint8_t i = 0;
         LDI     R24, 0
-// 1486             i < ALARM_WINDOWS_NUMBER;
+// 1443             i < ALARM_WINDOWS_NUMBER;
 ??AllAlarmWindowOn_1:
         CPI     R24, 48
         BRCC    ??AllAlarmWindowOn_2
-// 1487             i++)
-// 1488     {
-// 1489         // Активизируем окно сигнализации, для отображения извещателем.
-// 1490         m_axAlarmWindowControl[i].SetAlarmType(uiAlarmType);
+// 1444             i++)
+// 1445     {
+// 1446         // Активизируем окно сигнализации, для отображения извещателем.
+// 1447         m_axAlarmWindowControl[i].SetAlarmType(uiAlarmType);
         MOV     R18, R25
         MOV     R16, R24
         LDI     R17, 0
@@ -5954,8 +5859,8 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmType
-// 1491         // Активизируем окно сигнализации, для отображения извещателем.
-// 1492         m_axAlarmWindowControl[i].SetActivityState(1);
+// 1448         // Активизируем окно сигнализации, для отображения извещателем.
+// 1449         m_axAlarmWindowControl[i].SetActivityState(1);
         LDI     R18, 1
         MOV     R16, R24
         LDI     R17, 0
@@ -5968,7 +5873,7 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetActivityState
-// 1493         m_axAlarmWindowControl[i].SetAlarmColor(uiAlarmType);
+// 1450         m_axAlarmWindowControl[i].SetAlarmColor(uiAlarmType);
         MOV     R18, R25
         MOV     R16, R24
         LDI     R17, 0
@@ -5981,37 +5886,37 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmColor
-// 1494     };
+// 1451     };
         INC     R24
         RJMP    ??AllAlarmWindowOn_1
-// 1495 
-// 1496     BoardWindowsUpdate();
+// 1452 
+// 1453     BoardWindowsUpdate();
 ??AllAlarmWindowOn_2:
         CALL    ??BoardWindowsUpdate
-// 1497 }
+// 1454 }
         LD      R24, Y+
         LD      R25, Y+
         RET
-// 1498 
-// 1499 //-----------------------------------------------------------------------------------------------------
+// 1455 
+// 1456 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1500 void CPss21::ErrorWindowOn(uint8_t uiIndex)
+// 1457 void CPss21::ErrorWindowOn(uint8_t uiIndex)
 ??ErrorWindowOn:
-// 1501 {
+// 1458 {
         ST      -Y, R26
         ST      -Y, R24
         MOV     R26, R16
-// 1502     // Актмвируем окна сигнализации - ошибка.
-// 1503     for (uint8_t i = 0;
+// 1459     // Актмвируем окна сигнализации - ошибка.
+// 1460     for (uint8_t i = 0;
         LDI     R24, 0
-// 1504             i < ALARM_WINDOWS_NUMBER;
+// 1461             i < ALARM_WINDOWS_NUMBER;
 ??ErrorWindowOn_1:
         CPI     R24, 48
         BRCC    ??ErrorWindowOn_2
-// 1505             i++)
-// 1506     {
-// 1507         if (m_auiErrorLedOn[i])
+// 1462             i++)
+// 1463     {
+// 1464         if (m_auiErrorLedOn[i])
         MOV     R30, R24
         LDI     R31, 0
         SUBI    R30, LOW((-(??m_auiErrorLedOn) & 0xFFFF))
@@ -6019,9 +5924,9 @@ _A_PINF:
         LPM     R16, Z
         TST     R16
         BREQ    ??ErrorWindowOn_3
-// 1508         {
-// 1509             // Активизируем окно сигнализации, для отображения извещателем.
-// 1510             m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
+// 1465         {
+// 1466             // Активизируем окно сигнализации, для отображения извещателем.
+// 1467             m_axAlarmWindowControl[i].SetAlarmType(INDICATION);
         LDI     R18, 1
         MOV     R16, R24
         LDI     R17, 0
@@ -6034,7 +5939,7 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmType
-// 1511             m_axAlarmWindowControl[i].SetActivityState(1);
+// 1468             m_axAlarmWindowControl[i].SetActivityState(1);
         LDI     R18, 1
         MOV     R16, R24
         LDI     R17, 0
@@ -6047,7 +5952,7 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetActivityState
-// 1512             m_axAlarmWindowControl[i].SetAlarmColor(ERROR);
+// 1469             m_axAlarmWindowControl[i].SetAlarmColor(ERROR);
         LDI     R18, 7
         MOV     R16, R24
         LDI     R17, 0
@@ -6060,18 +5965,18 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmColor
-// 1513         }
-// 1514     };
+// 1470         }
+// 1471     };
 ??ErrorWindowOn_3:
         INC     R24
         RJMP    ??ErrorWindowOn_1
-// 1515 
-// 1516     if (uiIndex < ALARM_WINDOWS_NUMBER)
+// 1472 
+// 1473     if (uiIndex < ALARM_WINDOWS_NUMBER)
 ??ErrorWindowOn_2:
         CPI     R26, 48
         BRCC    ??ErrorWindowOn_4
-// 1517     {
-// 1518         m_axAlarmWindowControl[uiIndex].SetAlarmType(NORMAL);
+// 1474     {
+// 1475         m_axAlarmWindowControl[uiIndex].SetAlarmType(NORMAL);
         LDI     R18, 0
         MOV     R16, R26
         LDI     R17, 0
@@ -6084,7 +5989,7 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmType
-// 1519         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
+// 1476         m_axAlarmWindowControl[uiIndex].SetActivityState(0);
         LDI     R18, 0
         MOV     R16, R26
         LDI     R17, 0
@@ -6097,7 +6002,7 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetActivityState
-// 1520         m_axAlarmWindowControl[uiIndex].SetAlarmColor(NORMAL);
+// 1477         m_axAlarmWindowControl[uiIndex].SetAlarmColor(NORMAL);
         LDI     R18, 0
         MOV     R16, R26
         LDI     R17, 0
@@ -6110,81 +6015,81 @@ _A_PINF:
         ADD     R16, R20
         ADC     R17, R21
         CALL    ??SetAlarmColor
-// 1521     }
-// 1522 
-// 1523     BoardWindowsUpdate();
+// 1478     }
+// 1479 
+// 1480     BoardWindowsUpdate();
 ??ErrorWindowOn_4:
         CALL    ??BoardWindowsUpdate
-// 1524 }
+// 1481 }
         LD      R24, Y+
         LD      R26, Y+
         RET
-// 1525 
-// 1526 //-----------------------------------------------------------------------------------------------------
-// 1527 void CPss21::AllAlarmWindowOff(void)
-// 1528 {
-// 1529     for (uint8_t i = 0;
-// 1530             i < ALARM_WINDOWS_NUMBER;
-// 1531             i++)
-// 1532     {
-// 1533 //        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
-// 1534         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-// 1535         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
-// 1536         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-// 1537         m_axAlarmWindowControl[i].SetActivityState(0);
-// 1538     };
-// 1539 
-// 1540     BoardWindowsUpdate();
-// 1541 }
-// 1542 
-// 1543 //-----------------------------------------------------------------------------------------------------
-// 1544 void CPss21::NormalAlarmWindowOff(void)
-// 1545 {
-// 1546     for (uint8_t i = 0;
-// 1547             i < ALARM_WINDOWS_NUMBER;
-// 1548             i++)
-// 1549     {
-// 1550         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
-// 1551         if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
-// 1552         {
-// 1553             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-// 1554             m_axAlarmWindowControl[i].SetActivityState(0);
-// 1555         }
-// 1556     };
-// 1557 
-// 1558     BoardWindowsUpdate();
-// 1559 }
-// 1560 
-// 1561 //-----------------------------------------------------------------------------------------------------
+// 1482 
+// 1483 //-----------------------------------------------------------------------------------------------------
+// 1484 void CPss21::AllAlarmWindowOff(void)
+// 1485 {
+// 1486     for (uint8_t i = 0;
+// 1487             i < ALARM_WINDOWS_NUMBER;
+// 1488             i++)
+// 1489     {
+// 1490 //        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
+// 1491         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1492         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
+// 1493         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1494         m_axAlarmWindowControl[i].SetActivityState(0);
+// 1495     };
+// 1496 
+// 1497     BoardWindowsUpdate();
+// 1498 }
+// 1499 
+// 1500 //-----------------------------------------------------------------------------------------------------
+// 1501 void CPss21::NormalAlarmWindowOff(void)
+// 1502 {
+// 1503     for (uint8_t i = 0;
+// 1504             i < ALARM_WINDOWS_NUMBER;
+// 1505             i++)
+// 1506     {
+// 1507         // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+// 1508         if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
+// 1509         {
+// 1510             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+// 1511             m_axAlarmWindowControl[i].SetActivityState(0);
+// 1512         }
+// 1513     };
+// 1514 
+// 1515     BoardWindowsUpdate();
+// 1516 }
+// 1517 
+// 1518 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1562 void CPss21::TestMainCycle(void)
+// 1519 void CPss21::TestMainCycle(void)
 ??TestMainCycle:
-// 1563 {
-// 1564     CPss21::m_xModbusRtuOne.Fsm();
+// 1520 {
+// 1521     CPss21::m_xModbusRtuOne.Fsm();
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1565 
-// 1566     m_xTestModeNotifyerControl.Fsm();
+// 1522 
+// 1523     m_xTestModeNotifyerControl.Fsm();
         LDI     R16, LOW(??m_xTestModeNotifyerControl)
         LDI     R17, (??m_xTestModeNotifyerControl) >> 8
         CALL    ??Fsm_2
-// 1567 //    NotifyersControlProcessing();
-// 1568 
-// 1569     CPss21::KeyStateProcessing();
+// 1524 //    NotifyersControlProcessing();
+// 1525 
+// 1526     CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1570 
-// 1571     // Есть команда - "квитировать" или "сброс"?
-// 1572     if ((GetPanelReceipt()) ||
-// 1573             (GetExternalReceipt()) ||
-// 1574             (GetModbusReceipt()) ||
-// 1575             (GetPanelReset()) ||
-// 1576             (GetExternalReset()) ||
-// 1577             (GetModbusReset()) ||
-// 1578             // автомат извещателя тестового режима закончил работу?
-// 1579             (m_xTestModeNotifyerControl.GetFsmState() ==
-// 1580              CNotifyerControl::IDDLE))
+// 1527 
+// 1528     // Есть команда - "квитировать" или "сброс"?
+// 1529     if ((GetPanelReceipt()) ||
+// 1530             (GetExternalReceipt()) ||
+// 1531             (GetModbusReceipt()) ||
+// 1532             (GetPanelReset()) ||
+// 1533             (GetExternalReset()) ||
+// 1534             (GetModbusReset()) ||
+// 1535             // автомат извещателя тестового режима закончил работу?
+// 1536             (m_xTestModeNotifyerControl.GetFsmState() ==
+// 1537              CNotifyerControl::IDDLE))
         CALL    ??GetPanelReceipt
         TST     R16
         BRNE    ??TestMainCycle_1
@@ -6208,53 +6113,53 @@ _A_PINF:
         CALL    ??GetFsmState
         TST     R16
         BRNE    ??TestMainCycle_2
-// 1581     {
-// 1582         // если прекращаем работу по сбросу или квитированию, то
-// 1583         // остановим автомат извещателя тестового режима
-// 1584         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::STOP);
+// 1538     {
+// 1539         // если прекращаем работу по сбросу или квитированию, то
+// 1540         // остановим автомат извещателя тестового режима
+// 1541         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::STOP);
 ??TestMainCycle_1:
         LDI     R18, 37
         LDI     R16, LOW(??m_xTestModeNotifyerControl)
         LDI     R17, (??m_xTestModeNotifyerControl) >> 8
         CALL    ??SetFsmState
-// 1585         SetFsmState(TEST_STOP);
+// 1542         SetFsmState(TEST_STOP);
         LDI     R16, 13
         CALL    ??SetFsmState_1
-// 1586     }
-// 1587     //    if (CPss21::m_xMainCycleTimer.IsOverflow())
-// 1588 //    {
-// 1589 //        SetFsmState(TEST_STOP);
-// 1590 //    }
-// 1591 
-// 1592 
-// 1593 
-// 1594     CPss21::ReceiptResetGlobalFlagsClear();
+// 1543     }
+// 1544     //    if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1545 //    {
+// 1546 //        SetFsmState(TEST_STOP);
+// 1547 //    }
+// 1548 
+// 1549 
+// 1550 
+// 1551     CPss21::ReceiptResetGlobalFlagsClear();
 ??TestMainCycle_2:
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1595 
-// 1596     CPlatform::WatchdogReset();
+// 1552 
+// 1553     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1597 }
+// 1554 }
         RET
-// 1598 
-// 1599 //-----------------------------------------------------------------------------------------------------
+// 1555 
+// 1556 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1600 void CPss21::ErrorMainCycle(void)
+// 1557 void CPss21::ErrorMainCycle(void)
 ??ErrorMainCycle:
-// 1601 {
-// 1602     CPss21::m_xModbusRtuOne.Fsm();
+// 1558 {
+// 1559     CPss21::m_xModbusRtuOne.Fsm();
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1603 
-// 1604     CPss21::KeyStateProcessing();
+// 1560 
+// 1561     CPss21::KeyStateProcessing();
         RCALL   ??KeyStateProcessing
-// 1605 
-// 1606     // Есть команда - "квитировать"?
-// 1607     if ((GetPanelReceipt()) ||
-// 1608             (GetExternalReceipt()) ||
-// 1609             (GetModbusReceipt()))
+// 1562 
+// 1563     // Есть команда - "квитировать"?
+// 1564     if ((GetPanelReceipt()) ||
+// 1565             (GetExternalReceipt()) ||
+// 1566             (GetModbusReceipt()))
         CALL    ??GetPanelReceipt
         TST     R16
         BRNE    ??ErrorMainCycle_1
@@ -6264,223 +6169,223 @@ _A_PINF:
         CALL    ??GetModbusReceipt
         TST     R16
         BREQ    ??ErrorMainCycle_2
-// 1610     {
-// 1611 //        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1612 //        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-// 1613         m_xStatusLedNotifyerControl.AlarmSet(NORMAL);
+// 1567     {
+// 1568 //        m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1569 //        m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1570         m_xStatusLedNotifyerControl.AlarmSet(NORMAL);
 ??ErrorMainCycle_1:
         LDI     R18, 0
         LDI     R16, LOW(??m_xStatusLedNotifyerControl)
         LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
         CALL    ??AlarmSet_3
-// 1614         m_xBuzzerNotifyerControl.AlarmSet(NORMAL);
+// 1571         m_xBuzzerNotifyerControl.AlarmSet(NORMAL);
         LDI     R18, 0
         LDI     R16, LOW(??m_xBuzzerNotifyerControl)
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
-// 1615     }
-// 1616 
-// 1617     NotifyersControlProcessing();
+// 1572     }
+// 1573 
+// 1574     NotifyersControlProcessing();
 ??ErrorMainCycle_2:
         RCALL   ??NotifyersControlProcessing
-// 1618 
-// 1619     CPss21::ReceiptResetGlobalFlagsClear();
+// 1575 
+// 1576     CPss21::ReceiptResetGlobalFlagsClear();
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1620 
-// 1621     CPlatform::WatchdogReset();
+// 1577 
+// 1578     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1622 }
+// 1579 }
         RET
-// 1623 
-// 1624 //-----------------------------------------------------------------------------------------------------
+// 1580 
+// 1581 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1625 void CPss21::LinkControlErrorMainCycle(void)
+// 1582 void CPss21::LinkControlErrorMainCycle(void)
 ??LinkControlErrorMainCycle:
-// 1626 {
-// 1627     CPss21::m_xModbusRtuOne.Fsm();
+// 1583 {
+// 1584     CPss21::m_xModbusRtuOne.Fsm();
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1628     CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1585     CPss21::m_xModbusRtuLinkControl.Fsm();
         LDI     R16, LOW(??m_xModbusRtuLinkControl)
         LDI     R17, (??m_xModbusRtuLinkControl) >> 8
         CALL    ??Fsm_3
-// 1629 
-// 1630     CPss21::KeyStateProcessing();
-        CALL    ??KeyStateProcessing
-// 1631 
-// 1632     NotifyersControlProcessing();
+// 1586 
+// 1587     CPss21::KeyStateProcessing();
+        RCALL   ??KeyStateProcessing
+// 1588 
+// 1589     NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1633 
-// 1634     CPss21::ReceiptResetGlobalFlagsClear();
+// 1590 
+// 1591     CPss21::ReceiptResetGlobalFlagsClear();
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1635 
-// 1636     CDataStore::Fsm();
+// 1592 
+// 1593     CDataStore::Fsm();
         CALL    ??Fsm_4
-// 1637 
-// 1638     CPlatform::WatchdogReset();
+// 1594 
+// 1595     CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1639 }
+// 1596 }
         RET
 
         RSEG NEAR_Z:DATA:ROOT(0)
         REQUIRE `?<Segment init: NEAR_Z>`
-// 1640 uint8_t uiMapTestCounter = 0;
+// 1597 uint8_t uiMapTestCounter = 0;
 uiMapTestCounter:
         DS8 1
-// 1641 //-----------------------------------------------------------------------------------------------------
+// 1598 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-// 1642 void CPss21::MainFsm(void)
+// 1599 void CPss21::MainFsm(void)
 ??MainFsm:
-// 1643 {
-// 1644     switch (GetFsmState())
+// 1600 {
+// 1601     switch (GetFsmState())
         CALL    ??GetFsmState_1
         LDI     R30, LOW(`?<Jumptable for MainFsm>_0`)
         LDI     R31, (`?<Jumptable for MainFsm>_0`) >> 16
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for MainFsm>_0`)
         JMP     ?CV_SWITCH_L06
-// 1645     {
-// 1646     case START:
-// 1647         CPlatform::WatchdogEnable();
+// 1602     {
+// 1603     case START:
+// 1604         CPlatform::WatchdogEnable();
 ??MainFsm_1:
         CALL    ??WatchdogEnable
-// 1648         CPlatform::Init();
+// 1605         CPlatform::Init();
         CALL    ??Init_3
-// 1649         CPss21::Init();
+// 1606         CPss21::Init();
         CALL    ??Init
-// 1650         CBuzzer::Init();
+// 1607         CBuzzer::Init();
         CALL    ??Init_4
-// 1651         if (!(CDataBase::Check()))
+// 1608         if (!(CDataBase::Check()))
         CALL    ??Check
         TST     R16
         BRNE    ??MainFsm_2
-// 1652         {
-// 1653             SetFsmState(ERROR_START);
+// 1609         {
+// 1610             SetFsmState(ERROR_START);
         LDI     R16, 14
         CALL    ??SetFsmState_1
         RET
-// 1654         }
-// 1655         else
-// 1656         {
-// 1657 
-// 1658 //            {
-// 1659 //                //m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH]
-// 1660 ////                memset(CPss21::m_aucDiscreteInputsBadState, 0, DISCRETE_INPUTS_ARRAY_LENGTH);
-// 1661 //                memset(CPss21::m_aucDiscreteInputsBadState, 1, DISCRETE_INPUTS_ARRAY_LENGTH);
-// 1662 //                CPss21::m_aucDiscreteInputsBadState[0] = 2;
-// 1663 //            }
-// 1664             CPss21::ConfigurationInit();
+// 1611         }
+// 1612         else
+// 1613         {
+// 1614 
+// 1615 //            {
+// 1616 //                //m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH]
+// 1617 ////                memset(CPss21::m_aucDiscreteInputsBadState, 0, DISCRETE_INPUTS_ARRAY_LENGTH);
+// 1618 //                memset(CPss21::m_aucDiscreteInputsBadState, 1, DISCRETE_INPUTS_ARRAY_LENGTH);
+// 1619 //                CPss21::m_aucDiscreteInputsBadState[0] = INPUT_IS_INVALID;
+// 1620 //            }
+// 1621             CPss21::ConfigurationInit();
 ??MainFsm_2:
         RCALL   ??ConfigurationInit
-// 1665             CPss21::ModbusInit();
+// 1622             CPss21::ModbusInit();
         CALL    ??ModbusInit
-// 1666             CSpi::Init();
+// 1623             CSpi::Init();
         CALL    ??Init_5
-// 1667             CPss21::AddressBusInit();
+// 1624             CPss21::AddressBusInit();
         CALL    ??AddressBusInit
-// 1668             CPss21::SearchModules();
+// 1625             CPss21::SearchModules();
         CALL    ??SearchModules
-// 1669             CPss21::CreateDevices();
+// 1626             CPss21::CreateDevices();
         CALL    ??CreateDevices
-// 1670 //            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-// 1671 
-// 1672             SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1627 //            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+// 1628 
+// 1629             SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1673         }
-// 1674         break;
+// 1630         }
+// 1631         break;
         RET
-// 1675 
-// 1676     case RESTART:
-// 1677         break;
-// 1678 
-// 1679     case MAIN_CYCLE_START_WAITING:
-// 1680         CPss21::m_xModbusRtuOne.Fsm();
+// 1632 
+// 1633     case RESTART:
+// 1634         break;
+// 1635 
+// 1636     case MAIN_CYCLE_START_WAITING:
+// 1637         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_3:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1681 
-// 1682         CPss21::KeyStateProcessing();
+// 1638 
+// 1639         CPss21::KeyStateProcessing();
         CALL    ??KeyStateProcessing
-// 1683 
-// 1684         NotifyersControlProcessing();
+// 1640 
+// 1641         NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1685 
-// 1686         CDataStore::Fsm();
+// 1642 
+// 1643         CDataStore::Fsm();
         CALL    ??Fsm_4
-// 1687 
-// 1688         if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1644 
+// 1645         if (CPss21::m_xMainCycleTimer.IsOverflow())
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
         BREQ    ??MainFsm_4
-// 1689         {
-// 1690             CPss21::m_xMainCycleTimer.Reset();
+// 1646         {
+// 1647             CPss21::m_xMainCycleTimer.Reset();
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Reset
-// 1691             CPlatform::WatchdogReset();
+// 1648             CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1692             SetModuleIndex(0);
+// 1649             SetModuleIndex(0);
         LDI     R16, 0
         CALL    ??SetModuleIndex
-// 1693             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+// 1650             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
         LDI     R16, 3
         CALL    ??SetFsmState_1
-// 1694         }
-// 1695 //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-// 1696 //
-// 1697 //        CPlatform::WatchdogReset();
-// 1698         break;
+// 1651         }
+// 1652 //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+// 1653 //
+// 1654 //        CPlatform::WatchdogReset();
+// 1655         break;
 ??MainFsm_4:
         RET
-// 1699 
-// 1700     case MAIN_CYCLE_MODULES_INTERACTION:
-// 1701         CPss21::m_xModbusRtuOne.Fsm();
+// 1656 
+// 1657     case MAIN_CYCLE_MODULES_INTERACTION:
+// 1658         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_5:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1702         CPss21::m_xModbusRtuLinkControl.Fsm();
+// 1659         CPss21::m_xModbusRtuLinkControl.Fsm();
         LDI     R16, LOW(??m_xModbusRtuLinkControl)
         LDI     R17, (??m_xModbusRtuLinkControl) >> 8
         CALL    ??Fsm_3
-// 1703 
-// 1704         CPss21::KeyStateProcessing();
+// 1660 
+// 1661         CPss21::KeyStateProcessing();
         CALL    ??KeyStateProcessing
-// 1705 
-// 1706         NotifyersControlProcessing();
+// 1662 
+// 1663         NotifyersControlProcessing();
         RCALL   ??NotifyersControlProcessing
-// 1707 
-// 1708         CDataStore::Fsm();
+// 1664 
+// 1665         CDataStore::Fsm();
         CALL    ??Fsm_4
-// 1709 
-// 1710         if (CPss21::ModulesInteraction(GetModuleIndex()))
+// 1666 
+// 1667         if (CPss21::ModulesInteraction(GetModuleIndex()))
         CALL    ??GetModuleIndex
         RCALL   ??ModulesInteraction
         TST     R16
         BREQ    ??MainFsm_6
-// 1711         {
-// 1712             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+// 1668         {
+// 1669             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
         LDI     R16, 4
         CALL    ??SetFsmState_1
         RJMP    ??MainFsm_7
-// 1713         }
-// 1714         else
-// 1715         {
-// 1716             SetModuleIndex(GetModuleIndex() + 1);
+// 1670         }
+// 1671         else
+// 1672         {
+// 1673             SetModuleIndex(GetModuleIndex() + 1);
 ??MainFsm_6:
         CALL    ??GetModuleIndex
         INC     R16
         CALL    ??SetModuleIndex
-// 1717         }
-// 1718 
-// 1719         switch (GetErrorCode())
+// 1674         }
+// 1675 
+// 1676         switch (GetErrorCode())
 ??MainFsm_7:
         CALL    ??GetErrorCode
         SUBI    R16, 3
@@ -6490,212 +6395,313 @@ uiMapTestCounter:
         DEC     R16
         BREQ    ??MainFsm_9
         RET
-// 1720         {
-// 1721 //        case IMD_ERROR:
-// 1722 //        case OMD_ERROR:
-// 1723         case CFG_ERROR:
-// 1724         case DB_ERROR:
-// 1725             SetFsmState(ERROR_START);
+// 1677         {
+// 1678 //        case IMD_ERROR:
+// 1679 //        case OMD_ERROR:
+// 1680         case CFG_ERROR:
+// 1681         case DB_ERROR:
+// 1682             SetFsmState(ERROR_START);
 ??MainFsm_8:
         LDI     R16, 14
         CALL    ??SetFsmState_1
-// 1726             break;
+// 1683             break;
         RET
-// 1727 
-// 1728         case MBS_ERROR:
-// 1729             SetFsmState(LINK_CONTROL_ERROR_START);
+// 1684 
+// 1685         case MBS_ERROR:
+// 1686             SetFsmState(LINK_CONTROL_ERROR_START);
 ??MainFsm_9:
         LDI     R16, 16
         CALL    ??SetFsmState_1
-// 1730             break;
-// 1731 
-// 1732         default:
-// 1733             break;
-// 1734         }
-// 1735         break;
+// 1687             break;
+// 1688 
+// 1689         default:
+// 1690             break;
+// 1691         }
+// 1692         break;
         RET
-// 1736 
-// 1737     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
-// 1738         CPss21::DiscreteSignalsProcessing();
+// 1693 
+// 1694     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
+// 1695         CPss21::DiscreteSignalsProcessing();
 ??MainFsm_10:
         RCALL   ??DiscreteSignalsProcessing
-// 1739         SetFsmState(MAIN_CYCLE_END);
+// 1696         SetFsmState(MAIN_CYCLE_END);
         LDI     R16, 5
         CALL    ??SetFsmState_1
-// 1740         break;
+// 1697         break;
         RET
-// 1741 
-// 1742     case MAIN_CYCLE_END:
-// 1743         CPss21::ReceiptResetGlobalFlagsClear();
+// 1698 
+// 1699     case MAIN_CYCLE_END:
+// 1700         CPss21::ReceiptResetGlobalFlagsClear();
 ??MainFsm_11:
         RCALL   ??ReceiptResetGlobalFlagsClear
-// 1744         SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1701         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1745         break;
+// 1702         break;
         RET
-// 1746 
-// 1747 ////-----------------------------------------------------------------------------------------------------
-// 1748 //    case MAP_CREATE_START:
-// 1749 //        uiMapTestCounter = 0;
-// 1750 //        SetFsmState(MAP_CREATE_WINDOW_ON);
-// 1751 //
-// 1752 //        CPlatform::WatchdogReset();
+// 1703 
+// 1704 ////-----------------------------------------------------------------------------------------------------
+// 1705 //    case MAP_CREATE_START:
+// 1706 //        uiMapTestCounter = 0;
+// 1707 //        SetFsmState(MAP_CREATE_WINDOW_ON);
+// 1708 //
+// 1709 //        CPlatform::WatchdogReset();
+// 1710 //
+// 1711 //
+// 1712 ////        CPss21::AllAlarmWindowOff();
+// 1713 ////        for (uint8_t i = 0;
+// 1714 ////                i < 48;
+// 1715 ////                i++)
+// 1716 ////        {
+// 1717 ////            // Активизируем окно сигнализации, для отображения извещателем.
+// 1718 ////            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
+// 1719 ////            // Активизируем окно сигнализации, для отображения извещателем.
+// 1720 ////            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
+// 1721 ////        };
+// 1722 ////        BoardWindowsUpdate();
+// 1723 ////        SetFsmState(MAP_CREATE_ALL_LED_ON);
+// 1724 ////        break;
+// 1725 //
+// 1726 ////    case MAP_CREATE_ALL_LED_ON:
+// 1727 ////
+// 1728 ////        CPlatform::WatchdogReset();
+// 1729 ////        break;
+// 1730 //
+// 1731 //    case MAP_CREATE_WINDOW_ON:
+// 1732 //        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+// 1733 //        if (uiMapTestCounter != 48)
+// 1734 //        {
+// 1735 //            CPss21::AllAlarmWindowOff();
+// 1736 //            // Активизируем окно сигнализации, для отображения извещателем.
+// 1737 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
+// 1738 //            // Активизируем окно сигнализации, для отображения извещателем.
+// 1739 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
+// 1740 //
+// 1741 //            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
+// 1742 //            BoardWindowsUpdate();
+// 1743 //            SetFsmState(MAP_CREATE_ON);
+// 1744 //        }
+// 1745 //        else
+// 1746 //        {
+// 1747 //            SetFsmState(MAP_CREATE_START);
+// 1748 //        }
+// 1749 //
+// 1750 //        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1751 //        CPlatform::WatchdogReset();
+// 1752 //        break;
 // 1753 //
-// 1754 //
-// 1755 ////        CPss21::AllAlarmWindowOff();
-// 1756 ////        for (uint8_t i = 0;
-// 1757 ////                i < 48;
-// 1758 ////                i++)
+// 1754 //    case MAP_CREATE_ON:
+// 1755 //        TestMainCycle();
+// 1756 //
+// 1757 //
+// 1758 ////        if (CPss21::m_xMainCycleTimer.IsOverflow())
 // 1759 ////        {
-// 1760 ////            // Активизируем окно сигнализации, для отображения извещателем.
-// 1761 ////            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-// 1762 ////            // Активизируем окно сигнализации, для отображения извещателем.
-// 1763 ////            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-// 1764 ////        };
-// 1765 ////        BoardWindowsUpdate();
-// 1766 ////        SetFsmState(MAP_CREATE_ALL_LED_ON);
-// 1767 ////        break;
+// 1760 ////            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1761 ////            SetFsmState(MAP_CREATE_NEXT_WINDOW);
+// 1762 ////        }
+// 1763 //        break;
+// 1764 //
+// 1765 //    case MAP_CREATE_NEXT_WINDOW:
+// 1766 //        uiMapTestCounter++;
+// 1767 //        SetFsmState(MAP_CREATE_WINDOW_ON);
 // 1768 //
-// 1769 ////    case MAP_CREATE_ALL_LED_ON:
-// 1770 ////
-// 1771 ////        CPlatform::WatchdogReset();
-// 1772 ////        break;
-// 1773 //
-// 1774 //    case MAP_CREATE_WINDOW_ON:
-// 1775 //        CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-// 1776 //        if (uiMapTestCounter != 48)
-// 1777 //        {
-// 1778 //            CPss21::AllAlarmWindowOff();
-// 1779 //            // Активизируем окно сигнализации, для отображения извещателем.
-// 1780 //            m_axAlarmWindowControl[uiMapTestCounter].SetAlarmType(INDICATION);
-// 1781 //            // Активизируем окно сигнализации, для отображения извещателем.
-// 1782 //            m_axAlarmWindowControl[uiMapTestCounter].SetActivityState(1);
-// 1783 //
-// 1784 //            CPss21::m_aucRtuHoldingRegistersArray[0] = uiMapTestCounter;
-// 1785 //            BoardWindowsUpdate();
-// 1786 //            SetFsmState(MAP_CREATE_ON);
-// 1787 //        }
-// 1788 //        else
-// 1789 //        {
-// 1790 //            SetFsmState(MAP_CREATE_START);
-// 1791 //        }
-// 1792 //
-// 1793 //        CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1794 //        CPlatform::WatchdogReset();
-// 1795 //        break;
-// 1796 //
-// 1797 //    case MAP_CREATE_ON:
-// 1798 //        TestMainCycle();
-// 1799 //
-// 1800 //
-// 1801 ////        if (CPss21::m_xMainCycleTimer.IsOverflow())
-// 1802 ////        {
-// 1803 ////            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1804 ////            SetFsmState(MAP_CREATE_NEXT_WINDOW);
-// 1805 ////        }
-// 1806 //        break;
-// 1807 //
-// 1808 //    case MAP_CREATE_NEXT_WINDOW:
-// 1809 //        uiMapTestCounter++;
-// 1810 //        SetFsmState(MAP_CREATE_WINDOW_ON);
-// 1811 //
-// 1812 //        CPlatform::WatchdogReset();
-// 1813 //        break;
-// 1814 
-// 1815 
-// 1816 //-----------------------------------------------------------------------------------------------------
-// 1817     case TEST_START:
-// 1818         SaveContextNotifyerControl();
+// 1769 //        CPlatform::WatchdogReset();
+// 1770 //        break;
+// 1771 
+// 1772 
+// 1773 //-----------------------------------------------------------------------------------------------------
+// 1774     case TEST_START:
+// 1775         SaveContextNotifyerControl();
 ??MainFsm_12:
         RCALL   ??SaveContextNotifyerControl
-// 1819 //        AlarmTypeSet(PREVENTIVE);
-// 1820 //        CPss21::AllAlarmWindowOn(PREVENTIVE);
-// 1821 //        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
-// 1822         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
+// 1776 //        AlarmTypeSet(PREVENTIVE);
+// 1777 //        CPss21::AllAlarmWindowOn(PREVENTIVE);
+// 1778 //        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
+// 1779         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
         LDI     R18, 1
         LDI     R16, LOW(??m_xTestModeNotifyerControl)
         LDI     R17, (??m_xTestModeNotifyerControl) >> 8
         CALL    ??SetFsmState
-// 1823         SetFsmState(TEST_ON);
+// 1780         SetFsmState(TEST_ON);
         LDI     R16, 12
         CALL    ??SetFsmState_1
-// 1824 
-// 1825         CPlatform::WatchdogReset();
+// 1781 
+// 1782         CPlatform::WatchdogReset();
         CALL    ??WatchdogReset
-// 1826         break;
+// 1783         break;
         RET
-// 1827 
-// 1828     case TEST_ON:
-// 1829 //        if (CPss21::m_xMainCycleTimer.IsOverflow())
-// 1830 //        {
-// 1831 //            CPss21::AllAlarmWindowOff();
-// 1832 //            RestoreContextNotifyerControl();
-// 1833 //            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-// 1834 //            SetFsmState(MAIN_CYCLE_START_WAITING);
-// 1835 //        }
-// 1836 
-// 1837         TestMainCycle();
+// 1784 
+// 1785     case TEST_ON:
+// 1786 //        if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1787 //        {
+// 1788 //            CPss21::AllAlarmWindowOff();
+// 1789 //            RestoreContextNotifyerControl();
+// 1790 //            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1791 //            SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1792 //        }
+// 1793 
+// 1794         TestMainCycle();
 ??MainFsm_13:
         RCALL   ??TestMainCycle
-// 1838         break;
+// 1795         break;
         RET
-// 1839 
-// 1840     case TEST_STOP:
-// 1841         CPss21::AllAlarmWindowOff();
+// 1796 
+// 1797     case TEST_STOP:
+// 1798         CPss21::AllAlarmWindowOff();
 ??MainFsm_14:
         CALL    ??AllAlarmWindowOff
-// 1842         RestoreContextNotifyerControl();
+// 1799         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
-// 1843         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+// 1800         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
         LDI     R18, 100
         LDI     R19, 0
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??Set_1
-// 1844         SetFsmState(MAIN_CYCLE_START_WAITING);
+// 1801         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
         CALL    ??SetFsmState_1
-// 1845         break;
+// 1802         break;
         RET
-// 1846 
-// 1847 //-----------------------------------------------------------------------------------------------------
-// 1848     case ERROR_START:
-// 1849         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
-// 1850         ModbusDefaultInit();
+// 1803 
+// 1804 //-----------------------------------------------------------------------------------------------------
+// 1805     case ERROR_START:
+// 1806         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
+// 1807         ModbusDefaultInit();
 ??MainFsm_15:
         CALL    ??ModbusDefaultInit
-// 1851         ErrorWindowOn(GetErrorCode() - 1);
+// 1808         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
         DEC     R16
         RCALL   ??ErrorWindowOn
-// 1852         SetErrorCode(0);
+// 1809         SetErrorCode(0);
         LDI     R16, 0
         CALL    ??SetErrorCode
-// 1853 
-// 1854         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1810 
+// 1811         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
         LDI     R18, 1
         LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
         LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
         CALL    ??AlarmSet_1
-// 1855         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+// 1812         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
         LDI     R18, 1
         LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
         LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
         CALL    ??AlarmSet_2
-// 1856         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+// 1813         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
         LDI     R18, 7
         LDI     R16, LOW(??m_xStatusLedNotifyerControl)
         LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
         CALL    ??AlarmSet_3
-// 1857         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+// 1814         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
         LDI     R18, 7
         LDI     R16, LOW(??m_xBuzzerNotifyerControl)
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
-// 1858 
-// 1859         SetFsmState(ERROR_ON);
+// 1815 
+// 1816         SetFsmState(ERROR_ON);
         LDI     R16, 15
+        CALL    ??SetFsmState_1
+// 1817 
+// 1818         CPlatform::WatchdogReset();
+        CALL    ??WatchdogReset
+// 1819         break;
+        RET
+// 1820 
+// 1821     case ERROR_ON:
+// 1822         ErrorMainCycle();
+??MainFsm_16:
+        RCALL   ??ErrorMainCycle
+// 1823         break;
+        RET
+// 1824 
+// 1825 //-----------------------------------------------------------------------------------------------------
+// 1826     case LINK_CONTROL_ERROR_START:
+// 1827         SaveContextNotifyerControl();
+??MainFsm_17:
+        RCALL   ??SaveContextNotifyerControl
+// 1828         ErrorWindowOn(GetErrorCode() - 1);
+        CALL    ??GetErrorCode
+        DEC     R16
+        RCALL   ??ErrorWindowOn
+// 1829         SetErrorCode(0);
+        LDI     R16, 0
+        CALL    ??SetErrorCode
+// 1830 
+// 1831         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        LDI     R18, 1
+        LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
+        LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
+        CALL    ??AlarmSet_1
+// 1832         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
+        LDI     R18, 1
+        LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
+        LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
+        CALL    ??AlarmSet_2
+// 1833         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
+        LDI     R18, 7
+        LDI     R16, LOW(??m_xStatusLedNotifyerControl)
+        LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
+        CALL    ??AlarmSet_3
+// 1834         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
+        LDI     R18, 7
+        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+        CALL    ??AlarmSet
+// 1835 
+// 1836         CPlatform::WatchdogReset();
+        CALL    ??WatchdogReset
+// 1837         SetFsmState(LINK_CONTROL_ERROR_ON);
+        LDI     R16, 17
+        CALL    ??SetFsmState_1
+// 1838         break;
+        RET
+// 1839 
+// 1840     case LINK_CONTROL_ERROR_ON:
+// 1841         LinkControlErrorMainCycle();
+??MainFsm_18:
+        RCALL   ??LinkControlErrorMainCycle
+// 1842         break;
+        RET
+// 1843 
+// 1844     case LINK_CONTROL_ERROR_OFF:
+// 1845         CPss21::AllAlarmWindowOff();
+??MainFsm_19:
+        CALL    ??AllAlarmWindowOff
+// 1846         RestoreContextNotifyerControl();
+        RCALL   ??RestoreContextNotifyerControl
+// 1847         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
+        LDI     R18, 100
+        LDI     R19, 0
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??Set_1
+// 1848 
+// 1849         CPlatform::WatchdogReset();
+        CALL    ??WatchdogReset
+// 1850         SetFsmState(MAIN_CYCLE_START_WAITING);
+        LDI     R16, 2
+        CALL    ??SetFsmState_1
+// 1851         break;
+        RET
+// 1852 
+// 1853 //-----------------------------------------------------------------------------------------------------
+// 1854     case PROGRAMMING_START:
+// 1855         CPss21::m_xModbusRtuOne.Fsm();
+??MainFsm_20:
+        LDI     R16, LOW(??m_xModbusRtuOne)
+        LDI     R17, (??m_xModbusRtuOne) >> 8
+        CALL    ??Fsm_1
+// 1856         // После приёма последнего блока базы данных произойдёт перезагрузка
+// 1857         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
+// 1858         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
+        LDI     R18, 232
+        LDI     R19, 3
+        LDI     R16, LOW(??m_xMainCycleTimer)
+        LDI     R17, (??m_xMainCycleTimer) >> 8
+        CALL    ??Set_1
+// 1859         SetFsmState(PROGRAMMING_ON);
+        LDI     R16, 20
         CALL    ??SetFsmState_1
 // 1860 
 // 1861         CPlatform::WatchdogReset();
@@ -6703,157 +6709,56 @@ uiMapTestCounter:
 // 1862         break;
         RET
 // 1863 
-// 1864     case ERROR_ON:
-// 1865         ErrorMainCycle();
-??MainFsm_16:
-        RCALL   ??ErrorMainCycle
-// 1866         break;
-        RET
-// 1867 
-// 1868 //-----------------------------------------------------------------------------------------------------
-// 1869     case LINK_CONTROL_ERROR_START:
-// 1870         SaveContextNotifyerControl();
-??MainFsm_17:
-        RCALL   ??SaveContextNotifyerControl
-// 1871         ErrorWindowOn(GetErrorCode() - 1);
-        CALL    ??GetErrorCode
-        DEC     R16
-        RCALL   ??ErrorWindowOn
-// 1872         SetErrorCode(0);
-        LDI     R16, 0
-        CALL    ??SetErrorCode
-// 1873 
-// 1874         m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-        LDI     R18, 1
-        LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
-        LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
-        CALL    ??AlarmSet_1
-// 1875         m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-        LDI     R18, 1
-        LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
-        LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
-        CALL    ??AlarmSet_2
-// 1876         m_xStatusLedNotifyerControl.AlarmSet(ERROR);
-        LDI     R18, 7
-        LDI     R16, LOW(??m_xStatusLedNotifyerControl)
-        LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
-        CALL    ??AlarmSet_3
-// 1877         m_xBuzzerNotifyerControl.AlarmSet(ERROR);
-        LDI     R18, 7
-        LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-        LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-        CALL    ??AlarmSet
-// 1878 
-// 1879         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1880         SetFsmState(LINK_CONTROL_ERROR_ON);
-        LDI     R16, 17
-        CALL    ??SetFsmState_1
-// 1881         break;
-        RET
-// 1882 
-// 1883     case LINK_CONTROL_ERROR_ON:
-// 1884         LinkControlErrorMainCycle();
-??MainFsm_18:
-        RCALL   ??LinkControlErrorMainCycle
-// 1885         break;
-        RET
-// 1886 
-// 1887     case LINK_CONTROL_ERROR_OFF:
-// 1888         CPss21::AllAlarmWindowOff();
-??MainFsm_19:
-        CALL    ??AllAlarmWindowOff
-// 1889         RestoreContextNotifyerControl();
-        RCALL   ??RestoreContextNotifyerControl
-// 1890         CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-        LDI     R18, 100
-        LDI     R19, 0
-        LDI     R16, LOW(??m_xMainCycleTimer)
-        LDI     R17, (??m_xMainCycleTimer) >> 8
-        CALL    ??Set_1
-// 1891 
-// 1892         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1893         SetFsmState(MAIN_CYCLE_START_WAITING);
-        LDI     R16, 2
-        CALL    ??SetFsmState_1
-// 1894         break;
-        RET
-// 1895 
-// 1896 //-----------------------------------------------------------------------------------------------------
-// 1897     case PROGRAMMING_START:
-// 1898         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_20:
-        LDI     R16, LOW(??m_xModbusRtuOne)
-        LDI     R17, (??m_xModbusRtuOne) >> 8
-        CALL    ??Fsm_1
-// 1899         // После приёма последнего блока базы данных произойдёт перезагрузка
-// 1900         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
-// 1901         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
-        LDI     R18, 232
-        LDI     R19, 3
-        LDI     R16, LOW(??m_xMainCycleTimer)
-        LDI     R17, (??m_xMainCycleTimer) >> 8
-        CALL    ??Set_1
-// 1902         SetFsmState(PROGRAMMING_ON);
-        LDI     R16, 20
-        CALL    ??SetFsmState_1
-// 1903 
-// 1904         CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1905         break;
-        RET
-// 1906 
-// 1907     case PROGRAMMING_ON:
-// 1908         CPss21::m_xModbusRtuOne.Fsm();
+// 1864     case PROGRAMMING_ON:
+// 1865         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_21:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1909 
-// 1910         CDataStore::Fsm();
+// 1866 
+// 1867         CDataStore::Fsm();
         CALL    ??Fsm_4
-// 1911 
-// 1912         if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1868 
+// 1869         if (CPss21::m_xMainCycleTimer.IsOverflow())
         LDI     R16, LOW(??m_xMainCycleTimer)
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
         BREQ    ??MainFsm_22
-// 1913         {
-// 1914             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+// 1870         {
+// 1871             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
         LDI     R18, 8
         LDI     R16, LOW(??m_xBuzzerNotifyerControl)
         LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
         CALL    ??AlarmSet
-// 1915             SetFsmState(REBOOT);
+// 1872             SetFsmState(REBOOT);
         LDI     R16, 21
         CALL    ??SetFsmState_1
-// 1916         }
-// 1917 
-// 1918         CPlatform::WatchdogReset();
+// 1873         }
+// 1874 
+// 1875         CPlatform::WatchdogReset();
 ??MainFsm_22:
         CALL    ??WatchdogReset
-// 1919         break;
+// 1876         break;
         RET
-// 1920 
-// 1921     case REBOOT:
-// 1922         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
-// 1923         CPss21::m_xModbusRtuOne.Fsm();
+// 1877 
+// 1878     case REBOOT:
+// 1879         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
+// 1880         CPss21::m_xModbusRtuOne.Fsm();
 ??MainFsm_23:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
-// 1924 
-// 1925         CDataStore::Fsm();
+// 1881 
+// 1882         CDataStore::Fsm();
         CALL    ??Fsm_4
-// 1926         break;
-// 1927 
-// 1928 //-----------------------------------------------------------------------------------------------------
-// 1929     default:
-// 1930         break;
-// 1931     }
-// 1932 }
+// 1883         break;
+// 1884 
+// 1885 //-----------------------------------------------------------------------------------------------------
+// 1886     default:
+// 1887         break;
+// 1888     }
+// 1889 }
 ??MainFsm_24:
         RET
 
@@ -7450,10 +7355,10 @@ __?EEARH:
         DW      (??MainFsm_23) /2
 
         END
-// 1933 
+// 1890 
 // 
 //   105 bytes in segment ABSOLUTE
-// 7 654 bytes in segment CODE
+// 7 538 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -7462,7 +7367,7 @@ __?EEARH:
 // 1 804 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 7 452 bytes of CODE memory (+ 428 bytes shared)
+// 7 336 bytes of CODE memory (+ 428 bytes shared)
 // 1 894 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

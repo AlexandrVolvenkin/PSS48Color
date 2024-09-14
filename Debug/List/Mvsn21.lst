@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           13/Sep/2024  10:00:15
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           14/Sep/2024  11:01:30
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW24A9.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW9713.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Mvsn21.cpp
 #        --cpu=m128a -ms -o
@@ -827,142 +827,138 @@ Warning[Pe177]: variable "puiDestination" was declared but never referenced
    \   00000098   01F8               MOVW    R31:R30, R17:R16
    \   0000009A   8132               LDD     R19, Z+2
      92          
-     93                          for (uint8_t j = 0; j < (DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY / 2); j++)
+     93                          for (uint8_t j = 0; j < DISCRETE_INPUTS_IN_BYTE_QUANTITY; j++)
    \   0000009C   E000               LDI     R16, 0
    \                     ??DataExchange_6:
    \   0000009E   3004               CPI     R16, 4
    \   000000A0   F440               BRCC    ??DataExchange_7
      94                          {
-     95          //                    // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
-     96          //                    // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
-     97          //                    // бит нечётный?
-     98          //                    if (j & 0x01)
-     99          //                    {
-    100          //                        // бит достоверен? 0 - достоверно, 1 - недостоверно.
-    101          //                        *puiDestinationBadState++ = ((uiData & (1 << j)) ? 1 : 0);
-    102          //                    }
-    103          //                    else
-    104          //                    {
-    105          //                        //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
-    106          //                        if ((uiData & (1 << j)))
-    107          //                        {
-    108          //                            *puiDestination++ = 1;
-    109          //                        }
-    110          //                        else
-    111          //                        {
-    112          //                            *puiDestination++ = 0;
-    113          //                        }
-    114          //                    }
-    115          
-    116                              // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
-    117                              // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
-    118          //  коды состояния одного входа передаваемые в двух битах модулем ввода дискретных сигналов Mvsn21
-    119          //    enum INPUT_STATE_CODE
-    120          //    {
-    121          //        WIRE_BREAK	= 0x02,			// Обрыв линии
-    122          //        ON		= 0x01,			// Срабатывание датчика
-    123          //        OFF		= 0x00,			// Дективация датчика
-    124          //        SHORT_CIRCUIT	= 0x03			// Короткое замыкание
-    125          //    };
-    126                              uint8_t uiResult = (uiData & 0x03);
+     95          //  коды состояния одного входа передаваемые в двух битах модулем ввода дискретных сигналов Mvsn21
+     96          //    enum INPUT_STATE_CODE
+     97          //    {
+     98          //        WIRE_BREAK	= 0x02,			// Обрыв линии
+     99          //        ON		= 0x01,			// Срабатывание датчика
+    100          //        OFF		= 0x00,			// Дективация датчика
+    101          //        SHORT_CIRCUIT	= 0x03			// Короткое замыкание
+    102          //    };
+    103                              uint8_t uiResult = (uiData & 0x03);
    \   000000A2   2F13               MOV     R17, R19
    \   000000A4   7013               ANDI    R17, 0x03
-    127                              uiData >>= 2;
+    104                              uiData >>= 2;
    \   000000A6   9536               LSR     R19
    \   000000A8   9536               LSR     R19
-    128                              *puiDestinationBadState++ = uiResult;
+    105                              *puiDestinationBadState++ = uiResult;
    \   000000AA   931C               ST      X, R17
    \   000000AC   9611               ADIW    R27:R26, 1
-    129          //                    *puiDestination++ = (uiResult & 0x01);
-    130                          }
+    106                          }
    \   000000AE   9503               INC     R16
    \   000000B0   CFF6               RJMP    ??DataExchange_6
-    131                      }
+    107                      }
    \                     ??DataExchange_7:
    \   000000B2   9523               INC     R18
    \   000000B4   CFE9               RJMP    ??DataExchange_4
-    132                      return 1;
+    108                      return 1;
    \                     ??DataExchange_5:
    \   000000B6   E001               LDI     R16, 1
-   \   000000B8   C025               RJMP    ??DataExchange_8
-    133                  }
-    134                  break;
-    135          
-    136              case DATA_NOT_READY:
-    137                  for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+   \   000000B8   C02D               RJMP    ??DataExchange_8
+    109                  }
+    110                  break;
+    111          
+    112              case DATA_NOT_READY:
+    113                  for (uint8_t i = 0;
    \                     ??DataExchange_1:
    \   000000BA   E000               LDI     R16, 0
+    114                          i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
    \                     ??DataExchange_9:
-   \   000000BC   3006               CPI     R16, 6
+   \   000000BC   3108               CPI     R16, 24
    \   000000BE   F468               BRCC    ??DataExchange_3
-    138                  {
-    139                      *puiDestinationBadState++ = 0;
-   \   000000C0   E010               LDI     R17, 0
+    115                          i++)
+    116                  {
+    117                      *puiDestinationBadState++ = INPUT_IS_INVALID;
+   \   000000C0   E014               LDI     R17, 4
    \   000000C2   931C               ST      X, R17
    \   000000C4   9611               ADIW    R27:R26, 1
-    140                  }
+    118                  }
    \   000000C6   9503               INC     R16
    \   000000C8   CFF9               RJMP    ??DataExchange_9
-    141                  break;
-    142          
-    143              default:
-    144                  for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+    119                  break;
+    120          
+    121              default:
+    122                  for (uint8_t i = 0;
    \                     ??DataExchange_2:
    \   000000CA   E000               LDI     R16, 0
+    123                          i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
    \                     ??DataExchange_10:
-   \   000000CC   3006               CPI     R16, 6
+   \   000000CC   3108               CPI     R16, 24
    \   000000CE   F428               BRCC    ??DataExchange_3
-    145                  {
-    146                      *puiDestinationBadState++ = 0;
-   \   000000D0   E010               LDI     R17, 0
+    124                          i++)
+    125                  {
+    126                      *puiDestinationBadState++ = INPUT_IS_INVALID;
+   \   000000D0   E014               LDI     R17, 4
    \   000000D2   931C               ST      X, R17
    \   000000D4   9611               ADIW    R27:R26, 1
-    147                  }
+    127                  }
    \   000000D6   9503               INC     R16
    \   000000D8   CFF9               RJMP    ??DataExchange_10
-    148                  break;
-    149              };
-    150          
-    151              // модуль не признан неисправным?
-    152              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
+    128                  break;
+    129              };
+    130          
+    131              // модуль не признан неисправным?
+    132              if (m_uiBadAnswerCounter < BAD_MODULE_CYCLE_COUNT_DEFAULT)
    \                     ??DataExchange_3:
    \   000000DA   01FC               MOVW    R31:R30, R25:R24
    \   000000DC   8D01               LDD     R16, Z+25
    \   000000DE   3104               CPI     R16, 20
    \   000000E0   F430               BRCC    ??DataExchange_11
-    153              {
-    154                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
-    155                  m_uiBadAnswerCounter++;
+    133              {
+    134                  // увеличим значение счётчика - "количество сеансов связи с модулем без ответа".
+    135                  m_uiBadAnswerCounter++;
    \   000000E2   01FC               MOVW    R31:R30, R25:R24
    \   000000E4   8D01               LDD     R16, Z+25
    \   000000E6   9503               INC     R16
    \   000000E8   8F01               STD     Z+25, R16
-    156                  return 0;
+    136                  return 0;
    \   000000EA   E000               LDI     R16, 0
-   \   000000EC   C00B               RJMP    ??DataExchange_8
-    157              }
-    158              else
-    159              {
-    160                  // модуль признан неисправным.
-    161                  *m_puiErrorCode = IMD_ERROR;
+   \   000000EC   C013               RJMP    ??DataExchange_8
+    137              }
+    138              else
+    139              {
+    140                  for (uint8_t i = 0;
    \                     ??DataExchange_11:
-   \   000000EE   01FC               MOVW    R31:R30, R25:R24
-   \   000000F0   8105               LDD     R16, Z+5
-   \   000000F2   8116               LDD     R17, Z+6
-   \   000000F4   01F8               MOVW    R31:R30, R17:R16
-   \   000000F6   E001               LDI     R16, 1
-   \   000000F8   8300               ST      Z, R16
-    162                  SetErrorAlarmData(1);
-   \   000000FA   E021               LDI     R18, 1
-   \   000000FC   018C               MOVW    R17:R16, R25:R24
-   \   000000FE   ........           CALL    ??SetErrorAlarmData
-    163                  return 0;
-   \   00000102   E000               LDI     R16, 0
+   \   000000EE   E000               LDI     R16, 0
+    141                          i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
+   \                     ??DataExchange_12:
+   \   000000F0   3108               CPI     R16, 24
+   \   000000F2   F428               BRCC    ??DataExchange_13
+    142                          i++)
+    143                  {
+    144                      *puiDestinationBadState++ = INPUT_IS_INVALID;
+   \   000000F4   E014               LDI     R17, 4
+   \   000000F6   931C               ST      X, R17
+   \   000000F8   9611               ADIW    R27:R26, 1
+    145                  }
+   \   000000FA   9503               INC     R16
+   \   000000FC   CFF9               RJMP    ??DataExchange_12
+    146                  // модуль признан неисправным.
+    147                  *m_puiErrorCode = IMD_ERROR;
+   \                     ??DataExchange_13:
+   \   000000FE   01FC               MOVW    R31:R30, R25:R24
+   \   00000100   8105               LDD     R16, Z+5
+   \   00000102   8116               LDD     R17, Z+6
+   \   00000104   01F8               MOVW    R31:R30, R17:R16
+   \   00000106   E001               LDI     R16, 1
+   \   00000108   8300               ST      Z, R16
+    148                  SetErrorAlarmData(1);
+   \   0000010A   E021               LDI     R18, 1
+   \   0000010C   018C               MOVW    R17:R16, R25:R24
+   \   0000010E   ........           CALL    ??SetErrorAlarmData
+    149                  return 0;
+   \   00000112   E000               LDI     R16, 0
    \                     ??DataExchange_8:
-   \   00000104   E0E6               LDI     R30, 6
-   \   00000106   ........           JMP     ?EPILOGUE_B6_L09
-    164              }
-    165          }
+   \   00000114   E0E6               LDI     R30, 6
+   \   00000116   ........           JMP     ?EPILOGUE_B6_L09
+    150              }
+    151          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CMvsn21Driver &CMvsn21Driver::new CMvsn21Driver(uint8_t)
@@ -1023,7 +1019,7 @@ Warning[Pe177]: variable "puiDestination" was declared but never referenced
       14  CDriver::SetErrorAlarmData(uint8_t)
      130  CMvsn21Driver::Allocate(TMemoryAllocationContext &)
       48  CMvsn21Driver::CMvsn21Driver(uint8_t)
-     266  CMvsn21Driver::DataExchange()
+     282  CMvsn21Driver::DataExchange()
       32  CMvsn21Driver::new CMvsn21Driver(uint8_t)
        6  CMvsn21Driver::~CMvsn21Driver for CDfaLite/-11/()
       44  CMvsn21Driver::~CMvsn21Driver()
@@ -1123,10 +1119,10 @@ Warning[Pe177]: variable "puiDestination" was declared but never referenced
 
  
  105 bytes in segment ABSOLUTE
- 540 bytes in segment CODE
+ 556 bytes in segment CODE
   32 bytes in segment NEAR_F
  
- 552 bytes of CODE memory (+  20 bytes shared)
+ 568 bytes of CODE memory (+  20 bytes shared)
    0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

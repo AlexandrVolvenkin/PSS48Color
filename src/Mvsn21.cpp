@@ -90,31 +90,8 @@ uint8_t CMvsn21Driver::DataExchange(void)
             {
                 uint8_t uiData = (m_puiRxBuffer[DATA_BYTE_OFFSET + i]);
 
-                for (uint8_t j = 0; j < (DISCRETE_INPUT_BITS_IN_BYTE_QUANTITY / 2); j++)
+                for (uint8_t j = 0; j < DISCRETE_INPUTS_IN_BYTE_QUANTITY; j++)
                 {
-//                    // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
-//                    // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
-//                    // бит нечётный?
-//                    if (j & 0x01)
-//                    {
-//                        // бит достоверен? 0 - достоверно, 1 - недостоверно.
-//                        *puiDestinationBadState++ = ((uiData & (1 << j)) ? 1 : 0);
-//                    }
-//                    else
-//                    {
-//                        //контакты замкнуты?  0 - разомкнуто (OFF), 1 - замкнуто (ON)
-//                        if ((uiData & (1 << j)))
-//                        {
-//                            *puiDestination++ = 1;
-//                        }
-//                        else
-//                        {
-//                            *puiDestination++ = 0;
-//                        }
-//                    }
-
-                    // четные биты (D0,D2,D4,D6) = 0 - разомкнуто (OFF), = 1 - замкнуто (ON)
-                    // нечетные биты (D1,D3,D5,D7) = 0 - достоверно, = 1 - недостоверно
 //  коды состояния одного входа передаваемые в двух битах модулем ввода дискретных сигналов Mvsn21
 //    enum INPUT_STATE_CODE
 //    {
@@ -126,7 +103,6 @@ uint8_t CMvsn21Driver::DataExchange(void)
                     uint8_t uiResult = (uiData & 0x03);
                     uiData >>= 2;
                     *puiDestinationBadState++ = uiResult;
-//                    *puiDestination++ = (uiResult & 0x01);
                 }
             }
             return 1;
@@ -134,16 +110,20 @@ uint8_t CMvsn21Driver::DataExchange(void)
         break;
 
     case DATA_NOT_READY:
-        for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        for (uint8_t i = 0;
+                i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
+                i++)
         {
-            *puiDestinationBadState++ = 0;
+            *puiDestinationBadState++ = INPUT_IS_INVALID;
         }
         break;
 
     default:
-        for (uint8_t i = 0; i < DISCRETE_INPUT_BYTE_QUANTITY; i++)
+        for (uint8_t i = 0;
+                i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
+                i++)
         {
-            *puiDestinationBadState++ = 0;
+            *puiDestinationBadState++ = INPUT_IS_INVALID;
         }
         break;
     };
@@ -157,6 +137,12 @@ uint8_t CMvsn21Driver::DataExchange(void)
     }
     else
     {
+        for (uint8_t i = 0;
+                i < (DISCRETE_INPUT_BYTE_QUANTITY * DISCRETE_INPUTS_IN_BYTE_QUANTITY);
+                i++)
+        {
+            *puiDestinationBadState++ = INPUT_IS_INVALID;
+        }
         // модуль признан неисправным.
         *m_puiErrorCode = IMD_ERROR;
         SetErrorAlarmData(1);

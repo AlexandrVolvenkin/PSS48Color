@@ -134,7 +134,8 @@ enum INPUT_STATE_CODE
     OFF		= 0x00,			// Дективация датчика
     ON		= 0x01,			// Срабатывание датчика
     WIRE_BREAK	= 0x02,			// Обрыв линии
-    SHORT_CIRCUIT	= 0x03			// Короткое замыкание
+    SHORT_CIRCUIT	= 0x03,			// Короткое замыкание
+    INPUT_IS_INVALID	= 0x04,			// вход недостоверен
 };
 
 enum EErrorAlarmType
