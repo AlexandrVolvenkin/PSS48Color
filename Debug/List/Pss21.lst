@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           14/Sep/2024  11:01:30
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Sep/2024  16:38:56
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW9714.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW12BD.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #        --cpu=m128a -ms -o
@@ -6214,136 +6214,119 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \   00000050   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
    \   00000052   ........           CALL    ??Fsm_1
    1638          
-   1639                  CPss21::KeyStateProcessing();
-   \   00000056   ........           CALL    ??KeyStateProcessing
-   1640          
-   1641                  NotifyersControlProcessing();
-   \   0000005A   ....               RCALL   ??NotifyersControlProcessing
-   1642          
-   1643                  CDataStore::Fsm();
-   \   0000005C   ........           CALL    ??Fsm_4
-   1644          
-   1645                  if (CPss21::m_xMainCycleTimer.IsOverflow())
-   \   00000060   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   00000062   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   00000064   ........           CALL    ??IsOverflow
-   \   00000068   2300               TST     R16
-   \   0000006A   F061               BREQ    ??MainFsm_4
-   1646                  {
-   1647                      CPss21::m_xMainCycleTimer.Reset();
-   \   0000006C   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   0000006E   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   00000070   ........           CALL    ??Reset
-   1648                      CPlatform::WatchdogReset();
-   \   00000074   ........           CALL    ??WatchdogReset
-   1649                      SetModuleIndex(0);
-   \   00000078   E000               LDI     R16, 0
-   \   0000007A   ........           CALL    ??SetModuleIndex
-   1650                      SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
-   \   0000007E   E003               LDI     R16, 3
-   \   00000080   ........           CALL    ??SetFsmState_1
-   1651                  }
-   1652          //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-   1653          //
-   1654          //        CPlatform::WatchdogReset();
+   1639          //        CPss21::KeyStateProcessing();
+   1640          //
+   1641          //        NotifyersControlProcessing();
+   1642          //
+   1643          //        CDataStore::Fsm();
+   1644          //
+   1645          //        if (CPss21::m_xMainCycleTimer.IsOverflow())
+   1646          //        {
+   1647          //            CPss21::m_xMainCycleTimer.Reset();
+   1648          //            CPlatform::WatchdogReset();
+   1649          //            SetModuleIndex(0);
+   1650          //            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+   1651          //        }
+   1652          ////            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+   1653          ////
+   1654          ////        CPlatform::WatchdogReset();
    1655                  break;
-   \                     ??MainFsm_4:
-   \   00000084   9508               RET
+   \   00000056   9508               RET
    1656          
    1657              case MAIN_CYCLE_MODULES_INTERACTION:
    1658                  CPss21::m_xModbusRtuOne.Fsm();
-   \                     ??MainFsm_5:
-   \   00000086   ....               LDI     R16, LOW(??m_xModbusRtuOne)
-   \   00000088   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
-   \   0000008A   ........           CALL    ??Fsm_1
+   \                     ??MainFsm_4:
+   \   00000058   ....               LDI     R16, LOW(??m_xModbusRtuOne)
+   \   0000005A   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
+   \   0000005C   ........           CALL    ??Fsm_1
    1659                  CPss21::m_xModbusRtuLinkControl.Fsm();
-   \   0000008E   ....               LDI     R16, LOW(??m_xModbusRtuLinkControl)
-   \   00000090   ....               LDI     R17, (??m_xModbusRtuLinkControl) >> 8
-   \   00000092   ........           CALL    ??Fsm_3
+   \   00000060   ....               LDI     R16, LOW(??m_xModbusRtuLinkControl)
+   \   00000062   ....               LDI     R17, (??m_xModbusRtuLinkControl) >> 8
+   \   00000064   ........           CALL    ??Fsm_3
    1660          
    1661                  CPss21::KeyStateProcessing();
-   \   00000096   ........           CALL    ??KeyStateProcessing
+   \   00000068   ........           CALL    ??KeyStateProcessing
    1662          
    1663                  NotifyersControlProcessing();
-   \   0000009A   ....               RCALL   ??NotifyersControlProcessing
+   \   0000006C   ....               RCALL   ??NotifyersControlProcessing
    1664          
    1665                  CDataStore::Fsm();
-   \   0000009C   ........           CALL    ??Fsm_4
+   \   0000006E   ........           CALL    ??Fsm_4
    1666          
    1667                  if (CPss21::ModulesInteraction(GetModuleIndex()))
-   \   000000A0   ........           CALL    ??GetModuleIndex
-   \   000000A4   ....               RCALL   ??ModulesInteraction
-   \   000000A6   2300               TST     R16
-   \   000000A8   F021               BREQ    ??MainFsm_6
+   \   00000072   ........           CALL    ??GetModuleIndex
+   \   00000076   ....               RCALL   ??ModulesInteraction
+   \   00000078   2300               TST     R16
+   \   0000007A   F021               BREQ    ??MainFsm_5
    1668                  {
    1669                      SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-   \   000000AA   E004               LDI     R16, 4
-   \   000000AC   ........           CALL    ??SetFsmState_1
-   \   000000B0   C005               RJMP    ??MainFsm_7
+   \   0000007C   E004               LDI     R16, 4
+   \   0000007E   ........           CALL    ??SetFsmState_1
+   \   00000082   C005               RJMP    ??MainFsm_6
    1670                  }
    1671                  else
    1672                  {
    1673                      SetModuleIndex(GetModuleIndex() + 1);
-   \                     ??MainFsm_6:
-   \   000000B2   ........           CALL    ??GetModuleIndex
-   \   000000B6   9503               INC     R16
-   \   000000B8   ........           CALL    ??SetModuleIndex
+   \                     ??MainFsm_5:
+   \   00000084   ........           CALL    ??GetModuleIndex
+   \   00000088   9503               INC     R16
+   \   0000008A   ........           CALL    ??SetModuleIndex
    1674                  }
    1675          
    1676                  switch (GetErrorCode())
-   \                     ??MainFsm_7:
-   \   000000BC   ........           CALL    ??GetErrorCode
-   \   000000C0   5003               SUBI    R16, 3
-   \   000000C2   F029               BREQ    ??MainFsm_8
-   \   000000C4   950A               DEC     R16
-   \   000000C6   F019               BREQ    ??MainFsm_8
-   \   000000C8   950A               DEC     R16
-   \   000000CA   F029               BREQ    ??MainFsm_9
-   \   000000CC   9508               RET
+   \                     ??MainFsm_6:
+   \   0000008E   ........           CALL    ??GetErrorCode
+   \   00000092   5003               SUBI    R16, 3
+   \   00000094   F029               BREQ    ??MainFsm_7
+   \   00000096   950A               DEC     R16
+   \   00000098   F019               BREQ    ??MainFsm_7
+   \   0000009A   950A               DEC     R16
+   \   0000009C   F029               BREQ    ??MainFsm_8
+   \   0000009E   9508               RET
    1677                  {
    1678          //        case IMD_ERROR:
    1679          //        case OMD_ERROR:
    1680                  case CFG_ERROR:
    1681                  case DB_ERROR:
    1682                      SetFsmState(ERROR_START);
-   \                     ??MainFsm_8:
-   \   000000CE   E00E               LDI     R16, 14
-   \   000000D0   ........           CALL    ??SetFsmState_1
+   \                     ??MainFsm_7:
+   \   000000A0   E00E               LDI     R16, 14
+   \   000000A2   ........           CALL    ??SetFsmState_1
    1683                      break;
-   \   000000D4   9508               RET
+   \   000000A6   9508               RET
    1684          
    1685                  case MBS_ERROR:
    1686                      SetFsmState(LINK_CONTROL_ERROR_START);
-   \                     ??MainFsm_9:
-   \   000000D6   E100               LDI     R16, 16
-   \   000000D8   ........           CALL    ??SetFsmState_1
+   \                     ??MainFsm_8:
+   \   000000A8   E100               LDI     R16, 16
+   \   000000AA   ........           CALL    ??SetFsmState_1
    1687                      break;
    1688          
    1689                  default:
    1690                      break;
    1691                  }
    1692                  break;
-   \   000000DC   9508               RET
+   \   000000AE   9508               RET
    1693          
    1694              case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
    1695                  CPss21::DiscreteSignalsProcessing();
-   \                     ??MainFsm_10:
-   \   000000DE   ....               RCALL   ??DiscreteSignalsProcessing
+   \                     ??MainFsm_9:
+   \   000000B0   ....               RCALL   ??DiscreteSignalsProcessing
    1696                  SetFsmState(MAIN_CYCLE_END);
-   \   000000E0   E005               LDI     R16, 5
-   \   000000E2   ........           CALL    ??SetFsmState_1
+   \   000000B2   E005               LDI     R16, 5
+   \   000000B4   ........           CALL    ??SetFsmState_1
    1697                  break;
-   \   000000E6   9508               RET
+   \   000000B8   9508               RET
    1698          
    1699              case MAIN_CYCLE_END:
    1700                  CPss21::ReceiptResetGlobalFlagsClear();
-   \                     ??MainFsm_11:
-   \   000000E8   ....               RCALL   ??ReceiptResetGlobalFlagsClear
+   \                     ??MainFsm_10:
+   \   000000BA   ....               RCALL   ??ReceiptResetGlobalFlagsClear
    1701                  SetFsmState(MAIN_CYCLE_START_WAITING);
-   \   000000EA   E002               LDI     R16, 2
-   \   000000EC   ........           CALL    ??SetFsmState_1
+   \   000000BC   E002               LDI     R16, 2
+   \   000000BE   ........           CALL    ??SetFsmState_1
    1702                  break;
-   \   000000F0   9508               RET
+   \   000000C2   9508               RET
    1703          
    1704          ////-----------------------------------------------------------------------------------------------------
    1705          //    case MAP_CREATE_START:
@@ -6417,24 +6400,24 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    1773          //-----------------------------------------------------------------------------------------------------
    1774              case TEST_START:
    1775                  SaveContextNotifyerControl();
-   \                     ??MainFsm_12:
-   \   000000F2   ....               RCALL   ??SaveContextNotifyerControl
+   \                     ??MainFsm_11:
+   \   000000C4   ....               RCALL   ??SaveContextNotifyerControl
    1776          //        AlarmTypeSet(PREVENTIVE);
    1777          //        CPss21::AllAlarmWindowOn(PREVENTIVE);
    1778          //        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
    1779                  m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
-   \   000000F4   E021               LDI     R18, 1
-   \   000000F6   ....               LDI     R16, LOW(??m_xTestModeNotifyerControl)
-   \   000000F8   ....               LDI     R17, (??m_xTestModeNotifyerControl) >> 8
-   \   000000FA   ........           CALL    ??SetFsmState
+   \   000000C6   E021               LDI     R18, 1
+   \   000000C8   ....               LDI     R16, LOW(??m_xTestModeNotifyerControl)
+   \   000000CA   ....               LDI     R17, (??m_xTestModeNotifyerControl) >> 8
+   \   000000CC   ........           CALL    ??SetFsmState
    1780                  SetFsmState(TEST_ON);
-   \   000000FE   E00C               LDI     R16, 12
-   \   00000100   ........           CALL    ??SetFsmState_1
+   \   000000D0   E00C               LDI     R16, 12
+   \   000000D2   ........           CALL    ??SetFsmState_1
    1781          
    1782                  CPlatform::WatchdogReset();
-   \   00000104   ........           CALL    ??WatchdogReset
+   \   000000D6   ........           CALL    ??WatchdogReset
    1783                  break;
-   \   00000108   9508               RET
+   \   000000DA   9508               RET
    1784          
    1785              case TEST_ON:
    1786          //        if (CPss21::m_xMainCycleTimer.IsOverflow())
@@ -6446,217 +6429,217 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    1792          //        }
    1793          
    1794                  TestMainCycle();
-   \                     ??MainFsm_13:
-   \   0000010A   ....               RCALL   ??TestMainCycle
+   \                     ??MainFsm_12:
+   \   000000DC   ....               RCALL   ??TestMainCycle
    1795                  break;
-   \   0000010C   9508               RET
+   \   000000DE   9508               RET
    1796          
    1797              case TEST_STOP:
    1798                  CPss21::AllAlarmWindowOff();
-   \                     ??MainFsm_14:
-   \   0000010E   ........           CALL    ??AllAlarmWindowOff
+   \                     ??MainFsm_13:
+   \   000000E0   ........           CALL    ??AllAlarmWindowOff
    1799                  RestoreContextNotifyerControl();
-   \   00000112   ....               RCALL   ??RestoreContextNotifyerControl
+   \   000000E4   ....               RCALL   ??RestoreContextNotifyerControl
    1800                  CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-   \   00000114   E624               LDI     R18, 100
-   \   00000116   E030               LDI     R19, 0
-   \   00000118   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   0000011A   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   0000011C   ........           CALL    ??Set_1
+   \   000000E6   E624               LDI     R18, 100
+   \   000000E8   E030               LDI     R19, 0
+   \   000000EA   ....               LDI     R16, LOW(??m_xMainCycleTimer)
+   \   000000EC   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
+   \   000000EE   ........           CALL    ??Set_1
    1801                  SetFsmState(MAIN_CYCLE_START_WAITING);
-   \   00000120   E002               LDI     R16, 2
-   \   00000122   ........           CALL    ??SetFsmState_1
+   \   000000F2   E002               LDI     R16, 2
+   \   000000F4   ........           CALL    ??SetFsmState_1
    1802                  break;
-   \   00000126   9508               RET
+   \   000000F8   9508               RET
    1803          
    1804          //-----------------------------------------------------------------------------------------------------
    1805              case ERROR_START:
    1806                  // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
    1807                  ModbusDefaultInit();
-   \                     ??MainFsm_15:
-   \   00000128   ........           CALL    ??ModbusDefaultInit
+   \                     ??MainFsm_14:
+   \   000000FA   ........           CALL    ??ModbusDefaultInit
    1808                  ErrorWindowOn(GetErrorCode() - 1);
-   \   0000012C   ........           CALL    ??GetErrorCode
-   \   00000130   950A               DEC     R16
-   \   00000132   ....               RCALL   ??ErrorWindowOn
+   \   000000FE   ........           CALL    ??GetErrorCode
+   \   00000102   950A               DEC     R16
+   \   00000104   ....               RCALL   ??ErrorWindowOn
    1809                  SetErrorCode(0);
-   \   00000134   E000               LDI     R16, 0
-   \   00000136   ........           CALL    ??SetErrorCode
+   \   00000106   E000               LDI     R16, 0
+   \   00000108   ........           CALL    ??SetErrorCode
    1810          
    1811                  m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-   \   0000013A   E021               LDI     R18, 1
-   \   0000013C   ....               LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
-   \   0000013E   ....               LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
-   \   00000140   ........           CALL    ??AlarmSet_1
+   \   0000010C   E021               LDI     R18, 1
+   \   0000010E   ....               LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
+   \   00000110   ....               LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
+   \   00000112   ........           CALL    ??AlarmSet_1
    1812                  m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-   \   00000144   E021               LDI     R18, 1
-   \   00000146   ....               LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
-   \   00000148   ....               LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
-   \   0000014A   ........           CALL    ??AlarmSet_2
+   \   00000116   E021               LDI     R18, 1
+   \   00000118   ....               LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
+   \   0000011A   ....               LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
+   \   0000011C   ........           CALL    ??AlarmSet_2
    1813                  m_xStatusLedNotifyerControl.AlarmSet(ERROR);
-   \   0000014E   E027               LDI     R18, 7
-   \   00000150   ....               LDI     R16, LOW(??m_xStatusLedNotifyerControl)
-   \   00000152   ....               LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
-   \   00000154   ........           CALL    ??AlarmSet_3
+   \   00000120   E027               LDI     R18, 7
+   \   00000122   ....               LDI     R16, LOW(??m_xStatusLedNotifyerControl)
+   \   00000124   ....               LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
+   \   00000126   ........           CALL    ??AlarmSet_3
    1814                  m_xBuzzerNotifyerControl.AlarmSet(ERROR);
-   \   00000158   E027               LDI     R18, 7
-   \   0000015A   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-   \   0000015C   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-   \   0000015E   ........           CALL    ??AlarmSet
+   \   0000012A   E027               LDI     R18, 7
+   \   0000012C   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+   \   0000012E   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+   \   00000130   ........           CALL    ??AlarmSet
    1815          
    1816                  SetFsmState(ERROR_ON);
-   \   00000162   E00F               LDI     R16, 15
-   \   00000164   ........           CALL    ??SetFsmState_1
+   \   00000134   E00F               LDI     R16, 15
+   \   00000136   ........           CALL    ??SetFsmState_1
    1817          
    1818                  CPlatform::WatchdogReset();
-   \   00000168   ........           CALL    ??WatchdogReset
+   \   0000013A   ........           CALL    ??WatchdogReset
    1819                  break;
-   \   0000016C   9508               RET
+   \   0000013E   9508               RET
    1820          
    1821              case ERROR_ON:
    1822                  ErrorMainCycle();
-   \                     ??MainFsm_16:
-   \   0000016E   ....               RCALL   ??ErrorMainCycle
+   \                     ??MainFsm_15:
+   \   00000140   ....               RCALL   ??ErrorMainCycle
    1823                  break;
-   \   00000170   9508               RET
+   \   00000142   9508               RET
    1824          
    1825          //-----------------------------------------------------------------------------------------------------
    1826              case LINK_CONTROL_ERROR_START:
    1827                  SaveContextNotifyerControl();
-   \                     ??MainFsm_17:
-   \   00000172   ....               RCALL   ??SaveContextNotifyerControl
+   \                     ??MainFsm_16:
+   \   00000144   ....               RCALL   ??SaveContextNotifyerControl
    1828                  ErrorWindowOn(GetErrorCode() - 1);
-   \   00000174   ........           CALL    ??GetErrorCode
-   \   00000178   950A               DEC     R16
-   \   0000017A   ....               RCALL   ??ErrorWindowOn
+   \   00000146   ........           CALL    ??GetErrorCode
+   \   0000014A   950A               DEC     R16
+   \   0000014C   ....               RCALL   ??ErrorWindowOn
    1829                  SetErrorCode(0);
-   \   0000017C   E000               LDI     R16, 0
-   \   0000017E   ........           CALL    ??SetErrorCode
+   \   0000014E   E000               LDI     R16, 0
+   \   00000150   ........           CALL    ??SetErrorCode
    1830          
    1831                  m_xPreventiveAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-   \   00000182   E021               LDI     R18, 1
-   \   00000184   ....               LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
-   \   00000186   ....               LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
-   \   00000188   ........           CALL    ??AlarmSet_1
+   \   00000154   E021               LDI     R18, 1
+   \   00000156   ....               LDI     R16, LOW(??m_xPreventiveAlarmWindowNotifyerControl)
+   \   00000158   ....               LDI     R17, (??m_xPreventiveAlarmWindowNotifyerControl) >> 8
+   \   0000015A   ........           CALL    ??AlarmSet_1
    1832                  m_xEmergencyAlarmWindowNotifyerControl.AlarmSet(INDICATION);
-   \   0000018C   E021               LDI     R18, 1
-   \   0000018E   ....               LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
-   \   00000190   ....               LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
-   \   00000192   ........           CALL    ??AlarmSet_2
+   \   0000015E   E021               LDI     R18, 1
+   \   00000160   ....               LDI     R16, LOW(??m_xEmergencyAlarmWindowNotifyerControl)
+   \   00000162   ....               LDI     R17, (??m_xEmergencyAlarmWindowNotifyerControl) >> 8
+   \   00000164   ........           CALL    ??AlarmSet_2
    1833                  m_xStatusLedNotifyerControl.AlarmSet(ERROR);
-   \   00000196   E027               LDI     R18, 7
-   \   00000198   ....               LDI     R16, LOW(??m_xStatusLedNotifyerControl)
-   \   0000019A   ....               LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
-   \   0000019C   ........           CALL    ??AlarmSet_3
+   \   00000168   E027               LDI     R18, 7
+   \   0000016A   ....               LDI     R16, LOW(??m_xStatusLedNotifyerControl)
+   \   0000016C   ....               LDI     R17, (??m_xStatusLedNotifyerControl) >> 8
+   \   0000016E   ........           CALL    ??AlarmSet_3
    1834                  m_xBuzzerNotifyerControl.AlarmSet(ERROR);
-   \   000001A0   E027               LDI     R18, 7
-   \   000001A2   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-   \   000001A4   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-   \   000001A6   ........           CALL    ??AlarmSet
+   \   00000172   E027               LDI     R18, 7
+   \   00000174   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+   \   00000176   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+   \   00000178   ........           CALL    ??AlarmSet
    1835          
    1836                  CPlatform::WatchdogReset();
-   \   000001AA   ........           CALL    ??WatchdogReset
+   \   0000017C   ........           CALL    ??WatchdogReset
    1837                  SetFsmState(LINK_CONTROL_ERROR_ON);
-   \   000001AE   E101               LDI     R16, 17
-   \   000001B0   ........           CALL    ??SetFsmState_1
+   \   00000180   E101               LDI     R16, 17
+   \   00000182   ........           CALL    ??SetFsmState_1
    1838                  break;
-   \   000001B4   9508               RET
+   \   00000186   9508               RET
    1839          
    1840              case LINK_CONTROL_ERROR_ON:
    1841                  LinkControlErrorMainCycle();
-   \                     ??MainFsm_18:
-   \   000001B6   ....               RCALL   ??LinkControlErrorMainCycle
+   \                     ??MainFsm_17:
+   \   00000188   ....               RCALL   ??LinkControlErrorMainCycle
    1842                  break;
-   \   000001B8   9508               RET
+   \   0000018A   9508               RET
    1843          
    1844              case LINK_CONTROL_ERROR_OFF:
    1845                  CPss21::AllAlarmWindowOff();
-   \                     ??MainFsm_19:
-   \   000001BA   ........           CALL    ??AllAlarmWindowOff
+   \                     ??MainFsm_18:
+   \   0000018C   ........           CALL    ??AllAlarmWindowOff
    1846                  RestoreContextNotifyerControl();
-   \   000001BE   ....               RCALL   ??RestoreContextNotifyerControl
+   \   00000190   ....               RCALL   ??RestoreContextNotifyerControl
    1847                  CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-   \   000001C0   E624               LDI     R18, 100
-   \   000001C2   E030               LDI     R19, 0
-   \   000001C4   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   000001C6   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   000001C8   ........           CALL    ??Set_1
+   \   00000192   E624               LDI     R18, 100
+   \   00000194   E030               LDI     R19, 0
+   \   00000196   ....               LDI     R16, LOW(??m_xMainCycleTimer)
+   \   00000198   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
+   \   0000019A   ........           CALL    ??Set_1
    1848          
    1849                  CPlatform::WatchdogReset();
-   \   000001CC   ........           CALL    ??WatchdogReset
+   \   0000019E   ........           CALL    ??WatchdogReset
    1850                  SetFsmState(MAIN_CYCLE_START_WAITING);
-   \   000001D0   E002               LDI     R16, 2
-   \   000001D2   ........           CALL    ??SetFsmState_1
+   \   000001A2   E002               LDI     R16, 2
+   \   000001A4   ........           CALL    ??SetFsmState_1
    1851                  break;
-   \   000001D6   9508               RET
+   \   000001A8   9508               RET
    1852          
    1853          //-----------------------------------------------------------------------------------------------------
    1854              case PROGRAMMING_START:
    1855                  CPss21::m_xModbusRtuOne.Fsm();
-   \                     ??MainFsm_20:
-   \   000001D8   ....               LDI     R16, LOW(??m_xModbusRtuOne)
-   \   000001DA   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
-   \   000001DC   ........           CALL    ??Fsm_1
+   \                     ??MainFsm_19:
+   \   000001AA   ....               LDI     R16, LOW(??m_xModbusRtuOne)
+   \   000001AC   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
+   \   000001AE   ........           CALL    ??Fsm_1
    1856                  // После приёма последнего блока базы данных произойдёт перезагрузка
    1857                  // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
    1858                  CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);
-   \   000001E0   EE28               LDI     R18, 232
-   \   000001E2   E033               LDI     R19, 3
-   \   000001E4   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   000001E6   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   000001E8   ........           CALL    ??Set_1
+   \   000001B2   EE28               LDI     R18, 232
+   \   000001B4   E033               LDI     R19, 3
+   \   000001B6   ....               LDI     R16, LOW(??m_xMainCycleTimer)
+   \   000001B8   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
+   \   000001BA   ........           CALL    ??Set_1
    1859                  SetFsmState(PROGRAMMING_ON);
-   \   000001EC   E104               LDI     R16, 20
-   \   000001EE   ........           CALL    ??SetFsmState_1
+   \   000001BE   E104               LDI     R16, 20
+   \   000001C0   ........           CALL    ??SetFsmState_1
    1860          
    1861                  CPlatform::WatchdogReset();
-   \   000001F2   ........           CALL    ??WatchdogReset
+   \   000001C4   ........           CALL    ??WatchdogReset
    1862                  break;
-   \   000001F6   9508               RET
+   \   000001C8   9508               RET
    1863          
    1864              case PROGRAMMING_ON:
    1865                  CPss21::m_xModbusRtuOne.Fsm();
-   \                     ??MainFsm_21:
-   \   000001F8   ....               LDI     R16, LOW(??m_xModbusRtuOne)
-   \   000001FA   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
-   \   000001FC   ........           CALL    ??Fsm_1
+   \                     ??MainFsm_20:
+   \   000001CA   ....               LDI     R16, LOW(??m_xModbusRtuOne)
+   \   000001CC   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
+   \   000001CE   ........           CALL    ??Fsm_1
    1866          
    1867                  CDataStore::Fsm();
-   \   00000200   ........           CALL    ??Fsm_4
+   \   000001D2   ........           CALL    ??Fsm_4
    1868          
    1869                  if (CPss21::m_xMainCycleTimer.IsOverflow())
-   \   00000204   ....               LDI     R16, LOW(??m_xMainCycleTimer)
-   \   00000206   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
-   \   00000208   ........           CALL    ??IsOverflow
-   \   0000020C   2300               TST     R16
-   \   0000020E   F041               BREQ    ??MainFsm_22
+   \   000001D6   ....               LDI     R16, LOW(??m_xMainCycleTimer)
+   \   000001D8   ....               LDI     R17, (??m_xMainCycleTimer) >> 8
+   \   000001DA   ........           CALL    ??IsOverflow
+   \   000001DE   2300               TST     R16
+   \   000001E0   F041               BREQ    ??MainFsm_21
    1870                  {
    1871                      m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-   \   00000210   E028               LDI     R18, 8
-   \   00000212   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
-   \   00000214   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
-   \   00000216   ........           CALL    ??AlarmSet
+   \   000001E2   E028               LDI     R18, 8
+   \   000001E4   ....               LDI     R16, LOW(??m_xBuzzerNotifyerControl)
+   \   000001E6   ....               LDI     R17, (??m_xBuzzerNotifyerControl) >> 8
+   \   000001E8   ........           CALL    ??AlarmSet
    1872                      SetFsmState(REBOOT);
-   \   0000021A   E105               LDI     R16, 21
-   \   0000021C   ........           CALL    ??SetFsmState_1
+   \   000001EC   E105               LDI     R16, 21
+   \   000001EE   ........           CALL    ??SetFsmState_1
    1873                  }
    1874          
    1875                  CPlatform::WatchdogReset();
-   \                     ??MainFsm_22:
-   \   00000220   ........           CALL    ??WatchdogReset
+   \                     ??MainFsm_21:
+   \   000001F2   ........           CALL    ??WatchdogReset
    1876                  break;
-   \   00000224   9508               RET
+   \   000001F6   9508               RET
    1877          
    1878              case REBOOT:
    1879                  // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
    1880                  CPss21::m_xModbusRtuOne.Fsm();
-   \                     ??MainFsm_23:
-   \   00000226   ....               LDI     R16, LOW(??m_xModbusRtuOne)
-   \   00000228   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
-   \   0000022A   ........           CALL    ??Fsm_1
+   \                     ??MainFsm_22:
+   \   000001F8   ....               LDI     R16, LOW(??m_xModbusRtuOne)
+   \   000001FA   ....               LDI     R17, (??m_xModbusRtuOne) >> 8
+   \   000001FC   ........           CALL    ??Fsm_1
    1881          
    1882                  CDataStore::Fsm();
-   \   0000022E   ........           CALL    ??Fsm_4
+   \   00000200   ........           CALL    ??Fsm_4
    1883                  break;
    1884          
    1885          //-----------------------------------------------------------------------------------------------------
@@ -6664,8 +6647,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    1887                  break;
    1888              }
    1889          }
-   \                     ??MainFsm_24:
-   \   00000232   9508               RET
+   \                     ??MainFsm_23:
+   \   00000204   9508               RET
 
    \                                 In  segment NEAR_ID, align 1, keep-with-next, root
    \                     `?<Initializer for >`:
@@ -6735,30 +6718,30 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \                     `?<Jumptable for MainFsm>_0`:
    \   00000000   00                 DB      0
    \   00000001   00                 DB      0
-   \   00000002   ....               DW      (??MainFsm_24) /2
+   \   00000002   ....               DW      (??MainFsm_23) /2
    \   00000004   0016               DW      22
    \   00000006   ....               DW      (??MainFsm_1) /2
-   \   00000008   ....               DW      (??MainFsm_24) /2
+   \   00000008   ....               DW      (??MainFsm_23) /2
    \   0000000A   ....               DW      (??MainFsm_3) /2
-   \   0000000C   ....               DW      (??MainFsm_5) /2
-   \   0000000E   ....               DW      (??MainFsm_10) /2
-   \   00000010   ....               DW      (??MainFsm_11) /2
-   \   00000012   ....               DW      (??MainFsm_24) /2
-   \   00000014   ....               DW      (??MainFsm_24) /2
-   \   00000016   ....               DW      (??MainFsm_24) /2
-   \   00000018   ....               DW      (??MainFsm_24) /2
-   \   0000001A   ....               DW      (??MainFsm_24) /2
-   \   0000001C   ....               DW      (??MainFsm_12) /2
-   \   0000001E   ....               DW      (??MainFsm_13) /2
-   \   00000020   ....               DW      (??MainFsm_14) /2
-   \   00000022   ....               DW      (??MainFsm_15) /2
-   \   00000024   ....               DW      (??MainFsm_16) /2
-   \   00000026   ....               DW      (??MainFsm_17) /2
-   \   00000028   ....               DW      (??MainFsm_18) /2
-   \   0000002A   ....               DW      (??MainFsm_19) /2
-   \   0000002C   ....               DW      (??MainFsm_20) /2
-   \   0000002E   ....               DW      (??MainFsm_21) /2
-   \   00000030   ....               DW      (??MainFsm_23) /2
+   \   0000000C   ....               DW      (??MainFsm_4) /2
+   \   0000000E   ....               DW      (??MainFsm_9) /2
+   \   00000010   ....               DW      (??MainFsm_10) /2
+   \   00000012   ....               DW      (??MainFsm_23) /2
+   \   00000014   ....               DW      (??MainFsm_23) /2
+   \   00000016   ....               DW      (??MainFsm_23) /2
+   \   00000018   ....               DW      (??MainFsm_23) /2
+   \   0000001A   ....               DW      (??MainFsm_23) /2
+   \   0000001C   ....               DW      (??MainFsm_11) /2
+   \   0000001E   ....               DW      (??MainFsm_12) /2
+   \   00000020   ....               DW      (??MainFsm_13) /2
+   \   00000022   ....               DW      (??MainFsm_14) /2
+   \   00000024   ....               DW      (??MainFsm_15) /2
+   \   00000026   ....               DW      (??MainFsm_16) /2
+   \   00000028   ....               DW      (??MainFsm_17) /2
+   \   0000002A   ....               DW      (??MainFsm_18) /2
+   \   0000002C   ....               DW      (??MainFsm_19) /2
+   \   0000002E   ....               DW      (??MainFsm_20) /2
+   \   00000030   ....               DW      (??MainFsm_22) /2
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     `?<Unnamed 11>`:
@@ -7072,7 +7055,6 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
         0      2   -> CSpi::Init()
         0      2   -> CStatusLedNotifyerControl::AlarmSet(uint8_t)
         0      2   -> CTimer::IsOverflow()
-        0      2   -> CTimer::Reset()
         0      2   -> CTimer::Set(uint16_t)
         0      2 ?CV_SWITCH_L06
       0      2   CPss21::ModbusDefaultInit()
@@ -7332,7 +7314,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
      128  CPss21::InitAllocationContext(TMemoryAllocationContext &)
      348  CPss21::KeyStateProcessing()
       32  CPss21::LinkControlErrorMainCycle()
-     564  CPss21::MainFsm()
+     518  CPss21::MainFsm()
       22  CPss21::ModbusDefaultInit()
      114  CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
       28  CPss21::ModbusDeviceControl(uint8_t, uint16_t)
@@ -7515,7 +7497,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 
  
    105 bytes in segment ABSOLUTE
- 7 538 bytes in segment CODE
+ 7 492 bytes in segment CODE
      2 bytes in segment DIFUNCT
     14 bytes in segment INITTAB
     70 bytes in segment NEAR_F
@@ -7524,7 +7506,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
  1 804 bytes in segment NEAR_Z
     50 bytes in segment SWITCH
  
- 7 336 bytes of CODE memory (+ 428 bytes shared)
+ 7 290 bytes of CODE memory (+ 428 bytes shared)
  1 894 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          14/Sep/2024  11:01:30
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Sep/2024  16:38:56
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW9714.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW12BD.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -329,55 +329,55 @@
 
 `?<Name CPlatform 208>` SYMBOL "CPlatform"
 ??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 208>`
-`?<Name CPss21 272>` SYMBOL "CPss21"
-??m_apxAlarmDfa     SYMBOL "m_apxAlarmDfa", `?<Name CPss21 272>`
-??m_apxDrivers      SYMBOL "m_apxDrivers", `?<Name CPss21 272>`
-??m_apxErrorAlarmDfa SYMBOL "m_apxErrorAlarmDfa", `?<Name CPss21 272>`
-??m_aucDiscreteInputsBadState SYMBOL "m_aucDiscreteInputsBadState", `?<Name CPss21 272>`
-??m_aucRtuDiscreteDataArray SYMBOL "m_aucRtuDiscreteDataArray", `?<Name CPss21 272>`
-??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 272>`
-??m_aucRtuInputRegistersArray SYMBOL "m_aucRtuInputRegistersArray", `?<Name CPss21 272>`
-??m_auiErrorAlarmDataArray SYMBOL "m_auiErrorAlarmDataArray", `?<Name CPss21 272>`
-??m_auiErrorLedOn   SYMBOL "m_auiErrorLedOn", `?<Name CPss21 272>`
-??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 272>`
-??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 272>`
-??m_auiSpiRxBuffer  SYMBOL "m_auiSpiRxBuffer", `?<Name CPss21 272>`
-??m_auiSpiTxBuffer  SYMBOL "m_auiSpiTxBuffer", `?<Name CPss21 272>`
-??m_axAlarmWindowControl SYMBOL "m_axAlarmWindowControl", `?<Name CPss21 272>`
-??m_axDiscreteOutputControl SYMBOL "m_axDiscreteOutputControl", `?<Name CPss21 272>`
-??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 272>`
-??m_uiCommonAlarmTypePrevious SYMBOL "m_uiCommonAlarmTypePrevious", `?<Name CPss21 272>`
-??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 272>`
-??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 272>`
-??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 272>`
-??m_uiExternalReceipt SYMBOL "m_uiExternalReceipt", `?<Name CPss21 272>`
-??m_uiExternalReset SYMBOL "m_uiExternalReset", `?<Name CPss21 272>`
-??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 272>`
-??m_uiModbusReceipt SYMBOL "m_uiModbusReceipt", `?<Name CPss21 272>`
-??m_uiModbusReset   SYMBOL "m_uiModbusReset", `?<Name CPss21 272>`
-??m_uiModuleIndex   SYMBOL "m_uiModuleIndex", `?<Name CPss21 272>`
-??m_uiPanelReceipt  SYMBOL "m_uiPanelReceipt", `?<Name CPss21 272>`
-??m_uiPanelReset    SYMBOL "m_uiPanelReset", `?<Name CPss21 272>`
-??m_uiType          SYMBOL "m_uiType", `?<Name CPss21 272>`
-??m_xBuzzerNotifyerControl SYMBOL "m_xBuzzerNotifyerControl", `?<Name CPss21 272>`
-??m_xCheckKey       SYMBOL "m_xCheckKey", `?<Name CPss21 272>`
-??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 272>`
-??m_xDeviceConfiguration SYMBOL "m_xDeviceConfiguration", `?<Name CPss21 272>`
-??m_xDeviceState    SYMBOL "m_xDeviceState", `?<Name CPss21 272>`
-??m_xDiscreteOutputDataBase SYMBOL "m_xDiscreteOutputDataBase", `?<Name CPss21 272>`
-??m_xEmergencyAlarmWindowNotifyerControl SYMBOL "m_xEmergencyAlarmWindowNotifyerControl", `?<Name CPss21 272>`
-??m_xEventUniteLogicAndOne SYMBOL "m_xEventUniteLogicAndOne", `?<Name CPss21 272>`
-??m_xExternalKey    SYMBOL "m_xExternalKey", `?<Name CPss21 272>`
-??m_xMainCycleTimer SYMBOL "m_xMainCycleTimer", `?<Name CPss21 272>`
-??m_xModbusRtuLinkControl SYMBOL "m_xModbusRtuLinkControl", `?<Name CPss21 272>`
-??m_xModbusRtuOne   SYMBOL "m_xModbusRtuOne", `?<Name CPss21 272>`
-??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 272>`
-??m_xPreventiveAlarmWindowNotifyerControl SYMBOL "m_xPreventiveAlarmWindowNotifyerControl", `?<Name CPss21 272>`
-??m_xReceiptKey     SYMBOL "m_xReceiptKey", `?<Name CPss21 272>`
-??m_xResetKey       SYMBOL "m_xResetKey", `?<Name CPss21 272>`
-??m_xStatusLedNotifyerControl SYMBOL "m_xStatusLedNotifyerControl", `?<Name CPss21 272>`
-??m_xTestModeNotifyerControl SYMBOL "m_xTestModeNotifyerControl", `?<Name CPss21 272>`
-??m_xUart1          SYMBOL "m_xUart1", `?<Name CPss21 272>`
+`?<Name CPss21 270>` SYMBOL "CPss21"
+??m_apxAlarmDfa     SYMBOL "m_apxAlarmDfa", `?<Name CPss21 270>`
+??m_apxDrivers      SYMBOL "m_apxDrivers", `?<Name CPss21 270>`
+??m_apxErrorAlarmDfa SYMBOL "m_apxErrorAlarmDfa", `?<Name CPss21 270>`
+??m_aucDiscreteInputsBadState SYMBOL "m_aucDiscreteInputsBadState", `?<Name CPss21 270>`
+??m_aucRtuDiscreteDataArray SYMBOL "m_aucRtuDiscreteDataArray", `?<Name CPss21 270>`
+??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 270>`
+??m_aucRtuInputRegistersArray SYMBOL "m_aucRtuInputRegistersArray", `?<Name CPss21 270>`
+??m_auiErrorAlarmDataArray SYMBOL "m_auiErrorAlarmDataArray", `?<Name CPss21 270>`
+??m_auiErrorLedOn   SYMBOL "m_auiErrorLedOn", `?<Name CPss21 270>`
+??m_auiIntermediateBuff SYMBOL "m_auiIntermediateBuff", `?<Name CPss21 270>`
+??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 270>`
+??m_auiSpiRxBuffer  SYMBOL "m_auiSpiRxBuffer", `?<Name CPss21 270>`
+??m_auiSpiTxBuffer  SYMBOL "m_auiSpiTxBuffer", `?<Name CPss21 270>`
+??m_axAlarmWindowControl SYMBOL "m_axAlarmWindowControl", `?<Name CPss21 270>`
+??m_axDiscreteOutputControl SYMBOL "m_axDiscreteOutputControl", `?<Name CPss21 270>`
+??m_uiCommonAlarmType SYMBOL "m_uiCommonAlarmType", `?<Name CPss21 270>`
+??m_uiCommonAlarmTypePrevious SYMBOL "m_uiCommonAlarmTypePrevious", `?<Name CPss21 270>`
+??m_uiDiscreteSignalsReceipt SYMBOL "m_uiDiscreteSignalsReceipt", `?<Name CPss21 270>`
+??m_uiDiscreteSignalsReset SYMBOL "m_uiDiscreteSignalsReset", `?<Name CPss21 270>`
+??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 270>`
+??m_uiExternalReceipt SYMBOL "m_uiExternalReceipt", `?<Name CPss21 270>`
+??m_uiExternalReset SYMBOL "m_uiExternalReset", `?<Name CPss21 270>`
+??m_uiFsmState      SYMBOL "m_uiFsmState", `?<Name CPss21 270>`
+??m_uiModbusReceipt SYMBOL "m_uiModbusReceipt", `?<Name CPss21 270>`
+??m_uiModbusReset   SYMBOL "m_uiModbusReset", `?<Name CPss21 270>`
+??m_uiModuleIndex   SYMBOL "m_uiModuleIndex", `?<Name CPss21 270>`
+??m_uiPanelReceipt  SYMBOL "m_uiPanelReceipt", `?<Name CPss21 270>`
+??m_uiPanelReset    SYMBOL "m_uiPanelReset", `?<Name CPss21 270>`
+??m_uiType          SYMBOL "m_uiType", `?<Name CPss21 270>`
+??m_xBuzzerNotifyerControl SYMBOL "m_xBuzzerNotifyerControl", `?<Name CPss21 270>`
+??m_xCheckKey       SYMBOL "m_xCheckKey", `?<Name CPss21 270>`
+??m_xDeviceConfigSearch SYMBOL "m_xDeviceConfigSearch", `?<Name CPss21 270>`
+??m_xDeviceConfiguration SYMBOL "m_xDeviceConfiguration", `?<Name CPss21 270>`
+??m_xDeviceState    SYMBOL "m_xDeviceState", `?<Name CPss21 270>`
+??m_xDiscreteOutputDataBase SYMBOL "m_xDiscreteOutputDataBase", `?<Name CPss21 270>`
+??m_xEmergencyAlarmWindowNotifyerControl SYMBOL "m_xEmergencyAlarmWindowNotifyerControl", `?<Name CPss21 270>`
+??m_xEventUniteLogicAndOne SYMBOL "m_xEventUniteLogicAndOne", `?<Name CPss21 270>`
+??m_xExternalKey    SYMBOL "m_xExternalKey", `?<Name CPss21 270>`
+??m_xMainCycleTimer SYMBOL "m_xMainCycleTimer", `?<Name CPss21 270>`
+??m_xModbusRtuLinkControl SYMBOL "m_xModbusRtuLinkControl", `?<Name CPss21 270>`
+??m_xModbusRtuOne   SYMBOL "m_xModbusRtuOne", `?<Name CPss21 270>`
+??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 270>`
+??m_xPreventiveAlarmWindowNotifyerControl SYMBOL "m_xPreventiveAlarmWindowNotifyerControl", `?<Name CPss21 270>`
+??m_xReceiptKey     SYMBOL "m_xReceiptKey", `?<Name CPss21 270>`
+??m_xResetKey       SYMBOL "m_xResetKey", `?<Name CPss21 270>`
+??m_xStatusLedNotifyerControl SYMBOL "m_xStatusLedNotifyerControl", `?<Name CPss21 270>`
+??m_xTestModeNotifyerControl SYMBOL "m_xTestModeNotifyerControl", `?<Name CPss21 270>`
+??m_xUart1          SYMBOL "m_xUart1", `?<Name CPss21 270>`
 
         EXTERN ??AlarmSet
         EXTERN ??AlarmSet_1
@@ -428,7 +428,6 @@
         EXTERN ??IsOverflow
         EXTERN ??KeyEventHappened
         EXTERN ??ReadBlock
-        EXTERN ??Reset
         EXTERN ??Set
         EXTERN ??Set_1
         EXTERN ??SignatureCreate
@@ -6309,45 +6308,28 @@ uiMapTestCounter:
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
 // 1638 
-// 1639         CPss21::KeyStateProcessing();
-        CALL    ??KeyStateProcessing
-// 1640 
-// 1641         NotifyersControlProcessing();
-        RCALL   ??NotifyersControlProcessing
-// 1642 
-// 1643         CDataStore::Fsm();
-        CALL    ??Fsm_4
-// 1644 
-// 1645         if (CPss21::m_xMainCycleTimer.IsOverflow())
-        LDI     R16, LOW(??m_xMainCycleTimer)
-        LDI     R17, (??m_xMainCycleTimer) >> 8
-        CALL    ??IsOverflow
-        TST     R16
-        BREQ    ??MainFsm_4
-// 1646         {
-// 1647             CPss21::m_xMainCycleTimer.Reset();
-        LDI     R16, LOW(??m_xMainCycleTimer)
-        LDI     R17, (??m_xMainCycleTimer) >> 8
-        CALL    ??Reset
-// 1648             CPlatform::WatchdogReset();
-        CALL    ??WatchdogReset
-// 1649             SetModuleIndex(0);
-        LDI     R16, 0
-        CALL    ??SetModuleIndex
-// 1650             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
-        LDI     R16, 3
-        CALL    ??SetFsmState_1
-// 1651         }
-// 1652 //            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-// 1653 //
-// 1654 //        CPlatform::WatchdogReset();
+// 1639 //        CPss21::KeyStateProcessing();
+// 1640 //
+// 1641 //        NotifyersControlProcessing();
+// 1642 //
+// 1643 //        CDataStore::Fsm();
+// 1644 //
+// 1645 //        if (CPss21::m_xMainCycleTimer.IsOverflow())
+// 1646 //        {
+// 1647 //            CPss21::m_xMainCycleTimer.Reset();
+// 1648 //            CPlatform::WatchdogReset();
+// 1649 //            SetModuleIndex(0);
+// 1650 //            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+// 1651 //        }
+// 1652 ////            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
+// 1653 ////
+// 1654 ////        CPlatform::WatchdogReset();
 // 1655         break;
-??MainFsm_4:
         RET
 // 1656 
 // 1657     case MAIN_CYCLE_MODULES_INTERACTION:
 // 1658         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_5:
+??MainFsm_4:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6369,31 +6351,31 @@ uiMapTestCounter:
         CALL    ??GetModuleIndex
         RCALL   ??ModulesInteraction
         TST     R16
-        BREQ    ??MainFsm_6
+        BREQ    ??MainFsm_5
 // 1668         {
 // 1669             SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
         LDI     R16, 4
         CALL    ??SetFsmState_1
-        RJMP    ??MainFsm_7
+        RJMP    ??MainFsm_6
 // 1670         }
 // 1671         else
 // 1672         {
 // 1673             SetModuleIndex(GetModuleIndex() + 1);
-??MainFsm_6:
+??MainFsm_5:
         CALL    ??GetModuleIndex
         INC     R16
         CALL    ??SetModuleIndex
 // 1674         }
 // 1675 
 // 1676         switch (GetErrorCode())
-??MainFsm_7:
+??MainFsm_6:
         CALL    ??GetErrorCode
         SUBI    R16, 3
-        BREQ    ??MainFsm_8
+        BREQ    ??MainFsm_7
+        DEC     R16
+        BREQ    ??MainFsm_7
         DEC     R16
         BREQ    ??MainFsm_8
-        DEC     R16
-        BREQ    ??MainFsm_9
         RET
 // 1677         {
 // 1678 //        case IMD_ERROR:
@@ -6401,7 +6383,7 @@ uiMapTestCounter:
 // 1680         case CFG_ERROR:
 // 1681         case DB_ERROR:
 // 1682             SetFsmState(ERROR_START);
-??MainFsm_8:
+??MainFsm_7:
         LDI     R16, 14
         CALL    ??SetFsmState_1
 // 1683             break;
@@ -6409,7 +6391,7 @@ uiMapTestCounter:
 // 1684 
 // 1685         case MBS_ERROR:
 // 1686             SetFsmState(LINK_CONTROL_ERROR_START);
-??MainFsm_9:
+??MainFsm_8:
         LDI     R16, 16
         CALL    ??SetFsmState_1
 // 1687             break;
@@ -6422,7 +6404,7 @@ uiMapTestCounter:
 // 1693 
 // 1694     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
 // 1695         CPss21::DiscreteSignalsProcessing();
-??MainFsm_10:
+??MainFsm_9:
         RCALL   ??DiscreteSignalsProcessing
 // 1696         SetFsmState(MAIN_CYCLE_END);
         LDI     R16, 5
@@ -6432,7 +6414,7 @@ uiMapTestCounter:
 // 1698 
 // 1699     case MAIN_CYCLE_END:
 // 1700         CPss21::ReceiptResetGlobalFlagsClear();
-??MainFsm_11:
+??MainFsm_10:
         RCALL   ??ReceiptResetGlobalFlagsClear
 // 1701         SetFsmState(MAIN_CYCLE_START_WAITING);
         LDI     R16, 2
@@ -6512,7 +6494,7 @@ uiMapTestCounter:
 // 1773 //-----------------------------------------------------------------------------------------------------
 // 1774     case TEST_START:
 // 1775         SaveContextNotifyerControl();
-??MainFsm_12:
+??MainFsm_11:
         RCALL   ??SaveContextNotifyerControl
 // 1776 //        AlarmTypeSet(PREVENTIVE);
 // 1777 //        CPss21::AllAlarmWindowOn(PREVENTIVE);
@@ -6541,14 +6523,14 @@ uiMapTestCounter:
 // 1792 //        }
 // 1793 
 // 1794         TestMainCycle();
-??MainFsm_13:
+??MainFsm_12:
         RCALL   ??TestMainCycle
 // 1795         break;
         RET
 // 1796 
 // 1797     case TEST_STOP:
 // 1798         CPss21::AllAlarmWindowOff();
-??MainFsm_14:
+??MainFsm_13:
         CALL    ??AllAlarmWindowOff
 // 1799         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
@@ -6568,7 +6550,7 @@ uiMapTestCounter:
 // 1805     case ERROR_START:
 // 1806         // Устанавливаем настройки Modbus по умолчанию на текущую сессию.
 // 1807         ModbusDefaultInit();
-??MainFsm_15:
+??MainFsm_14:
         CALL    ??ModbusDefaultInit
 // 1808         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
@@ -6610,7 +6592,7 @@ uiMapTestCounter:
 // 1820 
 // 1821     case ERROR_ON:
 // 1822         ErrorMainCycle();
-??MainFsm_16:
+??MainFsm_15:
         RCALL   ??ErrorMainCycle
 // 1823         break;
         RET
@@ -6618,7 +6600,7 @@ uiMapTestCounter:
 // 1825 //-----------------------------------------------------------------------------------------------------
 // 1826     case LINK_CONTROL_ERROR_START:
 // 1827         SaveContextNotifyerControl();
-??MainFsm_17:
+??MainFsm_16:
         RCALL   ??SaveContextNotifyerControl
 // 1828         ErrorWindowOn(GetErrorCode() - 1);
         CALL    ??GetErrorCode
@@ -6659,14 +6641,14 @@ uiMapTestCounter:
 // 1839 
 // 1840     case LINK_CONTROL_ERROR_ON:
 // 1841         LinkControlErrorMainCycle();
-??MainFsm_18:
+??MainFsm_17:
         RCALL   ??LinkControlErrorMainCycle
 // 1842         break;
         RET
 // 1843 
 // 1844     case LINK_CONTROL_ERROR_OFF:
 // 1845         CPss21::AllAlarmWindowOff();
-??MainFsm_19:
+??MainFsm_18:
         CALL    ??AllAlarmWindowOff
 // 1846         RestoreContextNotifyerControl();
         RCALL   ??RestoreContextNotifyerControl
@@ -6688,7 +6670,7 @@ uiMapTestCounter:
 // 1853 //-----------------------------------------------------------------------------------------------------
 // 1854     case PROGRAMMING_START:
 // 1855         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_20:
+??MainFsm_19:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6711,7 +6693,7 @@ uiMapTestCounter:
 // 1863 
 // 1864     case PROGRAMMING_ON:
 // 1865         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_21:
+??MainFsm_20:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6724,7 +6706,7 @@ uiMapTestCounter:
         LDI     R17, (??m_xMainCycleTimer) >> 8
         CALL    ??IsOverflow
         TST     R16
-        BREQ    ??MainFsm_22
+        BREQ    ??MainFsm_21
 // 1870         {
 // 1871             m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
         LDI     R18, 8
@@ -6737,7 +6719,7 @@ uiMapTestCounter:
 // 1873         }
 // 1874 
 // 1875         CPlatform::WatchdogReset();
-??MainFsm_22:
+??MainFsm_21:
         CALL    ??WatchdogReset
 // 1876         break;
         RET
@@ -6745,7 +6727,7 @@ uiMapTestCounter:
 // 1878     case REBOOT:
 // 1879         // Через "WDTO_2S" - перезагрузка, чтобы применить изменения конфигурации.
 // 1880         CPss21::m_xModbusRtuOne.Fsm();
-??MainFsm_23:
+??MainFsm_22:
         LDI     R16, LOW(??m_xModbusRtuOne)
         LDI     R17, (??m_xModbusRtuOne) >> 8
         CALL    ??Fsm_1
@@ -6759,7 +6741,7 @@ uiMapTestCounter:
 // 1887         break;
 // 1888     }
 // 1889 }
-??MainFsm_24:
+??MainFsm_23:
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -7329,19 +7311,20 @@ __?EEARH:
 `?<Jumptable for MainFsm>_0`:
         DB      0
         DB      0
-        DW      (??MainFsm_24) /2
+        DW      (??MainFsm_23) /2
         DW      22
         DW      (??MainFsm_1) /2
-        DW      (??MainFsm_24) /2
+        DW      (??MainFsm_23) /2
         DW      (??MainFsm_3) /2
-        DW      (??MainFsm_5) /2
+        DW      (??MainFsm_4) /2
+        DW      (??MainFsm_9) /2
         DW      (??MainFsm_10) /2
+        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_23) /2
         DW      (??MainFsm_11) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
-        DW      (??MainFsm_24) /2
         DW      (??MainFsm_12) /2
         DW      (??MainFsm_13) /2
         DW      (??MainFsm_14) /2
@@ -7351,14 +7334,13 @@ __?EEARH:
         DW      (??MainFsm_18) /2
         DW      (??MainFsm_19) /2
         DW      (??MainFsm_20) /2
-        DW      (??MainFsm_21) /2
-        DW      (??MainFsm_23) /2
+        DW      (??MainFsm_22) /2
 
         END
 // 1890 
 // 
 //   105 bytes in segment ABSOLUTE
-// 7 538 bytes in segment CODE
+// 7 492 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -7367,7 +7349,7 @@ __?EEARH:
 // 1 804 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 7 336 bytes of CODE memory (+ 428 bytes shared)
+// 7 290 bytes of CODE memory (+ 428 bytes shared)
 // 1 894 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

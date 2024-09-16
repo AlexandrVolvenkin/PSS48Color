@@ -8,6 +8,7 @@
 #include "ModbusRTU.h"
 #include "Crc.h"
 #include "DataBase.h"
+#include "Pss21.h"
 
 
 //-----------------------------------------------------------------------------------------------------
@@ -326,6 +327,10 @@ void CModbusRTU::Fsm(void)
 {
     int16_t iReceivedCounter;
 
+            if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+            {
+        iReceivedCounter = 0;
+            }
     switch (GetFsmState())
     {
     case IDDLE:

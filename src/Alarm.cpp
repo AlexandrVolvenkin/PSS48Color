@@ -217,6 +217,10 @@ void CAlarmDfa::Fsm(void)
             SetFsmState(ACTIVE_STATE_WAITING);
             break;
         }
+        else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+        {
+            SetFsmState(NAMUR_STATE_ON);
+        }
 
         // Событие сброшено?
         if (CPss21::GetDiscreteSignalsReset())
@@ -274,6 +278,10 @@ void CAlarmDfa::Fsm(void)
             // Установим связанные дискретный выходы - не новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
         }
+        else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+        {
+            SetFsmState(NAMUR_STATE_ON);
+        }
         break;
 
     case RESETED_NOT_ACTIVE_STATE_WAITING:
@@ -289,6 +297,10 @@ void CAlarmDfa::Fsm(void)
         {
             // Установим связанные дискретный выходы - не новое нарушение.
             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+        }
+        else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+        {
+            SetFsmState(NAMUR_STATE_ON);
         }
         break;
 

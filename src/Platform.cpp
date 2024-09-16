@@ -214,7 +214,10 @@ int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
         {
             puiDestination[i] = m_auiIntermediateBuff[i];
         }
-
+        if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+        {
+        m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
+        }
         uint8_t uiCounter = m_nuiRxBuffByteCounter;
         m_nuiRxBuffByteCounter = 0;
 
@@ -252,7 +255,7 @@ void CUart::TxcInterruptHandler(void)
     return;
 }
 
-        uint8_t uiInterruptCounter = 0;
+uint8_t uiInterruptCounter = 0;
 //-----------------------------------------------------------------------------------------------------
 void CUart::RecvInterruptHandler(void)
 {
