@@ -1636,22 +1636,22 @@ void CPss21::MainFsm(void)
     case MAIN_CYCLE_START_WAITING:
         CPss21::m_xModbusRtuOne.Fsm();
 
-//        CPss21::KeyStateProcessing();
+        CPss21::KeyStateProcessing();
+
+        NotifyersControlProcessing();
+
+        CDataStore::Fsm();
+
+        if (CPss21::m_xMainCycleTimer.IsOverflow())
+        {
+            CPss21::m_xMainCycleTimer.Reset();
+            CPlatform::WatchdogReset();
+            SetModuleIndex(0);
+            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
+        }
+//            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
 //
-//        NotifyersControlProcessing();
-//
-//        CDataStore::Fsm();
-//
-//        if (CPss21::m_xMainCycleTimer.IsOverflow())
-//        {
-//            CPss21::m_xMainCycleTimer.Reset();
-//            CPlatform::WatchdogReset();
-//            SetModuleIndex(0);
-//            SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
-//        }
-////            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-////
-////        CPlatform::WatchdogReset();
+//        CPlatform::WatchdogReset();
         break;
 
     case MAIN_CYCLE_MODULES_INTERACTION:
