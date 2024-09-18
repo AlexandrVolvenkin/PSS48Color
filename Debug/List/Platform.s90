@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          16/Sep/2024  16:38:56
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  16:51:41
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW129C.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW72FD.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //        --cpu=m128a -ms -o
@@ -267,16 +267,15 @@
         PUBLIC uiInterruptCounter
 
 `?<Name CPss21 0>`  SYMBOL "CPss21"
-??m_auiReceiveMessageBuff SYMBOL "m_auiReceiveMessageBuff", `?<Name CPss21 0>`
 ??m_uiErrorCode     SYMBOL "m_uiErrorCode", `?<Name CPss21 0>`
 ??m_xModbusSettings SYMBOL "m_xModbusSettings", `?<Name CPss21 0>`
-`?<Name CPlatform 11>` SYMBOL "CPlatform"
-`?<Name CEeprom 19>` SYMBOL "CEeprom"
-`?<Name CSpi 24>`   SYMBOL "CSpi"
-`?<Name CUart 27>`  SYMBOL "CUart"
+`?<Name CPlatform 10>` SYMBOL "CPlatform"
+`?<Name CEeprom 18>` SYMBOL "CEeprom"
+`?<Name CSpi 23>`   SYMBOL "CSpi"
+`?<Name CUart 26>`  SYMBOL "CUart"
 
 `??EEPROM_EE_READY::??INTVEC 88` SYMBOL "??INTVEC 88", ??EEPROM_EE_READY
-`?<Name CFlash 70>` SYMBOL "CFlash"
+`?<Name CFlash 69>` SYMBOL "CFlash"
 
 `??SIG_UART1_DATA::??INTVEC 124` SYMBOL "??INTVEC 124", ??SIG_UART1_DATA
 
@@ -285,22 +284,21 @@
 `??SIG_UART1_TXC::??INTVEC 128` SYMBOL "??INTVEC 128", ??SIG_UART1_TXC
 
 `??SystemTickInterrupt::??INTVEC 36` SYMBOL "??INTVEC 36", ??SystemTickInterrupt
-??__vtbl            SYMBOL "__vtbl", `?<Name CUart 27>`
-??__vtbl_1          SYMBOL "__vtbl", `?<Name CEeprom 19>`
-??__vtbl_2          SYMBOL "__vtbl", `?<Name CPlatform 11>`
-??__vtbl_6          SYMBOL "__vtbl", `?<Name CSpi 24>`
-??axDataBaseBlocksPositionData SYMBOL "axDataBaseBlocksPositionData", `?<Name CFlash 70>`
-??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 19>`
-??m_nuiBufferByteCounter SYMBOL "m_nuiBufferByteCounter", `?<Name CEeprom 19>`
-??m_puiBuffer       SYMBOL "m_puiBuffer", `?<Name CEeprom 19>`
-??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 11>`
-??m_uiAddress       SYMBOL "m_uiAddress", `?<Name CEeprom 19>`
-??m_uiLength        SYMBOL "m_uiLength", `?<Name CEeprom 19>`
-??m_uiSystemTick    SYMBOL "m_uiSystemTick", `?<Name CPlatform 11>`
-??m_uiWatchDogStepID SYMBOL "m_uiWatchDogStepID", `?<Name CPlatform 11>`
-??xMainDataBase     SYMBOL "xMainDataBase", `?<Name CFlash 70>`
+??__vtbl            SYMBOL "__vtbl", `?<Name CUart 26>`
+??__vtbl_1          SYMBOL "__vtbl", `?<Name CEeprom 18>`
+??__vtbl_2          SYMBOL "__vtbl", `?<Name CPlatform 10>`
+??__vtbl_6          SYMBOL "__vtbl", `?<Name CSpi 23>`
+??axDataBaseBlocksPositionData SYMBOL "axDataBaseBlocksPositionData", `?<Name CFlash 69>`
+??m_bBufferIsWrited SYMBOL "m_bBufferIsWrited", `?<Name CEeprom 18>`
+??m_nuiBufferByteCounter SYMBOL "m_nuiBufferByteCounter", `?<Name CEeprom 18>`
+??m_puiBuffer       SYMBOL "m_puiBuffer", `?<Name CEeprom 18>`
+??m_pxUart1         SYMBOL "m_pxUart1", `?<Name CPlatform 10>`
+??m_uiAddress       SYMBOL "m_uiAddress", `?<Name CEeprom 18>`
+??m_uiLength        SYMBOL "m_uiLength", `?<Name CEeprom 18>`
+??m_uiSystemTick    SYMBOL "m_uiSystemTick", `?<Name CPlatform 10>`
+??m_uiWatchDogStepID SYMBOL "m_uiWatchDogStepID", `?<Name CPlatform 10>`
+??xMainDataBase     SYMBOL "xMainDataBase", `?<Name CFlash 69>`
 
-        EXTERN ??m_auiReceiveMessageBuff
         EXTERN ??m_uiErrorCode
         EXTERN ??m_xModbusSettings
         EXTERN `??operator delete`
@@ -1167,10 +1165,10 @@ _A_PINF:
 //  214         {
 //  215             puiDestination[i] = m_auiIntermediateBuff[i];
 //  216         }
-//  217         if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
-//  218         {
-//  219         m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
-//  220         }
+//  217 //        if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+//  218 //        {
+//  219 //        m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
+//  220 //        }
 //  221         uint8_t uiCounter = m_nuiRxBuffByteCounter;
 //  222         m_nuiRxBuffByteCounter = 0;
 //  223 
@@ -2496,19 +2494,6 @@ uiInterruptCounter:
         SBCI    R17, 255
         RJMP    ??Read_8
 ??Read_9:
-        LDS     R16, (??m_auiReceiveMessageBuff + 1)
-        CPI     R16, 70
-        BRNE    ??Read_10
-        LDS     R16, (??m_auiReceiveMessageBuff + 5)
-        CPI     R16, 10
-        BRNE    ??Read_10
-        MOVW    R31:R30, R27:R26
-        LDD     R16, Z+24
-        LDD     R17, Z+25
-        MOVW    R31:R30, R27:R26
-        STD     Z+24, R16
-        STD     Z+25, R17
-??Read_10:
         MOVW    R31:R30, R27:R26
         LDD     R6, Z+24
         LDD     R7, Z+25
@@ -2526,11 +2511,11 @@ uiInterruptCounter:
         LDD     R16, Z+24
         LDD     R17, Z+25
         OR      R16, R17
-        BRNE    ??Read_11
+        BRNE    ??Read_10
         LDI     R16, 0
         LDI     R17, 0
         RJMP    ??Read_5
-??Read_11:
+??Read_10:
         LDI     R16, 0
         LDI     R17, 0
 ??Read_5:
@@ -2801,10 +2786,10 @@ uiInterruptCounter:
         MOV     R0, R24
         MOVW    R31:R30, R17:R16
         MOVW    R25:R24, R19:R18
-??Read_12:
+??Read_11:
         MOV     R16, R20
         OR      R16, R21
-        BREQ    ??Read_13
+        BREQ    ??Read_12
         MOVW    R17:R16, R25:R24
         RCALL   ??ReadByte
         ADIW    R25:R24, 1
@@ -2812,8 +2797,8 @@ uiInterruptCounter:
         ADIW    R31:R30, 1
         SUBI    R20, 1
         SBCI    R21, 0
-        RJMP    ??Read_12
-??Read_13:
+        RJMP    ??Read_11
+??Read_12:
         LDI     R16, 1
         MOV     R24, R0
         MOV     R25, R23
@@ -3000,10 +2985,10 @@ uiInterruptCounter:
         MOVW    R3:R2, R19:R18
         LDI     R24, 0
         LDI     R25, 0
-??Read_14:
+??Read_13:
         CP      R24, R2
         CPC     R25, R3
-        BRCC    ??Read_15
+        BRCC    ??Read_14
         MOVW    R31:R30, R21:R20
         MOV     R19, R22
         ADD     R30, R24
@@ -3015,8 +3000,8 @@ uiInterruptCounter:
         ADC     R31, R25
         ST      Z, R16
         ADIW    R25:R24, 1
-        RJMP    ??Read_14
-??Read_15:
+        RJMP    ??Read_13
+??Read_14:
         LDI     R16, 1
         LD      R24, Y+
         LD      R25, Y+
@@ -3879,13 +3864,13 @@ __?EEARH:
 // 1097 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 866 bytes in segment CODE
+// 2 838 bytes in segment CODE
 //     7 bytes in segment INITTAB
 //    20 bytes in segment INTVEC
 //   748 bytes in segment NEAR_F
 //    15 bytes in segment NEAR_Z
 // 
-// 3 372 bytes of CODE memory (+ 269 bytes shared)
+// 3 344 bytes of CODE memory (+ 269 bytes shared)
 //    15 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

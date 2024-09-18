@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Sep/2024  16:38:56
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  16:51:41
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW129C.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW72FD.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #        --cpu=m128a -ms -o
@@ -1356,7 +1356,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     202                  return -1;
    \   00000018   EF0F               LDI     R16, 255
    \   0000001A   EF1F               LDI     R17, 255
-   \   0000001C   C048               RJMP    ??Read_5
+   \   0000001C   C03A               RJMP    ??Read_5
     203              }
     204          
     205              if (uiLength <= m_nuiRxBuffByteCounter)
@@ -1371,7 +1371,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     207                  return -1;
    \   0000002A   EF0F               LDI     R16, 255
    \   0000002C   EF1F               LDI     R17, 255
-   \   0000002E   C03F               RJMP    ??Read_5
+   \   0000002E   C031               RJMP    ??Read_5
     208              }
     209              else if (m_nuiRxBuffByteCounter)
    \                     ??Read_6:
@@ -1379,7 +1379,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000032   8D00               LDD     R16, Z+24
    \   00000034   8D11               LDD     R17, Z+25
    \   00000036   2B01               OR      R16, R17
-   \   00000038   F181               BREQ    ??Read_7
+   \   00000038   F111               BREQ    ??Read_7
     210              {
     211                  CPlatform::InterruptDisable();
    \   0000003A   ........           CALL    ??InterruptDisable
@@ -1408,63 +1408,50 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   0000005E   5F0F               SUBI    R16, 255
    \   00000060   4F1F               SBCI    R17, 255
    \   00000062   CFEF               RJMP    ??Read_8
-    217                  if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
-   \                     ??Read_9:
-   \   00000064   9100....           LDS     R16, (??m_auiReceiveMessageBuff + 1)
-   \   00000068   3406               CPI     R16, 70
-   \   0000006A   F451               BRNE    ??Read_10
-   \   0000006C   9100....           LDS     R16, (??m_auiReceiveMessageBuff + 5)
-   \   00000070   300A               CPI     R16, 10
-   \   00000072   F431               BRNE    ??Read_10
-    218                  {
-    219                  m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
-   \   00000074   01FD               MOVW    R31:R30, R27:R26
-   \   00000076   8D00               LDD     R16, Z+24
-   \   00000078   8D11               LDD     R17, Z+25
-   \   0000007A   01FD               MOVW    R31:R30, R27:R26
-   \   0000007C   8F00               STD     Z+24, R16
-   \   0000007E   8F11               STD     Z+25, R17
-    220                  }
+    217          //        if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+    218          //        {
+    219          //        m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
+    220          //        }
     221                  uint8_t uiCounter = m_nuiRxBuffByteCounter;
-   \                     ??Read_10:
-   \   00000080   01FD               MOVW    R31:R30, R27:R26
-   \   00000082   8C60               LDD     R6, Z+24
-   \   00000084   8C71               LDD     R7, Z+25
+   \                     ??Read_9:
+   \   00000064   01FD               MOVW    R31:R30, R27:R26
+   \   00000066   8C60               LDD     R6, Z+24
+   \   00000068   8C71               LDD     R7, Z+25
     222                  m_nuiRxBuffByteCounter = 0;
-   \   00000086   01FD               MOVW    R31:R30, R27:R26
-   \   00000088   E000               LDI     R16, 0
-   \   0000008A   8F00               STD     Z+24, R16
-   \   0000008C   E000               LDI     R16, 0
-   \   0000008E   8F01               STD     Z+25, R16
+   \   0000006A   01FD               MOVW    R31:R30, R27:R26
+   \   0000006C   E000               LDI     R16, 0
+   \   0000006E   8F00               STD     Z+24, R16
+   \   00000070   E000               LDI     R16, 0
+   \   00000072   8F01               STD     Z+25, R16
     223          
     224                  CPlatform::InterruptEnable();
-   \   00000090   ........           CALL    ??InterruptEnable
+   \   00000074   ........           CALL    ??InterruptEnable
     225          
     226                  return uiCounter;
-   \   00000094   2D06               MOV     R16, R6
-   \   00000096   E010               LDI     R17, 0
-   \   00000098   C00A               RJMP    ??Read_5
+   \   00000078   2D06               MOV     R16, R6
+   \   0000007A   E010               LDI     R17, 0
+   \   0000007C   C00A               RJMP    ??Read_5
     227              }
     228              else if (0 == m_nuiRxBuffByteCounter)
    \                     ??Read_7:
-   \   0000009A   01FD               MOVW    R31:R30, R27:R26
-   \   0000009C   8D00               LDD     R16, Z+24
-   \   0000009E   8D11               LDD     R17, Z+25
-   \   000000A0   2B01               OR      R16, R17
-   \   000000A2   F419               BRNE    ??Read_11
+   \   0000007E   01FD               MOVW    R31:R30, R27:R26
+   \   00000080   8D00               LDD     R16, Z+24
+   \   00000082   8D11               LDD     R17, Z+25
+   \   00000084   2B01               OR      R16, R17
+   \   00000086   F419               BRNE    ??Read_10
     229              {
     230                  return 0;
-   \   000000A4   E000               LDI     R16, 0
-   \   000000A6   E010               LDI     R17, 0
-   \   000000A8   C002               RJMP    ??Read_5
+   \   00000088   E000               LDI     R16, 0
+   \   0000008A   E010               LDI     R17, 0
+   \   0000008C   C002               RJMP    ??Read_5
     231              }
     232              return 0;
-   \                     ??Read_11:
-   \   000000AA   E000               LDI     R16, 0
-   \   000000AC   E010               LDI     R17, 0
+   \                     ??Read_10:
+   \   0000008E   E000               LDI     R16, 0
+   \   00000090   E010               LDI     R17, 0
    \                     ??Read_5:
-   \   000000AE   E0E8               LDI     R30, 8
-   \   000000B0   ........           JMP     ?EPILOGUE_B8_L09
+   \   00000092   E0E8               LDI     R30, 8
+   \   00000094   ........           JMP     ?EPILOGUE_B8_L09
     233          }
     234          
     235          //-----------------------------------------------------------------------------------------------------
@@ -1864,10 +1851,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000004   01F8               MOVW    R31:R30, R17:R16
    \   00000006   01C9               MOVW    R25:R24, R19:R18
     351              while (uiLength != 0)
-   \                     ??Read_12:
+   \                     ??Read_11:
    \   00000008   2F04               MOV     R16, R20
    \   0000000A   2B05               OR      R16, R21
-   \   0000000C   F041               BREQ    ??Read_13
+   \   0000000C   F041               BREQ    ??Read_12
     352              {
     353                  *puiDestination++ = ReadByte(uiSource++);
    \   0000000E   018C               MOVW    R17:R16, R25:R24
@@ -1878,10 +1865,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     354                  uiLength--;
    \   00000018   5041               SUBI    R20, 1
    \   0000001A   4050               SBCI    R21, 0
-   \   0000001C   CFF5               RJMP    ??Read_12
+   \   0000001C   CFF5               RJMP    ??Read_11
     355              }
     356              return 1;
-   \                     ??Read_13:
+   \                     ??Read_12:
    \   0000001E   E001               LDI     R16, 1
    \   00000020   2D80               MOV     R24, R0
    \   00000022   2F97               MOV     R25, R23
@@ -2688,10 +2675,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
     736              for (uint16_t i = 0; i < uiLength; i++)
    \   00000008   E080               LDI     R24, 0
    \   0000000A   E090               LDI     R25, 0
-   \                     ??Read_14:
+   \                     ??Read_13:
    \   0000000C   1582               CP      R24, R2
    \   0000000E   0593               CPC     R25, R3
-   \   00000010   F460               BRCC    ??Read_15
+   \   00000010   F460               BRCC    ??Read_14
     737              {
     738                  puiDestination[i] = uiSource[i];
    \   00000012   01FA               MOVW    R31:R30, R21:R20
@@ -2706,9 +2693,9 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000024   8300               ST      Z, R16
     739              }
    \   00000026   9601               ADIW    R25:R24, 1
-   \   00000028   CFF1               RJMP    ??Read_14
+   \   00000028   CFF1               RJMP    ??Read_13
     740              return 1;
-   \                     ??Read_15:
+   \                     ??Read_14:
    \   0000002A   E001               LDI     R16, 1
    \   0000002C   9189               LD      R24, Y+
    \   0000002E   9199               LD      R25, Y+
@@ -3858,7 +3845,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
       34  CUart::Enable()
      106  CUart::Init(uint32_t, uint8_t, uint8_t, uint8_t, uint8_t *, uint8_t *)
       34  CUart::Open()
-     180  CUart::Read(uint8_t *, uint16_t)
+     152  CUart::Read(uint8_t *, uint16_t)
       82  CUart::RecvInterruptHandler()
       30  CUart::Reset()
       36  CUart::Rs485RtsOff()
@@ -3981,13 +3968,13 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
 
  
    105 bytes in segment ABSOLUTE
- 2 866 bytes in segment CODE
+ 2 838 bytes in segment CODE
      7 bytes in segment INITTAB
     20 bytes in segment INTVEC
    748 bytes in segment NEAR_F
     15 bytes in segment NEAR_Z
  
- 3 372 bytes of CODE memory (+ 269 bytes shared)
+ 3 344 bytes of CODE memory (+ 269 bytes shared)
     15 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
