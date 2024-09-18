@@ -512,7 +512,7 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
 
     // дискретный вход недостоверен?
-    if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == INPUT_IS_INVALID)
+    if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
     {
         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
     }

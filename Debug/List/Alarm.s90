@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  16:54:12
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  17:08:56
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Alarm.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWC37A.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW3DFF.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Alarm.cpp
 //        --cpu=m128a -ms -o
@@ -1689,7 +1689,7 @@ _A_PINF:
 //  512     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
 //  513 
 //  514     // дискретный вход недостоверен?
-//  515     if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == INPUT_IS_INVALID)
+//  515     if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
 //  516     {
 //  517         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
 //  518     }
@@ -2911,7 +2911,12 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
-        MOV     R25, R16
+        ANDI    R16, 0x07
+        CPI     R16, 4
+        BRNE    ??Fsm_61
+        LDI     R24, 3
+        RJMP    ??Fsm_62
+??Fsm_61:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -2924,36 +2929,36 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_61
+        BREQ    ??Fsm_63
         LDI     R16, 1
-        RJMP    ??Fsm_62
-??Fsm_61:
+        RJMP    ??Fsm_64
+??Fsm_63:
         LDI     R16, 0
-??Fsm_62:
+??Fsm_64:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_63
+        RJMP    ??Fsm_65
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         SUBI    R16, 0
-        BREQ    ??Fsm_64
+        BREQ    ??Fsm_66
         DEC     R16
-        BREQ    ??Fsm_64
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_65
+        BREQ    ??Fsm_66
         DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_65
-        RJMP    ??Fsm_66
-??Fsm_64:
+        RJMP    ??Fsm_67
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_67
+        RJMP    ??Fsm_62
+??Fsm_66:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         TST     R16
-        BRNE    ??Fsm_67
+        BRNE    ??Fsm_68
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
@@ -2970,26 +2975,26 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_68
+        BREQ    ??Fsm_69
         LDI     R16, 1
-        RJMP    ??Fsm_69
-??Fsm_68:
-        LDI     R16, 0
+        RJMP    ??Fsm_70
 ??Fsm_69:
-        TST     R16
-        BREQ    ??Fsm_70
-        LDI     R24, 1
-        RJMP    ??Fsm_66
+        LDI     R16, 0
 ??Fsm_70:
+        TST     R16
+        BREQ    ??Fsm_71
+        LDI     R24, 1
+        RJMP    ??Fsm_62
+??Fsm_71:
         LDI     R24, 0
-        RJMP    ??Fsm_66
-??Fsm_67:
+        RJMP    ??Fsm_62
+??Fsm_68:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 1
-        BRNE    ??Fsm_71
+        BRNE    ??Fsm_72
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 1
@@ -3006,41 +3011,41 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_72
+        BREQ    ??Fsm_73
         LDI     R16, 1
-        RJMP    ??Fsm_73
-??Fsm_72:
-        LDI     R16, 0
+        RJMP    ??Fsm_74
 ??Fsm_73:
-        TST     R16
-        BREQ    ??Fsm_74
-        LDI     R24, 0
-        RJMP    ??Fsm_66
+        LDI     R16, 0
 ??Fsm_74:
+        TST     R16
+        BREQ    ??Fsm_75
+        LDI     R24, 0
+        RJMP    ??Fsm_62
+??Fsm_75:
         LDI     R24, 1
-??Fsm_71:
-        RJMP    ??Fsm_66
-??Fsm_65:
+??Fsm_72:
+        RJMP    ??Fsm_62
+??Fsm_67:
         LDI     R24, 2
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
         CALL    ??SetDiscreteInputState
-        RJMP    ??Fsm_66
-??Fsm_63:
+        RJMP    ??Fsm_62
+??Fsm_65:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 2
-        BREQ    ??Fsm_75
+        BREQ    ??Fsm_76
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 1
-        BRNE    ??Fsm_76
-??Fsm_75:
+        BRNE    ??Fsm_77
+??Fsm_76:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
@@ -3057,33 +3062,33 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_77
+        BREQ    ??Fsm_78
         LDI     R16, 1
-        RJMP    ??Fsm_78
-??Fsm_77:
-        LDI     R16, 0
+        RJMP    ??Fsm_79
 ??Fsm_78:
-        TST     R16
-        BREQ    ??Fsm_79
-        LDI     R24, 1
-        RJMP    ??Fsm_66
+        LDI     R16, 0
 ??Fsm_79:
+        TST     R16
+        BREQ    ??Fsm_80
+        LDI     R24, 1
+        RJMP    ??Fsm_62
+??Fsm_80:
         LDI     R24, 0
-        RJMP    ??Fsm_66
-??Fsm_76:
+        RJMP    ??Fsm_62
+??Fsm_77:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 3
-        BREQ    ??Fsm_80
+        BREQ    ??Fsm_81
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         TST     R16
-        BRNE    ??Fsm_66
-??Fsm_80:
+        BRNE    ??Fsm_62
+??Fsm_81:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 1
@@ -3100,163 +3105,37 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_81
+        BREQ    ??Fsm_82
         LDI     R16, 1
-        RJMP    ??Fsm_82
-??Fsm_81:
-        LDI     R16, 0
+        RJMP    ??Fsm_83
 ??Fsm_82:
-        TST     R16
-        BREQ    ??Fsm_83
-        LDI     R24, 0
-        RJMP    ??Fsm_66
+        LDI     R16, 0
 ??Fsm_83:
+        TST     R16
+        BREQ    ??Fsm_84
+        LDI     R24, 0
+        RJMP    ??Fsm_62
+??Fsm_84:
         LDI     R24, 1
-??Fsm_66:
+??Fsm_62:
         MOVW    R17:R16, R27:R26
         CALL    ??GetFsmState
         SUBI    R16, 0
-        BREQ    ??Fsm_84
-        DEC     R16
         BREQ    ??Fsm_85
-        SUBI    R16, 6
-        BRNE    $+2+2
-        RJMP    ??Fsm_86
         DEC     R16
+        BREQ    ??Fsm_86
+        SUBI    R16, 6
         BRNE    $+2+2
         RJMP    ??Fsm_87
         DEC     R16
         BRNE    $+2+2
         RJMP    ??Fsm_88
-        RJMP    ??Fsm_89
-??Fsm_84:
-        RJMP    ??Fsm_89
-??Fsm_85:
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 8
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 9
-        MOVW    R31:R30, R19:R18
-        ICALL
-        TST     R16
-        BREQ    ??Fsm_90
-        LDI     R16, 1
-        RJMP    ??Fsm_91
-??Fsm_90:
-        LDI     R16, 0
-??Fsm_91:
-        TST     R16
+        DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_92
-        CPI     R24, 2
-        BRNE    ??Fsm_93
-        LDI     R18, 8
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
         RJMP    ??Fsm_89
-??Fsm_93:
-        CPI     R24, 1
-        BREQ    $+2+2
-        RJMP    ??Fsm_89
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 1
-        CALL    ??DiscreteOutputsSet
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowColor
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 1
-        CALL    ??SetActivityState
-        LDI     R18, 7
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_89
-??Fsm_92:
-        CPI     R24, 1
-        BRNE    ??Fsm_94
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 1
-        CALL    ??DiscreteOutputsSet
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowColor
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 1
-        CALL    ??SetActivityState
-        LDI     R18, 7
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_94:
-        RJMP    ??Fsm_89
+        RJMP    ??Fsm_90
+??Fsm_85:
+        RJMP    ??Fsm_90
 ??Fsm_86:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
@@ -3270,47 +3149,173 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_95
+        BREQ    ??Fsm_91
         LDI     R16, 1
-        RJMP    ??Fsm_96
-??Fsm_95:
+        RJMP    ??Fsm_92
+??Fsm_91:
         LDI     R16, 0
-??Fsm_96:
+??Fsm_92:
         TST     R16
-        BREQ    ??Fsm_97
+        BRNE    $+2+2
+        RJMP    ??Fsm_93
         CPI     R24, 2
-        BRNE    ??Fsm_98
+        BRNE    ??Fsm_94
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_89
-??Fsm_98:
-        TST     R24
-        BRNE    ??Fsm_99
+        RJMP    ??Fsm_90
+??Fsm_94:
+        CPI     R24, 1
+        BREQ    $+2+2
+        RJMP    ??Fsm_90
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
-        LDI     R17, 0
+        MOV     R17, R25
         CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowColor
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 0
-        CALL    ??SetActivityState
         LDI     R18, 1
+        CALL    ??SetActivityState
+        LDI     R18, 7
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_89
-??Fsm_99:
+        RJMP    ??Fsm_90
+??Fsm_93:
         CPI     R24, 1
+        BRNE    ??Fsm_95
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowColor
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 1
+        CALL    ??SetActivityState
+        LDI     R18, 7
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_95:
+        RJMP    ??Fsm_90
+??Fsm_87:
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 8
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 9
+        MOVW    R31:R30, R19:R18
+        ICALL
+        TST     R16
+        BREQ    ??Fsm_96
+        LDI     R16, 1
+        RJMP    ??Fsm_97
+??Fsm_96:
+        LDI     R16, 0
+??Fsm_97:
+        TST     R16
+        BREQ    ??Fsm_98
+        CPI     R24, 2
+        BRNE    ??Fsm_99
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_90
+??Fsm_99:
+        TST     R24
         BRNE    ??Fsm_100
         MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 0
+        CALL    ??SetActivityState
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_90
+??Fsm_100:
+        CPI     R24, 1
+        BRNE    ??Fsm_101
+        MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 0
         CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_89
-??Fsm_97:
+        RJMP    ??Fsm_90
+??Fsm_98:
         TST     R24
-        BRNE    ??Fsm_101
+        BRNE    ??Fsm_102
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -3323,17 +3328,17 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_89
-??Fsm_101:
+        RJMP    ??Fsm_90
+??Fsm_102:
         CPI     R24, 1
-        BRNE    ??Fsm_89
+        BRNE    ??Fsm_90
         MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 0
         CALL    ??DiscreteOutputsSet
-??Fsm_100:
-        RJMP    ??Fsm_89
-??Fsm_87:
+??Fsm_101:
+        RJMP    ??Fsm_90
+??Fsm_88:
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 1
@@ -3350,10 +3355,10 @@ _A_PINF:
         LDI     R18, 9
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_89
-??Fsm_88:
+        RJMP    ??Fsm_90
+??Fsm_89:
         CPI     R24, 2
-        BREQ    ??Fsm_89
+        BREQ    ??Fsm_90
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -3366,7 +3371,7 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_89:
+??Fsm_90:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
@@ -3488,26 +3493,26 @@ _A_PINF:
         MOVW    R17:R16, R27:R26
         CALL    ??GetFsmState
         SUBI    R16, 0
-        BREQ    ??Fsm_102
-        DEC     R16
         BREQ    ??Fsm_103
         DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_104
+        BREQ    ??Fsm_104
         DEC     R16
         BRNE    $+2+2
         RJMP    ??Fsm_105
+        DEC     R16
+        BRNE    $+2+2
         RJMP    ??Fsm_106
+        RJMP    ??Fsm_107
 //  806     {
 //  807     case START:
 //  808         break;
-??Fsm_102:
-        RJMP    ??Fsm_106
+??Fsm_103:
+        RJMP    ??Fsm_107
 //  809 
 //  810     case ACTIVE_STATE_WAITING:
 //  811         // Дискретный сигнал активен?
 //  812         if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
-??Fsm_103:
+??Fsm_104:
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3525,15 +3530,15 @@ _A_PINF:
         ICALL
         EOR     R4, R16
         TST     R4
-        BREQ    ??Fsm_107
+        BREQ    ??Fsm_108
         LDI     R16, 1
-        RJMP    ??Fsm_108
-??Fsm_107:
-        LDI     R16, 0
+        RJMP    ??Fsm_109
 ??Fsm_108:
+        LDI     R16, 0
+??Fsm_109:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_106
+        RJMP    ??Fsm_107
 //  813         {
 //  814             // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
 //  815             // чем тип общей сигнализации?
@@ -3541,7 +3546,7 @@ _A_PINF:
 //  817                     (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
         CALL    ??GetCommonAlarmType
         CPI     R16, 7
-        BREQ    ??Fsm_109
+        BREQ    ??Fsm_110
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3556,14 +3561,14 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         CP      R4, R16
-        BRCS    ??Fsm_110
+        BRCS    ??Fsm_111
         LDI     R16, 1
-        RJMP    ??Fsm_111
-??Fsm_110:
-        LDI     R16, 0
+        RJMP    ??Fsm_112
 ??Fsm_111:
+        LDI     R16, 0
+??Fsm_112:
         TST     R16
-        BRNE    ??Fsm_109
+        BRNE    ??Fsm_110
 //  818             {
 //  819                 // Установим тип общей сигнализацию.
 //  820                 CPss21::SetCommonAlarmType(ALARM_TYPE());
@@ -3586,7 +3591,7 @@ _A_PINF:
 //  824             }
 //  825 
 //  826             CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-??Fsm_109:
+??Fsm_110:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -3614,15 +3619,15 @@ _A_PINF:
         CALL    ??SetFsmState
 //  830         }
 //  831         break;
-        RJMP    ??Fsm_106
+        RJMP    ??Fsm_107
 //  832 
 //  833     case RECEIPT_WAITING:
 //  834         // Событие квитировано?
 //  835         if (CPss21::GetDiscreteSignalsReceipt())
-??Fsm_104:
+??Fsm_105:
         CALL    ??GetDiscreteSignalsReceipt
         TST     R16
-        BREQ    ??Fsm_106
+        BREQ    ??Fsm_107
 //  836         {
 //  837             // Переведём автоматы сигнализаций в состояние - квитировано.
 //  838             CPss21::AlarmTypeReceipt();
@@ -3633,12 +3638,12 @@ _A_PINF:
         CALL    ??SetFsmState
 //  840         }
 //  841         break;
-        RJMP    ??Fsm_106
+        RJMP    ??Fsm_107
 //  842 
 //  843     case RECEIPTED_NOT_ACTIVE_STATE_WAITING:
 //  844         // Дискретный сигнал не активен?
 //  845         if (!(CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
-??Fsm_105:
+??Fsm_106:
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3656,14 +3661,14 @@ _A_PINF:
         ICALL
         EOR     R4, R16
         TST     R4
-        BRNE    ??Fsm_112
+        BRNE    ??Fsm_113
         LDI     R16, 1
-        RJMP    ??Fsm_113
-??Fsm_112:
-        LDI     R16, 0
+        RJMP    ??Fsm_114
 ??Fsm_113:
+        LDI     R16, 0
+??Fsm_114:
         TST     R16
-        BREQ    ??Fsm_106
+        BREQ    ??Fsm_107
 //  846         {
 //  847             // Переведём автоматы сигнализаций в состояние - сброшено.
 //  848             CPss21::AlarmTypeReset();
@@ -3681,7 +3686,7 @@ _A_PINF:
 //  855         break;
 //  856     }
 //  857 }
-??Fsm_106:
+??Fsm_107:
         LDI     R30, 5
         JMP     ?EPILOGUE_B5_L09
 
@@ -4269,11 +4274,11 @@ __?EEARH:
 //  908 
 // 
 //   105 bytes in segment ABSOLUTE
-// 4 446 bytes in segment CODE
+// 4 454 bytes in segment CODE
 //   170 bytes in segment NEAR_F
 //    26 bytes in segment SWITCH
 // 
-// 4 136 bytes of CODE memory (+ 506 bytes shared)
+// 4 144 bytes of CODE memory (+ 506 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
