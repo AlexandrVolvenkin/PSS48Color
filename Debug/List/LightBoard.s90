@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  17:14:36
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          19/Sep/2024  13:02:05
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW7096.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW8AC0.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //        --cpu=m128a -ms -o
@@ -873,22 +873,22 @@ _A_PINF:
         RSEG NEAR_F:CODE:ROOT(0)
 //  160 __flash TPixelColorData CLightBoard::m_xPixelColorRed =
 ??m_xPixelColorRed:
-        DC8 0, 0, 255
+        DC8 0, 255, 0
 //  161 {
 //  162     0,
-//  163     0,
-//  164     255,
+//  163     255,
+//  164     0,
 //  165 };
 //  166 
 
         RSEG NEAR_F:CODE:ROOT(0)
 //  167 __flash TPixelColorData CLightBoard::m_xPixelColorGreen =
 ??m_xPixelColorGreen:
-        DC8 0, 255, 0
+        DC8 0, 0, 255
 //  168 {
 //  169     0,
-//  170     255,
-//  171     0,
+//  170     0,
+//  171     255,
 //  172 };
 //  173 
 
