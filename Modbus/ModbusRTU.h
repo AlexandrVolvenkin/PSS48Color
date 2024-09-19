@@ -125,7 +125,7 @@ private:
     const static uint16_t m_uiReceiveTimeout = 15000;
     // таймоут по отсутствию подтверждения.
     const static uint16_t m_uiConfirmationTimeout = 1000;
-    const static uint16_t m_uiTransmitDelayTimeout = 100;
+    const static uint16_t m_uiTransmitDelayTimeout = 5;
 
 };
 

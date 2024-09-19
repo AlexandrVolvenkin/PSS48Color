@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  16:51:41
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  17:14:36
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW72EB.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW7166.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #        --cpu=m128a -ms -o
@@ -1465,24 +1465,23 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000014   8533               LDD     R19, Z+11
    \   00000016   1B02               SUB     R16, R18
    \   00000018   0B13               SBC     R17, R19
-   \   0000001A   3604               CPI     R16, 100
-   \   0000001C   E020               LDI     R18, 0
-   \   0000001E   0712               CPC     R17, R18
-   \   00000020   F010               BRCS    ??TransmitDelayTimeIsOver_1
+   \   0000001A   3005               CPI     R16, 5
+   \   0000001C   4010               SBCI    R17, 0
+   \   0000001E   F010               BRCS    ??TransmitDelayTimeIsOver_1
     244              {
     245                  return 1;
-   \   00000022   E001               LDI     R16, 1
-   \   00000024   C001               RJMP    ??TransmitDelayTimeIsOver_2
+   \   00000020   E001               LDI     R16, 1
+   \   00000022   C001               RJMP    ??TransmitDelayTimeIsOver_2
     246              }
     247              else
     248              {
     249                  return 0;
    \                     ??TransmitDelayTimeIsOver_1:
-   \   00000026   E000               LDI     R16, 0
+   \   00000024   E000               LDI     R16, 0
    \                     ??TransmitDelayTimeIsOver_2:
-   \   00000028   91A9               LD      R26, Y+
-   \   0000002A   91B9               LD      R27, Y+
-   \   0000002C   9508               RET
+   \   00000026   91A9               LD      R26, Y+
+   \   00000028   91B9               LD      R27, Y+
+   \   0000002A   9508               RET
     250              }
     251          };
     252          
@@ -2129,7 +2128,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     429              case WAITING_FRAME_TRANSMIT_CONFIRMATION:
     430                  if (TimeIsOver(m_uiTransmitDelayTimeout))
    \                     ??Fsm_16:
-   \   0000022C   E624               LDI     R18, 100
+   \   0000022C   E025               LDI     R18, 5
    \   0000022E   E030               LDI     R19, 0
    \   00000230   018D               MOVW    R17:R16, R27:R26
    \   00000232   ....               RCALL   ??TimeIsOver
@@ -2531,7 +2530,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
     537              case WAITING_FRAME_TRANSMIT_REQUEST:
     538                  if (TimeIsOver(m_uiTransmitDelayTimeout))
    \                     ??Fsm_34:
-   \   00000476   E624               LDI     R18, 100
+   \   00000476   E025               LDI     R18, 5
    \   00000478   E030               LDI     R19, 0
    \   0000047A   018D               MOVW    R17:R16, R27:R26
    \   0000047C   ....               RCALL   ??TimeIsOver
@@ -2870,7 +2869,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
        6  CModbusRTU::Tail for CModbus/-15/(uint8_t *, uint16_t)
       56  CModbusRTU::Tail(uint8_t *, uint16_t)
       46  CModbusRTU::TimeIsOver(uint16_t)
-      46  CModbusRTU::TransmitDelayTimeIsOver()
+      44  CModbusRTU::TransmitDelayTimeIsOver()
       22  CModbusRTU::TransmitDisable()
       22  CModbusRTU::TransmitEnable()
       28  CModbusRTU::new CModbusRTU()
@@ -2978,11 +2977,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 
  
    105 bytes in segment ABSOLUTE
- 2 890 bytes in segment CODE
+ 2 888 bytes in segment CODE
     58 bytes in segment NEAR_F
     46 bytes in segment SWITCH
  
- 2 896 bytes of CODE memory (+  98 bytes shared)
+ 2 894 bytes of CODE memory (+  98 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none
