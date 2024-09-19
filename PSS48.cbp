@@ -65,6 +65,7 @@
 		<Unit filename="include/Pss21.h" />
 		<Unit filename="include/Task.h" />
 		<Unit filename="include/Timer.h" />
+		<Unit filename="namur.txt" />
 		<Unit filename="src/Alarm.cpp" />
 		<Unit filename="src/AlarmWindow.cpp" />
 		<Unit filename="src/Buzzer.cpp" />

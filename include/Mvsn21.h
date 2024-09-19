@@ -67,6 +67,7 @@ private:
     uint8_t* m_puiRxBuffer;
     uint8_t* m_puiTxBuffer;
     uint8_t* m_puiDiscreteInputs;
+    uint8_t* m_puiDiscreteInputsBadState;
     uint8_t m_uiBadAnswerCounter;
 };
 

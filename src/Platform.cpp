@@ -214,7 +214,10 @@ int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
         {
             puiDestination[i] = m_auiIntermediateBuff[i];
         }
-
+//        if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+//        {
+//        m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
+//        }
         uint8_t uiCounter = m_nuiRxBuffByteCounter;
         m_nuiRxBuffByteCounter = 0;
 
@@ -252,7 +255,7 @@ void CUart::TxcInterruptHandler(void)
     return;
 }
 
-        uint8_t uiInterruptCounter = 0;
+uint8_t uiInterruptCounter = 0;
 //-----------------------------------------------------------------------------------------------------
 void CUart::RecvInterruptHandler(void)
 {
@@ -689,6 +692,10 @@ TDataBase __flash CFlash::xMainDataBase =
         }
     },0x6CFB,
 
+    {
+        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+    },0x0B40,
+
     false, {0,0,0,0,0,0,0},0x0B40,
 };
 
@@ -705,7 +712,9 @@ TDataBaseBlockPositionData __flash CFlash::axDataBaseBlocksPositionData[] =
     { 7, sizeof(xMainDataBase.InputList),	  offsetof(TDataBase,InputList)  	},
     { 8, sizeof(xMainDataBase.ReceiptList), offsetof(TDataBase,ReceiptList)	},
     { 9, sizeof(xMainDataBase.UnsetList),	  offsetof(TDataBase,UnsetList)  	},
-    { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+    { 10, sizeof(xMainDataBase.NamurInputs),	  offsetof(TDataBase,NamurInputs)  	},
+    { 11, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
+//    { 10, sizeof(xMainDataBase.DeviceState),	  offsetof(TDataBase,DeviceState)  	}
 };
 
 //----------------------------------------- Flash ----------------------------------------------------------------

@@ -114,8 +114,9 @@ enum TYPE_INDICATION
 
     IND_PREVENTIVE = 4,			// Индикация + предупредительная сигнализация
     IND_EMERGENCY  = 5,			// Индикация + аварийная сигнализация
-    ERROR  = 6,			// Звук нажатия кнопок.
-    BEEP_SIGNAL  = 7,			// Звук нажатия кнопок.
+    NAMUR_INDICATION = 6,			// Индикация недостоверности сигнала namur.
+    ERROR  = 7,			// Звук нажатия кнопок.
+    BEEP_SIGNAL  = 8,			// Звук нажатия кнопок.
 };
 
 enum Errors
@@ -126,6 +127,15 @@ enum Errors
     CFG_ERROR	= 3,		// Ошибка конфигурации
     DB_ERROR	= 4,		// Ошибка БД
     MBS_ERROR	= 5,		// Ошибка канала связи
+};
+
+enum INPUT_STATE_CODE
+{
+    OFF		= 0x00,			// Дективация датчика
+    ON		= 0x01,			// Срабатывание датчика
+    WIRE_BREAK	= 0x02,			// Обрыв линии
+    SHORT_CIRCUIT	= 0x03,			// Короткое замыкание
+    INPUT_IS_INVALID	= 0x04,			// вход недостоверен
 };
 
 enum EErrorAlarmType

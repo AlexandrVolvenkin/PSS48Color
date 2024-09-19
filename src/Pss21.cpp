@@ -90,6 +90,8 @@ TDiscreteOutputControl CPss21::m_axDiscreteOutputControl[];
 TOutputData CPss21::m_xDiscreteOutputDataBase;
 CAlarmWindow CPss21::m_axAlarmWindowControl[];
 
+uint8_t CPss21::m_aucDiscreteInputsBadState[];
+
 __flash uint8_t CPss21::m_auiErrorLedOn[] =
 {
     1, 1, 1, 1,    1, 1, 1, 1,
@@ -310,6 +312,12 @@ void CPss21::InitAllocationContext(TMemoryAllocationContext &xMemoryAllocationCo
     // Подключим буфер для хранения состояний дискретных входов.
     xMemoryAllocationContext.puiDiscreteInputs =
         &m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
+
+    // Обнулим общий объём выделенной памяти.
+    xMemoryAllocationContext.uiUsedDiscreteInputsBadState = 0;
+    // Подключим буфер для хранения состояний достоверности дискретных входов.
+    xMemoryAllocationContext.puiDiscreteInputsBadState =
+        &m_aucDiscreteInputsBadState[0];
 
     // Обнулим общий объём выделенной памяти.
     xMemoryAllocationContext.uiUsedDiscreteOutputState = 0;
@@ -768,12 +776,32 @@ void CPss21::ConfigurationInit(void)
             // Установим уровень текущего дискретного сигнала интерпретируемый как активный.
             if (((uiData >> j) & 0x01))
             {
-                puiAlarmDfaInit[i] = 0x80;
+                puiAlarmDfaInit[i] |= 0x80;
             }
-            else
+
+            i++;
+        }
+        puiTempBuffer++;
+    }
+
+    // Установим тип текущего дискретного сигнала как namur.
+    // Считаем во временный буфер блок БД - "тип текущего дискретного сигнала как namur".
+    CDataBase::ReadBlock(puiTempBuffer, TDataBase::NAMUR_INPUTS);
+    for (uint8_t i = 0;
+            i < DISCRETE_INPUTS_NUMBER;
+        )
+    {
+        uint8_t uiData = *puiTempBuffer;
+        for (uint8_t j = 0;
+                j < 8;
+                j++)
+        {
+            // Установим тип текущего дискретного сигнала как namur.
+            if (((uiData >> j) & 0x01))
             {
-                puiAlarmDfaInit[i] = 0;
+                puiAlarmDfaInit[i] |= 0x40;
             }
+
             i++;
         }
         puiTempBuffer++;
@@ -788,7 +816,7 @@ void CPss21::ConfigurationInit(void)
             i++)
     {
         // Привяжем окно сигнализации к текущему дискретному сигналу.
-        puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0x80));
+        puiAlarmDfaInit[i] |= (puiTempBuffer[i] & ~(0xC0));
     }
 
     // Считаем во временный буфер блок БД - "Тип сигнализации привязанный к окну".
@@ -797,13 +825,14 @@ void CPss21::ConfigurationInit(void)
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
-        uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0x80));
+        uint8_t uiWindowIndex = (puiAlarmDfaInit[i] & ~(0xC0));
         // Для текущего дискретного сигнала запрограммирована сигнализация?
         if (uiWindowIndex < ALARM_WINDOWS_NUMBER)
         {
             // Очистим индекс привязанного окна, больше не нужен.
             // Оставим уровень дискретного сигнала интерпретируемый как активный.
-            puiAlarmDfaInit[i] &= 0x80;
+            // тип текущего дискретного сигнала как namur.
+            puiAlarmDfaInit[i] &= 0xC0;
             // Установим тип сигнализации по привязанному окну.
             puiAlarmDfaInit[i] |= puiTempBuffer[uiWindowIndex];
         }
@@ -811,7 +840,8 @@ void CPss21::ConfigurationInit(void)
         {
             // Очистим индекс привязанного окна, больше не нужен.
             // Оставим уровень дискретного сигнала интерпретируемый как активный.
-            puiAlarmDfaInit[i] &= 0x80;
+            // тип текущего дискретного сигнала как namur.
+            puiAlarmDfaInit[i] &= 0xC0;
         }
     }
 
@@ -831,11 +861,27 @@ void CPss21::ConfigurationInit(void)
             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
             if (puiAlarmDfaInit[i] & 0x80)
             {
-                m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CIndicationAlarmHighLevelDfa;
+                }
             }
             else
             {
-                m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CIndicationAlarmLowLevelDfa;
+                }
             }
             break;
 
@@ -843,11 +889,27 @@ void CPss21::ConfigurationInit(void)
             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
             if (puiAlarmDfaInit[i] & 0x80)
             {
-                m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CPreventiveAlarmHighLevelDfa;
+                }
             }
             else
             {
-                m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CPreventiveAlarmLowLevelDfa;
+                }
             }
             break;
 
@@ -855,11 +917,27 @@ void CPss21::ConfigurationInit(void)
             // Уровень дискретного сигнала интерпретируемый как активный - высокий?
             if (puiAlarmDfaInit[i] & 0x80)
             {
-                m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CEmergencyAlarmHighLevelDfa;
+                }
             }
             else
             {
-                m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
+                // тип текущего дискретного сигнала как namur - запрограммирован?
+                if (puiAlarmDfaInit[i] & 0x40)
+                {
+                    m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelNamurDfa;
+                }
+                else
+                {
+                    m_apxAlarmDfa[i] = new CEmergencyAlarmLowLevelDfa;
+                }
             }
             break;
 
@@ -1071,6 +1149,16 @@ void CPss21::AlarmsProcessing(void)
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
+//        if (i == 0)
+//        {
+//            CPss21::m_aucRtuHoldingRegistersArray[1] =
+//                m_axAlarmWindowControl[i].GetActivityState();
+//            CPss21::m_aucRtuHoldingRegistersArray[2] =
+//                m_axAlarmWindowControl[i].GetAlarmType();
+//            CPss21::m_aucRtuHoldingRegistersArray[3] =
+//                m_axAlarmWindowControl[i].GetAlarmColor();
+//        }
+
         m_apxAlarmDfa[i] -> Fsm();
 
         // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
@@ -1082,6 +1170,7 @@ void CPss21::AlarmsProcessing(void)
         }
     }
 
+    CPss21::NormalAlarmWindowOff();
     // Изменим тип общей сигнализацию.
     CPss21::AlarmTypeChange(uiCurrentCommonAlarmType);
 }
@@ -1099,21 +1188,23 @@ void CPss21::ErrorAlarmsProcessing(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::SetDiscreteInputState(uint8_t uiIndex, uint8_t uiData)
+{
+    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    {
+        // Получим состояние дискретного сигнала - дискретные входы модулей.
+        m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex] = uiData;
+    }
+    else
+    {
+        // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+        m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)] = uiData;
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 {
-//    // Не вышли за границы массива дискретных сигналов?
-//    if ((uiIndex >= 0) &&
-//            (uiIndex < (DISCRETE_INPUTS_NUMBER + ALARM_WINDOWS_NUMBER)))
-//    {
-//        // Получим состояние дискретного сигнала - дискретные входы модулей.
-//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-//    }
-//    else
-//    {
-//        // Получим состояние дискретного сигнала - дискретные входы модулей, вход 0.
-//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET];
-//    }
-
     if (uiIndex < DISCRETE_INPUTS_NUMBER)
     {
         // Получим состояние дискретного сигнала - дискретные входы модулей.
@@ -1124,6 +1215,13 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
         // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
         return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
     }
+}
+
+//-----------------------------------------------------------------------------------------------------
+uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
+{
+    // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+    return m_aucDiscreteInputsBadState[uiIndex];
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1400,6 +1498,24 @@ void CPss21::AllAlarmWindowOff(void)
 }
 
 //-----------------------------------------------------------------------------------------------------
+void CPss21::NormalAlarmWindowOff(void)
+{
+    for (uint8_t i = 0;
+            i < ALARM_WINDOWS_NUMBER;
+            i++)
+    {
+        // Тип сигнализации окна и тип сигнализации извещателя совпадают?
+        if (m_axAlarmWindowControl[i].GetAlarmType() == NORMAL)
+        {
+            // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+            m_axAlarmWindowControl[i].SetActivityState(0);
+        }
+    };
+
+    BoardWindowsUpdate();
+}
+
+//-----------------------------------------------------------------------------------------------------
 void CPss21::TestMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
@@ -1495,6 +1611,13 @@ void CPss21::MainFsm(void)
         }
         else
         {
+
+//            {
+//                //m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH]
+////                memset(CPss21::m_aucDiscreteInputsBadState, 0, DISCRETE_INPUTS_ARRAY_LENGTH);
+//                memset(CPss21::m_aucDiscreteInputsBadState, 1, DISCRETE_INPUTS_ARRAY_LENGTH);
+//                CPss21::m_aucDiscreteInputsBadState[0] = INPUT_IS_INVALID;
+//            }
             CPss21::ConfigurationInit();
             CPss21::ModbusInit();
             CSpi::Init();
@@ -1502,6 +1625,7 @@ void CPss21::MainFsm(void)
             CPss21::SearchModules();
             CPss21::CreateDevices();
 //            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
+
             SetFsmState(MAIN_CYCLE_START_WAITING);
         }
         break;

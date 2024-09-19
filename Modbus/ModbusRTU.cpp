@@ -8,6 +8,7 @@
 #include "ModbusRTU.h"
 #include "Crc.h"
 #include "DataBase.h"
+#include "Pss21.h"
 
 
 //-----------------------------------------------------------------------------------------------------
@@ -78,7 +79,7 @@ void CModbusRTU::Init(CUart* pxDevice,
 
     memset(m_puiCoils, 0, m_uiCoilsNumber * sizeof(uint8_t));
     memset(m_puiDiscreteInputs, 0, m_uiDiscreteInputsNumber * sizeof(uint8_t));
-    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
+//    memset(m_pui16HoldingRegisters, 0, m_uiHoldingRegistersNumber * sizeof(uint16_t));
     memset(m_pui16InputRegisters, 0, m_uiInputRegistersNumber * sizeof(uint16_t));
 
     m_pxDevice -> Init(m_uiBaudRate,
@@ -326,6 +327,10 @@ void CModbusRTU::Fsm(void)
 {
     int16_t iReceivedCounter;
 
+//            if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
+//            {
+//        iReceivedCounter = 0;
+//            }
     switch (GetFsmState())
     {
     case IDDLE:

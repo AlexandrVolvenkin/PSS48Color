@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          05/Sep/2024  12:01:55
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  17:14:37
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWEB59.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW7282.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o
@@ -2242,31 +2242,43 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetSavedFsmState
         MOV     R16, R26
-        LDI     R30, LOW(`?<Jumptable for AlarmSet>_0`)
-        LDI     R31, (`?<Jumptable for AlarmSet>_0`) >> 16
-        OUT     0x3B, R31
-        LDI     R31, HIGH(`?<Jumptable for AlarmSet>_0`)
-        JMP     ?CV_SWITCH_L06
+        SUBI    R16, 0
+        BREQ    ??AlarmSet_5
+        DEC     R16
+        BREQ    ??AlarmSet_6
+        DEC     R16
+        BREQ    ??AlarmSet_7
+        DEC     R16
+        BREQ    ??AlarmSet_8
+        DEC     R16
+        BREQ    ??AlarmSet_9
+        DEC     R16
+        BREQ    ??AlarmSet_9
+        SUBI    R16, 2
+        BREQ    ??AlarmSet_9
+        DEC     R16
+        BREQ    ??AlarmSet_9
+        RJMP    ??AlarmSet_9
 ??AlarmSet_5:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_6
-??AlarmSet_7:
+        RJMP    ??AlarmSet_9
+??AlarmSet_6:
         LDI     R18, 1
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_6
+        RJMP    ??AlarmSet_9
+??AlarmSet_7:
+        LDI     R18, 7
+        MOVW    R17:R16, R25:R24
+        CALL    ??SetFsmState
+        RJMP    ??AlarmSet_9
 ??AlarmSet_8:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_6
 ??AlarmSet_9:
-        LDI     R18, 7
-        MOVW    R17:R16, R25:R24
-        CALL    ??SetFsmState
-??AlarmSet_6:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -2346,31 +2358,43 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetSavedFsmState
         MOV     R16, R26
-        LDI     R30, LOW(`?<Jumptable for AlarmSet>_1`)
-        LDI     R31, (`?<Jumptable for AlarmSet>_1`) >> 16
-        OUT     0x3B, R31
-        LDI     R31, HIGH(`?<Jumptable for AlarmSet>_1`)
-        JMP     ?CV_SWITCH_L06
+        SUBI    R16, 0
+        BREQ    ??AlarmSet_10
+        DEC     R16
+        BREQ    ??AlarmSet_11
+        DEC     R16
+        BREQ    ??AlarmSet_12
+        DEC     R16
+        BREQ    ??AlarmSet_13
+        DEC     R16
+        BREQ    ??AlarmSet_14
+        DEC     R16
+        BREQ    ??AlarmSet_14
+        SUBI    R16, 2
+        BREQ    ??AlarmSet_14
+        DEC     R16
+        BREQ    ??AlarmSet_14
+        RJMP    ??AlarmSet_14
 ??AlarmSet_10:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_11
-??AlarmSet_12:
+        RJMP    ??AlarmSet_14
+??AlarmSet_11:
         LDI     R18, 1
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_11
-??AlarmSet_13:
+        RJMP    ??AlarmSet_14
+??AlarmSet_12:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_11
-??AlarmSet_14:
+        RJMP    ??AlarmSet_14
+??AlarmSet_13:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-??AlarmSet_11:
+??AlarmSet_14:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -2450,36 +2474,48 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetSavedFsmState
         MOV     R16, R26
-        LDI     R30, LOW(`?<Jumptable for AlarmSet>_2`)
-        LDI     R31, (`?<Jumptable for AlarmSet>_2`) >> 16
-        OUT     0x3B, R31
-        LDI     R31, HIGH(`?<Jumptable for AlarmSet>_2`)
-        JMP     ?CV_SWITCH_L06
+        SUBI    R16, 0
+        BREQ    ??AlarmSet_15
+        DEC     R16
+        BREQ    ??AlarmSet_16
+        DEC     R16
+        BREQ    ??AlarmSet_17
+        DEC     R16
+        BREQ    ??AlarmSet_18
+        DEC     R16
+        BREQ    ??AlarmSet_19
+        DEC     R16
+        BREQ    ??AlarmSet_19
+        SUBI    R16, 2
+        BREQ    ??AlarmSet_20
+        DEC     R16
+        BREQ    ??AlarmSet_19
+        RJMP    ??AlarmSet_19
 ??AlarmSet_15:
         LDI     R18, 24
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_16
-??AlarmSet_17:
+        RJMP    ??AlarmSet_19
+??AlarmSet_16:
         LDI     R18, 24
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_16
-??AlarmSet_18:
+        RJMP    ??AlarmSet_19
+??AlarmSet_17:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_16
-??AlarmSet_19:
+        RJMP    ??AlarmSet_19
+??AlarmSet_18:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-        RJMP    ??AlarmSet_16
+        RJMP    ??AlarmSet_19
 ??AlarmSet_20:
         LDI     R18, 19
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
-??AlarmSet_16:
+??AlarmSet_19:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 
@@ -2574,11 +2610,23 @@ _A_PINF:
         CALL    ??SetSavedFsmState
 //  563     switch (uiAlarmType)
         MOV     R16, R26
-        LDI     R30, LOW(`?<Jumptable for AlarmSet>_3`)
-        LDI     R31, (`?<Jumptable for AlarmSet>_3`) >> 16
-        OUT     0x3B, R31
-        LDI     R31, HIGH(`?<Jumptable for AlarmSet>_3`)
-        JMP     ?CV_SWITCH_L06
+        SUBI    R16, 0
+        BREQ    ??AlarmSet_21
+        DEC     R16
+        BREQ    ??AlarmSet_22
+        DEC     R16
+        BREQ    ??AlarmSet_23
+        DEC     R16
+        BREQ    ??AlarmSet_24
+        DEC     R16
+        BREQ    ??AlarmSet_25
+        DEC     R16
+        BREQ    ??AlarmSet_25
+        SUBI    R16, 2
+        BREQ    ??AlarmSet_26
+        DEC     R16
+        BREQ    ??AlarmSet_27
+        RJMP    ??AlarmSet_25
 //  564     {
 //  565     case NORMAL:
 //  566         SetFsmState(STOP);
@@ -2587,34 +2635,34 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  567         break;
-        RJMP    ??AlarmSet_22
+        RJMP    ??AlarmSet_25
 //  568 
 //  569     case INDICATION:
 //  570         SetFsmState(STOP);
-??AlarmSet_23:
+??AlarmSet_22:
         LDI     R18, 37
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  571         break;
-        RJMP    ??AlarmSet_22
+        RJMP    ??AlarmSet_25
 //  572 
 //  573     case PREVENTIVE:
 //  574         SetFsmState(WARNING_SIGNAL_START);
-??AlarmSet_24:
+??AlarmSet_23:
         LDI     R18, 7
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  575         break;
-        RJMP    ??AlarmSet_22
+        RJMP    ??AlarmSet_25
 //  576 
 //  577     case EMERGENCY:
 //  578         SetFsmState(ALARM_SIGNAL_START);
-??AlarmSet_25:
+??AlarmSet_24:
         LDI     R18, 13
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  579         break;
-        RJMP    ??AlarmSet_22
+        RJMP    ??AlarmSet_25
 //  580 
 //  581     case IND_PREVENTIVE:
 //  582         break;
@@ -2629,7 +2677,7 @@ _A_PINF:
         MOVW    R17:R16, R25:R24
         CALL    ??SetFsmState
 //  589         break;
-        RJMP    ??AlarmSet_22
+        RJMP    ??AlarmSet_25
 //  590 
 //  591     case BEEP_SIGNAL:
 //  592         SetFsmState(BEEP_SIGNAL_START);
@@ -2643,7 +2691,7 @@ _A_PINF:
 //  596         break;
 //  597     }
 //  598 }
-??AlarmSet_22:
+??AlarmSet_25:
         LDI     R30, 3
         JMP     ?EPILOGUE_B3_L09
 //  599 
@@ -3612,66 +3660,6 @@ __?EEARH:
         DW      (??Fsm_32) /2
         DB      251
 
-        RSEG SWITCH:CODE:NOROOT(1)
-`?<Jumptable for AlarmSet>_0`:
-        DB      0
-        DB      0
-        DW      (??AlarmSet_6) /2
-        DW      8
-        DW      (??AlarmSet_5) /2
-        DW      (??AlarmSet_7) /2
-        DW      (??AlarmSet_8) /2
-        DW      (??AlarmSet_9) /2
-        DW      (??AlarmSet_6) /2
-        DW      (??AlarmSet_6) /2
-        DW      (??AlarmSet_6) /2
-        DW      (??AlarmSet_6) /2
-
-        RSEG SWITCH:CODE:NOROOT(1)
-`?<Jumptable for AlarmSet>_1`:
-        DB      0
-        DB      0
-        DW      (??AlarmSet_11) /2
-        DW      8
-        DW      (??AlarmSet_10) /2
-        DW      (??AlarmSet_12) /2
-        DW      (??AlarmSet_13) /2
-        DW      (??AlarmSet_14) /2
-        DW      (??AlarmSet_11) /2
-        DW      (??AlarmSet_11) /2
-        DW      (??AlarmSet_11) /2
-        DW      (??AlarmSet_11) /2
-
-        RSEG SWITCH:CODE:NOROOT(1)
-`?<Jumptable for AlarmSet>_2`:
-        DB      0
-        DB      0
-        DW      (??AlarmSet_16) /2
-        DW      8
-        DW      (??AlarmSet_15) /2
-        DW      (??AlarmSet_17) /2
-        DW      (??AlarmSet_18) /2
-        DW      (??AlarmSet_19) /2
-        DW      (??AlarmSet_16) /2
-        DW      (??AlarmSet_16) /2
-        DW      (??AlarmSet_20) /2
-        DW      (??AlarmSet_16) /2
-
-        RSEG SWITCH:CODE:NOROOT(1)
-`?<Jumptable for AlarmSet>_3`:
-        DB      0
-        DB      0
-        DW      (??AlarmSet_22) /2
-        DW      8
-        DW      (??AlarmSet_21) /2
-        DW      (??AlarmSet_23) /2
-        DW      (??AlarmSet_24) /2
-        DW      (??AlarmSet_25) /2
-        DW      (??AlarmSet_22) /2
-        DW      (??AlarmSet_22) /2
-        DW      (??AlarmSet_26) /2
-        DW      (??AlarmSet_27) /2
-
         RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash CNotifyerControl::__vtbl[18]
 ??__vtbl:
@@ -3762,9 +3750,9 @@ __?EEARH:
 //  811 
 // 
 //   105 bytes in segment ABSOLUTE
-// 3 666 bytes in segment CODE
+// 3 754 bytes in segment CODE
 //   238 bytes in segment NEAR_F
-//   152 bytes in segment SWITCH
+//    64 bytes in segment SWITCH
 // 
 // 3 584 bytes of CODE memory (+ 472 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
