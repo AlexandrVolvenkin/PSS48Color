@@ -2127,9 +2127,6 @@
         <name>$PROJ_DIR$\src\DM134.cpp</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\src\Dm163.cpp</name>
-    </file>
-    <file>
         <name>$PROJ_DIR$\src\Event.cpp</name>
     </file>
     <file>
@@ -2161,9 +2158,6 @@
     </file>
     <file>
         <name>$PROJ_DIR$\src\NotifyerControl.cpp</name>
-    </file>
-    <file>
-        <name>$PROJ_DIR$\src\Pixel.cpp</name>
     </file>
     <file>
         <name>$PROJ_DIR$\src\Platform.cpp</name>

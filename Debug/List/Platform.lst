@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           19/Sep/2024  12:53:36
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           06/Oct/2024  06:10:48
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWC3D4.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWC5EA.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 #        --cpu=m128a -ms -o
@@ -637,12 +637,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",368  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",369  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -679,23 +679,29 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::StatusLedSetPinOutput()
    \                     ??StatusLedSetPinOutput:
-   \   00000000   9AD4               SBI     0x1A, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRA
+   \   00000000   91000061           LDS     R16, 97
+   \   00000004   6800               ORI     R16, 0x80
+   \   00000006   93000061           STS     97, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::TxLedSetPinOutput()
    \                     ??TxLedSetPinOutput:
-   \   00000000   9AD3               SBI     0x1A, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRA
+   \   00000000   91000061           LDS     R16, 97
+   \   00000004   6400               ORI     R16, 0x40
+   \   00000006   93000061           STS     97, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::TxLedOff()
    \                     ??TxLedOff:
-   \   00000000   9ADB               SBI     0x1B, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTA
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6400               ORI     R16, 0x40
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::KeyOneSetPinInput()
@@ -721,9 +727,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::ExternalKeySetPinInput()
    \                     ??ExternalKeySetPinInput:
-   \   00000000   98A4               CBI     0x14, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRC
+   \   00000000   91000064           LDS     R16, 100
+   \   00000004   7F0E               ANDI    R16, 0xFE
+   \   00000006   93000064           STS     100, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_DDRG
      11          #include "Pss21.h"
 
       virtual bool IsSolved(void) {};
@@ -3187,46 +3195,18 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000022   9508               RET
     923          
     924          // —ирена
-    925          ////-----------------------------------------------------------------------------------------------------
-    926          //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
-    927          //{
-    928          //    unsigned short usCompareMatch;
-    929          //
-    930          //    // half-period time.
-    931          //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-    932          //    // —рабатывает по Top совпадению значени€ в ICR3.
-    933          //    // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
-    934          //    ICR3 = usCompareMatch * 2;
-    935          //    OCR3A = usCompareMatch;
-    936          //    OCR3B = usCompareMatch;
-    937          //
-    938          //    // Fast PWM Mode Top OCRn, prescaller - 1,
-    939          //    // Clear OC3B on compare match (set output to low level).
-    940          //    // Set OC3A on compare match (set output to high level).
-    941          //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
-    942          //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-    943          //};
-    944          //
-    945          ////-----------------------------------------------------------------------------------------------------
-    946          //void CPlatform::BuzzerTimerStop(void)
-    947          //{
-    948          //    // timer off.
-    949          //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
-    950          //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-    951          //};
-    952          
-    953          // color variant
+    925          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    954          void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+    926          void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
    \                     ??BuzzerTimerFrequencySet:
-    955          {
+    927          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    956              unsigned short usCompareMatch;
-    957          
-    958              // half-period time.
-    959              usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+    928              unsigned short usCompareMatch;
+    929          
+    930              // half-period time.
+    931              usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
    \   00000006   01AC               MOVW    R21:R20, R25:R24
    \   00000008   E060               LDI     R22, 0
    \   0000000A   E070               LDI     R23, 0
@@ -3242,56 +3222,84 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
    \   00000020   5001               SUBI    R16, 1
    \   00000022   4010               SBCI    R17, 0
    \   00000024   01D8               MOVW    R27:R26, R17:R16
-    960          
-    961              OCR3A = usCompareMatch * 2;
+    932              // —рабатывает по Top совпадению значени€ в ICR3.
+    933              // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
+    934              ICR3 = usCompareMatch * 2;
    \   00000026   018D               MOVW    R17:R16, R27:R26
    \   00000028   0F00               LSL     R16
    \   0000002A   1F11               ROL     R17
-   \   0000002C   9310....           STS     (_A_OCR3A + 1), R17
-   \   00000030   9300....           STS     _A_OCR3A, R16
-    962              OCR3B = usCompareMatch;
-   \   00000034   93B0....           STS     (_A_OCR3B + 1), R27
-   \   00000038   93A0....           STS     _A_OCR3B, R26
-    963              OCR3C = usCompareMatch;
-   \   0000003C   93B0....           STS     (_A_OCR3C + 1), R27
-   \   00000040   93A0....           STS     _A_OCR3C, R26
-    964          
-    965              // Fast PWM Mode, prescaller - 1,
-    966              // Clear OC3B on compare match (set output to low level).
-    967              // Set OC3C on compare match (set output to high level).
-    968              TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
-   \   00000044   E20F               LDI     R16, 47
+   \   0000002C   9310....           STS     (_A_ICR3 + 1), R17
+   \   00000030   9300....           STS     _A_ICR3, R16
+    935              OCR3A = usCompareMatch;
+   \   00000034   93B0....           STS     (_A_OCR3A + 1), R27
+   \   00000038   93A0....           STS     _A_OCR3A, R26
+    936              OCR3B = usCompareMatch;
+   \   0000003C   93B0....           STS     (_A_OCR3B + 1), R27
+   \   00000040   93A0....           STS     _A_OCR3B, R26
+    937          
+    938              // Fast PWM Mode Top OCRn, prescaller - 1,
+    939              // Clear OC3B on compare match (set output to low level).
+    940              // Set OC3A on compare match (set output to high level).
+    941              TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+   \   00000044   EE02               LDI     R16, 226
    \   00000046   9300....           STS     _A_TCCR3A, R16
-    969              TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+    942              TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
    \   0000004A   E109               LDI     R16, 25
    \   0000004C   9300....           STS     _A_TCCR3B, R16
-    970          }
+    943          };
    \   00000050   E0E4               LDI     R30, 4
    \   00000052   ........           JMP     ?EPILOGUE_B4_L09
+   \   00000056                      REQUIRE _A_ICR3
    \   00000056                      REQUIRE _A_OCR3A
    \   00000056                      REQUIRE _A_OCR3B
-   \   00000056                      REQUIRE _A_OCR3C
    \   00000056                      REQUIRE _A_TCCR3A
    \   00000056                      REQUIRE _A_TCCR3B
-    971          
+    944          
+    945          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    972          void CPlatform::BuzzerTimerStop(void)
+    946          void CPlatform::BuzzerTimerStop(void)
    \                     ??BuzzerTimerStop:
-    973          {
-    974              // timer off.
-    975              TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+    947          {
+    948              // timer off.
+    949              TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
    \   00000000   9100....           LDS     R16, _A_TCCR3A
-   \   00000004   7D00               ANDI    R16, 0xD0
+   \   00000004   710D               ANDI    R16, 0x1D
    \   00000006   9300....           STS     _A_TCCR3A, R16
-    976              TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+    950              TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
    \   0000000A   9100....           LDS     R16, _A_TCCR3B
    \   0000000E   7E06               ANDI    R16, 0xE6
    \   00000010   9300....           STS     _A_TCCR3B, R16
-    977          }
+    951          };
    \   00000014   9508               RET
    \   00000016                      REQUIRE _A_TCCR3A
    \   00000016                      REQUIRE _A_TCCR3B
+    952          
+    953          //// color variant
+    954          //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+    955          //{
+    956          //    unsigned short usCompareMatch;
+    957          //
+    958          //    // half-period time.
+    959          //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+    960          //
+    961          //    OCR3A = usCompareMatch * 2;
+    962          //    OCR3B = usCompareMatch;
+    963          //    OCR3C = usCompareMatch;
+    964          //
+    965          //    // Fast PWM Mode, prescaller - 1,
+    966          //    // Clear OC3B on compare match (set output to low level).
+    967          //    // Set OC3C on compare match (set output to high level).
+    968          //    TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+    969          //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+    970          //}
+    971          //
+    972          //void CPlatform::BuzzerTimerStop(void)
+    973          //{
+    974          //    // timer off.
+    975          //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+    976          //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+    977          //}
     978          
     979          //-----------------------------------------------------------------------------------------------------
 
@@ -3810,7 +3818,7 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
       86  CPlatform::BuzzerTimerFrequencySet(uint16_t)
       22  CPlatform::BuzzerTimerStop()
       12  CPlatform::CPlatform()
-       4  CPlatform::ExternalKeySetPinInput()
+      12  CPlatform::ExternalKeySetPinInput()
       18  CPlatform::IncrementSystemTick()
       36  CPlatform::Init()
        4  CPlatform::InterruptDisable()
@@ -3818,10 +3826,10 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
        4  CPlatform::KeyOneSetPinInput()
        4  CPlatform::KeyThreeSetPinInput()
        4  CPlatform::KeyTwoSetPinInput()
-       4  CPlatform::StatusLedSetPinOutput()
+      12  CPlatform::StatusLedSetPinOutput()
       40  CPlatform::SystemTickInit()
-       4  CPlatform::TxLedOff()
-       4  CPlatform::TxLedSetPinOutput()
+      12  CPlatform::TxLedOff()
+      12  CPlatform::TxLedSetPinOutput()
        4  CPlatform::WatchdogReset()
        2  CPlatform::m_pxUart1
        2  CPlatform::m_uiSystemTick
@@ -3968,13 +3976,13 @@ Warning[Pa082]: undefined behavior: the order of volatile accesses is undefined
 
  
    105 bytes in segment ABSOLUTE
- 2 838 bytes in segment CODE
+ 2 870 bytes in segment CODE
      7 bytes in segment INITTAB
     20 bytes in segment INTVEC
    748 bytes in segment NEAR_F
     15 bytes in segment NEAR_Z
  
- 3 344 bytes of CODE memory (+ 269 bytes shared)
+ 3 344 bytes of CODE memory (+ 301 bytes shared)
     15 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

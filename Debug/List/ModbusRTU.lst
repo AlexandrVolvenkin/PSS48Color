@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  17:14:36
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           06/Oct/2024  05:57:51
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW7166.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWE801.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #        --cpu=m128a -ms -o
@@ -523,12 +523,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",368  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",369  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -543,16 +543,20 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::TxLedOn()
    \                     ??TxLedOn:
-   \   00000000   98DB               CBI     0x1B, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTA
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   7B0F               ANDI    R16, 0xBF
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::TxLedOff()
    \                     ??TxLedOff:
-   \   00000000   9ADB               SBI     0x1B, 0x03
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTA
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6400               ORI     R16, 0x40
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CDfaLite::SetFsmState(uint8_t)
@@ -2876,8 +2880,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
        6  CModbusRTU::~CModbusRTU for CDfaLite/-15/()
       50  CModbusRTU::~CModbusRTU()
       10  CPlatform::GetSystemTick()
-       4  CPlatform::TxLedOff()
-       4  CPlatform::TxLedOn()
+      12  CPlatform::TxLedOff()
+      12  CPlatform::TxLedOn()
        6  CUart::ByteIsReceived()
        6  CUart::FrameIsSended()
        8  CUart::GetFrameLength()
@@ -2977,11 +2981,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 
  
    105 bytes in segment ABSOLUTE
- 2 888 bytes in segment CODE
+ 2 904 bytes in segment CODE
     58 bytes in segment NEAR_F
     46 bytes in segment SWITCH
  
- 2 894 bytes of CODE memory (+  98 bytes shared)
+ 2 894 bytes of CODE memory (+ 114 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

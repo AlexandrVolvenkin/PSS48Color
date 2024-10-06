@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  17:14:37
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          06/Oct/2024  05:57:51
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW72B3.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWE940.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 //        --cpu=m128a -ms -o
@@ -6869,14 +6869,13 @@ uiMapTestCounter:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 uint8_t CPlatform::ExternalKeyState()
 ??ExternalKeyState:
-        LDI     R16, 0
-        SBIC    0x13, 0x04
-        INC     R16
-??ExternalKeyState_1:
+        LDS     R17, _A_PING
+        MOV     R16, R17
+        ANDI    R16, 0x01
         LDI     R17, 1
         EOR     R16, R17
         RET
-        REQUIRE _A_PINC
+        REQUIRE _A_PING
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::SpiSlaveSelectAddress0SetPinOutput()
@@ -7358,7 +7357,7 @@ __?EEARH:
 // 1890 
 // 
 //   105 bytes in segment ABSOLUTE
-// 7 538 bytes in segment CODE
+// 7 540 bytes in segment CODE
 //     2 bytes in segment DIFUNCT
 //    14 bytes in segment INITTAB
 //    70 bytes in segment NEAR_F
@@ -7367,7 +7366,7 @@ __?EEARH:
 // 1 804 bytes in segment NEAR_Z
 //    50 bytes in segment SWITCH
 // 
-// 7 336 bytes of CODE memory (+ 428 bytes shared)
+// 7 336 bytes of CODE memory (+ 430 bytes shared)
 // 1 894 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

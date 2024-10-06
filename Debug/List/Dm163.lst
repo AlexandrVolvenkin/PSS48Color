@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  17:14:36
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           06/Oct/2024  05:57:50
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW7076.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWE6D3.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
 #        --cpu=m128a -ms -o
@@ -39,658 +39,45 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
       7          //-----------------------------------------------------------------------------------------------------
       8          #include "Dm163.h"
 
-   \                                 In  segment ABSOLUTE, at 0x9d, root
-   \   union <unnamed> volatile __io _A_UCSR1C
-   \                     _A_UCSR1C:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x9c, root
-   \   union <unnamed> volatile __io _A_UDR1
-   \                     _A_UDR1:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x9b, root
-   \   union <unnamed> volatile __io _A_UCSR1A
-   \                     _A_UCSR1A:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x9a, root
-   \   union <unnamed> volatile __io _A_UCSR1B
-   \                     _A_UCSR1B:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x99, root
-   \   union <unnamed> volatile __io _A_UBRR1L
-   \                     _A_UBRR1L:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x98, root
-   \   union <unnamed> volatile __io _A_UBRR1H
-   \                     _A_UBRR1H:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x95, root
-   \   union <unnamed> volatile __io _A_UCSR0C
-   \                     _A_UCSR0C:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x90, root
-   \   union <unnamed> volatile __io _A_UBRR0H
-   \                     _A_UBRR0H:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x8c, root
-   \   union <unnamed> volatile __io _A_TCCR3C
-   \                     _A_TCCR3C:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x8b, root
-   \   union <unnamed> volatile __io _A_TCCR3A
-   \                     _A_TCCR3A:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x8a, root
-   \   union <unnamed> volatile __io _A_TCCR3B
-   \                     _A_TCCR3B:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x88, root
-   \   union <unnamed> volatile __io _A_TCNT3
-   \                     _A_TCNT3:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x86, root
-   \   union <unnamed> volatile __io _A_OCR3A
-   \                     _A_OCR3A:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x84, root
-   \   union <unnamed> volatile __io _A_OCR3B
-   \                     _A_OCR3B:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x82, root
-   \   union <unnamed> volatile __io _A_OCR3C
-   \                     _A_OCR3C:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x80, root
-   \   union <unnamed> volatile __io _A_ICR3
-   \                     _A_ICR3:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x7d, root
-   \   union <unnamed> volatile __io _A_ETIMSK
-   \                     _A_ETIMSK:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x7c, root
-   \   union <unnamed> volatile __io _A_ETIFR
-   \                     _A_ETIFR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x7a, root
-   \   union <unnamed> volatile __io _A_TCCR1C
-   \                     _A_TCCR1C:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x78, root
-   \   union <unnamed> volatile __io _A_OCR1C
-   \                     _A_OCR1C:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x74, root
-   \   union <unnamed> volatile __io _A_TWCR
-   \                     _A_TWCR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x73, root
-   \   union <unnamed> volatile __io _A_TWDR
-   \                     _A_TWDR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x72, root
-   \   union <unnamed> volatile __io _A_TWAR
-   \                     _A_TWAR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x71, root
-   \   union <unnamed> volatile __io _A_TWSR
-   \                     _A_TWSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x70, root
-   \   union <unnamed> volatile __io _A_TWBR
-   \                     _A_TWBR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x6f, root
-   \   union <unnamed> volatile __io _A_OSCCAL
-   \                     _A_OSCCAL:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x6d, root
-   \   union <unnamed> volatile __io _A_XMCRA
-   \                     _A_XMCRA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x6c, root
-   \   union <unnamed> volatile __io _A_XMCRB
-   \                     _A_XMCRB:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x6a, root
-   \   union <unnamed> volatile __io _A_EICRA
-   \                     _A_EICRA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x68, root
-   \   union <unnamed> volatile __io _A_SPMCSR
-   \                     _A_SPMCSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x65, root
-   \   union <unnamed> volatile __io _A_PORTG
-   \                     _A_PORTG:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x64, root
-   \   union <unnamed> volatile __io _A_DDRG
-   \                     _A_DDRG:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x63, root
-   \   union <unnamed> volatile __io _A_PING
-   \                     _A_PING:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x62, root
-   \   union <unnamed> volatile __io _A_PORTF
-   \                     _A_PORTF:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x61, root
-   \   union <unnamed> volatile __io _A_DDRF
-   \                     _A_DDRF:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x5f, root
-   \   union <unnamed> volatile __io _A_SREG
-   \                     _A_SREG:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x5d, root
-   \   union <unnamed> volatile __io _A_SP
-   \                     _A_SP:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x5c, root
-   \   union <unnamed> volatile __io _A_XDIV
-   \                     _A_XDIV:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x5b, root
-   \   union <unnamed> volatile __io _A_RAMPZ
-   \                     _A_RAMPZ:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x5a, root
-   \   union <unnamed> volatile __io _A_EICRB
-   \                     _A_EICRB:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x59, root
-   \   union <unnamed> volatile __io _A_EIMSK
-   \                     _A_EIMSK:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x58, root
-   \   union <unnamed> volatile __io _A_EIFR
-   \                     _A_EIFR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x57, root
-   \   union <unnamed> volatile __io _A_TIMSK
-   \                     _A_TIMSK:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x56, root
-   \   union <unnamed> volatile __io _A_TIFR
-   \                     _A_TIFR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x55, root
-   \   union <unnamed> volatile __io _A_MCUCR
-   \                     _A_MCUCR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x54, root
-   \   union <unnamed> volatile __io _A_MCUCSR
-   \                     _A_MCUCSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x53, root
-   \   union <unnamed> volatile __io _A_TCCR0
-   \                     _A_TCCR0:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x52, root
-   \   union <unnamed> volatile __io _A_TCNT0
-   \                     _A_TCNT0:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x51, root
-   \   union <unnamed> volatile __io _A_OCR0
-   \                     _A_OCR0:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x50, root
-   \   union <unnamed> volatile __io _A_ASSR
-   \                     _A_ASSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x4f, root
-   \   union <unnamed> volatile __io _A_TCCR1A
-   \                     _A_TCCR1A:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x4e, root
-   \   union <unnamed> volatile __io _A_TCCR1B
-   \                     _A_TCCR1B:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x4c, root
-   \   union <unnamed> volatile __io _A_TCNT1
-   \                     _A_TCNT1:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x4a, root
-   \   union <unnamed> volatile __io _A_OCR1A
-   \                     _A_OCR1A:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x48, root
-   \   union <unnamed> volatile __io _A_OCR1B
-   \                     _A_OCR1B:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x46, root
-   \   union <unnamed> volatile __io _A_ICR1
-   \                     _A_ICR1:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x45, root
-   \   union <unnamed> volatile __io _A_TCCR2
-   \                     _A_TCCR2:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x44, root
-   \   union <unnamed> volatile __io _A_TCNT2
-   \                     _A_TCNT2:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x43, root
-   \   union <unnamed> volatile __io _A_OCR2
-   \                     _A_OCR2:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x42, root
-   \   union <unnamed> volatile __io _A_OCDR
-   \                     _A_OCDR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x41, root
-   \   union <unnamed> volatile __io _A_WDTCR
-   \                     _A_WDTCR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x40, root
-   \   union <unnamed> volatile __io _A_SFIOR
-   \                     _A_SFIOR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x3e, root
-   \   union <unnamed> volatile __io _A_EEAR
-   \                     _A_EEAR:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x3d, root
-   \   union <unnamed> volatile __io _A_EEDR
-   \                     _A_EEDR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x3c, root
-   \   union <unnamed> volatile __io _A_EECR
-   \                     _A_EECR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x3b, root
-   \   union <unnamed> volatile __io _A_PORTA
-   \                     _A_PORTA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x3a, root
-   \   union <unnamed> volatile __io _A_DDRA
-   \                     _A_DDRA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x39, root
-   \   union <unnamed> volatile __io _A_PINA
-   \                     _A_PINA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x38, root
-   \   union <unnamed> volatile __io _A_PORTB
-   \                     _A_PORTB:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x37, root
-   \   union <unnamed> volatile __io _A_DDRB
-   \                     _A_DDRB:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x36, root
-   \   union <unnamed> volatile __io _A_PINB
-   \                     _A_PINB:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x35, root
-   \   union <unnamed> volatile __io _A_PORTC
-   \                     _A_PORTC:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x34, root
-   \   union <unnamed> volatile __io _A_DDRC
-   \                     _A_DDRC:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x33, root
-   \   union <unnamed> volatile __io _A_PINC
-   \                     _A_PINC:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x32, root
-   \   union <unnamed> volatile __io _A_PORTD
-   \                     _A_PORTD:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x31, root
-   \   union <unnamed> volatile __io _A_DDRD
-   \                     _A_DDRD:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x30, root
-   \   union <unnamed> volatile __io _A_PIND
-   \                     _A_PIND:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2f, root
-   \   union <unnamed> volatile __io _A_SPDR
-   \                     _A_SPDR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2e, root
-   \   union <unnamed> volatile __io _A_SPSR
-   \                     _A_SPSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2d, root
-   \   union <unnamed> volatile __io _A_SPCR
-   \                     _A_SPCR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2c, root
-   \   union <unnamed> volatile __io _A_UDR0
-   \                     _A_UDR0:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2b, root
-   \   union <unnamed> volatile __io _A_UCSR0A
-   \                     _A_UCSR0A:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x2a, root
-   \   union <unnamed> volatile __io _A_UCSR0B
-   \                     _A_UCSR0B:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x29, root
-   \   union <unnamed> volatile __io _A_UBRR0L
-   \                     _A_UBRR0L:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x28, root
-   \   union <unnamed> volatile __io _A_ACSR
-   \                     _A_ACSR:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x27, root
-   \   union <unnamed> volatile __io _A_ADMUX
-   \                     _A_ADMUX:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x26, root
-   \   union <unnamed> volatile __io _A_ADCSRA
-   \                     _A_ADCSRA:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x24, root
-   \   union <unnamed> volatile __io _A_ADC
-   \                     _A_ADC:
-   \   00000000                      DS8 2
-
-   \                                 In  segment ABSOLUTE, at 0x23, root
-   \   union <unnamed> volatile __io _A_PORTE
-   \                     _A_PORTE:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x22, root
-   \   union <unnamed> volatile __io _A_DDRE
-   \                     _A_DDRE:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x21, root
-   \   union <unnamed> volatile __io _A_PINE
-   \                     _A_PINE:
-   \   00000000                      DS8 1
-
-   \                                 In  segment ABSOLUTE, at 0x20, root
-   \   union <unnamed> volatile __io _A_PINF
-   \                     _A_PINF:
-   \   00000000                      DS8 1
-
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",368  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",369  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputSIN()
-   \                     ??SetPinOutputSIN:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6001               ORI     R16, 0x01
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
+          CPins::SetPinOutputGCK();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",168  Error[Pe276]: 
+          name followed by "::" must be a class or namespace name
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinSIN()
-   \                     ??SetPinSIN:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   6001               ORI     R16, 0x01
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
+          CPins::ClearPinGCK();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",185  Error[Pe276]: 
+          name followed by "::" must be a class or namespace name
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinSIN()
-   \                     ??ClearPinSIN:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7F0E               ANDI    R16, 0xFE
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
+          _NOP();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",216  Error[Pe020]: 
+          identifier "_NOP" is undefined
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputRST_B()
-   \                     ??SetPinOutputRST_B:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6400               ORI     R16, 0x40
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
+          _NOP();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",222  Error[Pe020]: 
+          identifier "_NOP" is undefined
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinRST_B()
-   \                     ??SetPinRST_B:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   6400               ORI     R16, 0x40
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
+          _NOP();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",227  Error[Pe020]: 
+          identifier "_NOP" is undefined
 
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinRST_B()
-   \                     ??ClearPinRST_B:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7B0F               ANDI    R16, 0xBF
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputDCK()
-   \                     ??SetPinOutputDCK:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6002               ORI     R16, 0x02
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinDCK()
-   \                     ??SetPinDCK:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   6002               ORI     R16, 0x02
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinDCK()
-   \                     ??ClearPinDCK:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7F0D               ANDI    R16, 0xFD
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputLAT_B()
-   \                     ??SetPinOutputLAT_B:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6004               ORI     R16, 0x04
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinLAT_B()
-   \                     ??ClearPinLAT_B:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7F0B               ANDI    R16, 0xFB
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputGCK()
-   \                     ??SetPinOutputGCK:
-   \   00000000   9ABC               SBI     0x17, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_DDRB
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinGCK()
-   \                     ??ClearPinGCK:
-   \   00000000   98C4               CBI     0x18, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTB
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputSELBK()
-   \                     ??SetPinOutputSELBK:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6100               ORI     R16, 0x10
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinSELBK()
-   \                     ??SetPinSELBK:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   6100               ORI     R16, 0x10
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::ClearPinSELBK()
-   \                     ??ClearPinSELBK:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   7E0F               ANDI    R16, 0xEF
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinOutputEN_B()
-   \                     ??SetPinOutputEN_B:
-   \   00000000   91000061           LDS     R16, 97
-   \   00000004   6200               ORI     R16, 0x20
-   \   00000006   93000061           STS     97, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_DDRF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CPins::SetPinEN_B()
-   \                     ??SetPinEN_B:
-   \   00000000   91000062           LDS     R16, 98
-   \   00000004   6200               ORI     R16, 0x20
-   \   00000006   93000062           STS     98, R16
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PORTF
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CDm163::SetFrequencyGCK()
-   \                     ??SetFrequencyGCK:
-   \   00000000   ........           CALL    ??SetPinOutputGCK
-   \   00000004   E002               LDI     R16, 2
-   \   00000006   BF01               OUT     0x31, R16
-   \   00000008   E109               LDI     R16, 25
-   \   0000000A   BF03               OUT     0x33, R16
-   \   0000000C   9508               RET
-   \   0000000E                      REQUIRE _A_OCR0
-   \   0000000E                      REQUIRE _A_TCCR0
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CDm163::PulseDelayRST_B()
-   \                     ??PulseDelayRST_B:
-   \   00000000   0000               nop
-   \   00000002   0000               nop
-   \   00000004   9508               RET
-
-   \                                 In  segment CODE, align 2, keep-with-next
-   \   __version_3 void CDm163::PulseDelayDCK()
-   \                     ??PulseDelayDCK:
-   \   00000000   0000               nop
-   \   00000002   9508               RET
+          _NOP();
+          ^
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Dm163.h",232  Error[Pe020]: 
+          identifier "_NOP" is undefined
       9          //#include "Platform.h"
      10          #include "Pss21.h"
 
@@ -737,384 +124,150 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Dm163.cpp
      22          //}
      23          
      24          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
      25          void CDm163::Init(void)
-   \                     ??Init:
      26          {
      27              CPins::SetPinOutputSIN();
-   \   00000000   ........           CALL    ??SetPinOutputSIN
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      28              CPins::ClearPinSIN();
-   \   00000004   ........           CALL    ??ClearPinSIN
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      29          
      30              CPins::SetPinOutputRST_B();
-   \   00000008   ........           CALL    ??SetPinOutputRST_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      31              CPins::SetPinRST_B();
-   \   0000000C   ........           CALL    ??SetPinRST_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      32          
      33              CPins::SetPinOutputDCK();
-   \   00000010   ........           CALL    ??SetPinOutputDCK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      34              CPins::ClearPinDCK();
-   \   00000014   ........           CALL    ??ClearPinDCK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      35          
      36              CPins::SetPinOutputLAT_B();
-   \   00000018   ........           CALL    ??SetPinOutputLAT_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      37              CPins::ClearPinLAT_B();
-   \   0000001C   ........           CALL    ??ClearPinLAT_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      38          
      39              CPins::SetPinOutputGCK();
-   \   00000020   ........           CALL    ??SetPinOutputGCK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      40              CPins::ClearPinGCK();
-   \   00000024   ........           CALL    ??ClearPinGCK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      41          
      42              CPins::SetPinOutputSELBK();
-   \   00000028   ........           CALL    ??SetPinOutputSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      43              CPins::ClearPinSELBK();
-   \   0000002C   ........           CALL    ??ClearPinSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      44          
      45              CPins::SetPinOutputEN_B();
-   \   00000030   ........           CALL    ??SetPinOutputEN_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      46              CPins::SetPinEN_B();
-   \   00000034   ........           CALL    ??SetPinEN_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      47          
      48              SetFrequencyGCK();
-   \   00000038   ........           CALL    ??SetFrequencyGCK
      49          }
-   \   0000003C   9508               RET
      50          
      51          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
      52          void CDm163::Reset(void)
-   \                     ??Reset:
      53          {
      54              CPins::ClearPinRST_B();
-   \   00000000   ........           CALL    ??ClearPinRST_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      55              PulseDelayRST_B();
-   \   00000004   ........           CALL    ??PulseDelayRST_B
      56              CPins::SetPinRST_B();
-   \   00000008   ........           CALL    ??SetPinRST_B
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      57          }
-   \   0000000C   9508               RET
      58          
      59          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
      60          void CDm163::SetBank0(uint8_t uiData)
-   \                     ??SetBank0:
      61          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   2F90               MOV     R25, R16
      62              CPins::ClearPinSELBK();
-   \   00000006   ........           CALL    ??ClearPinSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      63          
      64              for (uint8_t i = 0;
-   \   0000000A   E080               LDI     R24, 0
      65                      i < DM163_BANK0_BIT_QUANTITY;
-   \                     ??SetBank0_1:
-   \   0000000C   3086               CPI     R24, 6
-   \   0000000E   F4B0               BRCC    ??SetBank0_2
      66                      i++)
      67              {
      68                  // передача начинается с 5 бита, старшим вперёд
      69                  if (uiData & (0x20 >> i))
-   \   00000010   E200               LDI     R16, 32
-   \   00000012   E010               LDI     R17, 0
-   \   00000014   2F48               MOV     R20, R24
-   \   00000016   ........           CALL    ?SS_SHR_L02
-   \   0000001A   2F19               MOV     R17, R25
-   \   0000001C   2310               AND     R17, R16
-   \   0000001E   2311               TST     R17
-   \   00000020   F019               BREQ    ??SetBank0_3
      70                  {
      71                      CPins::SetPinSIN();
-   \   00000022   ........           CALL    ??SetPinSIN
-   \   00000026   C002               RJMP    ??SetBank0_4
+                             ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      72                  }
      73                  else
      74                  {
      75                      CPins::ClearPinSIN();
-   \                     ??SetBank0_3:
-   \   00000028   ........           CALL    ??ClearPinSIN
+                             ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      76                  }
      77          
      78                  CPins::SetPinDCK();
-   \                     ??SetBank0_4:
-   \   0000002C   ........           CALL    ??SetPinDCK
+                         ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      79                  PulseDelayDCK();
-   \   00000030   ........           CALL    ??PulseDelayDCK
      80                  CPins::ClearPinDCK();
-   \   00000034   ........           CALL    ??ClearPinDCK
+                         ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      81              };
-   \   00000038   9583               INC     R24
-   \   0000003A   CFE8               RJMP    ??SetBank0_1
      82          
      83              CPins::ClearPinSELBK();
-   \                     ??SetBank0_2:
-   \   0000003C   ........           CALL    ??ClearPinSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      84          }
-   \   00000040   9189               LD      R24, Y+
-   \   00000042   9199               LD      R25, Y+
-   \   00000044   9508               RET
      85          
      86          //-----------------------------------------------------------------------------------------------------
-
-   \                                 In  segment CODE, align 2, keep-with-next
      87          void CDm163::SetBank1(uint8_t uiData)
-   \                     ??SetBank1:
      88          {
-   \   00000000   939A               ST      -Y, R25
-   \   00000002   938A               ST      -Y, R24
-   \   00000004   2F90               MOV     R25, R16
      89              CPins::SetPinSELBK();
-   \   00000006   ........           CALL    ??SetPinSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      90          
      91              for (uint8_t i = 0;
-   \   0000000A   E080               LDI     R24, 0
      92                      i < DM163_BANK1_BIT_QUANTITY;
-   \                     ??SetBank1_1:
-   \   0000000C   3088               CPI     R24, 8
-   \   0000000E   F4B0               BRCC    ??SetBank1_2
      93                      i++)
      94              {
      95                  // передача начинается с 8 бита, старшим вперёд
      96                  if (uiData & (0x80 >> i))
-   \   00000010   E800               LDI     R16, 128
-   \   00000012   E010               LDI     R17, 0
-   \   00000014   2F48               MOV     R20, R24
-   \   00000016   ........           CALL    ?SS_SHR_L02
-   \   0000001A   2F19               MOV     R17, R25
-   \   0000001C   2310               AND     R17, R16
-   \   0000001E   2311               TST     R17
-   \   00000020   F019               BREQ    ??SetBank1_3
      97                  {
      98                      CPins::SetPinSIN();
-   \   00000022   ........           CALL    ??SetPinSIN
-   \   00000026   C002               RJMP    ??SetBank1_4
+                             ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
      99                  }
     100                  else
     101                  {
     102                      CPins::ClearPinSIN();
-   \                     ??SetBank1_3:
-   \   00000028   ........           CALL    ??ClearPinSIN
+                             ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
     103                  }
     104          
     105                  CPins::SetPinDCK();
-   \                     ??SetBank1_4:
-   \   0000002C   ........           CALL    ??SetPinDCK
+                         ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
     106                  PulseDelayDCK();
-   \   00000030   ........           CALL    ??PulseDelayDCK
     107                  CPins::ClearPinDCK();
-   \   00000034   ........           CALL    ??ClearPinDCK
+                         ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
     108              };
-   \   00000038   9583               INC     R24
-   \   0000003A   CFE8               RJMP    ??SetBank1_1
     109          
     110              CPins::ClearPinSELBK();
-   \                     ??SetBank1_2:
-   \   0000003C   ........           CALL    ??ClearPinSELBK
+                     ^
+Error[Pe276]: name followed by "::" must be a class or namespace name
     111          }
-   \   00000040   9189               LD      R24, Y+
-   \   00000042   9199               LD      R25, Y+
-   \   00000044   9508               RET
     112          
 
-   Maximum stack usage in bytes:
-
-   CSTACK RSTACK Function
-   ------ ------ --------
-      0      2   CDm163::Init()
-        0      2   -> CDm163::SetFrequencyGCK()
-        0      2   -> CPins::ClearPinDCK()
-        0      2   -> CPins::ClearPinGCK()
-        0      2   -> CPins::ClearPinLAT_B()
-        0      2   -> CPins::ClearPinSELBK()
-        0      2   -> CPins::ClearPinSIN()
-        0      2   -> CPins::SetPinEN_B()
-        0      2   -> CPins::SetPinOutputDCK()
-        0      2   -> CPins::SetPinOutputEN_B()
-        0      2   -> CPins::SetPinOutputGCK()
-        0      2   -> CPins::SetPinOutputLAT_B()
-        0      2   -> CPins::SetPinOutputRST_B()
-        0      2   -> CPins::SetPinOutputSELBK()
-        0      2   -> CPins::SetPinOutputSIN()
-        0      2   -> CPins::SetPinRST_B()
-      0      2   CDm163::PulseDelayDCK()
-      0      2   CDm163::PulseDelayRST_B()
-      0      2   CDm163::Reset()
-        0      2   -> CDm163::PulseDelayRST_B()
-        0      2   -> CPins::ClearPinRST_B()
-        0      2   -> CPins::SetPinRST_B()
-      2      2   CDm163::SetBank0(uint8_t)
-        2      2   -> CDm163::PulseDelayDCK()
-        2      2   -> CPins::ClearPinDCK()
-        2      2   -> CPins::ClearPinSELBK()
-        2      2   -> CPins::ClearPinSIN()
-        2      2   -> CPins::SetPinDCK()
-        2      2   -> CPins::SetPinSIN()
-        2      2 ?SS_SHR_L02
-      2      2   CDm163::SetBank1(uint8_t)
-        2      2   -> CDm163::PulseDelayDCK()
-        2      2   -> CPins::ClearPinDCK()
-        2      2   -> CPins::ClearPinSELBK()
-        2      2   -> CPins::ClearPinSIN()
-        2      2   -> CPins::SetPinDCK()
-        2      2   -> CPins::SetPinSELBK()
-        2      2   -> CPins::SetPinSIN()
-        2      2 ?SS_SHR_L02
-      0      2   CDm163::SetFrequencyGCK()
-        0      2   -> CPins::SetPinOutputGCK()
-      0      2   CPins::ClearPinDCK()
-      0      2   CPins::ClearPinGCK()
-      0      2   CPins::ClearPinLAT_B()
-      0      2   CPins::ClearPinRST_B()
-      0      2   CPins::ClearPinSELBK()
-      0      2   CPins::ClearPinSIN()
-      0      2   CPins::SetPinDCK()
-      0      2   CPins::SetPinEN_B()
-      0      2   CPins::SetPinOutputDCK()
-      0      2   CPins::SetPinOutputEN_B()
-      0      2   CPins::SetPinOutputGCK()
-      0      2   CPins::SetPinOutputLAT_B()
-      0      2   CPins::SetPinOutputRST_B()
-      0      2   CPins::SetPinOutputSELBK()
-      0      2   CPins::SetPinOutputSIN()
-      0      2   CPins::SetPinRST_B()
-      0      2   CPins::SetPinSELBK()
-      0      2   CPins::SetPinSIN()
-
-
-   Segment part sizes:
-
-   Bytes  Function/Label
-   -----  --------------
-      62  CDm163::Init()
-       4  CDm163::PulseDelayDCK()
-       6  CDm163::PulseDelayRST_B()
-      14  CDm163::Reset()
-      70  CDm163::SetBank0(uint8_t)
-      70  CDm163::SetBank1(uint8_t)
-      14  CDm163::SetFrequencyGCK()
-      12  CPins::ClearPinDCK()
-       4  CPins::ClearPinGCK()
-      12  CPins::ClearPinLAT_B()
-      12  CPins::ClearPinRST_B()
-      12  CPins::ClearPinSELBK()
-      12  CPins::ClearPinSIN()
-      12  CPins::SetPinDCK()
-      12  CPins::SetPinEN_B()
-      12  CPins::SetPinOutputDCK()
-      12  CPins::SetPinOutputEN_B()
-       4  CPins::SetPinOutputGCK()
-      12  CPins::SetPinOutputLAT_B()
-      12  CPins::SetPinOutputRST_B()
-      12  CPins::SetPinOutputSELBK()
-      12  CPins::SetPinOutputSIN()
-      12  CPins::SetPinRST_B()
-      12  CPins::SetPinSELBK()
-      12  CPins::SetPinSIN()
-       1  _A_ACSR
-       2  _A_ADC
-       1  _A_ADCSRA
-       1  _A_ADMUX
-       1  _A_ASSR
-       1  _A_DDRA
-       1  _A_DDRB
-       1  _A_DDRC
-       1  _A_DDRD
-       1  _A_DDRE
-       1  _A_DDRF
-       1  _A_DDRG
-       2  _A_EEAR
-       1  _A_EECR
-       1  _A_EEDR
-       1  _A_EICRA
-       1  _A_EICRB
-       1  _A_EIFR
-       1  _A_EIMSK
-       1  _A_ETIFR
-       1  _A_ETIMSK
-       2  _A_ICR1
-       2  _A_ICR3
-       1  _A_MCUCR
-       1  _A_MCUCSR
-       1  _A_OCDR
-       1  _A_OCR0
-       2  _A_OCR1A
-       2  _A_OCR1B
-       2  _A_OCR1C
-       1  _A_OCR2
-       2  _A_OCR3A
-       2  _A_OCR3B
-       2  _A_OCR3C
-       1  _A_OSCCAL
-       1  _A_PINA
-       1  _A_PINB
-       1  _A_PINC
-       1  _A_PIND
-       1  _A_PINE
-       1  _A_PINF
-       1  _A_PING
-       1  _A_PORTA
-       1  _A_PORTB
-       1  _A_PORTC
-       1  _A_PORTD
-       1  _A_PORTE
-       1  _A_PORTF
-       1  _A_PORTG
-       1  _A_RAMPZ
-       1  _A_SFIOR
-       2  _A_SP
-       1  _A_SPCR
-       1  _A_SPDR
-       1  _A_SPMCSR
-       1  _A_SPSR
-       1  _A_SREG
-       1  _A_TCCR0
-       1  _A_TCCR1A
-       1  _A_TCCR1B
-       1  _A_TCCR1C
-       1  _A_TCCR2
-       1  _A_TCCR3A
-       1  _A_TCCR3B
-       1  _A_TCCR3C
-       1  _A_TCNT0
-       2  _A_TCNT1
-       1  _A_TCNT2
-       2  _A_TCNT3
-       1  _A_TIFR
-       1  _A_TIMSK
-       1  _A_TWAR
-       1  _A_TWBR
-       1  _A_TWCR
-       1  _A_TWDR
-       1  _A_TWSR
-       1  _A_UBRR0H
-       1  _A_UBRR0L
-       1  _A_UBRR1H
-       1  _A_UBRR1L
-       1  _A_UCSR0A
-       1  _A_UCSR0B
-       1  _A_UCSR0C
-       1  _A_UCSR1A
-       1  _A_UCSR1B
-       1  _A_UCSR1C
-       1  _A_UDR0
-       1  _A_UDR1
-       1  _A_WDTCR
-       1  _A_XDIV
-       1  _A_XMCRA
-       1  _A_XMCRB
-      22  -- Other
-
- 
- 105 bytes in segment ABSOLUTE
- 440 bytes in segment CODE
-  22 bytes in segment NEAR_F
- 
- 238 bytes of CODE memory (+ 224 bytes shared)
-   0 bytes of DATA memory (+ 105 bytes shared)
-
-Errors: none
+Errors: 34
 Warnings: 7

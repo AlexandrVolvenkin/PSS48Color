@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  17:14:37
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           06/Oct/2024  05:57:51
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW7282.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWE90E.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 #        --cpu=m128a -ms -o
@@ -754,27 +754,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",368  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",369  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::StatusLedOn()
    \                     ??StatusLedOn:
-   \   00000000   98DC               CBI     0x1B, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTA
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   770F               ANDI    R16, 0x7F
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::StatusLedOff()
    \                     ??StatusLedOff:
-   \   00000000   9ADC               SBI     0x1B, 0x04
-   \   00000002   9508               RET
-   \   00000004                      REQUIRE _A_PORTA
+   \   00000000   91000062           LDS     R16, 98
+   \   00000004   6800               ORI     R16, 0x80
+   \   00000006   93000062           STS     98, R16
+   \   0000000A   9508               RET
+   \   0000000C                      REQUIRE _A_PORTF
      10          #include "Pss21.h"
 
       virtual bool IsSolved(void) {};
@@ -3698,8 +3702,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
        8  CNotifyerControl::WARNING_SIGNAL_ON_TIME()
       24  CNotifyerControl::new CNotifyerControl()
       64  CNotifyerControl::~CNotifyerControl()
-       4  CPlatform::StatusLedOff()
-       4  CPlatform::StatusLedOn()
+      12  CPlatform::StatusLedOff()
+      12  CPlatform::StatusLedOn()
        8  CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_OFF_TIME()
        8  CPreventiveAlarmWindowNotifyerControl::ALARM_SIGNAL_ON_TIME()
      102  CPreventiveAlarmWindowNotifyerControl::AlarmSet(uint8_t)
@@ -3836,11 +3840,11 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 
  
    105 bytes in segment ABSOLUTE
- 3 754 bytes in segment CODE
+ 3 770 bytes in segment CODE
    238 bytes in segment NEAR_F
     64 bytes in segment SWITCH
  
- 3 584 bytes of CODE memory (+ 472 bytes shared)
+ 3 584 bytes of CODE memory (+ 488 bytes shared)
      0 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

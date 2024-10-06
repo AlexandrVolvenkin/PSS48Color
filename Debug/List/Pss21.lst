@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           18/Sep/2024  17:14:37
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           06/Oct/2024  05:57:51
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW72B3.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWE940.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 #        --cpu=m128a -ms -o
@@ -550,12 +550,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 
       static __flash TDataBase CFlash::xMainDataBase;
                                ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",368  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",366  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
       static __flash TDataBaseBlockPositionData CFlash::axDataBaseBlocksPositionData[];
                                                 ^
-"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",369  Warning[Pe427]: 
+"D:\Projects\CurrentProjects\CautoProjects\PSS48Color\include\Platform.h",367  Warning[Pe427]: 
           qualified name is not allowed in member declaration
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -616,14 +616,13 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 uint8_t CPlatform::ExternalKeyState()
    \                     ??ExternalKeyState:
-   \   00000000   E000               LDI     R16, 0
-   \   00000002   999C               SBIC    0x13, 0x04
-   \   00000004   9503               INC     R16
-   \                     ??ExternalKeyState_1:
-   \   00000006   E011               LDI     R17, 1
-   \   00000008   2701               EOR     R16, R17
-   \   0000000A   9508               RET
-   \   0000000C                      REQUIRE _A_PINC
+   \   00000000   9110....           LDS     R17, _A_PING
+   \   00000004   2F01               MOV     R16, R17
+   \   00000006   7001               ANDI    R16, 0x01
+   \   00000008   E011               LDI     R17, 1
+   \   0000000A   2701               EOR     R16, R17
+   \   0000000C   9508               RET
+   \   0000000E                      REQUIRE _A_PING
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 void CPlatform::SpiSlaveSelectAddress0SetPinOutput()
@@ -7267,7 +7266,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
        6  CDriver::SetModbusReset(uint8_t)
        6  CDriver::SetReceipt(uint8_t)
        6  CDriver::SetReset(uint8_t)
-      12  CPlatform::ExternalKeyState()
+      14  CPlatform::ExternalKeyState()
       12  CPlatform::KeyOneState()
       12  CPlatform::KeyThreeState()
       12  CPlatform::KeyTwoState()
@@ -7515,7 +7514,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
 
  
    105 bytes in segment ABSOLUTE
- 7 538 bytes in segment CODE
+ 7 540 bytes in segment CODE
      2 bytes in segment DIFUNCT
     14 bytes in segment INITTAB
     70 bytes in segment NEAR_F
@@ -7524,7 +7523,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Pss21.cpp
  1 804 bytes in segment NEAR_Z
     50 bytes in segment SWITCH
  
- 7 336 bytes of CODE memory (+ 428 bytes shared)
+ 7 336 bytes of CODE memory (+ 430 bytes shared)
  1 894 bytes of DATA memory (+ 105 bytes shared)
 
 Errors: none

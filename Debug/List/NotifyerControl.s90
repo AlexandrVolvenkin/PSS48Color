@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          18/Sep/2024  17:14:37
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          06/Oct/2024  05:57:51
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW7282.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWE90E.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\NotifyerControl.cpp
 //        --cpu=m128a -ms -o
@@ -3591,16 +3591,20 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::StatusLedOn()
 ??StatusLedOn:
-        CBI     0x1B, 0x04
+        LDS     R16, 98
+        ANDI    R16, 0x7F
+        STS     98, R16
         RET
-        REQUIRE _A_PORTA
+        REQUIRE _A_PORTF
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::StatusLedOff()
 ??StatusLedOff:
-        SBI     0x1B, 0x04
+        LDS     R16, 98
+        ORI     R16, 0x80
+        STS     98, R16
         RET
-        REQUIRE _A_PORTA
+        REQUIRE _A_PORTF
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -3750,11 +3754,11 @@ __?EEARH:
 //  811 
 // 
 //   105 bytes in segment ABSOLUTE
-// 3 754 bytes in segment CODE
+// 3 770 bytes in segment CODE
 //   238 bytes in segment NEAR_F
 //    64 bytes in segment SWITCH
 // 
-// 3 584 bytes of CODE memory (+ 472 bytes shared)
+// 3 584 bytes of CODE memory (+ 488 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

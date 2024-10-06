@@ -922,59 +922,59 @@ void CPlatform::Init(void)
 }
 
 // —ирена
-////-----------------------------------------------------------------------------------------------------
-//void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
-//{
-//    unsigned short usCompareMatch;
-//
-//    // half-period time.
-//    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-//    // —рабатывает по Top совпадению значени€ в ICR3.
-//    // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
-//    ICR3 = usCompareMatch * 2;
-//    OCR3A = usCompareMatch;
-//    OCR3B = usCompareMatch;
-//
-//    // Fast PWM Mode Top OCRn, prescaller - 1,
-//    // Clear OC3B on compare match (set output to low level).
-//    // Set OC3A on compare match (set output to high level).
-//    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
-//    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-//};
-//
-////-----------------------------------------------------------------------------------------------------
-//void CPlatform::BuzzerTimerStop(void)
-//{
-//    // timer off.
-//    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
-//    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-//};
-
-// color variant
+//-----------------------------------------------------------------------------------------------------
 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
 {
     unsigned short usCompareMatch;
 
     // half-period time.
     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-
-    OCR3A = usCompareMatch * 2;
+    // —рабатывает по Top совпадению значени€ в ICR3.
+    // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
+    ICR3 = usCompareMatch * 2;
+    OCR3A = usCompareMatch;
     OCR3B = usCompareMatch;
-    OCR3C = usCompareMatch;
 
-    // Fast PWM Mode, prescaller - 1,
+    // Fast PWM Mode Top OCRn, prescaller - 1,
     // Clear OC3B on compare match (set output to low level).
-    // Set OC3C on compare match (set output to high level).
-    TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+    // Set OC3A on compare match (set output to high level).
+    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-}
+};
 
+//-----------------------------------------------------------------------------------------------------
 void CPlatform::BuzzerTimerStop(void)
 {
     // timer off.
-    TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-}
+};
+
+//// color variant
+//void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+//{
+//    unsigned short usCompareMatch;
+//
+//    // half-period time.
+//    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+//
+//    OCR3A = usCompareMatch * 2;
+//    OCR3B = usCompareMatch;
+//    OCR3C = usCompareMatch;
+//
+//    // Fast PWM Mode, prescaller - 1,
+//    // Clear OC3B on compare match (set output to low level).
+//    // Set OC3C on compare match (set output to high level).
+//    TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+//    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+//}
+//
+//void CPlatform::BuzzerTimerStop(void)
+//{
+//    // timer off.
+//    TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+//    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+//}
 
 //-----------------------------------------------------------------------------------------------------
 void CPlatform::SystemTickInit(void)

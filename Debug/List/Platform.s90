@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          19/Sep/2024  12:53:36
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          06/Oct/2024  06:10:48
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWC3D4.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EWC5EA.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //        --cpu=m128a -ms -o
@@ -3329,46 +3329,18 @@ uiInterruptCounter:
         RET
 //  923 
 //  924 // —ирена
-//  925 ////-----------------------------------------------------------------------------------------------------
-//  926 //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
-//  927 //{
-//  928 //    unsigned short usCompareMatch;
-//  929 //
-//  930 //    // half-period time.
-//  931 //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
-//  932 //    // —рабатывает по Top совпадению значени€ в ICR3.
-//  933 //    // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
-//  934 //    ICR3 = usCompareMatch * 2;
-//  935 //    OCR3A = usCompareMatch;
-//  936 //    OCR3B = usCompareMatch;
-//  937 //
-//  938 //    // Fast PWM Mode Top OCRn, prescaller - 1,
-//  939 //    // Clear OC3B on compare match (set output to low level).
-//  940 //    // Set OC3A on compare match (set output to high level).
-//  941 //    TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
-//  942 //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
-//  943 //};
-//  944 //
-//  945 ////-----------------------------------------------------------------------------------------------------
-//  946 //void CPlatform::BuzzerTimerStop(void)
-//  947 //{
-//  948 //    // timer off.
-//  949 //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
-//  950 //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
-//  951 //};
-//  952 
-//  953 // color variant
+//  925 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  954 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+//  926 void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
 ??BuzzerTimerFrequencySet:
-//  955 {
+//  927 {
         CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
-//  956     unsigned short usCompareMatch;
-//  957 
-//  958     // half-period time.
-//  959     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+//  928     unsigned short usCompareMatch;
+//  929 
+//  930     // half-period time.
+//  931     usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
         MOVW    R21:R20, R25:R24
         LDI     R22, 0
         LDI     R23, 0
@@ -3384,56 +3356,84 @@ uiInterruptCounter:
         SUBI    R16, 1
         SBCI    R17, 0
         MOVW    R27:R26, R17:R16
-//  960 
-//  961     OCR3A = usCompareMatch * 2;
+//  932     // —рабатывает по Top совпадению значени€ в ICR3.
+//  933     // ≈сли Top по совпадению значени€ в OCR3A, то нельз€ использовать COM3A вывод.
+//  934     ICR3 = usCompareMatch * 2;
         MOVW    R17:R16, R27:R26
         LSL     R16
         ROL     R17
-        STS     (_A_OCR3A + 1), R17
-        STS     _A_OCR3A, R16
-//  962     OCR3B = usCompareMatch;
+        STS     (_A_ICR3 + 1), R17
+        STS     _A_ICR3, R16
+//  935     OCR3A = usCompareMatch;
+        STS     (_A_OCR3A + 1), R27
+        STS     _A_OCR3A, R26
+//  936     OCR3B = usCompareMatch;
         STS     (_A_OCR3B + 1), R27
         STS     _A_OCR3B, R26
-//  963     OCR3C = usCompareMatch;
-        STS     (_A_OCR3C + 1), R27
-        STS     _A_OCR3C, R26
-//  964 
-//  965     // Fast PWM Mode, prescaller - 1,
-//  966     // Clear OC3B on compare match (set output to low level).
-//  967     // Set OC3C on compare match (set output to high level).
-//  968     TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
-        LDI     R16, 47
+//  937 
+//  938     // Fast PWM Mode Top OCRn, prescaller - 1,
+//  939     // Clear OC3B on compare match (set output to low level).
+//  940     // Set OC3A on compare match (set output to high level).
+//  941     TCCR3A = (1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31);
+        LDI     R16, 226
         STS     _A_TCCR3A, R16
-//  969     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+//  942     TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
         LDI     R16, 25
         STS     _A_TCCR3B, R16
-//  970 }
+//  943 };
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
+        REQUIRE _A_ICR3
         REQUIRE _A_OCR3A
         REQUIRE _A_OCR3B
-        REQUIRE _A_OCR3C
         REQUIRE _A_TCCR3A
         REQUIRE _A_TCCR3B
-//  971 
+//  944 
+//  945 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  972 void CPlatform::BuzzerTimerStop(void)
+//  946 void CPlatform::BuzzerTimerStop(void)
 ??BuzzerTimerStop:
-//  973 {
-//  974     // timer off.
-//  975     TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+//  947 {
+//  948     // timer off.
+//  949     TCCR3A &= ~((1 << COM3B1) | (1 << COM3A1) | (1 << COM3A0) | (1 << WGM31));
         LDS     R16, _A_TCCR3A
-        ANDI    R16, 0xD0
+        ANDI    R16, 0x1D
         STS     _A_TCCR3A, R16
-//  976     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+//  950     TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
         LDS     R16, _A_TCCR3B
         ANDI    R16, 0xE6
         STS     _A_TCCR3B, R16
-//  977 }
+//  951 };
         RET
         REQUIRE _A_TCCR3A
         REQUIRE _A_TCCR3B
+//  952 
+//  953 //// color variant
+//  954 //void CPlatform::BuzzerTimerFrequencySet(uint16_t uiFrequency)
+//  955 //{
+//  956 //    unsigned short usCompareMatch;
+//  957 //
+//  958 //    // half-period time.
+//  959 //    usCompareMatch = ((F_CPU / (2UL * uiFrequency)) - 1UL);
+//  960 //
+//  961 //    OCR3A = usCompareMatch * 2;
+//  962 //    OCR3B = usCompareMatch;
+//  963 //    OCR3C = usCompareMatch;
+//  964 //
+//  965 //    // Fast PWM Mode, prescaller - 1,
+//  966 //    // Clear OC3B on compare match (set output to low level).
+//  967 //    // Set OC3C on compare match (set output to high level).
+//  968 //    TCCR3A = (1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30);
+//  969 //    TCCR3B = (1 << WGM33) | (1 << WGM32) | (1 << CS30);
+//  970 //}
+//  971 //
+//  972 //void CPlatform::BuzzerTimerStop(void)
+//  973 //{
+//  974 //    // timer off.
+//  975 //    TCCR3A &= ~((1 << COM3B1) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31) | (1 << WGM30));
+//  976 //    TCCR3B &= ~((1 << WGM33) | (1 << WGM32) | (1 << CS30));
+//  977 //}
 //  978 
 //  979 //-----------------------------------------------------------------------------------------------------
 //  980 void CPlatform::SystemTickInit(void)
@@ -3761,23 +3761,29 @@ uiInterruptCounter:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::StatusLedSetPinOutput()
 ??StatusLedSetPinOutput:
-        SBI     0x1A, 0x04
+        LDS     R16, 97
+        ORI     R16, 0x80
+        STS     97, R16
         RET
-        REQUIRE _A_DDRA
+        REQUIRE _A_DDRF
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::TxLedSetPinOutput()
 ??TxLedSetPinOutput:
-        SBI     0x1A, 0x03
+        LDS     R16, 97
+        ORI     R16, 0x40
+        STS     97, R16
         RET
-        REQUIRE _A_DDRA
+        REQUIRE _A_DDRF
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::TxLedOff()
 ??TxLedOff:
-        SBI     0x1B, 0x03
+        LDS     R16, 98
+        ORI     R16, 0x40
+        STS     98, R16
         RET
-        REQUIRE _A_PORTA
+        REQUIRE _A_PORTF
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::KeyOneSetPinInput()
@@ -3803,9 +3809,11 @@ uiInterruptCounter:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPlatform::ExternalKeySetPinInput()
 ??ExternalKeySetPinInput:
-        CBI     0x14, 0x04
+        LDS     R16, 100
+        ANDI    R16, 0xFE
+        STS     100, R16
         RET
-        REQUIRE _A_DDRC
+        REQUIRE _A_DDRG
 
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 void CPss21::SetErrorCode(uint8_t)
@@ -3864,13 +3872,13 @@ __?EEARH:
 // 1097 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 838 bytes in segment CODE
+// 2 870 bytes in segment CODE
 //     7 bytes in segment INITTAB
 //    20 bytes in segment INTVEC
 //   748 bytes in segment NEAR_F
 //    15 bytes in segment NEAR_Z
 // 
-// 3 344 bytes of CODE memory (+ 269 bytes shared)
+// 3 344 bytes of CODE memory (+ 301 bytes shared)
 //    15 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none
