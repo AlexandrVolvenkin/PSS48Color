@@ -78,7 +78,7 @@ public:
     enum
     {
         UART_MAX_BUFF_LENGTH = 256,
-        UART_INTERMEDIATE_BUFF_LENGTH = 16
+        UART_INTERMEDIATE_BUFF_LENGTH = 128
     };
 
     CUart();

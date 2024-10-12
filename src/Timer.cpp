@@ -53,7 +53,9 @@ bool CTimer::IsOverflow(void)
 //    {
 //        return false;
 //    }
-    return ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
+//    return ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
+//            m_uiTime);
+    return ((uint16_t)(CPlatform::GetSystemTick() - (uint16_t)m_uiLastSystemTick)  >=
             m_uiTime);
 }
 

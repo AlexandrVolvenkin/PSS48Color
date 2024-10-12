@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          06/Oct/2024  06:10:48
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2024  10:09:05
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EWC5EA.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW2744.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Platform.cpp
 //        --cpu=m128a -ms -o
@@ -790,8 +790,10 @@ _A_PINF:
         LDI     R18, LOW(??__vtbl)
         LDI     R19, (??__vtbl) >> 8
         MOVW    R31:R30, R17:R16
-        STD     Z+45, R18
-        STD     Z+46, R19
+        SUBI    R30, 99
+        SBCI    R31, 255
+        ST      Z, R18
+        STD     Z+1, R19
 //   19 
 //   20 }
         RET
@@ -799,7 +801,7 @@ _A_PINF:
         RSEG CODE:CODE:NOROOT(1)
 // __version_3 CUart &CUart::new CUart()
 `??new CUart`:
-        LDI     R16, 47
+        LDI     R16, 159
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -847,11 +849,13 @@ _A_PINF:
         LDD     R23, Y+17
         LDD     R18, Y+19
         LDD     R19, Y+20
-        LDI     R16, LOW(??__vtbl)
-        LDI     R17, (??__vtbl) >> 8
+        LDI     R20, LOW(??__vtbl)
+        LDI     R21, (??__vtbl) >> 8
         MOVW    R31:R30, R27:R26
-        STD     Z+45, R16
-        STD     Z+46, R17
+        SUBI    R30, 99
+        SBCI    R31, 255
+        ST      Z, R20
+        STD     Z+1, R21
 //   33     m_UBRRH(ubrrh), m_UBRRL(ubrrl), m_UCSRA(ucsra),
         MOVW    R31:R30, R27:R26
         ST      Z, R8
@@ -962,7 +966,7 @@ _A_PINF:
         LDD     R27, Y+21
         LDD     R24, Y+23
         LDD     R25, Y+24
-        LDI     R16, 47
+        LDI     R16, 159
         LDI     R17, 0
         CALL    `??operator new`
         MOV     R18, R16
@@ -2241,14 +2245,20 @@ uiInterruptCounter:
         LDI     R18, 0
         STD     Z+25, R18
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 102
+        SBCI    R31, 255
         LDI     R18, 0
-        STD     Z+42, R18
+        ST      Z, R18
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 101
+        SBCI    R31, 255
         LDI     R18, 0
-        STD     Z+43, R18
+        ST      Z, R18
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 100
+        SBCI    R31, 255
         LDI     R18, 0
-        STD     Z+44, R18
+        ST      Z, R18
         RET
 
         RSEG CODE:CODE:NOROOT(1)
@@ -2447,10 +2457,14 @@ uiInterruptCounter:
         MOVW    R25:R24, R19:R18
         MOVW    R5:R4, R21:R20
         MOVW    R31:R30, R27:R26
+        SUBI    R30, 102
+        SBCI    R31, 255
         LDI     R16, 0
-        STD     Z+42, R16
+        ST      Z, R16
         MOVW    R31:R30, R27:R26
-        LDD     R16, Z+44
+        SUBI    R30, 100
+        SBCI    R31, 255
+        LD      R16, Z
         TST     R16
         BREQ    ??Read_4
         LDI     R16, 255
@@ -2590,8 +2604,10 @@ uiInterruptCounter:
         MOVW    R17:R16, R27:R26
         RCALL   ??TransmitDisable
         MOVW    R31:R30, R27:R26
+        SUBI    R30, 101
+        SBCI    R31, 255
         LDI     R16, 1
-        STD     Z+43, R16
+        ST      Z, R16
         MOV     R26, R2
         MOV     R27, R23
         RET
@@ -2603,16 +2619,22 @@ uiInterruptCounter:
         INC     R18
         STS     uiInterruptCounter, R18
         MOVW    R31:R30, R17:R16
-        LDD     R24, Z+24
-        LDD     R25, Z+25
-        SBIW    R25:R24, 16
+        LDD     R18, Z+24
+        LDD     R19, Z+25
+        CPI     R18, 128
+        LDI     R20, 0
+        CPC     R19, R20
         BRCS    ??RecvInterruptHandler_1
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 100
+        SBCI    R31, 255
         LDI     R18, 1
-        STD     Z+44, R18
+        ST      Z, R18
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 102
+        SBCI    R31, 255
         LDI     R18, 1
-        STD     Z+42, R18
+        ST      Z, R18
         RJMP    ??RecvInterruptHandler_2
 ??RecvInterruptHandler_1:
         MOVW    R31:R30, R17:R16
@@ -2632,8 +2654,10 @@ uiInterruptCounter:
         ADC     R31, R19
         STD     Z+26, R20
         MOVW    R31:R30, R17:R16
+        SUBI    R30, 102
+        SBCI    R31, 255
         LDI     R18, 1
-        STD     Z+42, R18
+        ST      Z, R18
 ??RecvInterruptHandler_2:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
@@ -3872,13 +3896,13 @@ __?EEARH:
 // 1097 
 // 
 //   105 bytes in segment ABSOLUTE
-// 2 870 bytes in segment CODE
+// 2 918 bytes in segment CODE
 //     7 bytes in segment INITTAB
 //    20 bytes in segment INTVEC
 //   748 bytes in segment NEAR_F
 //    15 bytes in segment NEAR_Z
 // 
-// 3 344 bytes of CODE memory (+ 301 bytes shared)
+// 3 392 bytes of CODE memory (+ 301 bytes shared)
 //    15 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

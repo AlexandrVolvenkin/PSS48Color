@@ -91,6 +91,7 @@ TOutputData CPss21::m_xDiscreteOutputDataBase;
 CAlarmWindow CPss21::m_axAlarmWindowControl[];
 
 uint8_t CPss21::m_aucDiscreteInputsBadState[];
+uint8_t CPss21::uiGlobalDebugBuffer[];
 
 __flash uint8_t CPss21::m_auiErrorLedOn[] =
 {
@@ -1220,8 +1221,21 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
 {
+//    // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
+//    return m_aucDiscreteInputsBadState[uiIndex];
+
+    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    {
+//        // ѕолучим состо€ние дискретного сигнала - дискретные входы модулей.
+//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
     // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
     return m_aucDiscreteInputsBadState[uiIndex];
+    }
+    else
+    {
+        // ѕолучим состо€ние дискретного сигнала - состо€ние €чеек(coils Modbus).
+        return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1636,11 +1650,11 @@ void CPss21::MainFsm(void)
     case MAIN_CYCLE_START_WAITING:
         CPss21::m_xModbusRtuOne.Fsm();
 
+        CDataStore::Fsm();
+
         CPss21::KeyStateProcessing();
 
         NotifyersControlProcessing();
-
-        CDataStore::Fsm();
 
         if (CPss21::m_xMainCycleTimer.IsOverflow())
         {
@@ -1656,13 +1670,13 @@ void CPss21::MainFsm(void)
 
     case MAIN_CYCLE_MODULES_INTERACTION:
         CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
         CPss21::m_xModbusRtuLinkControl.Fsm();
 
         CPss21::KeyStateProcessing();
 
         NotifyersControlProcessing();
-
-        CDataStore::Fsm();
 
         if (CPss21::ModulesInteraction(GetModuleIndex()))
         {
@@ -1692,11 +1706,17 @@ void CPss21::MainFsm(void)
         break;
 
     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
+        CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
         CPss21::DiscreteSignalsProcessing();
         SetFsmState(MAIN_CYCLE_END);
         break;
 
     case MAIN_CYCLE_END:
+        CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
         CPss21::ReceiptResetGlobalFlagsClear();
         SetFsmState(MAIN_CYCLE_START_WAITING);
         break;
@@ -1853,6 +1873,9 @@ void CPss21::MainFsm(void)
 //-----------------------------------------------------------------------------------------------------
     case PROGRAMMING_START:
         CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
+
         // ѕосле приЄма последнего блока базы данных произойдЄт перезагрузка
         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменени€ конфигурации.
         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);

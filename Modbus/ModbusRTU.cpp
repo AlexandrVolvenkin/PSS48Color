@@ -10,7 +10,6 @@
 #include "DataBase.h"
 #include "Pss21.h"
 
-
 //-----------------------------------------------------------------------------------------------------
 CModbusRTU::CModbusRTU()
 {
@@ -301,6 +300,60 @@ int8_t CModbusRTU::FrameCheck(void)
 //-----------------------------------------------------------------------------------------------------
 int8_t CModbusRTU::FrameCheck(uint8_t *puiSource, uint16_t uiLength)
 {
+//    uint16_t uiLengthLocal = uiLength;
+//
+//
+//    if (uiLengthLocal < _MIN_MESSAGE_LENGTH)
+//    {
+//
+////        return 1;
+//        return 0;
+//    }
+//
+//    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 1]) << 8) |
+//                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 2])));
+////    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 2]) << 8) |
+////                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 1])));
+//    uint16_t uiCrcTemp = usCrc16(puiSource,
+//                                 (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH));
+////    if (usCrc16(puiSource,
+////                (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+//    if (uiCrcTemp == uiCrc)
+//    {
+//        return 1;
+//    }
+//    else
+//    {
+//////        uiLengthLocal -= 1;
+////
+////        uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 1]) << 8) |
+////                          (static_cast<uint16_t>(puiSource[uiLengthLocal - 2])));
+//////    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 2]) << 8) |
+//////                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 1])));
+////        uint16_t uiCrcTemp = usCrc16(puiSource,
+////                                     (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH));
+//////    if (usCrc16(puiSource,
+//////                (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+////        if (uiCrcTemp == uiCrc)
+////        {
+////            return 1;
+////        }
+////        else
+////        {
+//
+//    memset(CPss21::uiGlobalDebugBuffer, 0, sizeof(CPss21::uiGlobalDebugBuffer));
+//    CPss21::uiGlobalDebugBuffer[0] = uiLengthLocal;
+//    memcpy(&CPss21::uiGlobalDebugBuffer[1], puiSource, uiLengthLocal);
+//////        return 1;
+////            return 0;
+////        }
+//        return 0;
+//    }
+
+
+//    memset(CPss21::uiGlobalDebugBuffer, 0, sizeof(CPss21::uiGlobalDebugBuffer));
+//    CPss21::uiGlobalDebugBuffer[0] = uiLength;
+//    memcpy(&CPss21::uiGlobalDebugBuffer[1], puiSource, uiLength);
 
     if (uiLength < _MIN_MESSAGE_LENGTH)
     {
@@ -309,10 +362,13 @@ int8_t CModbusRTU::FrameCheck(uint8_t *puiSource, uint16_t uiLength)
 
     uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 1]) << 8) |
                       (static_cast<uint16_t>(puiSource[uiLength - 2])));
+//    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 2]) << 8) |
+//                      (static_cast<uint16_t>(puiSource[uiLength - 1])));
     uint16_t uiCrcTemp = usCrc16(puiSource,
                                  (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
-    if (usCrc16(puiSource,
-                (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+//    if (usCrc16(puiSource,
+//                (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
+    if (uiCrcTemp == uiCrc)
     {
         return 1;
     }
@@ -440,6 +496,7 @@ void CModbusRTU::Fsm(void)
         {
 //            TransmitDisable();
             CPlatform::TxLedOff();
+            Reset();
             SetFsmState(START_REQUEST);
         }
 

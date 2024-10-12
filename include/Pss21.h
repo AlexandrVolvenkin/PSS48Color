@@ -317,6 +317,8 @@ public:
     static uint8_t m_auiSpiTxBuffer[SPI_BUFFER_LENGTH];
 
     static uint8_t m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH];
+
+    static uint8_t uiGlobalDebugBuffer[64];
 };
 
 //-----------------------------------------------------------------------------------------------------
