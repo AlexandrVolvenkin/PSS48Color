@@ -318,7 +318,7 @@ public:
 
     static uint8_t m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH];
 
-    static uint8_t uiGlobalDebugBuffer[64];
+//    static uint8_t uiGlobalDebugBuffer[64];
 };
 
 //-----------------------------------------------------------------------------------------------------

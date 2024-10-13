@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          12/Oct/2024  10:09:05
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          13/Oct/2024  04:49:04
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW2567.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW7C60.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //        --cpu=m128a -ms -o
@@ -38,8 +38,8 @@
 //      not produce an equivalent object file to the one produced
 //      by the C++ compiler.
 
-        EXTERN ?EPILOGUE_B4_L09
-        EXTERN ?PROLOGUE4_L09
+        EXTERN ?EPILOGUE_B3_L09
+        EXTERN ?PROLOGUE3_L09
         EXTERN ?S_EC_MUL_L02
         EXTERN ?need_segment_init
 
@@ -154,12 +154,15 @@
         PUBWEAK __?EECR
         PUBWEAK __?EEDR
 
-`?<Name CLightBoard 18>` SYMBOL "CLightBoard"
-??m_auiBoardLampsControl SYMBOL "m_auiBoardLampsControl", `?<Name CLightBoard 18>`
-??m_auiLedMap       SYMBOL "m_auiLedMap", `?<Name CLightBoard 18>`
+`?<Name CPss21 6>`  SYMBOL "CPss21"
+??m_aucRtuHoldingRegistersArray SYMBOL "m_aucRtuHoldingRegistersArray", `?<Name CPss21 6>`
+`?<Name CLightBoard 20>` SYMBOL "CLightBoard"
+??m_auiBoardLampsControl SYMBOL "m_auiBoardLampsControl", `?<Name CLightBoard 20>`
+??m_auiLedMap       SYMBOL "m_auiLedMap", `?<Name CLightBoard 20>`
 
         EXTERN ??Init_1
         EXTERN ??Set_1
+        EXTERN ??m_aucRtuHoldingRegistersArray
 
 // D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\LightBoard.cpp
 //    1 //-----------------------------------------------------------------------------------------------------
@@ -805,25 +808,25 @@ _A_PINF:
 //   70 void CLightBoard::Set(CAlarmWindow* pxAlarmWindowControl)
 ??Set:
 //   71 {
-        CALL    ?PROLOGUE4_L09
-        MOVW    R27:R26, R17:R16
+        CALL    ?PROLOGUE3_L09
+        MOVW    R25:R24, R17:R16
 //   72     for (uint8_t i = 0;
-        LDI     R24, 0
+        LDI     R26, 0
 //   73             i < ALARM_WINDOWS_NUMBER;
 ??Set_2:
-        CPI     R24, 48
+        CPI     R26, 48
         BRCC    ??Set_3
 //   74             i++)
 //   75     {
 //   76         // Окно сигнализации активно?
 //   77         if (pxAlarmWindowControl[i].GetActivityState())
-        MOV     R16, R24
+        MOV     R16, R26
         LDI     R17, 0
         LDI     R20, 8
         LDI     R21, 0
         CALL    ?S_EC_MUL_L02
         MOVW    R19:R18, R17:R16
-        MOVW    R17:R16, R27:R26
+        MOVW    R17:R16, R25:R24
         ADD     R16, R18
         ADC     R17, R19
         CALL    ??GetActivityState
@@ -831,7 +834,7 @@ _A_PINF:
         BREQ    ??Set_4
 //   78         {
 //   79             m_auiBoardLampsControl[m_auiLedMap[i]] = 1;
-        MOV     R30, R24
+        MOV     R30, R26
         LDI     R31, 0
         SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
         SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
@@ -848,7 +851,7 @@ _A_PINF:
 //   82         {
 //   83             m_auiBoardLampsControl[m_auiLedMap[i]] = 0;
 ??Set_4:
-        MOV     R30, R24
+        MOV     R30, R26
         LDI     R31, 0
         SUBI    R30, LOW((-(??m_auiLedMap) & 0xFFFF))
         SBCI    R31, (-(??m_auiLedMap) & 0xFFFF) >> 8
@@ -861,10 +864,31 @@ _A_PINF:
         ST      Z, R16
 //   84         }
 //   85 
-//   86 //        CPss21::m_aucRtuHoldingRegistersArray[i] = pxAlarmWindowControl[i].GetActivityState();
-//   87     };
+//   86         CPss21::m_aucRtuHoldingRegistersArray[i] = pxAlarmWindowControl[i].GetActivityState();
 ??Set_5:
-        INC     R24
+        MOV     R16, R26
+        LDI     R17, 0
+        LDI     R20, 8
+        LDI     R21, 0
+        CALL    ?S_EC_MUL_L02
+        MOVW    R19:R18, R17:R16
+        MOVW    R17:R16, R25:R24
+        ADD     R16, R18
+        ADC     R17, R19
+        CALL    ??GetActivityState
+        MOV     R18, R16
+        LDI     R19, 0
+        MOV     R16, R26
+        LDI     R17, 0
+        LSL     R16
+        ROL     R17
+        MOVW    R31:R30, R17:R16
+        SUBI    R30, LOW((-(??m_aucRtuHoldingRegistersArray) & 0xFFFF))
+        SBCI    R31, (-(??m_aucRtuHoldingRegistersArray) & 0xFFFF) >> 8
+        ST      Z, R18
+        STD     Z+1, R19
+//   87     };
+        INC     R26
         RJMP    ??Set_2
 //   88 
 //   89     // Зажжём активные светодиоды.
@@ -875,8 +899,8 @@ _A_PINF:
         LDI     R17, (??m_auiBoardLampsControl) >> 8
         CALL    ??Set_1
 //   91 }
-        LDI     R30, 4
-        JMP     ?EPILOGUE_B4_L09
+        LDI     R30, 3
+        JMP     ?EPILOGUE_B3_L09
 
         ASEGN ABSOLUTE:DATA:NOROOT,01cH
 __?EECR:
@@ -1227,12 +1251,12 @@ __?EEARH:
 //  418 ////        CPss21::m_aucRtuHoldingRegistersArray[0] = pxAlarmWindowControl[i].GetActivityState();
 // 
 // 105 bytes in segment ABSOLUTE
-// 224 bytes in segment CODE
+// 270 bytes in segment CODE
 //   7 bytes in segment INITTAB
 //  70 bytes in segment NEAR_F
 //  64 bytes in segment NEAR_Z
 // 
-// 224 bytes of CODE memory (+  77 bytes shared)
+// 270 bytes of CODE memory (+  77 bytes shared)
 //  64 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

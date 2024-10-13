@@ -100,8 +100,8 @@ private:
     uint8_t m_auiLinkedDiscreteOutputs[DISCRETE_OUTPUT_MODULE_MAX_NUMBER];
     // »сточник дискретного сигнала.
     uint8_t m_uiDiscreteStateIndex;
-    // »сточник данных достоверности дискретного сигнала.
-    uint8_t m_uiDiscreteInputsBadStateIndex;
+//    // »сточник данных достоверности дискретного сигнала.
+//    uint8_t m_uiDiscreteInputsBadStateIndex;
 };
 //-----------------------------------------------------------------------------------------------------
 

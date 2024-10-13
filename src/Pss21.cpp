@@ -91,7 +91,7 @@ TOutputData CPss21::m_xDiscreteOutputDataBase;
 CAlarmWindow CPss21::m_axAlarmWindowControl[];
 
 uint8_t CPss21::m_aucDiscreteInputsBadState[];
-uint8_t CPss21::uiGlobalDebugBuffer[];
+//uint8_t CPss21::uiGlobalDebugBuffer[];
 
 __flash uint8_t CPss21::m_auiErrorLedOn[] =
 {
@@ -975,6 +975,7 @@ void CPss21::ConfigurationInit(void)
             m_apxAlarmDfa[i] ->
             SetAlarmWindowIndex(0);
         }
+//        CPss21::m_aucRtuHoldingRegistersArray[i] = puiTempBuffer[i];
     }
 
     // Считаем во временный буфер блок БД - "Выходные реле, сопоставленные физическим входам".
@@ -1221,15 +1222,10 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
 {
-//    // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-//    return m_aucDiscreteInputsBadState[uiIndex];
-
     if (uiIndex < DISCRETE_INPUTS_NUMBER)
     {
 //        // Получим состояние дискретного сигнала - дискретные входы модулей.
-//        return m_aucRtuDiscreteDataArray[DISCRETE_INPUTS_BIT_ARRAY_OFFSET + uiIndex];
-    // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-    return m_aucDiscreteInputsBadState[uiIndex];
+        return m_aucDiscreteInputsBadState[uiIndex];
     }
     else
     {
@@ -1534,6 +1530,8 @@ void CPss21::TestMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
 
+    CDataStore::Fsm();
+
     m_xTestModeNotifyerControl.Fsm();
 //    NotifyersControlProcessing();
 
@@ -1572,6 +1570,8 @@ void CPss21::ErrorMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
 
+    CDataStore::Fsm();
+
     CPss21::KeyStateProcessing();
 
     // Есть команда - "квитировать"?
@@ -1596,6 +1596,9 @@ void CPss21::ErrorMainCycle(void)
 void CPss21::LinkControlErrorMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
+
+    CDataStore::Fsm();
+
     CPss21::m_xModbusRtuLinkControl.Fsm();
 
     CPss21::KeyStateProcessing();
@@ -1603,8 +1606,6 @@ void CPss21::LinkControlErrorMainCycle(void)
     NotifyersControlProcessing();
 
     CPss21::ReceiptResetGlobalFlagsClear();
-
-    CDataStore::Fsm();
 
     CPlatform::WatchdogReset();
 }
@@ -1672,6 +1673,7 @@ void CPss21::MainFsm(void)
         CPss21::m_xModbusRtuOne.Fsm();
 
         CDataStore::Fsm();
+
         CPss21::m_xModbusRtuLinkControl.Fsm();
 
         CPss21::KeyStateProcessing();
@@ -1709,6 +1711,7 @@ void CPss21::MainFsm(void)
         CPss21::m_xModbusRtuOne.Fsm();
 
         CDataStore::Fsm();
+
         CPss21::DiscreteSignalsProcessing();
         SetFsmState(MAIN_CYCLE_END);
         break;
@@ -1717,6 +1720,7 @@ void CPss21::MainFsm(void)
         CPss21::m_xModbusRtuOne.Fsm();
 
         CDataStore::Fsm();
+
         CPss21::ReceiptResetGlobalFlagsClear();
         SetFsmState(MAIN_CYCLE_START_WAITING);
         break;
