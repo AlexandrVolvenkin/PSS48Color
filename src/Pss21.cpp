@@ -91,6 +91,7 @@ TOutputData CPss21::m_xDiscreteOutputDataBase;
 CAlarmWindow CPss21::m_axAlarmWindowControl[];
 
 uint8_t CPss21::m_aucDiscreteInputsBadState[];
+//uint8_t CPss21::uiGlobalDebugBuffer[];
 
 __flash uint8_t CPss21::m_auiErrorLedOn[] =
 {
@@ -480,17 +481,6 @@ void CPss21::ModbusDeviceControl(uint8_t* puiData, uint16_t uiLength, uint16_t u
         // Сообщим автомату о состоявшемся сеансе связи.
         m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
     }
-////    // Изменение состояния окон сигнализации?
-//    else if ((uiAddress >= DISCRETE_INPUTS_BIT_ARRAY_OFFSET) &&//debag//
-//             (uiAddress < (ALARM_WINDOWS_BIT_ARRAY_OFFSET +
-//                           ALARM_WINDOWS_ARRAY_LENGTH)))
-//    {
-//        SetBytesFromBits(&m_aucRtuDiscreteDataArray[uiAddress],
-//                         puiData,
-//                         uiLength);
-//        // Сообщим автомату о состоявшемся сеансе связи.
-//        m_xModbusRtuLinkControl.SetFsmEvent(CModbusRtuLinkControl::LINK_SESSION_HAPPENED_FSM_EVENT);
-//    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -596,20 +586,6 @@ void CPss21::SendToDevicesModbusReset(void)
 //-----------------------------------------------------------------------------------------------------
 void CPss21::KeyStateProcessing(void)
 {
-//    m_xIsReceiptButtonPressed.Fsm();
-
-//    m_xReceiptKey.Fsm();
-//    m_xResetKey.Fsm();
-//    m_xCheckKey.Fsm();
-//    m_xExternalKey.Fsm();
-
-//    if (m_xIsReceiptButtonPressed.IsSolved())
-//    {
-//        SetPanelReceipt(1);
-//        SetDiscreteSignalsReceipt(1);
-//        SendToDevicesReceipt();
-//        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-//    }
     if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
     {
         SetPanelReceipt(1);
@@ -618,15 +594,12 @@ void CPss21::KeyStateProcessing(void)
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
 
-//    if (m_xReceiptKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_UNPRESSED))
-//    {
     if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
     {
         // Включим режим тестирования.
         SetFsmState(TEST_START);
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
-//    }
 
     if (m_xResetKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
     {
@@ -635,24 +608,6 @@ void CPss21::KeyStateProcessing(void)
         SendToDevicesReset();
         m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
     }
-
-//    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_HOLD))
-//    {
-//        // Включим режим создания карты соответствия окон.
-//        SetFsmState(MAP_CREATE_START);
-//        m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-//    }
-//
-//    if (m_xCheckKey.KeyEventHappened(CMultiFunctionKey::KEY_EVENT_PRESSED_PUSH))
-//    {
-//        if (GetFsmState() == MAP_CREATE_ON)
-//        {
-//            // следующее окно.
-//            SetFsmState(MAP_CREATE_NEXT_WINDOW);
-//            m_xBuzzerNotifyerControl.AlarmSet(BEEP_SIGNAL);
-//        }
-//    }
-
 
     // Функция внешней кнопки - только сброс?
     if(m_xDeviceConfiguration.ExtUnsetOnly)
@@ -999,7 +954,6 @@ void CPss21::ConfigurationInit(void)
             i++)
     {
         m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(DISCRETE_INPUTS_NUMBER + i);
-//        m_apxAlarmDfa[DISCRETE_INPUTS_NUMBER + i] -> SetDiscreteStateIndex(i);
     };
 
     // Восстановим  состояние устройства.
@@ -1149,16 +1103,6 @@ void CPss21::AlarmsProcessing(void)
             i < DISCRETE_SIGNALS_NUMBER;
             i++)
     {
-//        if (i == 0)
-//        {
-//            CPss21::m_aucRtuHoldingRegistersArray[1] =
-//                m_axAlarmWindowControl[i].GetActivityState();
-//            CPss21::m_aucRtuHoldingRegistersArray[2] =
-//                m_axAlarmWindowControl[i].GetAlarmType();
-//            CPss21::m_aucRtuHoldingRegistersArray[3] =
-//                m_axAlarmWindowControl[i].GetAlarmColor();
-//        }
-
         m_apxAlarmDfa[i] -> Fsm();
 
         // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
@@ -1220,8 +1164,16 @@ uint8_t CPss21::GetDiscreteInputState(uint8_t uiIndex)
 //-----------------------------------------------------------------------------------------------------
 uint8_t CPss21::GetDiscreteInputsBadState(uint8_t uiIndex)
 {
-    // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
-    return m_aucDiscreteInputsBadState[uiIndex];
+    if (uiIndex < DISCRETE_INPUTS_NUMBER)
+    {
+//        // Получим состояние дискретного сигнала - дискретные входы модулей.
+        return m_aucDiscreteInputsBadState[uiIndex];
+    }
+    else
+    {
+        // Получим состояние дискретного сигнала - состояние ячеек(coils Modbus).
+        return m_aucRtuDiscreteDataArray[ALARM_WINDOWS_BIT_ARRAY_OFFSET + (uiIndex - DISCRETE_INPUTS_NUMBER)];
+    }
 }
 
 //-----------------------------------------------------------------------------------------------------
@@ -1335,12 +1287,6 @@ void CPss21::SetAlarmWindowColor(uint8_t uiAlarmWindowIndex, uint8_t uiAlarmColo
 //-----------------------------------------------------------------------------------------------------
 void CPss21::SaveContextNotifyerControl(void)
 {
-//    // Сохраним текущее состояние автоматов управления извещателями.
-//    m_xPreventiveAlarmWindowNotifyerControl.SetSavedFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetFsmState());
-//    m_xEmergencyAlarmWindowNotifyerControl.SetSavedFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetFsmState());
-//    m_xStatusLedNotifyerControl.SetSavedFsmState(m_xStatusLedNotifyerControl.GetFsmState());
-//    m_xBuzzerNotifyerControl.SetSavedFsmState(m_xBuzzerNotifyerControl.GetFsmState());
-
     // Сохраним текущее состояние извещателей - окон сигнализации.
     for (uint8_t i = 0;
             i < ALARM_WINDOWS_NUMBER;
@@ -1355,11 +1301,6 @@ void CPss21::SaveContextNotifyerControl(void)
 //-----------------------------------------------------------------------------------------------------
 void CPss21::RestoreContextNotifyerControl(void)
 {
-//    // Восстановим предыдущее состояние автоматов управления извещателями.
-//    m_xPreventiveAlarmWindowNotifyerControl.SetFsmState(m_xPreventiveAlarmWindowNotifyerControl.GetSavedFsmState());
-//    m_xEmergencyAlarmWindowNotifyerControl.SetFsmState(m_xEmergencyAlarmWindowNotifyerControl.GetSavedFsmState());
-//    m_xStatusLedNotifyerControl.SetFsmState(m_xStatusLedNotifyerControl.GetSavedFsmState());
-//    m_xBuzzerNotifyerControl.SetFsmState(m_xBuzzerNotifyerControl.GetSavedFsmState());
     AlarmTypeSet(GetCommonAlarmType());
 
     // Восстановим предыдущее состояние извещателей - окон сигнализации.
@@ -1402,8 +1343,6 @@ void CPss21::ActiveAlarmWindowOn(uint8_t uiAlarmType)
             // Активизируем окно сигнализации, для отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(1);
         }
-
-//        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
     };
 
     BoardWindowsUpdate();
@@ -1427,8 +1366,6 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
             // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
             m_axAlarmWindowControl[i].SetActivityState(0);
         }
-
-//        CPss21::m_aucRtuHoldingRegistersArray[i] = m_axAlarmWindowControl[i].GetActivityState();
     };
 
     BoardWindowsUpdate();
@@ -1437,8 +1374,6 @@ void CPss21::ActiveAlarmWindowOff(uint8_t uiAlarmType)
 //-----------------------------------------------------------------------------------------------------
 void CPss21::AllAlarmWindowOn(uint8_t uiAlarmType)
 {
-//    CAlarmWindow axAlarmWindowControl[ALARM_WINDOWS_NUMBER];
-
     for (uint8_t i = 0;
             i < ALARM_WINDOWS_NUMBER;
             i++)
@@ -1487,7 +1422,6 @@ void CPss21::AllAlarmWindowOff(void)
             i < ALARM_WINDOWS_NUMBER;
             i++)
     {
-//        CPss21::m_aucRtuHoldingRegistersArray[i + 4] = 0;
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
         m_axAlarmWindowControl[i].SetAlarmType(NORMAL);
         // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
@@ -1520,8 +1454,9 @@ void CPss21::TestMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
 
+    CDataStore::Fsm();
+
     m_xTestModeNotifyerControl.Fsm();
-//    NotifyersControlProcessing();
 
     CPss21::KeyStateProcessing();
 
@@ -1541,12 +1476,6 @@ void CPss21::TestMainCycle(void)
         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::STOP);
         SetFsmState(TEST_STOP);
     }
-    //    if (CPss21::m_xMainCycleTimer.IsOverflow())
-//    {
-//        SetFsmState(TEST_STOP);
-//    }
-
-
 
     CPss21::ReceiptResetGlobalFlagsClear();
 
@@ -1557,6 +1486,8 @@ void CPss21::TestMainCycle(void)
 void CPss21::ErrorMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
+
+    CDataStore::Fsm();
 
     CPss21::KeyStateProcessing();
 
@@ -1582,6 +1513,9 @@ void CPss21::ErrorMainCycle(void)
 void CPss21::LinkControlErrorMainCycle(void)
 {
     CPss21::m_xModbusRtuOne.Fsm();
+
+    CDataStore::Fsm();
+
     CPss21::m_xModbusRtuLinkControl.Fsm();
 
     CPss21::KeyStateProcessing();
@@ -1589,8 +1523,6 @@ void CPss21::LinkControlErrorMainCycle(void)
     NotifyersControlProcessing();
 
     CPss21::ReceiptResetGlobalFlagsClear();
-
-    CDataStore::Fsm();
 
     CPlatform::WatchdogReset();
 }
@@ -1611,13 +1543,6 @@ void CPss21::MainFsm(void)
         }
         else
         {
-
-//            {
-//                //m_aucDiscreteInputsBadState[DISCRETE_INPUTS_ARRAY_LENGTH]
-////                memset(CPss21::m_aucDiscreteInputsBadState, 0, DISCRETE_INPUTS_ARRAY_LENGTH);
-//                memset(CPss21::m_aucDiscreteInputsBadState, 1, DISCRETE_INPUTS_ARRAY_LENGTH);
-//                CPss21::m_aucDiscreteInputsBadState[0] = INPUT_IS_INVALID;
-//            }
             CPss21::ConfigurationInit();
             CPss21::ModbusInit();
             CSpi::Init();
@@ -1636,11 +1561,11 @@ void CPss21::MainFsm(void)
     case MAIN_CYCLE_START_WAITING:
         CPss21::m_xModbusRtuOne.Fsm();
 
+        CDataStore::Fsm();
+
         CPss21::KeyStateProcessing();
 
         NotifyersControlProcessing();
-
-        CDataStore::Fsm();
 
         if (CPss21::m_xMainCycleTimer.IsOverflow())
         {
@@ -1649,20 +1574,19 @@ void CPss21::MainFsm(void)
             SetModuleIndex(0);
             SetFsmState(MAIN_CYCLE_MODULES_INTERACTION);
         }
-//            SetFsmState(MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING);
-//
-//        CPlatform::WatchdogReset();
+
         break;
 
     case MAIN_CYCLE_MODULES_INTERACTION:
         CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
+
         CPss21::m_xModbusRtuLinkControl.Fsm();
 
         CPss21::KeyStateProcessing();
 
         NotifyersControlProcessing();
-
-        CDataStore::Fsm();
 
         if (CPss21::ModulesInteraction(GetModuleIndex()))
         {
@@ -1692,11 +1616,19 @@ void CPss21::MainFsm(void)
         break;
 
     case MAIN_CYCLE_DISCRETE_SIGNALS_PROCESSING:
+        CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
+
         CPss21::DiscreteSignalsProcessing();
         SetFsmState(MAIN_CYCLE_END);
         break;
 
     case MAIN_CYCLE_END:
+        CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
+
         CPss21::ReceiptResetGlobalFlagsClear();
         SetFsmState(MAIN_CYCLE_START_WAITING);
         break;
@@ -1773,9 +1705,6 @@ void CPss21::MainFsm(void)
 //-----------------------------------------------------------------------------------------------------
     case TEST_START:
         SaveContextNotifyerControl();
-//        AlarmTypeSet(PREVENTIVE);
-//        CPss21::AllAlarmWindowOn(PREVENTIVE);
-//        CPss21::m_xMainCycleTimer.Set(TEST_ON_TIME());
         m_xTestModeNotifyerControl.SetFsmState(CNotifyerControl::INDICATION_SIGNAL_START);
         SetFsmState(TEST_ON);
 
@@ -1783,14 +1712,6 @@ void CPss21::MainFsm(void)
         break;
 
     case TEST_ON:
-//        if (CPss21::m_xMainCycleTimer.IsOverflow())
-//        {
-//            CPss21::AllAlarmWindowOff();
-//            RestoreContextNotifyerControl();
-//            CPss21::m_xMainCycleTimer.Set(MAIN_CYCLE_PERIOD_TIME);
-//            SetFsmState(MAIN_CYCLE_START_WAITING);
-//        }
-
         TestMainCycle();
         break;
 
@@ -1853,6 +1774,9 @@ void CPss21::MainFsm(void)
 //-----------------------------------------------------------------------------------------------------
     case PROGRAMMING_START:
         CPss21::m_xModbusRtuOne.Fsm();
+
+        CDataStore::Fsm();
+
         // После приёма последнего блока базы данных произойдёт перезагрузка
         // через "PROGRAMMING_TIME + WDTO_2S", чтобы применить изменения конфигурации.
         CPss21::m_xMainCycleTimer.Set(PROGRAMMING_TIME);

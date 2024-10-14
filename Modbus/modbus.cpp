@@ -796,7 +796,6 @@ int16_t CModbus::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFra
 
     m_uiMessageLength = uiLength;
     return uiLength;
-//    return SendMessage(puiResponse, uiLength);
 }
 
 //-----------------------------------------------------------------------------------------------------

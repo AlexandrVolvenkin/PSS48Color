@@ -22,30 +22,85 @@ CAlarmDfa::~CAlarmDfa()
 }
 
 //-----------------------------------------------------------------------------------------------------
-// Автомат обработки сигнализации дискретного сигнала.
-void CAlarmDfa::Fsm(void)
+uint8_t CAlarmDfa::DiscreteSignalStateCheck(void)
 {
     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
 
-    // дискретный вход недостоверен?
-    if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
+    // дискретный сигнал этого объекта автомата сигнализации привязан
+    // к дискретному входу модуля ввода?
+    if (GetDiscreteStateIndex() < DISCRETE_INPUTS_NUMBER)
     {
-        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-    }
-    else
-    {
-        // тип текущего дискретного сигнала namur?
-        if (IS_NAMUR_ON())
+        // дискретный вход недостоверен?
+        if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
         {
-            switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
+            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
+        }
+        else
+        {
+            // тип текущего дискретного сигнала namur?
+            if (IS_NAMUR_ON())
             {
-            case OFF:
-            case ON:
-                // Дискретный сигнал активен?
-                // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
+                switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
+                {
+                case OFF:
+                case ON:
+                    // Дискретный сигнал активен?
+                    // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
 //	- состояния "0" (OFF) - "РАЗОМКНУТО"
 //	- состояния "1" (ON) - "ЗАМКНУТО"
-                if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
+                    if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
+                    {
+                        // установим значение текущего дискретного входа отображаемое в пространстве модбас
+                        // интерпретированное с учетом условия активности.
+                        CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+
+                        if (ACTIVE_LEVEL())
+                        {
+                            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+                        }
+                        else
+                        {
+                            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+                        }
+                    }
+                    else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
+                    {
+                        // установим значение текущего дискретного входа отображаемое в пространстве модбас
+                        // интерпретированное с учетом условия активности.
+                        CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+
+                        if (ACTIVE_LEVEL())
+                        {
+                            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+                        }
+                        else
+                        {
+                            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+                        }
+                    }
+                    break;
+
+                case WIRE_BREAK:
+                case SHORT_CIRCUIT:
+                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
+                    // установим значение текущего дискретного входа отображаемое в пространстве модбас
+                    // интерпретированное с учетом условия активности.
+                    CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+                    break;
+
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                // Дискретный сигнал активен?
+                // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+                //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
+//	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
+//	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
+                if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
+                        ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
                 {
                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
                     // интерпретированное с учетом условия активности.
@@ -60,7 +115,8 @@ void CAlarmDfa::Fsm(void)
                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
                     }
                 }
-                else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
+                else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
+                         ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
                 {
                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
                     // интерпретированное с учетом условия активности.
@@ -75,61 +131,31 @@ void CAlarmDfa::Fsm(void)
                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
                     }
                 }
-                break;
-
-            case WIRE_BREAK:
-            case SHORT_CIRCUIT:
-                uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-                break;
-
-            default:
-                break;
-            }
-        }
-        else
-        {
-            // Дискретный сигнал активен?
-            // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-            //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
-//	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
-//	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
-            if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
-                    ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
-            {
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-
-                if (ACTIVE_LEVEL())
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                }
-                else
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                }
-            }
-            else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
-                     ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
-            {
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-
-                if (ACTIVE_LEVEL())
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                }
-                else
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                }
             }
         }
     }
+    // дискретный сигнал этого объекта автомата сигнализации привязан
+    // к состоянию ячейки модбас.
+    else
+    {
+        if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) == 1)
+        {
+            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+        }
+        else
+        {
+            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+        }
+    }
+
+    return uiDiscreteSignalState;
+}
+
+//-----------------------------------------------------------------------------------------------------
+// Автомат обработки сигнализации дискретного сигнала.
+void CAlarmDfa::Fsm(void)
+{
+    uint8_t uiDiscreteSignalState = DiscreteSignalStateCheck();
 
     switch (GetFsmState())
     {
@@ -509,111 +535,7 @@ CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
 // Автомат обработки сигнализации дискретного сигнала.
 void CIndicationAlarmLowLevelDfa::Fsm(void)
 {
-    uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-
-    // дискретный вход недостоверен?
-    if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
-    {
-        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-    }
-    else
-    {
-        // тип текущего дискретного сигнала namur?
-        if (IS_NAMUR_ON())
-        {
-            switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
-            {
-            case OFF:
-            case ON:
-                // Дискретный сигнал активен?
-                // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
-//	- состояния "0" (OFF) - "РАЗОМКНУТО"
-//	- состояния "1" (ON) - "ЗАМКНУТО"
-                if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
-                {
-                    // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                    // интерпретированное с учетом условия активности.
-                    CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-
-                    if (ACTIVE_LEVEL())
-                    {
-                        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                    }
-                    else
-                    {
-                        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                    }
-                }
-                else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
-                {
-                    // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                    // интерпретированное с учетом условия активности.
-                    CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-
-                    if (ACTIVE_LEVEL())
-                    {
-                        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                    }
-                    else
-                    {
-                        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                    }
-                }
-                break;
-
-            case WIRE_BREAK:
-            case SHORT_CIRCUIT:
-                uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-                break;
-
-            default:
-                break;
-            }
-        }
-        else
-        {
-            // Дискретный сигнал активен?
-            // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-            //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
-//	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
-//	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
-            if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
-                    ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
-            {
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-
-                if (ACTIVE_LEVEL())
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                }
-                else
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                }
-            }
-            else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
-                     ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
-            {
-                // установим значение текущего дискретного входа отображаемое в пространстве модбас
-                // интерпретированное с учетом условия активности.
-                CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-
-                if (ACTIVE_LEVEL())
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-                }
-                else
-                {
-                    uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-                }
-            }
-        }
-    }
+    uint8_t uiDiscreteSignalState = DiscreteSignalStateCheck();
 
     switch (GetFsmState())
     {
@@ -621,7 +543,7 @@ void CIndicationAlarmLowLevelDfa::Fsm(void)
         break;
 
     case ACTIVE_STATE_WAITING:
-//        CPss21::m_aucRtuHoldingRegistersArray[0] = CPss21::m_aucDiscreteInputsBadState[0];
+//        CPss21::m_aucRtuHoldingRegistersArray[0] = 7;//CPss21::m_aucDiscreteInputsBadState[0];
         // тип текущего дискретного сигнала namur?
         if (IS_NAMUR_ON())
         {

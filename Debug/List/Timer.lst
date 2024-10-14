@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           16/Sep/2024  15:13:10
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           15/Oct/2024  00:52:54
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Timer.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EWB1A8.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EW7890.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Timer.cpp
 #        --cpu=m128a -ms -o
@@ -636,17 +636,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Timer.cpp
    \   00000000   93BA               ST      -Y, R27
    \   00000002   93AA               ST      -Y, R26
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-     47              //    if ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
-     48          //            m_uiTime)
-     49          //    {
-     50          //        return true;
-     51          //    }
-     52          //    else
-     53          //    {
-     54          //        return false;
-     55          //    }
-     56              return ((CPlatform::GetSystemTick() - m_uiLastSystemTick)  >=
-     57                      m_uiTime);
+     47              return ((uint16_t)(CPlatform::GetSystemTick() - (uint16_t)m_uiLastSystemTick)  >=
+     48                      m_uiTime);
    \   00000006   ........           CALL    ??GetSystemTick
    \   0000000A   01FD               MOVW    R31:R30, R27:R26
    \   0000000C   8122               LDD     R18, Z+2
@@ -667,7 +658,7 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Timer.cpp
    \   00000026   91A9               LD      R26, Y+
    \   00000028   91B9               LD      R27, Y+
    \   0000002A   9508               RET
-     58          }
+     49          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \   __version_3 CTimer &CTimer::new CTimer()
@@ -707,9 +698,9 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Timer.cpp
    \   0000001E   9189               LD      R24, Y+
    \   00000020   9199               LD      R25, Y+
    \   00000022   9508               RET
-     59          
-     60          //-----------------------------------------------------------------------------------------------------
-     61          
+     50          
+     51          //-----------------------------------------------------------------------------------------------------
+     52          
 
    Maximum stack usage in bytes:
 
