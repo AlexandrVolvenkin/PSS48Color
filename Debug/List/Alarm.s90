@@ -1,12 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          13/Oct/2024  05:07:27
+// IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR          14/Oct/2024  08:38:06
 // Copyright 1996-2018 IAR Systems AB.
 //
 //    Source file  =  
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Alarm.cpp
 //    Command line =  
-//        -f C:\Users\Admin\AppData\Local\Temp\EW4FEA.tmp
+//        -f C:\Users\Admin\AppData\Local\Temp\EW7E0E.tmp
 //        (--string_literals_in_flash
 //        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\src\Alarm.cpp
 //        --cpu=m128a -ms -o
@@ -91,6 +91,7 @@
         PUBLIC ??CPreventiveAlarmHighLevelNamurDfa
         PUBLIC ??CPreventiveAlarmLowLevelDfa
         PUBLIC ??CPreventiveAlarmLowLevelNamurDfa
+        PUBLIC ??DiscreteSignalStateCheck
         PUBLIC ??Fsm
         PUBLIC ??Fsm_1
         PUBLIC ??Fsm_2
@@ -839,371 +840,379 @@ _A_PINF:
 //   22 }
 //   23 
 //   24 //-----------------------------------------------------------------------------------------------------
-//   25 // Автомат обработки сигнализации дискретного сигнала.
-//   26 void CAlarmDfa::Fsm(void)
-//   27 {
-//   28     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-//   29 
-//   30     // дискретный сигнал этого объекта автомата сигнализации привязан
-//   31     // к дискретному входу модуля ввода?
-//   32     if (GetDiscreteStateIndex() < DISCRETE_INPUTS_NUMBER)
-//   33     {
-//   34         // дискретный вход недостоверен?
-//   35         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
-//   36         {
-//   37             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-//   38         }
-//   39         else
-//   40         {
-//   41             // тип текущего дискретного сигнала namur?
-//   42             if (IS_NAMUR_ON())
-//   43             {
-//   44                 switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
-//   45                 {
-//   46                 case OFF:
-//   47                 case ON:
-//   48                     // Дискретный сигнал активен?
-//   49                     // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
-//   50 //	- состояния "0" (OFF) - "РАЗОМКНУТО"
-//   51 //	- состояния "1" (ON) - "ЗАМКНУТО"
-//   52                     if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
-//   53                     {
-//   54                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//   55                         // интерпретированное с учетом условия активности.
-//   56                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//   57 
-//   58                         if (ACTIVE_LEVEL())
-//   59                         {
-//   60                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//   61                         }
-//   62                         else
-//   63                         {
-//   64                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//   65                         }
-//   66                     }
-//   67                     else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
-//   68                     {
-//   69                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//   70                         // интерпретированное с учетом условия активности.
-//   71                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-//   72 
-//   73                         if (ACTIVE_LEVEL())
-//   74                         {
-//   75                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//   76                         }
-//   77                         else
-//   78                         {
-//   79                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//   80                         }
-//   81                     }
-//   82                     break;
-//   83 
-//   84                 case WIRE_BREAK:
-//   85                 case SHORT_CIRCUIT:
-//   86                     uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
-//   87                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//   88                     // интерпретированное с учетом условия активности.
-//   89                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//   90                     break;
-//   91 
-//   92                 default:
-//   93                     break;
-//   94                 }
-//   95             }
-//   96             else
-//   97             {
-//   98                 // Дискретный сигнал активен?
-//   99                 // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-//  100                 //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
-//  101 //	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
-//  102 //	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
-//  103                 if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
-//  104                         ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
-//  105                 {
-//  106                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  107                     // интерпретированное с учетом условия активности.
-//  108                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//  109 
-//  110                     if (ACTIVE_LEVEL())
-//  111                     {
-//  112                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  113                     }
-//  114                     else
-//  115                     {
-//  116                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  117                     }
-//  118                 }
-//  119                 else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
-//  120                          ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
-//  121                 {
-//  122                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  123                     // интерпретированное с учетом условия активности.
-//  124                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-//  125 
-//  126                     if (ACTIVE_LEVEL())
-//  127                     {
-//  128                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  129                     }
-//  130                     else
-//  131                     {
-//  132                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  133                     }
-//  134                 }
-//  135             }
-//  136         }
-//  137     }
-//  138     // дискретный сигнал этого объекта автомата сигнализации привязан
-//  139     // к состоянию ячейки модбас.
-//  140     else
-//  141     {
-//  142         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) == 1)
-//  143         {
-//  144             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  145         }
-//  146         else
-//  147         {
-//  148             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  149         }
-//  150     }
-//  151 
-//  152     switch (GetFsmState())
-//  153     {
-//  154     case START:
-//  155         break;
-//  156 
-//  157 //    case ACTIVE_STATE_CHECK:
-//  158 //        break;
+//   25 uint8_t CAlarmDfa::DiscreteSignalStateCheck(void)
+//   26 {
+//   27     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
+//   28 
+//   29     // дискретный сигнал этого объекта автомата сигнализации привязан
+//   30     // к дискретному входу модуля ввода?
+//   31     if (GetDiscreteStateIndex() < DISCRETE_INPUTS_NUMBER)
+//   32     {
+//   33         // дискретный вход недостоверен?
+//   34         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
+//   35         {
+//   36             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
+//   37         }
+//   38         else
+//   39         {
+//   40             // тип текущего дискретного сигнала namur?
+//   41             if (IS_NAMUR_ON())
+//   42             {
+//   43                 switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
+//   44                 {
+//   45                 case OFF:
+//   46                 case ON:
+//   47                     // Дискретный сигнал активен?
+//   48                     // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
+//   49 //	- состояния "0" (OFF) - "РАЗОМКНУТО"
+//   50 //	- состояния "1" (ON) - "ЗАМКНУТО"
+//   51                     if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
+//   52                     {
+//   53                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//   54                         // интерпретированное с учетом условия активности.
+//   55                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+//   56 
+//   57                         if (ACTIVE_LEVEL())
+//   58                         {
+//   59                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+//   60                         }
+//   61                         else
+//   62                         {
+//   63                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+//   64                         }
+//   65                     }
+//   66                     else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
+//   67                     {
+//   68                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//   69                         // интерпретированное с учетом условия активности.
+//   70                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+//   71 
+//   72                         if (ACTIVE_LEVEL())
+//   73                         {
+//   74                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+//   75                         }
+//   76                         else
+//   77                         {
+//   78                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+//   79                         }
+//   80                     }
+//   81                     break;
+//   82 
+//   83                 case WIRE_BREAK:
+//   84                 case SHORT_CIRCUIT:
+//   85                     uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
+//   86                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//   87                     // интерпретированное с учетом условия активности.
+//   88                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+//   89                     break;
+//   90 
+//   91                 default:
+//   92                     break;
+//   93                 }
+//   94             }
+//   95             else
+//   96             {
+//   97                 // Дискретный сигнал активен?
+//   98                 // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+//   99                 //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
+//  100 //	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
+//  101 //	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
+//  102                 if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
+//  103                         ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
+//  104                 {
+//  105                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//  106                     // интерпретированное с учетом условия активности.
+//  107                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
+//  108 
+//  109                     if (ACTIVE_LEVEL())
+//  110                     {
+//  111                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+//  112                     }
+//  113                     else
+//  114                     {
+//  115                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+//  116                     }
+//  117                 }
+//  118                 else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
+//  119                          ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
+//  120                 {
+//  121                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
+//  122                     // интерпретированное с учетом условия активности.
+//  123                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
+//  124 
+//  125                     if (ACTIVE_LEVEL())
+//  126                     {
+//  127                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+//  128                     }
+//  129                     else
+//  130                     {
+//  131                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+//  132                     }
+//  133                 }
+//  134             }
+//  135         }
+//  136     }
+//  137     // дискретный сигнал этого объекта автомата сигнализации привязан
+//  138     // к состоянию ячейки модбас.
+//  139     else
+//  140     {
+//  141         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) == 1)
+//  142         {
+//  143             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
+//  144         }
+//  145         else
+//  146         {
+//  147             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
+//  148         }
+//  149     }
+//  150 
+//  151     return uiDiscreteSignalState;
+//  152 }
+//  153 
+//  154 //-----------------------------------------------------------------------------------------------------
+//  155 // Автомат обработки сигнализации дискретного сигнала.
+//  156 void CAlarmDfa::Fsm(void)
+//  157 {
+//  158     uint8_t uiDiscreteSignalState = DiscreteSignalStateCheck();
 //  159 
-//  160     case ACTIVE_STATE_WAITING:
-//  161 //        CPss21::m_aucRtuHoldingRegistersArray[0] = CPss21::m_aucDiscreteInputsBadState[0];
-//  162         // тип текущего дискретного сигнала namur?
-//  163         if (IS_NAMUR_ON())
-//  164         {
-//  165             // Дискретный сигнал NAMUR в обрыве или кз?
-//  166             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  167             {
-//  168                 SetFsmState(NAMUR_STATE_ON);
-//  169             }
-//  170             else
-//  171             {
-//  172                 // Дискретный сигнал активен?
-//  173                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  174                 {
-//  175                     // Установим связанные дискретный выходы - новое нарушение.
-//  176                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-//  177                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  178                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-//  179                     CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-//  180                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  181                     // Запрограммирован режим автоматического сброса предупредительой и аварийной
-//  182                     // сигнализации при переходе дискретного сигнала в неактивное состояние?
-//  183                     if (CPss21::m_xDeviceConfiguration.AutoUnset)
-//  184                     {
-//  185                         SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
-//  186                     }
-//  187                     else
-//  188                     {
-//  189                         SetFsmState(RECEIPT_OR_RESET_WAITING);
-//  190                     }
-//  191                 }
-//  192             }
-//  193         }
-//  194         else
-//  195         {
-//  196             // Дискретный сигнал активен?
-//  197             // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-//  198             // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
-//  199             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  200             {
-//  201                 // Установим связанные дискретный выходы - новое нарушение.
-//  202                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-//  203                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  204                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-//  205                 CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-//  206                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  207                 // Запрограммирован режим автоматического сброса предупредительой и аварийной
-//  208                 // сигнализации при переходе дискретного сигнала в неактивное состояние?
-//  209                 if (CPss21::m_xDeviceConfiguration.AutoUnset)
-//  210                 {
-//  211                     SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
-//  212                 }
-//  213                 else
-//  214                 {
-//  215                     SetFsmState(RECEIPT_OR_RESET_WAITING);
-//  216                 }
-//  217             }
-//  218         }
-//  219         break;
-//  220 
-//  221     case RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING:
-//  222         // Запрограммирован режим автоматического сброса предупредительой и аварийной
-//  223         // сигнализации при переходе дискретного сигнала в неактивное состояние.
-//  224         // Дискретный сигнал активен?
-//  225         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  226         {
-//  227             // Установим связанные дискретный выходы - не новое нарушение.
-//  228             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  229         }
-//  230         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
-//  231         {
-//  232             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  233             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  234             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  235             SetFsmState(ACTIVE_STATE_WAITING);
-//  236             break;
+//  160     switch (GetFsmState())
+//  161     {
+//  162     case START:
+//  163         break;
+//  164 
+//  165 //    case ACTIVE_STATE_CHECK:
+//  166 //        break;
+//  167 
+//  168     case ACTIVE_STATE_WAITING:
+//  169 //        CPss21::m_aucRtuHoldingRegistersArray[0] = CPss21::m_aucDiscreteInputsBadState[0];
+//  170         // тип текущего дискретного сигнала namur?
+//  171         if (IS_NAMUR_ON())
+//  172         {
+//  173             // Дискретный сигнал NAMUR в обрыве или кз?
+//  174             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  175             {
+//  176                 SetFsmState(NAMUR_STATE_ON);
+//  177             }
+//  178             else
+//  179             {
+//  180                 // Дискретный сигнал активен?
+//  181                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  182                 {
+//  183                     // Установим связанные дискретный выходы - новое нарушение.
+//  184                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+//  185                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  186                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//  187                     CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+//  188                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  189                     // Запрограммирован режим автоматического сброса предупредительой и аварийной
+//  190                     // сигнализации при переходе дискретного сигнала в неактивное состояние?
+//  191                     if (CPss21::m_xDeviceConfiguration.AutoUnset)
+//  192                     {
+//  193                         SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+//  194                     }
+//  195                     else
+//  196                     {
+//  197                         SetFsmState(RECEIPT_OR_RESET_WAITING);
+//  198                     }
+//  199                 }
+//  200             }
+//  201         }
+//  202         else
+//  203         {
+//  204             // Дискретный сигнал активен?
+//  205             // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+//  206             // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
+//  207             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  208             {
+//  209                 // Установим связанные дискретный выходы - новое нарушение.
+//  210                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+//  211                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  212                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//  213                 CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+//  214                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  215                 // Запрограммирован режим автоматического сброса предупредительой и аварийной
+//  216                 // сигнализации при переходе дискретного сигнала в неактивное состояние?
+//  217                 if (CPss21::m_xDeviceConfiguration.AutoUnset)
+//  218                 {
+//  219                     SetFsmState(RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING);
+//  220                 }
+//  221                 else
+//  222                 {
+//  223                     SetFsmState(RECEIPT_OR_RESET_WAITING);
+//  224                 }
+//  225             }
+//  226         }
+//  227         break;
+//  228 
+//  229     case RECEIPT_OR_RESET_OR_AUTOUNSET_WAITING:
+//  230         // Запрограммирован режим автоматического сброса предупредительой и аварийной
+//  231         // сигнализации при переходе дискретного сигнала в неактивное состояние.
+//  232         // Дискретный сигнал активен?
+//  233         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  234         {
+//  235             // Установим связанные дискретный выходы - не новое нарушение.
+//  236             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
 //  237         }
-//  238         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  238         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
 //  239         {
-//  240             SetFsmState(NAMUR_STATE_ON);
-//  241         }
-//  242 
-//  243         // Событие сброшено?
-//  244         if (CPss21::GetDiscreteSignalsReset())
-//  245         {
-//  246             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  247             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  248             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  240             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  241             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  242             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  243             SetFsmState(ACTIVE_STATE_WAITING);
+//  244             break;
+//  245         }
+//  246         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  247         {
+//  248             SetFsmState(NAMUR_STATE_ON);
 //  249         }
-//  250         // Событие квитировано?
-//  251         else if (CPss21::GetDiscreteSignalsReceipt())
-//  252         {
-//  253             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  254             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  255             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
-//  256         }
-//  257         break;
-//  258 
-//  259     case RECEIPT_OR_RESET_WAITING:
-//  260         // Дискретный сигнал активен?
-//  261         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  262         {
-//  263             // Установим связанные дискретный выходы - не новое нарушение.
-//  264             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  265         }
+//  250 
+//  251         // Событие сброшено?
+//  252         if (CPss21::GetDiscreteSignalsReset())
+//  253         {
+//  254             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  255             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  256             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  257         }
+//  258         // Событие квитировано?
+//  259         else if (CPss21::GetDiscreteSignalsReceipt())
+//  260         {
+//  261             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  262             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  263             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
+//  264         }
+//  265         break;
 //  266 
-//  267         // Событие сброшено?
-//  268         if (CPss21::GetDiscreteSignalsReset())
-//  269         {
-//  270             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  271             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  272             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  267     case RECEIPT_OR_RESET_WAITING:
+//  268         // Дискретный сигнал активен?
+//  269         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  270         {
+//  271             // Установим связанные дискретный выходы - не новое нарушение.
+//  272             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
 //  273         }
-//  274         // Событие квитировано?
-//  275         else if (CPss21::GetDiscreteSignalsReceipt())
-//  276         {
-//  277             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  278             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  279             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
-//  280         }
-//  281         break;
-//  282 
-//  283     case RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING:
-//  284         // Событие сброшено?
-//  285         if (CPss21::GetDiscreteSignalsReset())
-//  286         {
-//  287             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  274 
+//  275         // Событие сброшено?
+//  276         if (CPss21::GetDiscreteSignalsReset())
+//  277         {
+//  278             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  279             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  280             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  281         }
+//  282         // Событие квитировано?
+//  283         else if (CPss21::GetDiscreteSignalsReceipt())
+//  284         {
+//  285             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  286             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  287             SetFsmState(RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING);
 //  288         }
-//  289         // Дискретный сигнал не активен?
-//  290         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
-//  291         {
-//  292             SetFsmState(RECEIPTED_RESET_WAITING);
-//  293         }
-//  294         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  295         {
-//  296             // Установим связанные дискретный выходы - не новое нарушение.
-//  297             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  298         }
-//  299         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  300         {
-//  301             SetFsmState(NAMUR_STATE_ON);
-//  302         }
-//  303         break;
-//  304 
-//  305     case RESETED_NOT_ACTIVE_STATE_WAITING:
-//  306         // Дискретный сигнал не активен?
-//  307         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
+//  289         break;
+//  290 
+//  291     case RECEIPTED_RESET_OR_NOT_ACTIVE_STATE_WAITING:
+//  292         // Событие сброшено?
+//  293         if (CPss21::GetDiscreteSignalsReset())
+//  294         {
+//  295             SetFsmState(RESETED_NOT_ACTIVE_STATE_WAITING);
+//  296         }
+//  297         // Дискретный сигнал не активен?
+//  298         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
+//  299         {
+//  300             SetFsmState(RECEIPTED_RESET_WAITING);
+//  301         }
+//  302         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  303         {
+//  304             // Установим связанные дискретный выходы - не новое нарушение.
+//  305             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  306         }
+//  307         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
 //  308         {
-//  309             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  310             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  311             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  312             SetFsmState(ACTIVE_STATE_WAITING);
-//  313         }
-//  314         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  315         {
-//  316             // Установим связанные дискретный выходы - не новое нарушение.
-//  317             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  318         }
-//  319         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  320         {
-//  321             SetFsmState(NAMUR_STATE_ON);
-//  322         }
-//  323         break;
-//  324 
-//  325     case RECEIPTED_RESET_WAITING:
-//  326         // Дискретный сигнал активен?
-//  327         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  309             SetFsmState(NAMUR_STATE_ON);
+//  310         }
+//  311         break;
+//  312 
+//  313     case RESETED_NOT_ACTIVE_STATE_WAITING:
+//  314         // Дискретный сигнал не активен?
+//  315         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
+//  316         {
+//  317             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  318             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  319             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  320             SetFsmState(ACTIVE_STATE_WAITING);
+//  321         }
+//  322         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  323         {
+//  324             // Установим связанные дискретный выходы - не новое нарушение.
+//  325             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  326         }
+//  327         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
 //  328         {
-//  329             // Установим связанные дискретный выходы - не новое нарушение.
-//  330             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  331         }
-//  332         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  333         {
-//  334             SetFsmState(NAMUR_STATE_ON);
-//  335         }
-//  336 
-//  337         // Событие сброшено?
-//  338         if (CPss21::GetDiscreteSignalsReset())
-//  339         {
-//  340             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  341             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  342             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  343             SetFsmState(ACTIVE_STATE_WAITING);
-//  344         }
-//  345         break;
-//  346 
-//  347     case NAMUR_STATE_ON:
-//  348         // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  349         CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  350         CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), NAMUR_INDICATION);
-//  351         CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  352 //        CPss21::BoardWindowsUpdate();
-//  353         SetFsmState(NAMUR_INPUT_CORRECT_STATE_WAITING);
-//  354         break;
-//  355 
-//  356     case NAMUR_INPUT_CORRECT_STATE_WAITING:
-//  357         // Дискретный сигнал NAMUR достоверен?
-//  358         if (uiDiscreteSignalState != DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  359         {
-//  360             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  361             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  362             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  363 //            CPss21::BoardWindowsUpdate();
-//  364             SetFsmState(ACTIVE_STATE_WAITING);
-//  365         }
-//  366         break;
-//  367 
-//  368     default:
-//  369         break;
-//  370     }
-//  371 }
-//  372 //-----------------------------------------------------------------------------------------------------
-//  373 
-//  374 
+//  329             SetFsmState(NAMUR_STATE_ON);
+//  330         }
+//  331         break;
+//  332 
+//  333     case RECEIPTED_RESET_WAITING:
+//  334         // Дискретный сигнал активен?
+//  335         if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  336         {
+//  337             // Установим связанные дискретный выходы - не новое нарушение.
+//  338             CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  339         }
+//  340         else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  341         {
+//  342             SetFsmState(NAMUR_STATE_ON);
+//  343         }
+//  344 
+//  345         // Событие сброшено?
+//  346         if (CPss21::GetDiscreteSignalsReset())
+//  347         {
+//  348             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  349             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  350             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  351             SetFsmState(ACTIVE_STATE_WAITING);
+//  352         }
+//  353         break;
+//  354 
+//  355     case NAMUR_STATE_ON:
+//  356         // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  357         CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  358         CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), NAMUR_INDICATION);
+//  359         CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  360 //        CPss21::BoardWindowsUpdate();
+//  361         SetFsmState(NAMUR_INPUT_CORRECT_STATE_WAITING);
+//  362         break;
+//  363 
+//  364     case NAMUR_INPUT_CORRECT_STATE_WAITING:
+//  365         // Дискретный сигнал NAMUR достоверен?
+//  366         if (uiDiscreteSignalState != DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  367         {
+//  368             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  369             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  370             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  371 //            CPss21::BoardWindowsUpdate();
+//  372             SetFsmState(ACTIVE_STATE_WAITING);
+//  373         }
+//  374         break;
 //  375 
-//  376 
-//  377 
-//  378 
-//  379 
-//  380 
-//  381 //-----------------------------------------------------------------------------------------------------
+//  376     default:
+//  377         break;
+//  378     }
+//  379 }
+//  380 //-----------------------------------------------------------------------------------------------------
+//  381 
+//  382 
+//  383 
+//  384 
+//  385 
+//  386 
+//  387 
+//  388 
+//  389 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  382 CNormalAlarmDfa::CNormalAlarmDfa()
+//  390 CNormalAlarmDfa::CNormalAlarmDfa()
 ??CNormalAlarmDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  383 {
+//  391 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_2)
@@ -1211,11 +1220,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  384     SetFsmState(START);
+//  392     SetFsmState(START);
         LDI     R18, 0
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  385 }
+//  393 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1236,31 +1245,31 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  386 
-//  387 //-----------------------------------------------------------------------------------------------------
-//  388 CNormalAlarmDfa::~CNormalAlarmDfa()
-//  389 {
-//  390     //dtor
-//  391 }
-//  392 
-//  393 //-----------------------------------------------------------------------------------------------------
 //  394 
-//  395 
-//  396 
-//  397 
-//  398 
-//  399 
+//  395 //-----------------------------------------------------------------------------------------------------
+//  396 CNormalAlarmDfa::~CNormalAlarmDfa()
+//  397 {
+//  398     //dtor
+//  399 }
 //  400 
-//  401 
-//  402 //-----------------------------------------------------------------------------------------------------
+//  401 //-----------------------------------------------------------------------------------------------------
+//  402 
+//  403 
+//  404 
+//  405 
+//  406 
+//  407 
+//  408 
+//  409 
+//  410 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  403 CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
+//  411 CPreventiveAlarmLowLevelDfa::CPreventiveAlarmLowLevelDfa()
 ??CPreventiveAlarmLowLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  404 {
+//  412 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_3)
@@ -1268,11 +1277,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  405     SetFsmState(ACTIVE_STATE_WAITING);
+//  413     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  406 }
+//  414 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1293,22 +1302,22 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  407 
-//  408 //-----------------------------------------------------------------------------------------------------
-//  409 CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
-//  410 {
-//  411     //dtor
-//  412 }
-//  413 
-//  414 //-----------------------------------------------------------------------------------------------------
+//  415 
+//  416 //-----------------------------------------------------------------------------------------------------
+//  417 CPreventiveAlarmLowLevelDfa::~CPreventiveAlarmLowLevelDfa()
+//  418 {
+//  419     //dtor
+//  420 }
+//  421 
+//  422 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  415 CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
+//  423 CPreventiveAlarmHighLevelDfa::CPreventiveAlarmHighLevelDfa()
 ??CPreventiveAlarmHighLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  416 {
+//  424 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_4)
@@ -1316,11 +1325,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  417     SetFsmState(ACTIVE_STATE_WAITING);
+//  425     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  418 }
+//  426 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1341,22 +1350,22 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  419 
-//  420 //-----------------------------------------------------------------------------------------------------
-//  421 CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
-//  422 {
-//  423     //dtor
-//  424 }
-//  425 
-//  426 //-----------------------------------------------------------------------------------------------------
+//  427 
+//  428 //-----------------------------------------------------------------------------------------------------
+//  429 CPreventiveAlarmHighLevelDfa::~CPreventiveAlarmHighLevelDfa()
+//  430 {
+//  431     //dtor
+//  432 }
+//  433 
+//  434 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  427 CPreventiveAlarmLowLevelNamurDfa::CPreventiveAlarmLowLevelNamurDfa()
+//  435 CPreventiveAlarmLowLevelNamurDfa::CPreventiveAlarmLowLevelNamurDfa()
 ??CPreventiveAlarmLowLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  428 {
+//  436 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_5)
@@ -1364,11 +1373,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  429     SetFsmState(ACTIVE_STATE_WAITING);
+//  437     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  430 }
+//  438 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1389,22 +1398,22 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  431 
-//  432 //-----------------------------------------------------------------------------------------------------
-//  433 CPreventiveAlarmLowLevelNamurDfa::~CPreventiveAlarmLowLevelNamurDfa()
-//  434 {
-//  435     //dtor
-//  436 }
-//  437 
-//  438 //-----------------------------------------------------------------------------------------------------
+//  439 
+//  440 //-----------------------------------------------------------------------------------------------------
+//  441 CPreventiveAlarmLowLevelNamurDfa::~CPreventiveAlarmLowLevelNamurDfa()
+//  442 {
+//  443     //dtor
+//  444 }
+//  445 
+//  446 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  439 CPreventiveAlarmHighLevelNamurDfa::CPreventiveAlarmHighLevelNamurDfa()
+//  447 CPreventiveAlarmHighLevelNamurDfa::CPreventiveAlarmHighLevelNamurDfa()
 ??CPreventiveAlarmHighLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  440 {
+//  448 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_6)
@@ -1412,11 +1421,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  441     SetFsmState(ACTIVE_STATE_WAITING);
+//  449     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  442 }
+//  450 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1437,29 +1446,29 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  443 
-//  444 //-----------------------------------------------------------------------------------------------------
-//  445 CPreventiveAlarmHighLevelNamurDfa::~CPreventiveAlarmHighLevelNamurDfa()
-//  446 {
-//  447     //dtor
-//  448 }
-//  449 //-----------------------------------------------------------------------------------------------------
-//  450 
 //  451 
-//  452 
-//  453 
-//  454 
-//  455 
-//  456 
+//  452 //-----------------------------------------------------------------------------------------------------
+//  453 CPreventiveAlarmHighLevelNamurDfa::~CPreventiveAlarmHighLevelNamurDfa()
+//  454 {
+//  455     //dtor
+//  456 }
 //  457 //-----------------------------------------------------------------------------------------------------
+//  458 
+//  459 
+//  460 
+//  461 
+//  462 
+//  463 
+//  464 
+//  465 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  458 CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
+//  466 CEmergencyAlarmLowLevelDfa::CEmergencyAlarmLowLevelDfa()
 ??CEmergencyAlarmLowLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  459 {
+//  467 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_7)
@@ -1467,11 +1476,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  460     SetFsmState(ACTIVE_STATE_WAITING);
+//  468     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  461 }
+//  469 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1492,22 +1501,22 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  462 
-//  463 //-----------------------------------------------------------------------------------------------------
-//  464 CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
-//  465 {
-//  466     //dtor
-//  467 }
-//  468 
-//  469 //-----------------------------------------------------------------------------------------------------
+//  470 
+//  471 //-----------------------------------------------------------------------------------------------------
+//  472 CEmergencyAlarmLowLevelDfa::~CEmergencyAlarmLowLevelDfa()
+//  473 {
+//  474     //dtor
+//  475 }
+//  476 
+//  477 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  470 CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
+//  478 CEmergencyAlarmHighLevelDfa::CEmergencyAlarmHighLevelDfa()
 ??CEmergencyAlarmHighLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  471 {
+//  479 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_8)
@@ -1515,11 +1524,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  472     SetFsmState(ACTIVE_STATE_WAITING);
+//  480     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  473 }
+//  481 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1540,23 +1549,23 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  474 
-//  475 //-----------------------------------------------------------------------------------------------------
-//  476 CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
-//  477 {
-//  478     //dtor
-//  479 }
-//  480 
-//  481 
-//  482 //-----------------------------------------------------------------------------------------------------
+//  482 
+//  483 //-----------------------------------------------------------------------------------------------------
+//  484 CEmergencyAlarmHighLevelDfa::~CEmergencyAlarmHighLevelDfa()
+//  485 {
+//  486     //dtor
+//  487 }
+//  488 
+//  489 
+//  490 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  483 CEmergencyAlarmLowLevelNamurDfa::CEmergencyAlarmLowLevelNamurDfa()
+//  491 CEmergencyAlarmLowLevelNamurDfa::CEmergencyAlarmLowLevelNamurDfa()
 ??CEmergencyAlarmLowLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  484 {
+//  492 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_9)
@@ -1564,11 +1573,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  485     SetFsmState(ACTIVE_STATE_WAITING);
+//  493     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  486 }
+//  494 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1589,22 +1598,22 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  487 
-//  488 //-----------------------------------------------------------------------------------------------------
-//  489 CEmergencyAlarmLowLevelNamurDfa::~CEmergencyAlarmLowLevelNamurDfa()
-//  490 {
-//  491     //dtor
-//  492 }
-//  493 
-//  494 //-----------------------------------------------------------------------------------------------------
+//  495 
+//  496 //-----------------------------------------------------------------------------------------------------
+//  497 CEmergencyAlarmLowLevelNamurDfa::~CEmergencyAlarmLowLevelNamurDfa()
+//  498 {
+//  499     //dtor
+//  500 }
+//  501 
+//  502 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  495 CEmergencyAlarmHighLevelNamurDfa::CEmergencyAlarmHighLevelNamurDfa()
+//  503 CEmergencyAlarmHighLevelNamurDfa::CEmergencyAlarmHighLevelNamurDfa()
 ??CEmergencyAlarmHighLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  496 {
+//  504 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_10)
@@ -1612,11 +1621,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  497     SetFsmState(ACTIVE_STATE_WAITING);
+//  505     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  498 }
+//  506 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1637,30 +1646,30 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  499 
-//  500 //-----------------------------------------------------------------------------------------------------
-//  501 CEmergencyAlarmHighLevelNamurDfa::~CEmergencyAlarmHighLevelNamurDfa()
-//  502 {
-//  503     //dtor
-//  504 }
-//  505 //-----------------------------------------------------------------------------------------------------
-//  506 
 //  507 
-//  508 
-//  509 
-//  510 
-//  511 
-//  512 
-//  513 
-//  514 //-----------------------------------------------------------------------------------------------------
+//  508 //-----------------------------------------------------------------------------------------------------
+//  509 CEmergencyAlarmHighLevelNamurDfa::~CEmergencyAlarmHighLevelNamurDfa()
+//  510 {
+//  511     //dtor
+//  512 }
+//  513 //-----------------------------------------------------------------------------------------------------
+//  514 
+//  515 
+//  516 
+//  517 
+//  518 
+//  519 
+//  520 
+//  521 
+//  522 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  515 CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
+//  523 CIndicationAlarmLowLevelDfa::CIndicationAlarmLowLevelDfa()
 ??CIndicationAlarmLowLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  516 {
+//  524 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CAlarmDfa
         LDI     R16, LOW(??__vtbl_11)
@@ -1668,11 +1677,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  517     SetFsmState(ACTIVE_STATE_WAITING);
+//  525     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  518 }
+//  526 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -1693,304 +1702,156 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  519 
-//  520 //-----------------------------------------------------------------------------------------------------
-//  521 CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
-//  522 {
-//  523     //dtor
-//  524 }
-//  525 
-//  526 //-----------------------------------------------------------------------------------------------------
-//  527 // Автомат обработки сигнализации дискретного сигнала.
-//  528 void CIndicationAlarmLowLevelDfa::Fsm(void)
-//  529 {
-//  530     uint8_t uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-//  531 
-//  532     // дискретный сигнал этого объекта автомата сигнализации привязан
-//  533     // к дискретному входу модуля ввода?
-//  534     if (GetDiscreteStateIndex() < DISCRETE_INPUTS_NUMBER)
-//  535     {
-//  536         // дискретный вход недостоверен?
-//  537         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x07) == INPUT_IS_INVALID)
-//  538         {
-//  539             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_INVALID;
-//  540         }
-//  541         else
-//  542         {
-//  543             // тип текущего дискретного сигнала namur?
-//  544             if (IS_NAMUR_ON())
-//  545             {
-//  546                 switch (CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()))
-//  547                 {
-//  548                 case OFF:
-//  549                 case ON:
-//  550                     // Дискретный сигнал активен?
-//  551                     // уровень сигналы типа "NAMUR" определяем по состояниям дискретного входа:
-//  552 //	- состояния "0" (OFF) - "РАЗОМКНУТО"
-//  553 //	- состояния "1" (ON) - "ЗАМКНУТО"
-//  554                     if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF)
-//  555                     {
-//  556                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  557                         // интерпретированное с учетом условия активности.
-//  558                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//  559 
-//  560                         if (ACTIVE_LEVEL())
-//  561                         {
-//  562                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  563                         }
-//  564                         else
-//  565                         {
-//  566                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  567                         }
-//  568                     }
-//  569                     else if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON)
-//  570                     {
-//  571                         // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  572                         // интерпретированное с учетом условия активности.
-//  573                         CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-//  574 
-//  575                         if (ACTIVE_LEVEL())
-//  576                         {
-//  577                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  578                         }
-//  579                         else
-//  580                         {
-//  581                             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  582                         }
-//  583                     }
-//  584                     break;
-//  585 
-//  586                 case WIRE_BREAK:
-//  587                 case SHORT_CIRCUIT:
-//  588                     uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NAMUR_ERROR;
-//  589                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  590                     // интерпретированное с учетом условия активности.
-//  591                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//  592                     break;
-//  593 
-//  594                 default:
-//  595                     break;
-//  596                 }
-//  597             }
-//  598             else
-//  599             {
-//  600                 // Дискретный сигнал активен?
-//  601                 // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-//  602                 //        1.3. В алгоритме обработки сигналов типа "СУХОЙ КОНТАКТ" (СК) должно быть:
-//  603 //	- состояния "0" (OFF) и "3" (КЗ) - "ЗАМКНУТО"
-//  604 //	- состояния "1" (ON) и "2" (ОБРЫВ) - "РАЗОМКНУТО"
-//  605                 if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == WIRE_BREAK) ||
-//  606                         ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == ON))
-//  607                 {
-//  608                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  609                     // интерпретированное с учетом условия активности.
-//  610                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 0);
-//  611 
-//  612                     if (ACTIVE_LEVEL())
-//  613                     {
-//  614                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  615                     }
-//  616                     else
-//  617                     {
-//  618                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  619                     }
-//  620                 }
-//  621                 else if (((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == SHORT_CIRCUIT) ||
-//  622                          ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == OFF))
-//  623                 {
-//  624                     // установим значение текущего дискретного входа отображаемое в пространстве модбас
-//  625                     // интерпретированное с учетом условия активности.
-//  626                     CPss21::SetDiscreteInputState(GetDiscreteStateIndex(), 1);
-//  627 
-//  628                     if (ACTIVE_LEVEL())
-//  629                     {
-//  630                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  631                     }
-//  632                     else
-//  633                     {
-//  634                         uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  635                     }
-//  636                 }
-//  637             }
-//  638         }
-//  639     }
-//  640     // дискретный сигнал этого объекта автомата сигнализации привязан
-//  641     // к состоянию ячейки модбас.
-//  642     else
-//  643     {
-//  644         if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x01) == 1)
-//  645         {
-//  646             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  647         }
-//  648         else
-//  649         {
-//  650             uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  651         }
-//  652     }
-//  653 
+//  527 
+//  528 //-----------------------------------------------------------------------------------------------------
+//  529 CIndicationAlarmLowLevelDfa::~CIndicationAlarmLowLevelDfa()
+//  530 {
+//  531     //dtor
+//  532 }
+//  533 
+//  534 //-----------------------------------------------------------------------------------------------------
+//  535 // Автомат обработки сигнализации дискретного сигнала.
+//  536 void CIndicationAlarmLowLevelDfa::Fsm(void)
+//  537 {
+//  538     uint8_t uiDiscreteSignalState = DiscreteSignalStateCheck();
+//  539 
+//  540     switch (GetFsmState())
+//  541     {
+//  542     case START:
+//  543         break;
+//  544 
+//  545     case ACTIVE_STATE_WAITING:
+//  546 //        CPss21::m_aucRtuHoldingRegistersArray[0] = 7;//CPss21::m_aucDiscreteInputsBadState[0];
+//  547         // тип текущего дискретного сигнала namur?
+//  548         if (IS_NAMUR_ON())
+//  549         {
+//  550             // Дискретный сигнал NAMUR в обрыве или кз?
+//  551             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  552             {
+//  553                 SetFsmState(NAMUR_STATE_ON);
+//  554             }
+//  555             else
+//  556             {
+//  557                 // Дискретный сигнал активен?
+//  558                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  559                 {
+//  560                     // Установим связанные дискретный выходы - новое нарушение.
+//  561                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+//  562                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  563                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//  564                     CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+//  565                     // Активизируем окно сигнализации, для отображения извещателем.
+//  566                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  567                     SetFsmState(NOT_ACTIVE_STATE_WAITING);
+//  568                 }
+//  569             }
+//  570         }
+//  571         else
+//  572         {
+//  573             // Дискретный сигнал активен?
+//  574             // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
+//  575             // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
+//  576             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  577             {
+//  578                 // Установим связанные дискретный выходы - новое нарушение.
+//  579                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
+//  580                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  581                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
+//  582                 CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+//  583                 // Активизируем окно сигнализации, для отображения извещателем.
+//  584                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  585                 SetFsmState(NOT_ACTIVE_STATE_WAITING);
+//  586             }
+//  587         }
+//  588 
+//  589         break;
+//  590 
+//  591     case NOT_ACTIVE_STATE_WAITING:
+//  592         // тип текущего дискретного сигнала namur?
+//  593         if (IS_NAMUR_ON())
+//  594         {
+//  595             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  596             {
+//  597                 SetFsmState(NAMUR_STATE_ON);
+//  598             }
+//  599             else
+//  600             {
+//  601                 // Дискретный сигнал не активен?
+//  602                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
+//  603                 {
+//  604                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  605                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  606                     // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+//  607                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  608                     SetFsmState(ACTIVE_STATE_WAITING);
+//  609                 }
+//  610                 else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  611                 {
+//  612                     // Установим связанные дискретный выходы - не новое нарушение.
+//  613                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  614                 }
+//  615             }
+//  616         }
+//  617         else
+//  618         {
+//  619             // Дискретный сигнал не активен?
+//  620             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
+//  621             {
+//  622                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  623                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  624                 // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
+//  625                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  626                 SetFsmState(ACTIVE_STATE_WAITING);
+//  627             }
+//  628             else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
+//  629             {
+//  630                 // Установим связанные дискретный выходы - не новое нарушение.
+//  631                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
+//  632             }
+//  633         }
+//  634         break;
+//  635 
+//  636     case NAMUR_STATE_ON:
+//  637         // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  638         CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
+//  639         CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), NAMUR_INDICATION);
+//  640         CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
+//  641         SetFsmState(NAMUR_INPUT_CORRECT_STATE_WAITING);
+//  642         break;
+//  643 
+//  644     case NAMUR_INPUT_CORRECT_STATE_WAITING:
+//  645         // Дискретный сигнал NAMUR достоверен?
+//  646         if (uiDiscreteSignalState != DISCRETE_SIGNAL_IS_NAMUR_ERROR)
+//  647         {
+//  648             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  649             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
+//  650             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
+//  651             SetFsmState(ACTIVE_STATE_WAITING);
+//  652         }
+//  653         break;
 //  654 
-//  655 //    if (GetAlarmWindowIndex() == 1)
-//  656 //    {
-//  657 //        if ((CPss21::GetDiscreteInputsBadState(GetDiscreteStateIndex()) & 0x03) == 1)
-//  658 //        {
-//  659 //            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  660 //        }
-//  661 //        else
-//  662 //        {
-//  663 //            uiDiscreteSignalState = DISCRETE_SIGNAL_IS_NOT_ACTIVE;
-//  664 //        }
-//  665 //
-//  666 ////        uiDiscreteSignalState = DISCRETE_SIGNAL_IS_ACTIVE;
-//  667 //        CPss21::m_aucRtuHoldingRegistersArray[0] = 7;//CPss21::m_aucDiscreteInputsBadState[0];
-//  668 //        CPss21::m_aucRtuHoldingRegistersArray[1] = ALARM_TYPE();
-//  669 //        CPss21::m_aucRtuHoldingRegistersArray[2] = CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> GetActivityState();
-//  670 ////                // Установим связанные дискретный выходы - новое нарушение.
-//  671 ////                CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-//  672 ////                // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  673 ////                CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-//  674 ////                CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-//  675 ////                // Активизируем окно сигнализации, для отображения извещателем.
-//  676 ////                CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  677 ////                SetFsmState(NOT_ACTIVE_STATE_WAITING);
-//  678 //    }
-//  679 
-//  680     switch (GetFsmState())
-//  681     {
-//  682     case START:
-//  683         break;
-//  684 
-//  685     case ACTIVE_STATE_WAITING:
-//  686 //        CPss21::m_aucRtuHoldingRegistersArray[0] = 7;//CPss21::m_aucDiscreteInputsBadState[0];
-//  687         // тип текущего дискретного сигнала namur?
-//  688         if (IS_NAMUR_ON())
-//  689         {
-//  690             // Дискретный сигнал NAMUR в обрыве или кз?
-//  691             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  692             {
-//  693                 SetFsmState(NAMUR_STATE_ON);
-//  694             }
-//  695             else
-//  696             {
-//  697                 // Дискретный сигнал активен?
-//  698                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  699                 {
-//  700                     // Установим связанные дискретный выходы - новое нарушение.
-//  701                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-//  702                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  703                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-//  704                     CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-//  705                     // Активизируем окно сигнализации, для отображения извещателем.
-//  706                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  707                     SetFsmState(NOT_ACTIVE_STATE_WAITING);
-//  708                 }
-//  709             }
-//  710         }
-//  711         else
-//  712         {
-//  713             // Дискретный сигнал активен?
-//  714             // уровень сигналы типа "СУХОЙ КОНТАКТ" (СК) определяем по состояниям дискретного входа:
-//  715             // 2 - обрыв(разомкнуто), и 3 - КЗ(замкнуто).
-//  716             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  717             {
-//  718                 // Установим связанные дискретный выходы - новое нарушение.
-//  719                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NEW_VIOLATION);
-//  720                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  721                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), ALARM_TYPE());
-//  722                 CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-//  723                 // Активизируем окно сигнализации, для отображения извещателем.
-//  724                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  725                 SetFsmState(NOT_ACTIVE_STATE_WAITING);
-//  726             }
-//  727         }
-//  728 
-//  729         break;
-//  730 
-//  731     case NOT_ACTIVE_STATE_WAITING:
-//  732         // тип текущего дискретного сигнала namur?
-//  733         if (IS_NAMUR_ON())
-//  734         {
-//  735             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  736             {
-//  737                 SetFsmState(NAMUR_STATE_ON);
-//  738             }
-//  739             else
-//  740             {
-//  741                 // Дискретный сигнал не активен?
-//  742                 if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
-//  743                 {
-//  744                     // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  745                     CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  746                     // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-//  747                     CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  748                     SetFsmState(ACTIVE_STATE_WAITING);
-//  749                 }
-//  750                 else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  751                 {
-//  752                     // Установим связанные дискретный выходы - не новое нарушение.
-//  753                     CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  754                 }
-//  755             }
-//  756         }
-//  757         else
-//  758         {
-//  759             // Дискретный сигнал не активен?
-//  760             if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_NOT_ACTIVE)
-//  761             {
-//  762                 // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  763                 CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  764                 // Деактмвируем окно сигнализации, для прекращения отображения извещателем.
-//  765                 CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  766                 SetFsmState(ACTIVE_STATE_WAITING);
-//  767             }
-//  768             else if (uiDiscreteSignalState == DISCRETE_SIGNAL_IS_ACTIVE)
-//  769             {
-//  770                 // Установим связанные дискретный выходы - не новое нарушение.
-//  771                 CPss21::DiscreteOutputsSet(GetLinkedDiscreteOutputsPointer(), NOT_NEW_VIOLATION);
-//  772             }
-//  773         }
-//  774         break;
-//  775 
-//  776     case NAMUR_STATE_ON:
-//  777         // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  778         CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), INDICATION);
-//  779         CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), NAMUR_INDICATION);
-//  780         CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(1);
-//  781         SetFsmState(NAMUR_INPUT_CORRECT_STATE_WAITING);
-//  782         break;
-//  783 
-//  784     case NAMUR_INPUT_CORRECT_STATE_WAITING:
-//  785         // Дискретный сигнал NAMUR достоверен?
-//  786         if (uiDiscreteSignalState != DISCRETE_SIGNAL_IS_NAMUR_ERROR)
-//  787         {
-//  788             // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  789             CPss21::SetAlarmWindowType(GetAlarmWindowIndex(), NORMAL);
-//  790             CPss21::GetAlarmWindowControlPointer(GetAlarmWindowIndex()) -> SetActivityState(0);
-//  791             SetFsmState(ACTIVE_STATE_WAITING);
-//  792         }
-//  793         break;
-//  794 
-//  795     default:
-//  796         break;
-//  797     }
-//  798 }
-//  799 //-----------------------------------------------------------------------------------------------------
-//  800 
-//  801 
-//  802 
-//  803 
-//  804 
-//  805 
-//  806 
-//  807 
-//  808 //-----------------------------------------------------------------------------------------------------
+//  655     default:
+//  656         break;
+//  657     }
+//  658 }
+//  659 //-----------------------------------------------------------------------------------------------------
+//  660 
+//  661 
+//  662 
+//  663 
+//  664 
+//  665 
+//  666 
+//  667 
+//  668 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  809 CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
+//  669 CIndicationAlarmHighLevelDfa::CIndicationAlarmHighLevelDfa()
 ??CIndicationAlarmHighLevelDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  810 {
+//  670 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CIndicationAlarmLowLevelDfa
         LDI     R16, LOW(??__vtbl_12)
@@ -1998,11 +1859,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  811     SetFsmState(ACTIVE_STATE_WAITING);
+//  671     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  812 }
+//  672 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -2023,24 +1884,24 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  813 
-//  814 //-----------------------------------------------------------------------------------------------------
-//  815 CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
-//  816 {
-//  817     //dtor
-//  818 }
-//  819 //-----------------------------------------------------------------------------------------------------
-//  820 
-//  821 
-//  822 //-----------------------------------------------------------------------------------------------------
+//  673 
+//  674 //-----------------------------------------------------------------------------------------------------
+//  675 CIndicationAlarmHighLevelDfa::~CIndicationAlarmHighLevelDfa()
+//  676 {
+//  677     //dtor
+//  678 }
+//  679 //-----------------------------------------------------------------------------------------------------
+//  680 
+//  681 
+//  682 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  823 CIndicationAlarmLowLevelNamurDfa::CIndicationAlarmLowLevelNamurDfa()
+//  683 CIndicationAlarmLowLevelNamurDfa::CIndicationAlarmLowLevelNamurDfa()
 ??CIndicationAlarmLowLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  824 {
+//  684 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CIndicationAlarmLowLevelDfa
         LDI     R16, LOW(??__vtbl_13)
@@ -2048,11 +1909,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  825     SetFsmState(ACTIVE_STATE_WAITING);
+//  685     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  826 }
+//  686 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -2073,21 +1934,21 @@ _A_PINF:
         LDI     R16, 0
         LDI     R17, 0
         RET
-//  827 
-//  828 //-----------------------------------------------------------------------------------------------------
-//  829 CIndicationAlarmLowLevelNamurDfa::~CIndicationAlarmLowLevelNamurDfa()
-//  830 {
-//  831     //dtor
-//  832 }
-//  833 //-----------------------------------------------------------------------------------------------------
+//  687 
+//  688 //-----------------------------------------------------------------------------------------------------
+//  689 CIndicationAlarmLowLevelNamurDfa::~CIndicationAlarmLowLevelNamurDfa()
+//  690 {
+//  691     //dtor
+//  692 }
+//  693 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  834 CIndicationAlarmHighLevelNamurDfa::CIndicationAlarmHighLevelNamurDfa()
+//  694 CIndicationAlarmHighLevelNamurDfa::CIndicationAlarmHighLevelNamurDfa()
 ??CIndicationAlarmHighLevelNamurDfa:
         ST      -Y, R27
         ST      -Y, R26
         MOVW    R27:R26, R17:R16
-//  835 {
+//  695 {
         MOVW    R17:R16, R27:R26
         RCALL   ??CIndicationAlarmLowLevelDfa
         LDI     R16, LOW(??__vtbl_14)
@@ -2095,11 +1956,11 @@ _A_PINF:
         MOVW    R31:R30, R27:R26
         STD     Z+1, R16
         STD     Z+2, R17
-//  836     SetFsmState(ACTIVE_STATE_WAITING);
+//  696     SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  837 }
+//  697 }
         MOVW    R17:R16, R27:R26
         LD      R26, Y+
         LD      R27, Y+
@@ -2178,7 +2039,7 @@ _A_PINF:
         JMP     ?EPILOGUE_B4_L09
 
         RSEG CODE:CODE:NOROOT(1)
-??Fsm:
+??DiscreteSignalStateCheck:
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
         LDI     R24, 3
@@ -2186,16 +2047,16 @@ _A_PINF:
         CALL    ??GetDiscreteStateIndex
         CPI     R16, 48
         BRCS    $+2+2
-        RJMP    ??Fsm_3
+        RJMP    ??DiscreteSignalStateCheck_1
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x07
         CPI     R16, 4
-        BRNE    ??Fsm_4
+        BRNE    ??DiscreteSignalStateCheck_2
         LDI     R24, 3
-        RJMP    ??Fsm_5
-??Fsm_4:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_2:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -2208,36 +2069,36 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_6
+        BREQ    ??DiscreteSignalStateCheck_4
         LDI     R16, 1
-        RJMP    ??Fsm_7
-??Fsm_6:
+        RJMP    ??DiscreteSignalStateCheck_5
+??DiscreteSignalStateCheck_4:
         LDI     R16, 0
-??Fsm_7:
+??DiscreteSignalStateCheck_5:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_8
+        RJMP    ??DiscreteSignalStateCheck_6
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         SUBI    R16, 0
-        BREQ    ??Fsm_9
+        BREQ    ??DiscreteSignalStateCheck_7
         DEC     R16
-        BREQ    ??Fsm_9
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_10
+        BREQ    ??DiscreteSignalStateCheck_7
         DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_10
-        RJMP    ??Fsm_5
-??Fsm_9:
+        RJMP    ??DiscreteSignalStateCheck_8
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??DiscreteSignalStateCheck_8
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_7:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         TST     R16
-        BRNE    ??Fsm_11
+        BRNE    ??DiscreteSignalStateCheck_9
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
@@ -2254,26 +2115,26 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_12
+        BREQ    ??DiscreteSignalStateCheck_10
         LDI     R16, 1
-        RJMP    ??Fsm_13
-??Fsm_12:
+        RJMP    ??DiscreteSignalStateCheck_11
+??DiscreteSignalStateCheck_10:
         LDI     R16, 0
-??Fsm_13:
+??DiscreteSignalStateCheck_11:
         TST     R16
-        BREQ    ??Fsm_14
+        BREQ    ??DiscreteSignalStateCheck_12
         LDI     R24, 1
-        RJMP    ??Fsm_5
-??Fsm_14:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_12:
         LDI     R24, 0
-        RJMP    ??Fsm_5
-??Fsm_11:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_9:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 1
-        BRNE    ??Fsm_15
+        BRNE    ??DiscreteSignalStateCheck_13
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 1
@@ -2290,41 +2151,41 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_16
+        BREQ    ??DiscreteSignalStateCheck_14
         LDI     R16, 1
-        RJMP    ??Fsm_17
-??Fsm_16:
+        RJMP    ??DiscreteSignalStateCheck_15
+??DiscreteSignalStateCheck_14:
         LDI     R16, 0
-??Fsm_17:
+??DiscreteSignalStateCheck_15:
         TST     R16
-        BREQ    ??Fsm_18
+        BREQ    ??DiscreteSignalStateCheck_16
         LDI     R24, 0
-        RJMP    ??Fsm_5
-??Fsm_18:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_16:
         LDI     R24, 1
-??Fsm_15:
-        RJMP    ??Fsm_5
-??Fsm_10:
+??DiscreteSignalStateCheck_13:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_8:
         LDI     R24, 2
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
         CALL    ??SetDiscreteInputState
-        RJMP    ??Fsm_5
-??Fsm_8:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_6:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 2
-        BREQ    ??Fsm_19
+        BREQ    ??DiscreteSignalStateCheck_17
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 1
-        BRNE    ??Fsm_20
-??Fsm_19:
+        BRNE    ??DiscreteSignalStateCheck_18
+??DiscreteSignalStateCheck_17:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 0
@@ -2341,33 +2202,33 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_21
+        BREQ    ??DiscreteSignalStateCheck_19
         LDI     R16, 1
-        RJMP    ??Fsm_22
-??Fsm_21:
+        RJMP    ??DiscreteSignalStateCheck_20
+??DiscreteSignalStateCheck_19:
         LDI     R16, 0
-??Fsm_22:
+??DiscreteSignalStateCheck_20:
         TST     R16
-        BREQ    ??Fsm_23
+        BREQ    ??DiscreteSignalStateCheck_21
         LDI     R24, 1
-        RJMP    ??Fsm_5
-??Fsm_23:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_21:
         LDI     R24, 0
-        RJMP    ??Fsm_5
-??Fsm_20:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_18:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         CPI     R16, 3
-        BREQ    ??Fsm_24
+        BREQ    ??DiscreteSignalStateCheck_22
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         ANDI    R16, 0x03
         TST     R16
-        BRNE    ??Fsm_5
-??Fsm_24:
+        BRNE    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_22:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         LDI     R17, 1
@@ -2384,30 +2245,50 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_25
+        BREQ    ??DiscreteSignalStateCheck_23
         LDI     R16, 1
-        RJMP    ??Fsm_26
-??Fsm_25:
+        RJMP    ??DiscreteSignalStateCheck_24
+??DiscreteSignalStateCheck_23:
         LDI     R16, 0
-??Fsm_26:
+??DiscreteSignalStateCheck_24:
         TST     R16
-        BREQ    ??Fsm_27
+        BREQ    ??DiscreteSignalStateCheck_25
         LDI     R24, 0
-        RJMP    ??Fsm_5
-??Fsm_27:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_25:
         LDI     R24, 1
-        RJMP    ??Fsm_5
-??Fsm_3:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_1:
         MOVW    R17:R16, R27:R26
         CALL    ??GetDiscreteStateIndex
         CALL    ??GetDiscreteInputsBadState
         BST     R16, 0
-        BRTC    ??Fsm_28
+        BRTC    ??DiscreteSignalStateCheck_26
         LDI     R24, 1
-        RJMP    ??Fsm_5
-??Fsm_28:
+        RJMP    ??DiscreteSignalStateCheck_3
+??DiscreteSignalStateCheck_26:
         LDI     R24, 0
-??Fsm_5:
+??DiscreteSignalStateCheck_3:
+        MOV     R16, R24
+        LDI     R30, 4
+        JMP     ?EPILOGUE_B4_L09
+
+        RSEG CODE:CODE:NOROOT(1)
+??Fsm:
+        CALL    ?PROLOGUE4_L09
+        MOVW    R27:R26, R17:R16
+        MOVW    R17:R16, R27:R26
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 10
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 11
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R24, R16
         MOVW    R17:R16, R27:R26
         CALL    ??GetFsmState
         LDI     R30, LOW(`?<Jumptable for Fsm>_0`)
@@ -2415,7 +2296,7 @@ _A_PINF:
         OUT     0x3B, R31
         LDI     R31, HIGH(`?<Jumptable for Fsm>_0`)
         JMP     ?CV_SWITCH_L06
-??Fsm_29:
+??Fsm_3:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -2428,323 +2309,323 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_30
+        BREQ    ??Fsm_4
         LDI     R16, 1
-        RJMP    ??Fsm_31
-??Fsm_30:
+        RJMP    ??Fsm_5
+??Fsm_4:
         LDI     R16, 0
-??Fsm_31:
+??Fsm_5:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_32
+        RJMP    ??Fsm_6
+        CPI     R24, 2
+        BRNE    ??Fsm_7
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_7:
+        CPI     R24, 1
+        BREQ    $+2+2
+        RJMP    ??Fsm_8
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowColor
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 1
+        CALL    ??SetActivityState
+        LDI     R30, LOW(??m_xDeviceConfiguration)
+        LDI     R31, (??m_xDeviceConfiguration) >> 8
+        LDD     R16, Z+3
+        SBRS    R16, 3
+        RJMP    ??Fsm_9
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_9:
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_6:
+        CPI     R24, 1
+        BREQ    $+2+2
+        RJMP    ??Fsm_10
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 1
+        CALL    ??DiscreteOutputsSet
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        MOVW    R31:R30, R27:R26
+        LDD     R18, Z+1
+        LDD     R19, Z+2
+        MOVW    R31:R30, R19:R18
+        ADIW    R31:R30, 4
+        LPM     R18, Z+
+        LPM     R19, Z
+        SBIW    R31:R30, 5
+        MOVW    R31:R30, R19:R18
+        ICALL
+        MOV     R25, R16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        MOV     R17, R25
+        CALL    ??SetAlarmWindowColor
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 1
+        CALL    ??SetActivityState
+        LDI     R30, LOW(??m_xDeviceConfiguration)
+        LDI     R31, (??m_xDeviceConfiguration) >> 8
+        LDD     R16, Z+3
+        SBRS    R16, 3
+        RJMP    ??Fsm_11
+        LDI     R18, 3
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_11:
+        LDI     R18, 2
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_10:
+        RJMP    ??Fsm_8
+??Fsm_12:
+        CPI     R24, 1
+        BRNE    ??Fsm_13
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_14
+??Fsm_13:
+        TST     R24
+        BRNE    ??Fsm_15
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 0
+        CALL    ??SetActivityState
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_15:
+        CPI     R24, 2
+        BRNE    ??Fsm_14
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_14:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_16
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_16:
+        CALL    ??GetDiscreteSignalsReceipt
+        TST     R16
+        BREQ    ??Fsm_17
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 4
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_17:
+        RJMP    ??Fsm_8
+??Fsm_18:
+        CPI     R24, 1
+        BRNE    ??Fsm_19
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+??Fsm_19:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_20
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_20:
+        CALL    ??GetDiscreteSignalsReceipt
+        TST     R16
+        BREQ    ??Fsm_21
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 1
+        CALL    ??SetAlarmWindowType
+        LDI     R18, 4
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_21:
+        RJMP    ??Fsm_8
+??Fsm_22:
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_23
+        LDI     R18, 5
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_23:
+        TST     R24
+        BRNE    ??Fsm_24
+        LDI     R18, 6
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_24:
+        CPI     R24, 1
+        BRNE    ??Fsm_25
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_8
+??Fsm_25:
+        CPI     R24, 2
+        BRNE    ??Fsm_26
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_26:
+        RJMP    ??Fsm_8
+??Fsm_27:
+        TST     R24
+        BRNE    ??Fsm_28
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        LDI     R17, 0
+        CALL    ??SetAlarmWindowType
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetAlarmWindowIndex
+        CALL    ??GetAlarmWindowControlPointer
+        LDI     R18, 0
+        CALL    ??SetActivityState
+        LDI     R18, 1
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+        RJMP    ??Fsm_8
+??Fsm_28:
+        CPI     R24, 1
+        BRNE    ??Fsm_29
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_8
+??Fsm_29:
+        CPI     R24, 2
+        BRNE    ??Fsm_30
+        LDI     R18, 8
+        MOVW    R17:R16, R27:R26
+        CALL    ??SetFsmState
+??Fsm_30:
+        RJMP    ??Fsm_8
+??Fsm_31:
+        CPI     R24, 1
+        BRNE    ??Fsm_32
+        MOVW    R17:R16, R27:R26
+        CALL    ??GetLinkedDiscreteOutputsPointer
+        LDI     R18, 0
+        CALL    ??DiscreteOutputsSet
+        RJMP    ??Fsm_33
+??Fsm_32:
         CPI     R24, 2
         BRNE    ??Fsm_33
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_34
 ??Fsm_33:
-        CPI     R24, 1
-        BREQ    $+2+2
-        RJMP    ??Fsm_34
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 1
-        CALL    ??DiscreteOutputsSet
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
+        CALL    ??GetDiscreteSignalsReset
+        TST     R16
+        BREQ    ??Fsm_34
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
+        LDI     R17, 0
         CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowColor
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 1
+        LDI     R18, 0
         CALL    ??SetActivityState
-        LDI     R30, LOW(??m_xDeviceConfiguration)
-        LDI     R31, (??m_xDeviceConfiguration) >> 8
-        LDD     R16, Z+3
-        SBRS    R16, 3
-        RJMP    ??Fsm_35
-        LDI     R18, 3
+        LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_34
+??Fsm_34:
+        RJMP    ??Fsm_8
 ??Fsm_35:
-        LDI     R18, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_32:
-        CPI     R24, 1
-        BREQ    $+2+2
-        RJMP    ??Fsm_36
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 1
-        CALL    ??DiscreteOutputsSet
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 4
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 5
-        MOVW    R31:R30, R19:R18
-        ICALL
-        MOV     R25, R16
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        MOV     R17, R25
-        CALL    ??SetAlarmWindowColor
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 1
-        CALL    ??SetActivityState
-        LDI     R30, LOW(??m_xDeviceConfiguration)
-        LDI     R31, (??m_xDeviceConfiguration) >> 8
-        LDD     R16, Z+3
-        SBRS    R16, 3
-        RJMP    ??Fsm_37
-        LDI     R18, 3
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_37:
-        LDI     R18, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_36:
-        RJMP    ??Fsm_34
-??Fsm_38:
-        CPI     R24, 1
-        BRNE    ??Fsm_39
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 0
-        CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_40
-??Fsm_39:
-        TST     R24
-        BRNE    ??Fsm_41
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 0
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 0
-        CALL    ??SetActivityState
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_41:
-        CPI     R24, 2
-        BRNE    ??Fsm_40
-        LDI     R18, 8
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_40:
-        CALL    ??GetDiscreteSignalsReset
-        TST     R16
-        BREQ    ??Fsm_42
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 1
-        CALL    ??SetAlarmWindowType
-        LDI     R18, 5
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_42:
-        CALL    ??GetDiscreteSignalsReceipt
-        TST     R16
-        BREQ    ??Fsm_43
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 1
-        CALL    ??SetAlarmWindowType
-        LDI     R18, 4
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_43:
-        RJMP    ??Fsm_34
-??Fsm_44:
-        CPI     R24, 1
-        BRNE    ??Fsm_45
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 0
-        CALL    ??DiscreteOutputsSet
-??Fsm_45:
-        CALL    ??GetDiscreteSignalsReset
-        TST     R16
-        BREQ    ??Fsm_46
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 1
-        CALL    ??SetAlarmWindowType
-        LDI     R18, 5
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_46:
-        CALL    ??GetDiscreteSignalsReceipt
-        TST     R16
-        BREQ    ??Fsm_47
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 1
-        CALL    ??SetAlarmWindowType
-        LDI     R18, 4
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_47:
-        RJMP    ??Fsm_34
-??Fsm_48:
-        CALL    ??GetDiscreteSignalsReset
-        TST     R16
-        BREQ    ??Fsm_49
-        LDI     R18, 5
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_49:
-        TST     R24
-        BRNE    ??Fsm_50
-        LDI     R18, 6
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_50:
-        CPI     R24, 1
-        BRNE    ??Fsm_51
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 0
-        CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_34
-??Fsm_51:
-        CPI     R24, 2
-        BRNE    ??Fsm_52
-        LDI     R18, 8
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_52:
-        RJMP    ??Fsm_34
-??Fsm_53:
-        TST     R24
-        BRNE    ??Fsm_54
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 0
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 0
-        CALL    ??SetActivityState
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_54:
-        CPI     R24, 1
-        BRNE    ??Fsm_55
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 0
-        CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_34
-??Fsm_55:
-        CPI     R24, 2
-        BRNE    ??Fsm_56
-        LDI     R18, 8
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_56:
-        RJMP    ??Fsm_34
-??Fsm_57:
-        CPI     R24, 1
-        BRNE    ??Fsm_58
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetLinkedDiscreteOutputsPointer
-        LDI     R18, 0
-        CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_59
-??Fsm_58:
-        CPI     R24, 2
-        BRNE    ??Fsm_59
-        LDI     R18, 8
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_59:
-        CALL    ??GetDiscreteSignalsReset
-        TST     R16
-        BREQ    ??Fsm_60
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        LDI     R17, 0
-        CALL    ??SetAlarmWindowType
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetAlarmWindowIndex
-        CALL    ??GetAlarmWindowControlPointer
-        LDI     R18, 0
-        CALL    ??SetActivityState
-        LDI     R18, 1
-        MOVW    R17:R16, R27:R26
-        CALL    ??SetFsmState
-??Fsm_60:
-        RJMP    ??Fsm_34
-??Fsm_61:
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 1
@@ -2761,10 +2642,10 @@ _A_PINF:
         LDI     R18, 9
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_34
-??Fsm_62:
+        RJMP    ??Fsm_8
+??Fsm_36:
         CPI     R24, 2
-        BREQ    ??Fsm_34
+        BREQ    ??Fsm_8
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -2777,7 +2658,7 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_34:
+??Fsm_8:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
@@ -2985,252 +2866,37 @@ _A_PINF:
 ??Fsm_1:
         CALL    ?PROLOGUE4_L09
         MOVW    R27:R26, R17:R16
-        LDI     R24, 3
         MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CPI     R16, 48
-        BRCS    $+2+2
-        RJMP    ??Fsm_63
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x07
-        CPI     R16, 4
-        BRNE    ??Fsm_64
-        LDI     R24, 3
-        RJMP    ??Fsm_65
-??Fsm_64:
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 8
+        ADIW    R27:R26, 1
+        LD      R30, X+
+        LD      R31, X
+        SBIW    R27:R26, 2
+        ADIW    R31:R30, 10
         LPM     R18, Z+
         LPM     R19, Z
-        SBIW    R31:R30, 9
+        SBIW    R31:R30, 11
         MOVW    R31:R30, R19:R18
         ICALL
-        TST     R16
-        BREQ    ??Fsm_66
-        LDI     R16, 1
-        RJMP    ??Fsm_67
-??Fsm_66:
-        LDI     R16, 0
-??Fsm_67:
-        TST     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_68
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        SUBI    R16, 0
-        BREQ    ??Fsm_69
-        DEC     R16
-        BREQ    ??Fsm_69
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_70
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_70
-        RJMP    ??Fsm_65
-??Fsm_69:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        TST     R16
-        BRNE    ??Fsm_71
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        LDI     R17, 0
-        CALL    ??SetDiscreteInputState
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 6
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 7
-        MOVW    R31:R30, R19:R18
-        ICALL
-        TST     R16
-        BREQ    ??Fsm_72
-        LDI     R16, 1
-        RJMP    ??Fsm_73
-??Fsm_72:
-        LDI     R16, 0
-??Fsm_73:
-        TST     R16
-        BREQ    ??Fsm_74
-        LDI     R24, 1
-        RJMP    ??Fsm_65
-??Fsm_74:
-        LDI     R24, 0
-        RJMP    ??Fsm_65
-??Fsm_71:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        CPI     R16, 1
-        BRNE    ??Fsm_75
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        LDI     R17, 1
-        CALL    ??SetDiscreteInputState
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 6
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 7
-        MOVW    R31:R30, R19:R18
-        ICALL
-        TST     R16
-        BREQ    ??Fsm_76
-        LDI     R16, 1
-        RJMP    ??Fsm_77
-??Fsm_76:
-        LDI     R16, 0
-??Fsm_77:
-        TST     R16
-        BREQ    ??Fsm_78
-        LDI     R24, 0
-        RJMP    ??Fsm_65
-??Fsm_78:
-        LDI     R24, 1
-??Fsm_75:
-        RJMP    ??Fsm_65
-??Fsm_70:
-        LDI     R24, 2
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        LDI     R17, 0
-        CALL    ??SetDiscreteInputState
-        RJMP    ??Fsm_65
-??Fsm_68:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        CPI     R16, 2
-        BREQ    ??Fsm_79
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        CPI     R16, 1
-        BRNE    ??Fsm_80
-??Fsm_79:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        LDI     R17, 0
-        CALL    ??SetDiscreteInputState
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 6
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 7
-        MOVW    R31:R30, R19:R18
-        ICALL
-        TST     R16
-        BREQ    ??Fsm_81
-        LDI     R16, 1
-        RJMP    ??Fsm_82
-??Fsm_81:
-        LDI     R16, 0
-??Fsm_82:
-        TST     R16
-        BREQ    ??Fsm_83
-        LDI     R24, 1
-        RJMP    ??Fsm_65
-??Fsm_83:
-        LDI     R24, 0
-        RJMP    ??Fsm_65
-??Fsm_80:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        CPI     R16, 3
-        BREQ    ??Fsm_84
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        ANDI    R16, 0x03
-        TST     R16
-        BRNE    ??Fsm_65
-??Fsm_84:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        LDI     R17, 1
-        CALL    ??SetDiscreteInputState
-        MOVW    R17:R16, R27:R26
-        MOVW    R31:R30, R27:R26
-        LDD     R18, Z+1
-        LDD     R19, Z+2
-        MOVW    R31:R30, R19:R18
-        ADIW    R31:R30, 6
-        LPM     R18, Z+
-        LPM     R19, Z
-        SBIW    R31:R30, 7
-        MOVW    R31:R30, R19:R18
-        ICALL
-        TST     R16
-        BREQ    ??Fsm_85
-        LDI     R16, 1
-        RJMP    ??Fsm_86
-??Fsm_85:
-        LDI     R16, 0
-??Fsm_86:
-        TST     R16
-        BREQ    ??Fsm_87
-        LDI     R24, 0
-        RJMP    ??Fsm_65
-??Fsm_87:
-        LDI     R24, 1
-        RJMP    ??Fsm_65
-??Fsm_63:
-        MOVW    R17:R16, R27:R26
-        CALL    ??GetDiscreteStateIndex
-        CALL    ??GetDiscreteInputsBadState
-        BST     R16, 0
-        BRTC    ??Fsm_88
-        LDI     R24, 1
-        RJMP    ??Fsm_65
-??Fsm_88:
-        LDI     R24, 0
-??Fsm_65:
+        MOV     R24, R16
         MOVW    R17:R16, R27:R26
         CALL    ??GetFsmState
         SUBI    R16, 0
-        BREQ    ??Fsm_89
+        BREQ    ??Fsm_37
         DEC     R16
-        BREQ    ??Fsm_90
+        BREQ    ??Fsm_38
         SUBI    R16, 6
         BRNE    $+2+2
-        RJMP    ??Fsm_91
+        RJMP    ??Fsm_39
         DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_92
+        RJMP    ??Fsm_40
         DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_93
-        RJMP    ??Fsm_94
-??Fsm_89:
-        RJMP    ??Fsm_94
-??Fsm_90:
+        RJMP    ??Fsm_41
+        RJMP    ??Fsm_42
+??Fsm_37:
+        RJMP    ??Fsm_42
+??Fsm_38:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -3243,25 +2909,25 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_95
+        BREQ    ??Fsm_43
         LDI     R16, 1
-        RJMP    ??Fsm_96
-??Fsm_95:
+        RJMP    ??Fsm_44
+??Fsm_43:
         LDI     R16, 0
-??Fsm_96:
+??Fsm_44:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_97
+        RJMP    ??Fsm_45
         CPI     R24, 2
-        BRNE    ??Fsm_98
+        BRNE    ??Fsm_46
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_98:
+        RJMP    ??Fsm_42
+??Fsm_46:
         CPI     R24, 1
         BREQ    $+2+2
-        RJMP    ??Fsm_94
+        RJMP    ??Fsm_42
         MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 1
@@ -3306,10 +2972,10 @@ _A_PINF:
         LDI     R18, 7
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_97:
+        RJMP    ??Fsm_42
+??Fsm_45:
         CPI     R24, 1
-        BRNE    ??Fsm_99
+        BRNE    ??Fsm_47
         MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 1
@@ -3354,9 +3020,9 @@ _A_PINF:
         LDI     R18, 7
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_99:
-        RJMP    ??Fsm_94
-??Fsm_91:
+??Fsm_47:
+        RJMP    ??Fsm_42
+??Fsm_39:
         MOVW    R17:R16, R27:R26
         MOVW    R31:R30, R27:R26
         LDD     R18, Z+1
@@ -3369,23 +3035,23 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         TST     R16
-        BREQ    ??Fsm_100
+        BREQ    ??Fsm_48
         LDI     R16, 1
-        RJMP    ??Fsm_101
-??Fsm_100:
+        RJMP    ??Fsm_49
+??Fsm_48:
         LDI     R16, 0
-??Fsm_101:
+??Fsm_49:
         TST     R16
-        BREQ    ??Fsm_102
+        BREQ    ??Fsm_50
         CPI     R24, 2
-        BRNE    ??Fsm_103
+        BRNE    ??Fsm_51
         LDI     R18, 8
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_103:
+        RJMP    ??Fsm_42
+??Fsm_51:
         TST     R24
-        BRNE    ??Fsm_104
+        BRNE    ??Fsm_52
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -3398,18 +3064,18 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_104:
+        RJMP    ??Fsm_42
+??Fsm_52:
         CPI     R24, 1
-        BRNE    ??Fsm_105
+        BRNE    ??Fsm_53
         MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 0
         CALL    ??DiscreteOutputsSet
-        RJMP    ??Fsm_94
-??Fsm_102:
+        RJMP    ??Fsm_42
+??Fsm_50:
         TST     R24
-        BRNE    ??Fsm_106
+        BRNE    ??Fsm_54
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -3422,17 +3088,17 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_106:
+        RJMP    ??Fsm_42
+??Fsm_54:
         CPI     R24, 1
-        BRNE    ??Fsm_94
+        BRNE    ??Fsm_42
         MOVW    R17:R16, R27:R26
         CALL    ??GetLinkedDiscreteOutputsPointer
         LDI     R18, 0
         CALL    ??DiscreteOutputsSet
-??Fsm_105:
-        RJMP    ??Fsm_94
-??Fsm_92:
+??Fsm_53:
+        RJMP    ??Fsm_42
+??Fsm_40:
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 1
@@ -3449,10 +3115,10 @@ _A_PINF:
         LDI     R18, 9
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-        RJMP    ??Fsm_94
-??Fsm_93:
+        RJMP    ??Fsm_42
+??Fsm_41:
         CPI     R24, 2
-        BREQ    ??Fsm_94
+        BREQ    ??Fsm_42
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex
         LDI     R17, 0
@@ -3465,7 +3131,7 @@ _A_PINF:
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-??Fsm_94:
+??Fsm_42:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
 
@@ -3508,21 +3174,21 @@ _A_PINF:
 `?~CIndicationAlarmLowLevelNamurDfa_1`:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  838 
-//  839 //-----------------------------------------------------------------------------------------------------
+//  698 
+//  699 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  840 CIndicationAlarmHighLevelNamurDfa::~CIndicationAlarmHighLevelNamurDfa()
+//  700 CIndicationAlarmHighLevelNamurDfa::~CIndicationAlarmHighLevelNamurDfa()
 `?~CIndicationAlarmHighLevelNamurDfa`:
-//  841 {
+//  701 {
         CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
         MOVW    R27:R26, R19:R18
         MOV     R16, R24
         OR      R16, R25
         BREQ    `?~CIndicationAlarmHighLevelNamurDfa_1`
-//  842     //dtor
-//  843 }
+//  702     //dtor
+//  703 }
         LDI     R18, 0
         LDI     R19, 0
         MOVW    R17:R16, R25:R24
@@ -3534,33 +3200,33 @@ _A_PINF:
 `?~CIndicationAlarmHighLevelNamurDfa_1`:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  844 
-//  845 
-//  846 
-//  847 
-//  848 
-//  849 
-//  850 
-//  851 //-----------------------------------------------------------------------------------------------------
-//  852 CErrorAlarmDfa::CErrorAlarmDfa()
-//  853 {
-//  854     SetFsmState(ACTIVE_STATE_WAITING);
-//  855 }
-//  856 
-//  857 //-----------------------------------------------------------------------------------------------------
+//  704 
+//  705 
+//  706 
+//  707 
+//  708 
+//  709 
+//  710 
+//  711 //-----------------------------------------------------------------------------------------------------
+//  712 CErrorAlarmDfa::CErrorAlarmDfa()
+//  713 {
+//  714     SetFsmState(ACTIVE_STATE_WAITING);
+//  715 }
+//  716 
+//  717 //-----------------------------------------------------------------------------------------------------
 
         RSEG CODE:CODE:NOROOT(1)
-//  858 CErrorAlarmDfa::~CErrorAlarmDfa()
+//  718 CErrorAlarmDfa::~CErrorAlarmDfa()
 `?~CErrorAlarmDfa`:
-//  859 {
+//  719 {
         CALL    ?PROLOGUE4_L09
         MOVW    R25:R24, R17:R16
         MOVW    R27:R26, R19:R18
         MOV     R16, R24
         OR      R16, R25
         BREQ    `?~CErrorAlarmDfa_1`
-//  860     //dtor
-//  861 }
+//  720     //dtor
+//  721 }
         LDI     R18, 0
         LDI     R19, 0
         MOVW    R17:R16, R25:R24
@@ -3572,41 +3238,41 @@ _A_PINF:
 `?~CErrorAlarmDfa_1`:
         LDI     R30, 4
         JMP     ?EPILOGUE_B4_L09
-//  862 
-//  863 //-----------------------------------------------------------------------------------------------------
-//  864 // Автомат обработки системных ошибок.
+//  722 
+//  723 //-----------------------------------------------------------------------------------------------------
+//  724 // Автомат обработки системных ошибок.
 
         RSEG CODE:CODE:NOROOT(1)
-//  865 void CErrorAlarmDfa::Fsm(void)
+//  725 void CErrorAlarmDfa::Fsm(void)
 ??Fsm_2:
-//  866 {
+//  726 {
         CALL    ?PROLOGUE5_L09
         REQUIRE ?Register_R4_is_cg_reg
         MOVW    R27:R26, R17:R16
-//  867     switch (GetFsmState())
+//  727     switch (GetFsmState())
         MOVW    R17:R16, R27:R26
         CALL    ??GetFsmState
         SUBI    R16, 0
-        BREQ    ??Fsm_107
+        BREQ    ??Fsm_55
         DEC     R16
-        BREQ    ??Fsm_108
-        DEC     R16
-        BRNE    $+2+2
-        RJMP    ??Fsm_109
+        BREQ    ??Fsm_56
         DEC     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_110
-        RJMP    ??Fsm_111
-//  868     {
-//  869     case START:
-//  870         break;
-??Fsm_107:
-        RJMP    ??Fsm_111
-//  871 
-//  872     case ACTIVE_STATE_WAITING:
-//  873         // Дискретный сигнал активен?
-//  874         if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
-??Fsm_108:
+        RJMP    ??Fsm_57
+        DEC     R16
+        BRNE    $+2+2
+        RJMP    ??Fsm_58
+        RJMP    ??Fsm_59
+//  728     {
+//  729     case START:
+//  730         break;
+??Fsm_55:
+        RJMP    ??Fsm_59
+//  731 
+//  732     case ACTIVE_STATE_WAITING:
+//  733         // Дискретный сигнал активен?
+//  734         if (CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL())
+??Fsm_56:
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3624,23 +3290,23 @@ _A_PINF:
         ICALL
         EOR     R4, R16
         TST     R4
-        BREQ    ??Fsm_112
+        BREQ    ??Fsm_60
         LDI     R16, 1
-        RJMP    ??Fsm_113
-??Fsm_112:
+        RJMP    ??Fsm_61
+??Fsm_60:
         LDI     R16, 0
-??Fsm_113:
+??Fsm_61:
         TST     R16
         BRNE    $+2+2
-        RJMP    ??Fsm_111
-//  875         {
-//  876             // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
-//  877             // чем тип общей сигнализации?
-//  878             if ((CPss21::GetCommonAlarmType() != ERROR) &&
-//  879                     (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
+        RJMP    ??Fsm_59
+//  735         {
+//  736             // Тип запрограммированной сигнализации дискретного сигнала имеет более высокий приоритет,
+//  737             // чем тип общей сигнализации?
+//  738             if ((CPss21::GetCommonAlarmType() != ERROR) &&
+//  739                     (CPss21::GetCommonAlarmType() < ALARM_TYPE()))
         CALL    ??GetCommonAlarmType
         CPI     R16, 7
-        BREQ    ??Fsm_114
+        BREQ    ??Fsm_62
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3655,17 +3321,17 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         CP      R4, R16
-        BRCS    ??Fsm_115
+        BRCS    ??Fsm_63
         LDI     R16, 1
-        RJMP    ??Fsm_116
-??Fsm_115:
+        RJMP    ??Fsm_64
+??Fsm_63:
         LDI     R16, 0
-??Fsm_116:
+??Fsm_64:
         TST     R16
-        BRNE    ??Fsm_114
-//  880             {
-//  881                 // Установим тип общей сигнализацию.
-//  882                 CPss21::SetCommonAlarmType(ALARM_TYPE());
+        BRNE    ??Fsm_62
+//  740             {
+//  741                 // Установим тип общей сигнализацию.
+//  742                 CPss21::SetCommonAlarmType(ALARM_TYPE());
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -3678,14 +3344,14 @@ _A_PINF:
         MOVW    R31:R30, R19:R18
         ICALL
         CALL    ??SetCommonAlarmType
-//  883 
-//  884                 // Изменим тип общей сигнализацию.
-//  885                 CPss21::AlarmTypeErrorChange();
+//  743 
+//  744                 // Изменим тип общей сигнализацию.
+//  745                 CPss21::AlarmTypeErrorChange();
         CALL    ??AlarmTypeErrorChange
-//  886             }
-//  887 
-//  888             CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
-??Fsm_114:
+//  746             }
+//  747 
+//  748             CPss21::SetAlarmWindowColor(GetAlarmWindowIndex(), ALARM_TYPE());
+??Fsm_62:
         MOVW    R17:R16, R27:R26
         ADIW    R27:R26, 1
         LD      R30, X+
@@ -3702,42 +3368,42 @@ _A_PINF:
         CALL    ??GetAlarmWindowIndex_1
         MOV     R17, R24
         CALL    ??SetAlarmWindowColor
-//  889 //            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
-//  890             CPss21::ErrorWindowOn(GetAlarmWindowIndex());
+//  749 //            // Установим тип сигнализации связанному окну в массиве управления окнами извещателя.
+//  750             CPss21::ErrorWindowOn(GetAlarmWindowIndex());
         MOVW    R17:R16, R27:R26
         CALL    ??GetAlarmWindowIndex_1
         CALL    ??ErrorWindowOn
-//  891             SetFsmState(RECEIPT_WAITING);
+//  751             SetFsmState(RECEIPT_WAITING);
         LDI     R18, 2
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  892         }
-//  893         break;
-        RJMP    ??Fsm_111
-//  894 
-//  895     case RECEIPT_WAITING:
-//  896         // Событие квитировано?
-//  897         if (CPss21::GetDiscreteSignalsReceipt())
-??Fsm_109:
+//  752         }
+//  753         break;
+        RJMP    ??Fsm_59
+//  754 
+//  755     case RECEIPT_WAITING:
+//  756         // Событие квитировано?
+//  757         if (CPss21::GetDiscreteSignalsReceipt())
+??Fsm_57:
         CALL    ??GetDiscreteSignalsReceipt
         TST     R16
-        BREQ    ??Fsm_111
-//  898         {
-//  899             // Переведём автоматы сигнализаций в состояние - квитировано.
-//  900             CPss21::AlarmTypeReceipt();
+        BREQ    ??Fsm_59
+//  758         {
+//  759             // Переведём автоматы сигнализаций в состояние - квитировано.
+//  760             CPss21::AlarmTypeReceipt();
         CALL    ??AlarmTypeReceipt
-//  901             SetFsmState(RECEIPTED_NOT_ACTIVE_STATE_WAITING);
+//  761             SetFsmState(RECEIPTED_NOT_ACTIVE_STATE_WAITING);
         LDI     R18, 3
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  902         }
-//  903         break;
-        RJMP    ??Fsm_111
-//  904 
-//  905     case RECEIPTED_NOT_ACTIVE_STATE_WAITING:
-//  906         // Дискретный сигнал не активен?
-//  907         if (!(CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
-??Fsm_110:
+//  762         }
+//  763         break;
+        RJMP    ??Fsm_59
+//  764 
+//  765     case RECEIPTED_NOT_ACTIVE_STATE_WAITING:
+//  766         // Дискретный сигнал не активен?
+//  767         if (!(CPss21::GetErrorAlarmState(GetDiscreteStateIndex()) ^ ACTIVE_LEVEL()))
+??Fsm_58:
         MOVW    R31:R30, R27:R26
         LDD     R24, Z+1
         LDD     R25, Z+2
@@ -3755,32 +3421,32 @@ _A_PINF:
         ICALL
         EOR     R4, R16
         TST     R4
-        BRNE    ??Fsm_117
+        BRNE    ??Fsm_65
         LDI     R16, 1
-        RJMP    ??Fsm_118
-??Fsm_117:
+        RJMP    ??Fsm_66
+??Fsm_65:
         LDI     R16, 0
-??Fsm_118:
+??Fsm_66:
         TST     R16
-        BREQ    ??Fsm_111
-//  908         {
-//  909             // Переведём автоматы сигнализаций в состояние - сброшено.
-//  910             CPss21::AlarmTypeReset();
+        BREQ    ??Fsm_59
+//  768         {
+//  769             // Переведём автоматы сигнализаций в состояние - сброшено.
+//  770             CPss21::AlarmTypeReset();
         CALL    ??AlarmTypeReset
-//  911             CPss21::AllAlarmWindowOff();
+//  771             CPss21::AllAlarmWindowOff();
         CALL    ??AllAlarmWindowOff
-//  912             SetFsmState(ACTIVE_STATE_WAITING);
+//  772             SetFsmState(ACTIVE_STATE_WAITING);
         LDI     R18, 1
         MOVW    R17:R16, R27:R26
         CALL    ??SetFsmState
-//  913         }
-//  914         break;
-//  915 
-//  916     default:
-//  917         break;
-//  918     }
-//  919 }
-??Fsm_111:
+//  773         }
+//  774         break;
+//  775 
+//  776     default:
+//  777         break;
+//  778     }
+//  779 }
+??Fsm_59:
         LDI     R30, 5
         JMP     ?EPILOGUE_B5_L09
 
@@ -4202,105 +3868,118 @@ __?EEARH:
 `?<Jumptable for Fsm>_0`:
         DB      0
         DB      0
-        DW      (??Fsm_34) /2
+        DW      (??Fsm_8) /2
         DW      10
-        DW      (??Fsm_34) /2
-        DW      (??Fsm_29) /2
-        DW      (??Fsm_44) /2
-        DW      (??Fsm_38) /2
-        DW      (??Fsm_48) /2
-        DW      (??Fsm_53) /2
-        DW      (??Fsm_57) /2
-        DW      (??Fsm_34) /2
-        DW      (??Fsm_61) /2
-        DW      (??Fsm_62) /2
+        DW      (??Fsm_8) /2
+        DW      (??Fsm_3) /2
+        DW      (??Fsm_18) /2
+        DW      (??Fsm_12) /2
+        DW      (??Fsm_22) /2
+        DW      (??Fsm_27) /2
+        DW      (??Fsm_31) /2
+        DW      (??Fsm_8) /2
+        DW      (??Fsm_35) /2
+        DW      (??Fsm_36) /2
 
         RSEG NEAR_F:CODE:ROOT(0)
         DC8 0, 0, 0, 0
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CAlarmDfa::__vtbl[5]
+// __vtbl_entry const __flash CAlarmDfa::__vtbl[6]
 ??__vtbl_1:
         DC16 `?~CAlarmDfa`/2, ??Fsm/2, ??ALARM_TYPE/2, ??ACTIVE_LEVEL/2
-        DC16 ??IS_NAMUR_ON/2
+        DC16 ??IS_NAMUR_ON/2, ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CNormalAlarmDfa::__vtbl[5]
+// __vtbl_entry const __flash CNormalAlarmDfa::__vtbl[6]
 ??__vtbl_2:
         DC16 `?~CNormalAlarmDfa`/2, ??Fsm/2, ??ALARM_TYPE_1/2
         DC16 ??ACTIVE_LEVEL_1/2, ??IS_NAMUR_ON_1/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CPreventiveAlarmLowLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CPreventiveAlarmLowLevelDfa::__vtbl[6]
 ??__vtbl_3:
         DC16 `?~CPreventiveAlarmLowLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_2/2
         DC16 ??ACTIVE_LEVEL_2/2, ??IS_NAMUR_ON_2/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CPreventiveAlarmHighLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CPreventiveAlarmHighLevelDfa::__vtbl[6]
 ??__vtbl_4:
         DC16 `?~CPreventiveAlarmHighLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_3/2
         DC16 ??ACTIVE_LEVEL_3/2, ??IS_NAMUR_ON_3/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CPreventiveAlarmLowLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CPreventiveAlarmLowLevelNamurDfa::__vtbl[6]
 ??__vtbl_5:
         DC16 `?~CPreventiveAlarmLowLevelNamurDfa`/2, ??Fsm/2, ??ALARM_TYPE_4/2
         DC16 ??ACTIVE_LEVEL_4/2, ??IS_NAMUR_ON_4/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CPreventiveAlarmHighLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CPreventiveAlarmHighLevelNamurDfa::__vtbl[6]
 ??__vtbl_6:
         DC16 `?~CPreventiveAlarmHighLevelNamurDfa`/2, ??Fsm/2, ??ALARM_TYPE_5/2
         DC16 ??ACTIVE_LEVEL_5/2, ??IS_NAMUR_ON_5/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CEmergencyAlarmLowLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CEmergencyAlarmLowLevelDfa::__vtbl[6]
 ??__vtbl_7:
         DC16 `?~CEmergencyAlarmLowLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_6/2
         DC16 ??ACTIVE_LEVEL_6/2, ??IS_NAMUR_ON_6/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CEmergencyAlarmHighLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CEmergencyAlarmHighLevelDfa::__vtbl[6]
 ??__vtbl_8:
         DC16 `?~CEmergencyAlarmHighLevelDfa`/2, ??Fsm/2, ??ALARM_TYPE_7/2
         DC16 ??ACTIVE_LEVEL_7/2, ??IS_NAMUR_ON_7/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CEmergencyAlarmLowLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CEmergencyAlarmLowLevelNamurDfa::__vtbl[6]
 ??__vtbl_9:
         DC16 `?~CEmergencyAlarmLowLevelNamurDfa`/2, ??Fsm/2, ??ALARM_TYPE_8/2
         DC16 ??ACTIVE_LEVEL_8/2, ??IS_NAMUR_ON_8/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CEmergencyAlarmHighLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CEmergencyAlarmHighLevelNamurDfa::__vtbl[6]
 ??__vtbl_10:
         DC16 `?~CEmergencyAlarmHighLevelNamurDfa`/2, ??Fsm/2, ??ALARM_TYPE_9/2
         DC16 ??ACTIVE_LEVEL_9/2, ??IS_NAMUR_ON_9/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CIndicationAlarmLowLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CIndicationAlarmLowLevelDfa::__vtbl[6]
 ??__vtbl_11:
         DC16 `?~CIndicationAlarmLowLevelDfa`/2, ??Fsm_1/2, ??ALARM_TYPE_10/2
         DC16 ??ACTIVE_LEVEL_10/2, ??IS_NAMUR_ON_10/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CIndicationAlarmHighLevelDfa::__vtbl[5]
+// __vtbl_entry const __flash CIndicationAlarmHighLevelDfa::__vtbl[6]
 ??__vtbl_12:
         DC16 `?~CIndicationAlarmHighLevelDfa`/2, ??Fsm_1/2, ??ALARM_TYPE_11/2
         DC16 ??ACTIVE_LEVEL_11/2, ??IS_NAMUR_ON_11/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CIndicationAlarmLowLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CIndicationAlarmLowLevelNamurDfa::__vtbl[6]
 ??__vtbl_13:
         DC16 `?~CIndicationAlarmLowLevelNamurDfa`/2, ??Fsm_1/2
         DC16 ??ALARM_TYPE_12/2, ??ACTIVE_LEVEL_12/2, ??IS_NAMUR_ON_12/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
-// __vtbl_entry const __flash CIndicationAlarmHighLevelNamurDfa::__vtbl[5]
+// __vtbl_entry const __flash CIndicationAlarmHighLevelNamurDfa::__vtbl[6]
 ??__vtbl_14:
         DC16 `?~CIndicationAlarmHighLevelNamurDfa`/2, ??Fsm_1/2
         DC16 ??ALARM_TYPE_13/2, ??ACTIVE_LEVEL_13/2, ??IS_NAMUR_ON_13/2
+        DC16 ??DiscreteSignalStateCheck/2
 
         RSEG NEAR_F:CODE:ROOT(0)
 // __vtbl_entry const __flash CErrorAlarmDfa::__vtbl[4]
@@ -4315,64 +3994,64 @@ __?EEARH:
         DC8 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
         END
-//  920 //-----------------------------------------------------------------------------------------------------
-//  921 
-//  922 
-//  923 
-//  924 
-//  925 
-//  926 
-//  927 
-//  928 
-//  929 
-//  930 ////-----------------------------------------------------------------------------------------------------
-//  931 //CInputModuleErrorAlarmDfa::CInputModuleErrorAlarmDfa()
-//  932 //{
-//  933 //    SetFsmState(START);
-//  934 //}
-//  935 //
-//  936 ////-----------------------------------------------------------------------------------------------------
-//  937 //CInputModuleErrorAlarmDfa::~CInputModuleErrorAlarmDfa()
-//  938 //{
-//  939 //    //dtor
-//  940 //}
-//  941 //
-//  942 ////-----------------------------------------------------------------------------------------------------
-//  943 //
-//  944 //
-//  945 //
-//  946 //
-//  947 //
-//  948 //
-//  949 //
-//  950 //
-//  951 ////-----------------------------------------------------------------------------------------------------
-//  952 //COutpuModuleErrorAlarmDfa::COutpuModuleErrorAlarmDfa()
-//  953 //{
-//  954 //    SetFsmState(START);
-//  955 //}
-//  956 //
-//  957 ////-----------------------------------------------------------------------------------------------------
-//  958 //COutpuModuleErrorAlarmDfa::~COutpuModuleErrorAlarmDfa()
-//  959 //{
-//  960 //    //dtor
-//  961 //}
-//  962 //
-//  963 ////-----------------------------------------------------------------------------------------------------
-//  964 
-//  965 
-//  966 
-//  967 
-//  968 
-//  969 
-//  970 
+//  780 //-----------------------------------------------------------------------------------------------------
+//  781 
+//  782 
+//  783 
+//  784 
+//  785 
+//  786 
+//  787 
+//  788 
+//  789 
+//  790 ////-----------------------------------------------------------------------------------------------------
+//  791 //CInputModuleErrorAlarmDfa::CInputModuleErrorAlarmDfa()
+//  792 //{
+//  793 //    SetFsmState(START);
+//  794 //}
+//  795 //
+//  796 ////-----------------------------------------------------------------------------------------------------
+//  797 //CInputModuleErrorAlarmDfa::~CInputModuleErrorAlarmDfa()
+//  798 //{
+//  799 //    //dtor
+//  800 //}
+//  801 //
+//  802 ////-----------------------------------------------------------------------------------------------------
+//  803 //
+//  804 //
+//  805 //
+//  806 //
+//  807 //
+//  808 //
+//  809 //
+//  810 //
+//  811 ////-----------------------------------------------------------------------------------------------------
+//  812 //COutpuModuleErrorAlarmDfa::COutpuModuleErrorAlarmDfa()
+//  813 //{
+//  814 //    SetFsmState(START);
+//  815 //}
+//  816 //
+//  817 ////-----------------------------------------------------------------------------------------------------
+//  818 //COutpuModuleErrorAlarmDfa::~COutpuModuleErrorAlarmDfa()
+//  819 //{
+//  820 //    //dtor
+//  821 //}
+//  822 //
+//  823 ////-----------------------------------------------------------------------------------------------------
+//  824 
+//  825 
+//  826 
+//  827 
+//  828 
+//  829 
+//  830 
 // 
 //   105 bytes in segment ABSOLUTE
-// 4 522 bytes in segment CODE
-//   170 bytes in segment NEAR_F
+// 4 124 bytes in segment CODE
+//   198 bytes in segment NEAR_F
 //    26 bytes in segment SWITCH
 // 
-// 4 212 bytes of CODE memory (+ 506 bytes shared)
+// 3 814 bytes of CODE memory (+ 534 bytes shared)
 //     0 bytes of DATA memory (+ 105 bytes shared)
 //
 //Errors: none

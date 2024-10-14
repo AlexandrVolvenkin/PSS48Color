@@ -67,6 +67,7 @@ public:
 
     CAlarmDfa();
     virtual ~CAlarmDfa();
+    virtual uint8_t DiscreteSignalStateCheck(void);
     virtual void Fsm(void);
 
     void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
