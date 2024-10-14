@@ -1,12 +1,12 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           14/Oct/2024  08:31:10
+# IAR C/C++ Compiler V7.10.6.1378 for Atmel AVR           14/Oct/2024  09:10:16
 # Copyright 1996-2018 IAR Systems AB.
 #
 #    Source file  =  
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #    Command line =  
-#        -f C:\Users\Admin\AppData\Local\Temp\EW2511.tmp
+#        -f C:\Users\Admin\AppData\Local\Temp\EWF284.tmp
 #        (--string_literals_in_flash
 #        D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
 #        --cpu=m128a -ms -o
@@ -1685,74 +1685,19 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000004   0138               MOVW    R7:R6, R17:R16
    \   00000006   0129               MOVW    R5:R4, R19:R18
    \   00000008   01CA               MOVW    R25:R24, R21:R20
-    303          //    uint16_t uiLengthLocal = uiLength;
-    304          //
-    305          //
-    306          //    if (uiLengthLocal < _MIN_MESSAGE_LENGTH)
-    307          //    {
-    308          //
-    309          ////        return 1;
-    310          //        return 0;
-    311          //    }
-    312          //
-    313          //    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 1]) << 8) |
-    314          //                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 2])));
-    315          ////    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 2]) << 8) |
-    316          ////                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 1])));
-    317          //    uint16_t uiCrcTemp = usCrc16(puiSource,
-    318          //                                 (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH));
-    319          ////    if (usCrc16(puiSource,
-    320          ////                (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
-    321          //    if (uiCrcTemp == uiCrc)
-    322          //    {
-    323          //        return 1;
-    324          //    }
-    325          //    else
-    326          //    {
-    327          //////        uiLengthLocal -= 1;
-    328          ////
-    329          ////        uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 1]) << 8) |
-    330          ////                          (static_cast<uint16_t>(puiSource[uiLengthLocal - 2])));
-    331          //////    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLengthLocal - 2]) << 8) |
-    332          //////                      (static_cast<uint16_t>(puiSource[uiLengthLocal - 1])));
-    333          ////        uint16_t uiCrcTemp = usCrc16(puiSource,
-    334          ////                                     (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH));
-    335          //////    if (usCrc16(puiSource,
-    336          //////                (uiLengthLocal - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
-    337          ////        if (uiCrcTemp == uiCrc)
-    338          ////        {
-    339          ////            return 1;
-    340          ////        }
-    341          ////        else
-    342          ////        {
-    343          //
-    344          //    memset(CPss21::uiGlobalDebugBuffer, 0, sizeof(CPss21::uiGlobalDebugBuffer));
-    345          //    CPss21::uiGlobalDebugBuffer[0] = uiLengthLocal;
-    346          //    memcpy(&CPss21::uiGlobalDebugBuffer[1], puiSource, uiLengthLocal);
-    347          //////        return 1;
-    348          ////            return 0;
-    349          ////        }
-    350          //        return 0;
-    351          //    }
-    352          
-    353          
-    354          //    memset(CPss21::uiGlobalDebugBuffer, 0, sizeof(CPss21::uiGlobalDebugBuffer));
-    355          //    CPss21::uiGlobalDebugBuffer[0] = uiLength;
-    356          //    memcpy(&CPss21::uiGlobalDebugBuffer[1], puiSource, uiLength);
-    357          
-    358              if (uiLength < _MIN_MESSAGE_LENGTH)
+    303              if (uiLength < _MIN_MESSAGE_LENGTH)
    \   0000000A   3084               CPI     R24, 4
    \   0000000C   E000               LDI     R16, 0
    \   0000000E   0790               CPC     R25, R16
    \   00000010   F410               BRCC    ??FrameCheck_5
-    359              {
-    360                  return 0;
+    304              {
+    305                  return 0;
    \   00000012   E000               LDI     R16, 0
    \   00000014   C01B               RJMP    ??FrameCheck_6
-    361              }
-    362          
-    363              uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 1]) << 8) |
-    364                                (static_cast<uint16_t>(puiSource[uiLength - 2])));
+    306              }
+    307          
+    308              uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 1]) << 8) |
+    309                                (static_cast<uint16_t>(puiSource[uiLength - 2])));
    \                     ??FrameCheck_5:
    \   00000016   01F2               MOVW    R31:R30, R5:R4
    \   00000018   0FE8               ADD     R30, R24
@@ -1768,53 +1713,45 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000002C   E010               LDI     R17, 0
    \   0000002E   2BA0               OR      R26, R16
    \   00000030   2BB1               OR      R27, R17
-    365          //    uint16_t uiCrc = ((static_cast<uint16_t>(puiSource[uiLength - 2]) << 8) |
-    366          //                      (static_cast<uint16_t>(puiSource[uiLength - 1])));
-    367              uint16_t uiCrcTemp = usCrc16(puiSource,
-    368                                           (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
+    310              uint16_t uiCrcTemp = usCrc16(puiSource,
+    311                                           (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH));
    \   00000032   019C               MOVW    R19:R18, R25:R24
    \   00000034   5022               SUBI    R18, 2
    \   00000036   4030               SBCI    R19, 0
    \   00000038   0182               MOVW    R17:R16, R5:R4
    \   0000003A   ........           CALL    ??usCrc16
    \   0000003E   0198               MOVW    R19:R18, R17:R16
-    369          //    if (usCrc16(puiSource,
-    370          //                (uiLength - _MODBUS_RTU_CHECKSUM_LENGTH)) == uiCrc)
-    371              if (uiCrcTemp == uiCrc)
+    312              if (uiCrcTemp == uiCrc)
    \   00000040   172A               CP      R18, R26
    \   00000042   073B               CPC     R19, R27
    \   00000044   F411               BRNE    ??FrameCheck_7
-    372              {
-    373                  return 1;
+    313              {
+    314                  return 1;
    \   00000046   E001               LDI     R16, 1
    \   00000048   C001               RJMP    ??FrameCheck_6
-    374              }
-    375              else
-    376              {
-    377                  return 0;
+    315              }
+    316              else
+    317              {
+    318                  return 0;
    \                     ??FrameCheck_7:
    \   0000004A   E000               LDI     R16, 0
    \                     ??FrameCheck_6:
    \   0000004C   E0E8               LDI     R30, 8
    \   0000004E   ........           JMP     ?EPILOGUE_B8_L09
-    378              }
-    379          }
-    380          
-    381          //-----------------------------------------------------------------------------------------------------
+    319              }
+    320          }
+    321          
+    322          //-----------------------------------------------------------------------------------------------------
 
    \                                 In  segment CODE, align 2, keep-with-next
-    382          void CModbusRTU::Fsm(void)
+    323          void CModbusRTU::Fsm(void)
    \                     ??Fsm:
-    383          {
+    324          {
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01D8               MOVW    R27:R26, R17:R16
-    384              int16_t iReceivedCounter;
-    385          
-    386          //            if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
-    387          //            {
-    388          //        iReceivedCounter = 0;
-    389          //            }
-    390              switch (GetFsmState())
+    325              int16_t iReceivedCounter;
+    326          
+    327              switch (GetFsmState())
    \   00000006   01FD               MOVW    R31:R30, R27:R26
    \   00000008   8505               LDD     R16, Z+13
    \   0000000A   8516               LDD     R17, Z+14
@@ -1824,33 +1761,33 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000014   BFFB               OUT     0x3B, R31
    \   00000016   ....               LDI     R31, HIGH(`?<Jumptable for Fsm>_0`)
    \   00000018   ........           JMP     ?CV_SWITCH_L06
-    391              {
-    392              case IDDLE:
-    393                  break;
-    394          
-    395              case START_SLAVE:
-    396                  Reset();
+    328              {
+    329              case IDDLE:
+    330                  break;
+    331          
+    332              case START_SLAVE:
+    333                  Reset();
    \                     ??Fsm_1:
    \   0000001C   018D               MOVW    R17:R16, R27:R26
    \   0000001E   ....               RCALL   ??Reset
-    397                  ReceiveEnable();
+    334                  ReceiveEnable();
    \   00000020   018D               MOVW    R17:R16, R27:R26
    \   00000022   ....               RCALL   ??ReceiveEnable
-    398                  SetFsmState(START_REQUEST);
+    335                  SetFsmState(START_REQUEST);
    \   00000024   E023               LDI     R18, 3
    \   00000026   01FD               MOVW    R31:R30, R27:R26
    \   00000028   8505               LDD     R16, Z+13
    \   0000002A   8516               LDD     R17, Z+14
    \   0000002C   ........           CALL    ??SetFsmState
-    399                  break;
+    336                  break;
    \   00000030   C25B               RJMP    ??Fsm_2
-    400          
-    401              case START_REQUEST:
-    402                  GetSystemTime();
+    337          
+    338              case START_REQUEST:
+    339                  GetSystemTime();
    \                     ??Fsm_3:
    \   00000032   018D               MOVW    R17:R16, R27:R26
    \   00000034   ....               RCALL   ??GetSystemTime
-    403                  m_uiMessageLength = 0;
+    340                  m_uiMessageLength = 0;
    \   00000036   01FD               MOVW    R31:R30, R27:R26
    \   00000038   8505               LDD     R16, Z+13
    \   0000003A   8516               LDD     R17, Z+14
@@ -1859,24 +1796,24 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000040   8704               STD     Z+12, R16
    \   00000042   E000               LDI     R16, 0
    \   00000044   8705               STD     Z+13, R16
-    404                  SetFsmState(WAITING_MESSAGE_REQUEST);
+    341                  SetFsmState(WAITING_MESSAGE_REQUEST);
    \   00000046   E024               LDI     R18, 4
    \   00000048   01FD               MOVW    R31:R30, R27:R26
    \   0000004A   8505               LDD     R16, Z+13
    \   0000004C   8516               LDD     R17, Z+14
    \   0000004E   ........           CALL    ??SetFsmState
-    405                  break;
+    342                  break;
    \   00000052   C24A               RJMP    ??Fsm_2
-    406          
-    407              case WAITING_MESSAGE_REQUEST:
-    408                  if (Select())
+    343          
+    344              case WAITING_MESSAGE_REQUEST:
+    345                  if (Select())
    \                     ??Fsm_4:
    \   00000054   018D               MOVW    R17:R16, R27:R26
    \   00000056   ....               RCALL   ??Select
    \   00000058   2300               TST     R16
    \   0000005A   F1F1               BREQ    ??Fsm_5
-    409                  {
-    410                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+    346                  {
+    347                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   0000005C   E040               LDI     R20, 0
    \   0000005E   E051               LDI     R21, 1
    \   00000060   01FD               MOVW    R31:R30, R27:R26
@@ -1904,14 +1841,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000008C   018D               MOVW    R17:R16, R27:R26
    \   0000008E   ....               RCALL   ??Receive
    \   00000090   01C8               MOVW    R25:R24, R17:R16
-    411          
-    412                      if (iReceivedCounter > 0)
+    348          
+    349                      if (iReceivedCounter > 0)
    \   00000092   3081               CPI     R24, 1
    \   00000094   E000               LDI     R16, 0
    \   00000096   0790               CPC     R25, R16
    \   00000098   F09C               BRLT    ??Fsm_6
-    413                      {
-    414                          m_uiMessageLength += iReceivedCounter;
+    350                      {
+    351                          m_uiMessageLength += iReceivedCounter;
    \   0000009A   01FD               MOVW    R31:R30, R27:R26
    \   0000009C   8505               LDD     R16, Z+13
    \   0000009E   8516               LDD     R17, Z+14
@@ -1922,37 +1859,37 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000000A8   1F19               ADC     R17, R25
    \   000000AA   8704               STD     Z+12, R16
    \   000000AC   8715               STD     Z+13, R17
-    415                          GetSystemTime();
+    352                          GetSystemTime();
    \   000000AE   018D               MOVW    R17:R16, R27:R26
    \   000000B0   ....               RCALL   ??GetSystemTime
-    416                          SetFsmState(RECEIVE_MESSAGE_REQUEST);
+    353                          SetFsmState(RECEIVE_MESSAGE_REQUEST);
    \   000000B2   E025               LDI     R18, 5
    \   000000B4   01FD               MOVW    R31:R30, R27:R26
    \   000000B6   8505               LDD     R16, Z+13
    \   000000B8   8516               LDD     R17, Z+14
    \   000000BA   ........           CALL    ??SetFsmState
    \   000000BE   C00C               RJMP    ??Fsm_5
-    417                      }
-    418                      else if (iReceivedCounter == -1)
+    354                      }
+    355                      else if (iReceivedCounter == -1)
    \                     ??Fsm_6:
    \   000000C0   3F8F               CPI     R24, 255
    \   000000C2   EF0F               LDI     R16, 255
    \   000000C4   0790               CPC     R25, R16
    \   000000C6   F441               BRNE    ??Fsm_5
-    419                      {
-    420                          Reset();
+    356                      {
+    357                          Reset();
    \   000000C8   018D               MOVW    R17:R16, R27:R26
    \   000000CA   ....               RCALL   ??Reset
-    421                          SetFsmState(START_REQUEST);
+    358                          SetFsmState(START_REQUEST);
    \   000000CC   E023               LDI     R18, 3
    \   000000CE   01FD               MOVW    R31:R30, R27:R26
    \   000000D0   8505               LDD     R16, Z+13
    \   000000D2   8516               LDD     R17, Z+14
    \   000000D4   ........           CALL    ??SetFsmState
-    422                      }
-    423                  }
-    424          
-    425                  if (TimeIsOver(m_uiReceiveTimeout))
+    359                      }
+    360                  }
+    361          
+    362                  if (TimeIsOver(m_uiReceiveTimeout))
    \                     ??Fsm_5:
    \   000000D8   E928               LDI     R18, 152
    \   000000DA   E33A               LDI     R19, 58
@@ -1960,31 +1897,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000000DE   ....               RCALL   ??TimeIsOver
    \   000000E0   2300               TST     R16
    \   000000E2   F041               BREQ    ??Fsm_7
-    426                  {
-    427                      Reset();
+    363                  {
+    364                      Reset();
    \   000000E4   018D               MOVW    R17:R16, R27:R26
    \   000000E6   ....               RCALL   ??Reset
-    428                      SetFsmState(START_REQUEST);
+    365                      SetFsmState(START_REQUEST);
    \   000000E8   E023               LDI     R18, 3
    \   000000EA   01FD               MOVW    R31:R30, R27:R26
    \   000000EC   8505               LDD     R16, Z+13
    \   000000EE   8516               LDD     R17, Z+14
    \   000000F0   ........           CALL    ??SetFsmState
-    429                  }
-    430          
-    431                  break;
+    366                  }
+    367          
+    368                  break;
    \                     ??Fsm_7:
    \   000000F4   C1F9               RJMP    ??Fsm_2
-    432          
-    433              case RECEIVE_MESSAGE_REQUEST:
-    434                  if (Select())
+    369          
+    370              case RECEIVE_MESSAGE_REQUEST:
+    371                  if (Select())
    \                     ??Fsm_8:
    \   000000F6   018D               MOVW    R17:R16, R27:R26
    \   000000F8   ....               RCALL   ??Select
    \   000000FA   2300               TST     R16
    \   000000FC   F1C1               BREQ    ??Fsm_9
-    435                  {
-    436                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+    372                  {
+    373                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   000000FE   E040               LDI     R20, 0
    \   00000100   E051               LDI     R21, 1
    \   00000102   01FD               MOVW    R31:R30, R27:R26
@@ -2012,14 +1949,14 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000012E   018D               MOVW    R17:R16, R27:R26
    \   00000130   ....               RCALL   ??Receive
    \   00000132   01C8               MOVW    R25:R24, R17:R16
-    437          
-    438                      if (iReceivedCounter > 0)
+    374          
+    375                      if (iReceivedCounter > 0)
    \   00000134   3081               CPI     R24, 1
    \   00000136   E000               LDI     R16, 0
    \   00000138   0790               CPC     R25, R16
    \   0000013A   F06C               BRLT    ??Fsm_10
-    439                      {
-    440                          m_uiMessageLength += iReceivedCounter;
+    376                      {
+    377                          m_uiMessageLength += iReceivedCounter;
    \   0000013C   01FD               MOVW    R31:R30, R27:R26
    \   0000013E   8505               LDD     R16, Z+13
    \   00000140   8516               LDD     R17, Z+14
@@ -2030,31 +1967,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000014A   1F19               ADC     R17, R25
    \   0000014C   8704               STD     Z+12, R16
    \   0000014E   8715               STD     Z+13, R17
-    441                          GetSystemTime();
+    378                          GetSystemTime();
    \   00000150   018D               MOVW    R17:R16, R27:R26
    \   00000152   ....               RCALL   ??GetSystemTime
    \   00000154   C00C               RJMP    ??Fsm_9
-    442                      }
-    443                      else if (iReceivedCounter == -1)
+    379                      }
+    380                      else if (iReceivedCounter == -1)
    \                     ??Fsm_10:
    \   00000156   3F8F               CPI     R24, 255
    \   00000158   EF0F               LDI     R16, 255
    \   0000015A   0790               CPC     R25, R16
    \   0000015C   F441               BRNE    ??Fsm_9
-    444                      {
-    445                          Reset();
+    381                      {
+    382                          Reset();
    \   0000015E   018D               MOVW    R17:R16, R27:R26
    \   00000160   ....               RCALL   ??Reset
-    446                          SetFsmState(START_REQUEST);
+    383                          SetFsmState(START_REQUEST);
    \   00000162   E023               LDI     R18, 3
    \   00000164   01FD               MOVW    R31:R30, R27:R26
    \   00000166   8505               LDD     R16, Z+13
    \   00000168   8516               LDD     R17, Z+14
    \   0000016A   ........           CALL    ??SetFsmState
-    447                      }
-    448                  }
-    449          
-    450                  if (TimeIsOver(m_uiGuardTimeout))
+    384                      }
+    385                  }
+    386          
+    387                  if (TimeIsOver(m_uiGuardTimeout))
    \                     ??Fsm_9:
    \   0000016E   01FD               MOVW    R31:R30, R27:R26
    \   00000170   8521               LDD     R18, Z+9
@@ -2063,8 +2000,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000176   ....               RCALL   ??TimeIsOver
    \   00000178   2300               TST     R16
    \   0000017A   F0F9               BREQ    ??Fsm_11
-    451                  {
-    452                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
+    388                  {
+    389                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
    \   0000017C   01FD               MOVW    R31:R30, R27:R26
    \   0000017E   8505               LDD     R16, Z+13
    \   00000180   8516               LDD     R17, Z+14
@@ -2081,36 +2018,36 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000196   ....               RCALL   ??FrameCheck_1
    \   00000198   2300               TST     R16
    \   0000019A   F039               BREQ    ??Fsm_12
-    453                      {
-    454                          SetFsmState(REPLY_REQUEST);
+    390                      {
+    391                          SetFsmState(REPLY_REQUEST);
    \   0000019C   E026               LDI     R18, 6
    \   0000019E   01FD               MOVW    R31:R30, R27:R26
    \   000001A0   8505               LDD     R16, Z+13
    \   000001A2   8516               LDD     R17, Z+14
    \   000001A4   ........           CALL    ??SetFsmState
    \   000001A8   C19F               RJMP    ??Fsm_2
-    455                      }
-    456                      else
-    457                      {
-    458                          Reset();
+    392                      }
+    393                      else
+    394                      {
+    395                          Reset();
    \                     ??Fsm_12:
    \   000001AA   018D               MOVW    R17:R16, R27:R26
    \   000001AC   ....               RCALL   ??Reset
-    459                          SetFsmState(START_REQUEST);
+    396                          SetFsmState(START_REQUEST);
    \   000001AE   E023               LDI     R18, 3
    \   000001B0   01FD               MOVW    R31:R30, R27:R26
    \   000001B2   8505               LDD     R16, Z+13
    \   000001B4   8516               LDD     R17, Z+14
    \   000001B6   ........           CALL    ??SetFsmState
-    460                      }
-    461                  }
-    462          
-    463                  break;
+    397                      }
+    398                  }
+    399          
+    400                  break;
    \                     ??Fsm_11:
    \   000001BA   C196               RJMP    ??Fsm_2
-    464          
-    465              case REPLY_REQUEST:
-    466                  if (Reply(m_puiRxBuffer, m_puiTxBuffer, m_uiMessageLength))
+    401          
+    402              case REPLY_REQUEST:
+    403                  if (Reply(m_puiRxBuffer, m_puiTxBuffer, m_uiMessageLength))
    \                     ??Fsm_13:
    \   000001BC   01FD               MOVW    R31:R30, R27:R26
    \   000001BE   8505               LDD     R16, Z+13
@@ -2136,54 +2073,54 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000001E6   ........           CALL    ??Reply
    \   000001EA   2B01               OR      R16, R17
    \   000001EC   F049               BREQ    ??Fsm_14
-    467                  {
-    468                      CPlatform::TxLedOn();
+    404                  {
+    405                      CPlatform::TxLedOn();
    \   000001EE   ........           CALL    ??TxLedOn
-    469                      SetFsmState(FRAME_TRANSMIT_CONFIRMATION);
+    406                      SetFsmState(FRAME_TRANSMIT_CONFIRMATION);
    \   000001F2   E027               LDI     R18, 7
    \   000001F4   01FD               MOVW    R31:R30, R27:R26
    \   000001F6   8505               LDD     R16, Z+13
    \   000001F8   8516               LDD     R17, Z+14
    \   000001FA   ........           CALL    ??SetFsmState
    \   000001FE   C174               RJMP    ??Fsm_2
-    470                  }
-    471                  else
-    472                  {
-    473                      CPlatform::TxLedOff();
+    407                  }
+    408                  else
+    409                  {
+    410                      CPlatform::TxLedOff();
    \                     ??Fsm_14:
    \   00000200   ........           CALL    ??TxLedOff
-    474                      Reset();
+    411                      Reset();
    \   00000204   018D               MOVW    R17:R16, R27:R26
    \   00000206   ....               RCALL   ??Reset
-    475                      SetFsmState(START_REQUEST);
+    412                      SetFsmState(START_REQUEST);
    \   00000208   E023               LDI     R18, 3
    \   0000020A   01FD               MOVW    R31:R30, R27:R26
    \   0000020C   8505               LDD     R16, Z+13
    \   0000020E   8516               LDD     R17, Z+14
    \   00000210   ........           CALL    ??SetFsmState
-    476                  }
-    477                  break;
+    413                  }
+    414                  break;
    \   00000214   C169               RJMP    ??Fsm_2
-    478          
-    479              case FRAME_TRANSMIT_CONFIRMATION:
-    480                  GetSystemTime();
+    415          
+    416              case FRAME_TRANSMIT_CONFIRMATION:
+    417                  GetSystemTime();
    \                     ??Fsm_15:
    \   00000216   018D               MOVW    R17:R16, R27:R26
    \   00000218   ....               RCALL   ??GetSystemTime
-    481                  Reset();
+    418                  Reset();
    \   0000021A   018D               MOVW    R17:R16, R27:R26
    \   0000021C   ....               RCALL   ??Reset
-    482                  SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
+    419                  SetFsmState(WAITING_FRAME_TRANSMIT_CONFIRMATION);
    \   0000021E   E028               LDI     R18, 8
    \   00000220   01FD               MOVW    R31:R30, R27:R26
    \   00000222   8505               LDD     R16, Z+13
    \   00000224   8516               LDD     R17, Z+14
    \   00000226   ........           CALL    ??SetFsmState
-    483                  break;
+    420                  break;
    \   0000022A   C15E               RJMP    ??Fsm_2
-    484          
-    485              case WAITING_FRAME_TRANSMIT_CONFIRMATION:
-    486                  if (TimeIsOver(m_uiTransmitDelayTimeout))
+    421          
+    422              case WAITING_FRAME_TRANSMIT_CONFIRMATION:
+    423                  if (TimeIsOver(m_uiTransmitDelayTimeout))
    \                     ??Fsm_16:
    \   0000022C   E02A               LDI     R18, 10
    \   0000022E   E030               LDI     R19, 0
@@ -2191,8 +2128,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000232   ....               RCALL   ??TimeIsOver
    \   00000234   2300               TST     R16
    \   00000236   F0C9               BREQ    ??Fsm_17
-    487                  {
-    488                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
+    424                  {
+    425                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
    \   00000238   01FD               MOVW    R31:R30, R27:R26
    \   0000023A   8505               LDD     R16, Z+13
    \   0000023C   8516               LDD     R17, Z+14
@@ -2209,72 +2146,72 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000252   8505               LDD     R16, Z+13
    \   00000254   8516               LDD     R17, Z+14
    \   00000256   ........           CALL    ??SendMessage
-    489                      TransmitEnable();
+    426                      TransmitEnable();
    \   0000025A   018D               MOVW    R17:R16, R27:R26
    \   0000025C   ....               RCALL   ??TransmitEnable
-    490                      SetFsmState(END_WAITING_FRAME_TRANSMIT_CONFIRMATION);
+    427                      SetFsmState(END_WAITING_FRAME_TRANSMIT_CONFIRMATION);
    \   0000025E   E029               LDI     R18, 9
    \   00000260   01FD               MOVW    R31:R30, R27:R26
    \   00000262   8505               LDD     R16, Z+13
    \   00000264   8516               LDD     R17, Z+14
    \   00000266   ........           CALL    ??SetFsmState
-    491                  }
-    492                  break;
+    428                  }
+    429                  break;
    \                     ??Fsm_17:
    \   0000026A   C13E               RJMP    ??Fsm_2
-    493          
-    494              case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
-    495                  if (MessageIsSended())
+    430          
+    431              case END_WAITING_FRAME_TRANSMIT_CONFIRMATION:
+    432                  if (MessageIsSended())
    \                     ??Fsm_18:
    \   0000026C   018D               MOVW    R17:R16, R27:R26
    \   0000026E   ....               RCALL   ??MessageIsSended
    \   00000270   2300               TST     R16
    \   00000272   F051               BREQ    ??Fsm_19
-    496                  {
-    497          //            TransmitDisable();
-    498                      CPlatform::TxLedOff();
+    433                  {
+    434          //            TransmitDisable();
+    435                      CPlatform::TxLedOff();
    \   00000274   ........           CALL    ??TxLedOff
-    499                      Reset();
+    436                      Reset();
    \   00000278   018D               MOVW    R17:R16, R27:R26
    \   0000027A   ....               RCALL   ??Reset
-    500                      SetFsmState(START_REQUEST);
+    437                      SetFsmState(START_REQUEST);
    \   0000027C   E023               LDI     R18, 3
    \   0000027E   01FD               MOVW    R31:R30, R27:R26
    \   00000280   8505               LDD     R16, Z+13
    \   00000282   8516               LDD     R17, Z+14
    \   00000284   ........           CALL    ??SetFsmState
-    501                  }
-    502          
-    503                  break;
+    438                  }
+    439          
+    440                  break;
    \                     ??Fsm_19:
    \   00000288   C12F               RJMP    ??Fsm_2
-    504          
-    505              case STOP_REQUEST:
-    506                  ReceiveDisable();
+    441          
+    442              case STOP_REQUEST:
+    443                  ReceiveDisable();
    \                     ??Fsm_20:
    \   0000028A   018D               MOVW    R17:R16, R27:R26
    \   0000028C   ....               RCALL   ??ReceiveDisable
-    507          //        Close();
-    508                  SetFsmState(IDDLE);
+    444          //        Close();
+    445                  SetFsmState(IDDLE);
    \   0000028E   E020               LDI     R18, 0
    \   00000290   01FD               MOVW    R31:R30, R27:R26
    \   00000292   8505               LDD     R16, Z+13
    \   00000294   8516               LDD     R17, Z+14
    \   00000296   ........           CALL    ??SetFsmState
-    509                  break;
+    446                  break;
    \   0000029A   C126               RJMP    ??Fsm_2
-    510          
-    511          //-----------------------------------------------------------------------------------------------------
-    512          // ModbusMaster
-    513              case START_CONFIRMATION:
-    514                  GetSystemTime();
+    447          
+    448          //-----------------------------------------------------------------------------------------------------
+    449          // ModbusMaster
+    450              case START_CONFIRMATION:
+    451                  GetSystemTime();
    \                     ??Fsm_21:
    \   0000029C   018D               MOVW    R17:R16, R27:R26
    \   0000029E   ....               RCALL   ??GetSystemTime
-    515                  Reset();
+    452                  Reset();
    \   000002A0   018D               MOVW    R17:R16, R27:R26
    \   000002A2   ....               RCALL   ??Reset
-    516                  m_uiMessageLength = 0;
+    453                  m_uiMessageLength = 0;
    \   000002A4   01FD               MOVW    R31:R30, R27:R26
    \   000002A6   8505               LDD     R16, Z+13
    \   000002A8   8516               LDD     R17, Z+14
@@ -2283,28 +2220,28 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000002AE   8704               STD     Z+12, R16
    \   000002B0   E000               LDI     R16, 0
    \   000002B2   8705               STD     Z+13, R16
-    517          //        Open();
-    518                  ReceiveEnable();
+    454          //        Open();
+    455                  ReceiveEnable();
    \   000002B4   018D               MOVW    R17:R16, R27:R26
    \   000002B6   ....               RCALL   ??ReceiveEnable
-    519                  SetFsmState(WAITING_MESSAGE_CONFIRMATION);
+    456                  SetFsmState(WAITING_MESSAGE_CONFIRMATION);
    \   000002B8   E02D               LDI     R18, 13
    \   000002BA   01FD               MOVW    R31:R30, R27:R26
    \   000002BC   8505               LDD     R16, Z+13
    \   000002BE   8516               LDD     R17, Z+14
    \   000002C0   ........           CALL    ??SetFsmState
-    520                  break;
+    457                  break;
    \   000002C4   C111               RJMP    ??Fsm_2
-    521          
-    522              case WAITING_MESSAGE_CONFIRMATION:
-    523                  if (Select())
+    458          
+    459              case WAITING_MESSAGE_CONFIRMATION:
+    460                  if (Select())
    \                     ??Fsm_22:
    \   000002C6   018D               MOVW    R17:R16, R27:R26
    \   000002C8   ....               RCALL   ??Select
    \   000002CA   2300               TST     R16
    \   000002CC   F1E1               BREQ    ??Fsm_23
-    524                  {
-    525                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+    461                  {
+    462                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   000002CE   E040               LDI     R20, 0
    \   000002D0   E051               LDI     R21, 1
    \   000002D2   01FD               MOVW    R31:R30, R27:R26
@@ -2332,17 +2269,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000002FE   018D               MOVW    R17:R16, R27:R26
    \   00000300   ....               RCALL   ??Receive
    \   00000302   01C8               MOVW    R25:R24, R17:R16
-    526          
-    527                      if (iReceivedCounter > 0)
+    463          
+    464                      if (iReceivedCounter > 0)
    \   00000304   3081               CPI     R24, 1
    \   00000306   E000               LDI     R16, 0
    \   00000308   0790               CPC     R25, R16
    \   0000030A   F09C               BRLT    ??Fsm_24
-    528                      {
-    529                          GetSystemTime();
+    465                      {
+    466                          GetSystemTime();
    \   0000030C   018D               MOVW    R17:R16, R27:R26
    \   0000030E   ....               RCALL   ??GetSystemTime
-    530                          m_uiMessageLength += iReceivedCounter;
+    467                          m_uiMessageLength += iReceivedCounter;
    \   00000310   01FD               MOVW    R31:R30, R27:R26
    \   00000312   8505               LDD     R16, Z+13
    \   00000314   8516               LDD     R17, Z+14
@@ -2353,31 +2290,31 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000031E   1F19               ADC     R17, R25
    \   00000320   8704               STD     Z+12, R16
    \   00000322   8715               STD     Z+13, R17
-    531                          SetFsmState(RECEIVE_MESSAGE_CONFIRMATION);
+    468                          SetFsmState(RECEIVE_MESSAGE_CONFIRMATION);
    \   00000324   E02E               LDI     R18, 14
    \   00000326   01FD               MOVW    R31:R30, R27:R26
    \   00000328   8505               LDD     R16, Z+13
    \   0000032A   8516               LDD     R17, Z+14
    \   0000032C   ........           CALL    ??SetFsmState
    \   00000330   C00A               RJMP    ??Fsm_23
-    532                      }
-    533                      else if (iReceivedCounter == -1)
+    469                      }
+    470                      else if (iReceivedCounter == -1)
    \                     ??Fsm_24:
    \   00000332   3F8F               CPI     R24, 255
    \   00000334   EF0F               LDI     R16, 255
    \   00000336   0790               CPC     R25, R16
    \   00000338   F431               BRNE    ??Fsm_23
-    534                      {
-    535                          SetFsmState(STOP_CONFIRMATION);
+    471                      {
+    472                          SetFsmState(STOP_CONFIRMATION);
    \   0000033A   E123               LDI     R18, 19
    \   0000033C   01FD               MOVW    R31:R30, R27:R26
    \   0000033E   8505               LDD     R16, Z+13
    \   00000340   8516               LDD     R17, Z+14
    \   00000342   ........           CALL    ??SetFsmState
-    536                      }
-    537                  }
-    538          
-    539                  if (TimeIsOver(m_uiConfirmationTimeout))
+    473                      }
+    474                  }
+    475          
+    476                  if (TimeIsOver(m_uiConfirmationTimeout))
    \                     ??Fsm_23:
    \   00000346   EE28               LDI     R18, 232
    \   00000348   E033               LDI     R19, 3
@@ -2385,28 +2322,28 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000034C   ....               RCALL   ??TimeIsOver
    \   0000034E   2300               TST     R16
    \   00000350   F031               BREQ    ??Fsm_25
-    540                  {
-    541                      SetFsmState(STOP_CONFIRMATION);
+    477                  {
+    478                      SetFsmState(STOP_CONFIRMATION);
    \   00000352   E123               LDI     R18, 19
    \   00000354   01FD               MOVW    R31:R30, R27:R26
    \   00000356   8505               LDD     R16, Z+13
    \   00000358   8516               LDD     R17, Z+14
    \   0000035A   ........           CALL    ??SetFsmState
-    542                  }
-    543          
-    544                  break;
+    479                  }
+    480          
+    481                  break;
    \                     ??Fsm_25:
    \   0000035E   C0C4               RJMP    ??Fsm_2
-    545          
-    546              case RECEIVE_MESSAGE_CONFIRMATION:
-    547                  if (Select())
+    482          
+    483              case RECEIVE_MESSAGE_CONFIRMATION:
+    484                  if (Select())
    \                     ??Fsm_26:
    \   00000360   018D               MOVW    R17:R16, R27:R26
    \   00000362   ....               RCALL   ??Select
    \   00000364   2300               TST     R16
    \   00000366   F1B1               BREQ    ??Fsm_27
-    548                  {
-    549                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
+    485                  {
+    486                      iReceivedCounter = Receive(m_puiRxBuffer + m_uiMessageLength, MODBUS_RTU_MAX_ADU_LENGTH - m_uiMessageLength);
    \   00000368   E040               LDI     R20, 0
    \   0000036A   E051               LDI     R21, 1
    \   0000036C   01FD               MOVW    R31:R30, R27:R26
@@ -2434,17 +2371,17 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000398   018D               MOVW    R17:R16, R27:R26
    \   0000039A   ....               RCALL   ??Receive
    \   0000039C   01C8               MOVW    R25:R24, R17:R16
-    550          
-    551                      if (iReceivedCounter > 0)
+    487          
+    488                      if (iReceivedCounter > 0)
    \   0000039E   3081               CPI     R24, 1
    \   000003A0   E000               LDI     R16, 0
    \   000003A2   0790               CPC     R25, R16
    \   000003A4   F06C               BRLT    ??Fsm_28
-    552                      {
-    553                          GetSystemTime();
+    489                      {
+    490                          GetSystemTime();
    \   000003A6   018D               MOVW    R17:R16, R27:R26
    \   000003A8   ....               RCALL   ??GetSystemTime
-    554                          m_uiMessageLength += iReceivedCounter;
+    491                          m_uiMessageLength += iReceivedCounter;
    \   000003AA   01FD               MOVW    R31:R30, R27:R26
    \   000003AC   8505               LDD     R16, Z+13
    \   000003AE   8516               LDD     R17, Z+14
@@ -2456,24 +2393,24 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000003BA   8704               STD     Z+12, R16
    \   000003BC   8715               STD     Z+13, R17
    \   000003BE   C00A               RJMP    ??Fsm_27
-    555                      }
-    556                      else if (iReceivedCounter == -1)
+    492                      }
+    493                      else if (iReceivedCounter == -1)
    \                     ??Fsm_28:
    \   000003C0   3F8F               CPI     R24, 255
    \   000003C2   EF0F               LDI     R16, 255
    \   000003C4   0790               CPC     R25, R16
    \   000003C6   F431               BRNE    ??Fsm_27
-    557                      {
-    558                          SetFsmState(STOP_CONFIRMATION);
+    494                      {
+    495                          SetFsmState(STOP_CONFIRMATION);
    \   000003C8   E123               LDI     R18, 19
    \   000003CA   01FD               MOVW    R31:R30, R27:R26
    \   000003CC   8505               LDD     R16, Z+13
    \   000003CE   8516               LDD     R17, Z+14
    \   000003D0   ........           CALL    ??SetFsmState
-    559                      }
-    560                  }
-    561          
-    562                  if (TimeIsOver(m_uiGuardTimeout))
+    496                      }
+    497                  }
+    498          
+    499                  if (TimeIsOver(m_uiGuardTimeout))
    \                     ??Fsm_27:
    \   000003D4   01FD               MOVW    R31:R30, R27:R26
    \   000003D6   8521               LDD     R18, Z+9
@@ -2482,8 +2419,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000003DC   ....               RCALL   ??TimeIsOver
    \   000003DE   2300               TST     R16
    \   000003E0   F0E9               BREQ    ??Fsm_29
-    563                  {
-    564                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
+    500                  {
+    501                      if (FrameCheck(m_puiRxBuffer, m_uiMessageLength))
    \   000003E2   01FD               MOVW    R31:R30, R27:R26
    \   000003E4   8505               LDD     R16, Z+13
    \   000003E6   8516               LDD     R17, Z+14
@@ -2500,33 +2437,33 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000003FC   ....               RCALL   ??FrameCheck_1
    \   000003FE   2300               TST     R16
    \   00000400   F039               BREQ    ??Fsm_30
-    565                      {
-    566                          SetFsmState(REPLY_CONFIRMATION);
+    502                      {
+    503                          SetFsmState(REPLY_CONFIRMATION);
    \   00000402   E02F               LDI     R18, 15
    \   00000404   01FD               MOVW    R31:R30, R27:R26
    \   00000406   8505               LDD     R16, Z+13
    \   00000408   8516               LDD     R17, Z+14
    \   0000040A   ........           CALL    ??SetFsmState
    \   0000040E   C06C               RJMP    ??Fsm_2
-    567                      }
-    568                      else
-    569                      {
-    570                          SetFsmState(STOP_CONFIRMATION);
+    504                      }
+    505                      else
+    506                      {
+    507                          SetFsmState(STOP_CONFIRMATION);
    \                     ??Fsm_30:
    \   00000410   E123               LDI     R18, 19
    \   00000412   01FD               MOVW    R31:R30, R27:R26
    \   00000414   8505               LDD     R16, Z+13
    \   00000416   8516               LDD     R17, Z+14
    \   00000418   ........           CALL    ??SetFsmState
-    571                      }
-    572                  }
-    573          
-    574                  break;
+    508                      }
+    509                  }
+    510          
+    511                  break;
    \                     ??Fsm_29:
    \   0000041C   C065               RJMP    ??Fsm_2
-    575          
-    576              case REPLY_CONFIRMATION:
-    577                  if (ReceiveMessage(m_puiRxBuffer, m_uiMessageLength))
+    512          
+    513              case REPLY_CONFIRMATION:
+    514                  if (ReceiveMessage(m_puiRxBuffer, m_uiMessageLength))
    \                     ??Fsm_31:
    \   0000041E   01FD               MOVW    R31:R30, R27:R26
    \   00000420   8505               LDD     R16, Z+13
@@ -2546,49 +2483,49 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   0000043C   ........           CALL    ??ReceiveMessage
    \   00000440   2B01               OR      R16, R17
    \   00000442   F039               BREQ    ??Fsm_32
-    578                  {
-    579                      SetFsmState(STOP_CONFIRMATION);
+    515                  {
+    516                      SetFsmState(STOP_CONFIRMATION);
    \   00000444   E123               LDI     R18, 19
    \   00000446   01FD               MOVW    R31:R30, R27:R26
    \   00000448   8505               LDD     R16, Z+13
    \   0000044A   8516               LDD     R17, Z+14
    \   0000044C   ........           CALL    ??SetFsmState
    \   00000450   C04B               RJMP    ??Fsm_2
-    580                  }
-    581                  else
-    582                  {
-    583                      SetFsmState(STOP_CONFIRMATION);
+    517                  }
+    518                  else
+    519                  {
+    520                      SetFsmState(STOP_CONFIRMATION);
    \                     ??Fsm_32:
    \   00000452   E123               LDI     R18, 19
    \   00000454   01FD               MOVW    R31:R30, R27:R26
    \   00000456   8505               LDD     R16, Z+13
    \   00000458   8516               LDD     R17, Z+14
    \   0000045A   ........           CALL    ??SetFsmState
-    584                  }
-    585                  break;
+    521                  }
+    522                  break;
    \   0000045E   C044               RJMP    ??Fsm_2
-    586          
-    587              case FRAME_TRANSMIT_REQUEST:
-    588                  GetSystemTime();
+    523          
+    524              case FRAME_TRANSMIT_REQUEST:
+    525                  GetSystemTime();
    \                     ??Fsm_33:
    \   00000460   018D               MOVW    R17:R16, R27:R26
    \   00000462   ....               RCALL   ??GetSystemTime
-    589                  Reset();
+    526                  Reset();
    \   00000464   018D               MOVW    R17:R16, R27:R26
    \   00000466   ....               RCALL   ??Reset
-    590                  CPlatform::TxLedOn();
+    527                  CPlatform::TxLedOn();
    \   00000468   ........           CALL    ??TxLedOn
-    591                  SetFsmState(WAITING_FRAME_TRANSMIT_REQUEST);
+    528                  SetFsmState(WAITING_FRAME_TRANSMIT_REQUEST);
    \   0000046C   E121               LDI     R18, 17
    \   0000046E   01FD               MOVW    R31:R30, R27:R26
    \   00000470   8505               LDD     R16, Z+13
    \   00000472   8516               LDD     R17, Z+14
    \   00000474   ........           CALL    ??SetFsmState
-    592                  break;
+    529                  break;
    \   00000478   C037               RJMP    ??Fsm_2
-    593          
-    594              case WAITING_FRAME_TRANSMIT_REQUEST:
-    595                  if (TimeIsOver(m_uiTransmitDelayTimeout))
+    530          
+    531              case WAITING_FRAME_TRANSMIT_REQUEST:
+    532                  if (TimeIsOver(m_uiTransmitDelayTimeout))
    \                     ??Fsm_34:
    \   0000047A   E02A               LDI     R18, 10
    \   0000047C   E030               LDI     R19, 0
@@ -2596,8 +2533,8 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000480   ....               RCALL   ??TimeIsOver
    \   00000482   2300               TST     R16
    \   00000484   F189               BREQ    ??Fsm_2
-    596                  {
-    597                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
+    533                  {
+    534                      SendMessage(m_puiTxBuffer, m_uiMessageLength);
    \   00000486   01FD               MOVW    R31:R30, R27:R26
    \   00000488   8505               LDD     R16, Z+13
    \   0000048A   8516               LDD     R17, Z+14
@@ -2614,61 +2551,61 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   000004A0   8505               LDD     R16, Z+13
    \   000004A2   8516               LDD     R17, Z+14
    \   000004A4   ........           CALL    ??SendMessage
-    598                      TransmitEnable();
+    535                      TransmitEnable();
    \   000004A8   018D               MOVW    R17:R16, R27:R26
    \   000004AA   ....               RCALL   ??TransmitEnable
-    599                      SetFsmState(END_WAITING_FRAME_TRANSMIT_REQUEST);
+    536                      SetFsmState(END_WAITING_FRAME_TRANSMIT_REQUEST);
    \   000004AC   E122               LDI     R18, 18
    \   000004AE   01FD               MOVW    R31:R30, R27:R26
    \   000004B0   8505               LDD     R16, Z+13
    \   000004B2   8516               LDD     R17, Z+14
    \   000004B4   ........           CALL    ??SetFsmState
-    600                  }
-    601                  break;
+    537                  }
+    538                  break;
    \   000004B8   C017               RJMP    ??Fsm_2
-    602          
-    603              case END_WAITING_FRAME_TRANSMIT_REQUEST:
-    604                  if (MessageIsSended())
+    539          
+    540              case END_WAITING_FRAME_TRANSMIT_REQUEST:
+    541                  if (MessageIsSended())
    \                     ??Fsm_35:
    \   000004BA   018D               MOVW    R17:R16, R27:R26
    \   000004BC   ....               RCALL   ??MessageIsSended
    \   000004BE   2300               TST     R16
    \   000004C0   F099               BREQ    ??Fsm_2
-    605                  {
-    606                      TransmitDisable();
+    542                  {
+    543                      TransmitDisable();
    \   000004C2   018D               MOVW    R17:R16, R27:R26
    \   000004C4   ....               RCALL   ??TransmitDisable
-    607                      CPlatform::TxLedOff();
+    544                      CPlatform::TxLedOff();
    \   000004C6   ........           CALL    ??TxLedOff
-    608                      SetFsmState(START_CONFIRMATION);
+    545                      SetFsmState(START_CONFIRMATION);
    \   000004CA   E02C               LDI     R18, 12
    \   000004CC   01FD               MOVW    R31:R30, R27:R26
    \   000004CE   8505               LDD     R16, Z+13
    \   000004D0   8516               LDD     R17, Z+14
    \   000004D2   ........           CALL    ??SetFsmState
-    609                  }
-    610          
-    611                  break;
+    546                  }
+    547          
+    548                  break;
    \   000004D6   C008               RJMP    ??Fsm_2
-    612          
-    613              case STOP_CONFIRMATION:
-    614                  ReceiveDisable();
+    549          
+    550              case STOP_CONFIRMATION:
+    551                  ReceiveDisable();
    \                     ??Fsm_36:
    \   000004D8   018D               MOVW    R17:R16, R27:R26
    \   000004DA   ....               RCALL   ??ReceiveDisable
-    615          //        Close();
-    616                  SetFsmState(IDDLE);
+    552          //        Close();
+    553                  SetFsmState(IDDLE);
    \   000004DC   E020               LDI     R18, 0
    \   000004DE   01FD               MOVW    R31:R30, R27:R26
    \   000004E0   8505               LDD     R16, Z+13
    \   000004E2   8516               LDD     R17, Z+14
    \   000004E4   ........           CALL    ??SetFsmState
-    617                  break;
-    618          
-    619              default:
-    620                  break;
-    621              }
-    622          }
+    554                  break;
+    555          
+    556              default:
+    557                  break;
+    558              }
+    559          }
    \                     ??Fsm_2:
    \   000004E8   E0E4               LDI     R30, 4
    \   000004EA   ........           JMP     ?EPILOGUE_B4_L09
@@ -2773,12 +2710,12 @@ D:\Projects\CurrentProjects\CautoProjects\PSS48Color\Modbus\ModbusRTU.cpp
    \   00000000   500F               SUBI    R16, 15
    \   00000002   4010               SBCI    R17, 0
    \   00000004   ........           JMP     ??CRC_LENGTH
-    623          //-----------------------------------------------------------------------------------------------------
-    624          
-    625          
-    626          
-    627          
-    628          
+    560          //-----------------------------------------------------------------------------------------------------
+    561          
+    562          
+    563          
+    564          
+    565          
 
    Maximum stack usage in bytes:
 

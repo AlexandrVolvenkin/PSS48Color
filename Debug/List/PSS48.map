@@ -2,7 +2,7 @@
 #                                                                              #
 #      IAR Universal Linker V6.5.2.97                                          #
 #                                                                              #
-#           Link time     =  14/Oct/2024  08:38:06                             #
+#           Link time     =  14/Oct/2024  09:10:16                             #
 #           Target CPU    =  A90                                               #
 #           List file     =  D:\Projects\CurrentProjects\CautoProjects\PSS48Co #
 #                            lor\Debug\List\PSS48.map                          #
@@ -13,7 +13,7 @@
 #                            lor\Debug\Exe\PSS48.d90                           #
 #                            Format: ubrof8                                    #
 #                            UBROF version 8.0.2                               #
-#           Command line  =  -f C:\Users\Admin\AppData\Local\Temp\EW7EEA.tmp   #
+#           Command line  =  -f C:\Users\Admin\AppData\Local\Temp\EWF3AE.tmp   #
 #                            (D:\Projects\CurrentProjects\CautoProjects\PSS48C #
 #                            olor\Debug\Obj\Alarm.r90                          #
 #                            D:\Projects\CurrentProjects\CautoProjects\PSS48Co #
@@ -6236,7 +6236,7 @@ INTVEC
   SEGMENTS IN THE MODULE
   ======================
 NEAR_Z
-  Relative segment, address: DATA 00000882 - 00000981 (0x100 bytes), align: 0
+  Relative segment, address: DATA 00000882 - 00000891 (0x10 bytes), align: 0
   Segment part 102. ROOT      Intra module refs:   CPss21::ModbusInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
@@ -6244,15 +6244,15 @@ NEAR_Z
                                    00000882        CLightBoard::Set(CAlarmWindow *) (LightBoard)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000982 - 00000991 (0x10 bytes), align: 0
+  Relative segment, address: DATA 00000892 - 000008A1 (0x10 bytes), align: 0
   Segment part 104. ROOT      Intra module refs:   CPss21::ModbusInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_aucRtuInputRegistersArray
-                                   00000982 
+                                   00000892 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000992 - 00000A09 (0x78 bytes), align: 0
+  Relative segment, address: DATA 000008A2 - 00000919 (0x78 bytes), align: 0
   Segment part 105. ROOT      Intra module refs:   CPss21::GetDiscreteInputsBadState(uint8_t)
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
                                                    CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
@@ -6261,60 +6261,60 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_aucRtuDiscreteDataArray
-                                   00000992 
+                                   000008A2 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000A0A - 00000B09 (0x100 bytes), align: 0
+  Relative segment, address: DATA 0000091A - 00000A19 (0x100 bytes), align: 0
   Segment part 106. ROOT      Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::ModbusInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_auiReceiveMessageBuff
-                                   00000A0A 
+                                   0000091A 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000B0A - 00000C09 (0x100 bytes), align: 0
+  Relative segment, address: DATA 00000A1A - 00000B19 (0x100 bytes), align: 0
   Segment part 107. ROOT      Intra module refs:   CPss21::ConfigurationInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_auiIntermediateBuff
-                                   00000B0A        CDataBase::RestoreDefault() (DataBase)
+                                   00000A1A        CDataBase::RestoreDefault() (DataBase)
                                                    CDataStore::Init() (DataStore)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C0A - 00000C49 (0x40 bytes), align: 0
+  Relative segment, address: DATA 00000B1A - 00000B59 (0x40 bytes), align: 0
   Segment part 108. ROOT      Intra module refs:   CPss21::InitAllocationContext(TMemoryAllocationContext &)
                                                    CPss21::SearchModules()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_auiSpiRxBuffer
-                                   00000C0A 
+                                   00000B1A 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C4A - 00000C89 (0x40 bytes), align: 0
+  Relative segment, address: DATA 00000B5A - 00000B99 (0x40 bytes), align: 0
   Segment part 109. ROOT      Intra module refs:   CPss21::InitAllocationContext(TMemoryAllocationContext &)
                                                    CPss21::SearchModules()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_auiSpiTxBuffer
-                                   00000C4A 
+                                   00000B5A 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C8A - 00000C8A (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000B9A - 00000B9A (0x1 bytes), align: 0
   Segment part 110. ROOT      Intra module refs:   CPss21::GetFsmState()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_uiFsmState    00000C8A        CPss21::SetFsmState(uint8_t) (LinkControl)
+           CPss21::m_uiFsmState    00000B9A        CPss21::SetFsmState(uint8_t) (LinkControl)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C8B - 00000C8B (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000B9B - 00000B9B (0x1 bytes), align: 0
   Segment part 111. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_uiType        00000C8B 
+           CPss21::m_uiType        00000B9B 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C8C - 00000C91 (0x6 bytes), align: 0
+  Relative segment, address: DATA 00000B9C - 00000BA1 (0x6 bytes), align: 0
   Segment part 112. ROOT      Intra module refs:   CPss21::CreateDevices()
                                                    CPss21::ModulesInteraction(uint8_t)
                                                    CPss21::SendToDevicesModbusReceipt()
@@ -6323,7 +6323,7 @@ NEAR_Z
                                                    CPss21::SendToDevicesReset()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_apxDrivers    00000C8C 
+           CPss21::m_apxDrivers    00000B9C 
     -------------------------------------------------------------------------
 NEAR_I
   Relative segment, address: DATA 00000746 - 0000074B (0x6 bytes), align: 0
@@ -6346,16 +6346,16 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000C92 - 00000D30 (0x9f bytes), align: 0
+  Relative segment, address: DATA 00000BA2 - 00000C40 (0x9f bytes), align: 0
   Segment part 113. ROOT      Intra module refs:   CPss21::ModbusInit()
                                                    Segment part 115
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_xUart1        00000C92 
+           CPss21::m_xUart1        00000BA2 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D31 - 00000D32 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000C41 - 00000C42 (0x2 bytes), align: 0
   Segment part 117. ROOT      Intra module refs:   Segment part 115
     -------------------------------------------------------------------------
 CODE
@@ -6371,7 +6371,7 @@ NEAR_I
   Segment part 119. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D33 - 00000D63 (0x31 bytes), align: 0
+  Relative segment, address: DATA 00000C43 - 00000C73 (0x31 bytes), align: 0
   Segment part 118. ROOT      Intra module refs:   CPss21::ErrorMainCycle()
                                                    CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
@@ -6383,10 +6383,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xModbusRtuOne
-                                   00000D33 
+                                   00000C43 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D64 - 00000D65 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000C74 - 00000C75 (0x2 bytes), align: 0
   Segment part 121. ROOT      Intra module refs:   Segment part 120
     -------------------------------------------------------------------------
 CODE
@@ -6405,16 +6405,16 @@ NEAR_I
   Segment part 123. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D66 - 00000D74 (0xf bytes), align: 0
+  Relative segment, address: DATA 00000C76 - 00000C84 (0xf bytes), align: 0
   Segment part 122. ROOT      Intra module refs:   CPss21::KeyStateProcessing()
                                                    Segment part 124
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_xReceiptKey   00000D66 
+           CPss21::m_xReceiptKey   00000C76 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D75 - 00000D76 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000C85 - 00000C86 (0x2 bytes), align: 0
   Segment part 125. ROOT      Intra module refs:   Segment part 124
     -------------------------------------------------------------------------
 NEAR_I
@@ -6422,16 +6422,16 @@ NEAR_I
   Segment part 127. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D77 - 00000D85 (0xf bytes), align: 0
+  Relative segment, address: DATA 00000C87 - 00000C95 (0xf bytes), align: 0
   Segment part 126. ROOT      Intra module refs:   CPss21::KeyStateProcessing()
                                                    Segment part 128
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_xResetKey     00000D77 
+           CPss21::m_xResetKey     00000C87 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D86 - 00000D87 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000C96 - 00000C97 (0x2 bytes), align: 0
   Segment part 129. ROOT      Intra module refs:   Segment part 128
     -------------------------------------------------------------------------
 NEAR_I
@@ -6439,16 +6439,16 @@ NEAR_I
   Segment part 131. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D88 - 00000D96 (0xf bytes), align: 0
+  Relative segment, address: DATA 00000C98 - 00000CA6 (0xf bytes), align: 0
   Segment part 130. ROOT      Intra module refs:   CPss21::KeyStateProcessing()
                                                    Segment part 132
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_xCheckKey     00000D88 
+           CPss21::m_xCheckKey     00000C98 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D97 - 00000D98 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CA7 - 00000CA8 (0x2 bytes), align: 0
   Segment part 133. ROOT      Intra module refs:   Segment part 132
     -------------------------------------------------------------------------
 NEAR_I
@@ -6456,105 +6456,105 @@ NEAR_I
   Segment part 135. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000D99 - 00000DA7 (0xf bytes), align: 0
+  Relative segment, address: DATA 00000CA9 - 00000CB7 (0xf bytes), align: 0
   Segment part 134. ROOT      Intra module refs:   CPss21::KeyStateProcessing()
                                                    Segment part 136
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xExternalKey
-                                   00000D99 
+                                   00000CA9 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DA8 - 00000DA9 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CB8 - 00000CB9 (0x2 bytes), align: 0
   Segment part 137. ROOT      Intra module refs:   Segment part 136
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAA - 00000DAA (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBA - 00000CBA (0x1 bytes), align: 0
   Segment part 138. ROOT      Intra module refs:   CPss21::GetPanelReceipt()
                                                    CPss21::SetPanelReceipt(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiPanelReceipt
-                                   00000DAA 
+                                   00000CBA 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAB - 00000DAB (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBB - 00000CBB (0x1 bytes), align: 0
   Segment part 139. ROOT      Intra module refs:   CPss21::GetPanelReset()
                                                    CPss21::SetPanelReset(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiPanelReset
-                                   00000DAB 
+                                   00000CBB 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAC - 00000DAC (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBC - 00000CBC (0x1 bytes), align: 0
   Segment part 140. ROOT      Intra module refs:   CPss21::GetExternalReceipt()
                                                    CPss21::SetExternalReceipt(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiExternalReceipt
-                                   00000DAC 
+                                   00000CBC 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAD - 00000DAD (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBD - 00000CBD (0x1 bytes), align: 0
   Segment part 141. ROOT      Intra module refs:   CPss21::GetExternalReset()
                                                    CPss21::SetExternalReset(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiExternalReset
-                                   00000DAD 
+                                   00000CBD 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAE - 00000DAE (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBE - 00000CBE (0x1 bytes), align: 0
   Segment part 142. ROOT      Intra module refs:   CPss21::GetModbusReceipt()
                                                    CPss21::SetModbusReceipt(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiModbusReceipt
-                                   00000DAE 
+                                   00000CBE 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DAF - 00000DAF (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CBF - 00000CBF (0x1 bytes), align: 0
   Segment part 143. ROOT      Intra module refs:   CPss21::GetModbusReset()
                                                    CPss21::SetModbusReset(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiModbusReset
-                                   00000DAF 
+                                   00000CBF 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DB0 - 00000DB0 (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CC0 - 00000CC0 (0x1 bytes), align: 0
   Segment part 144. ROOT      Intra module refs:   CPss21::SetDiscreteSignalsReceipt(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiDiscreteSignalsReceipt
-                                   00000DB0        CPss21::GetDiscreteSignalsReceipt() (Alarm)
+                                   00000CC0        CPss21::GetDiscreteSignalsReceipt() (Alarm)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DB1 - 00000DB1 (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CC1 - 00000CC1 (0x1 bytes), align: 0
   Segment part 145. ROOT      Intra module refs:   CPss21::SetDiscreteSignalsReset(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiDiscreteSignalsReset
-                                   00000DB1        CPss21::GetDiscreteSignalsReset() (Alarm)
+                                   00000CC1        CPss21::GetDiscreteSignalsReset() (Alarm)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DB2 - 00000DB2 (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CC2 - 00000CC2 (0x1 bytes), align: 0
   Segment part 146. ROOT      Intra module refs:   CPss21::GetErrorCode()
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_uiErrorCode   00000DB2        CPss21::SetErrorCode(uint8_t) (DataBase)
+           CPss21::m_uiErrorCode   00000CC2        CPss21::SetErrorCode(uint8_t) (DataBase)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DB3 - 00000DB3 (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000CC3 - 00000CC3 (0x1 bytes), align: 0
   Segment part 147. ROOT      Intra module refs:   CPss21::GetModuleIndex()
                                                    CPss21::SetModuleIndex(uint8_t)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiModuleIndex
-                                   00000DB3 
+                                   00000CC3 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00006792 - 000067A7 (0x16 bytes), align: 1
@@ -6569,17 +6569,17 @@ NEAR_I
   Segment part 149. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DB4 - 00000DC1 (0xe bytes), align: 0
+  Relative segment, address: DATA 00000CC4 - 00000CD1 (0xe bytes), align: 0
   Segment part 148. ROOT      Intra module refs:   CPss21::KeyStateProcessing()
                                                    Segment part 150
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xEventUniteLogicAndOne
-                                   00000DB4 
+                                   00000CC4 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DC2 - 00000DC3 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CD2 - 00000CD3 (0x2 bytes), align: 0
   Segment part 151. ROOT      Intra module refs:   Segment part 150
     -------------------------------------------------------------------------
 CODE
@@ -6595,17 +6595,17 @@ NEAR_I
   Segment part 153. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DC4 - 00000DC9 (0x6 bytes), align: 0
+  Relative segment, address: DATA 00000CD4 - 00000CD9 (0x6 bytes), align: 0
   Segment part 152. ROOT      Intra module refs:   CPss21::MainFsm()
                                                    Segment part 154
                                                    __sti__routine()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xMainCycleTimer
-                                   00000DC4 
+                                   00000CD4 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DCA - 00000DCB (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CDA - 00000CDB (0x2 bytes), align: 0
   Segment part 155. ROOT      Intra module refs:   Segment part 154
     -------------------------------------------------------------------------
 CODE
@@ -6621,7 +6621,7 @@ NEAR_I
   Segment part 157. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DCC - 00000DD7 (0xc bytes), align: 0
+  Relative segment, address: DATA 00000CDC - 00000CE7 (0xc bytes), align: 0
   Segment part 156. ROOT      Intra module refs:   CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::MainFsm()
@@ -6631,10 +6631,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xPreventiveAlarmWindowNotifyerControl
-                                   00000DCC 
+                                   00000CDC 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DD8 - 00000DD9 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CE8 - 00000CE9 (0x2 bytes), align: 0
   Segment part 159. ROOT      Intra module refs:   Segment part 158
     -------------------------------------------------------------------------
 CODE
@@ -6650,7 +6650,7 @@ NEAR_I
   Segment part 161. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DDA - 00000DE5 (0xc bytes), align: 0
+  Relative segment, address: DATA 00000CEA - 00000CF5 (0xc bytes), align: 0
   Segment part 160. ROOT      Intra module refs:   CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::MainFsm()
@@ -6660,10 +6660,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xEmergencyAlarmWindowNotifyerControl
-                                   00000DDA 
+                                   00000CEA 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DE6 - 00000DE7 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000CF6 - 00000CF7 (0x2 bytes), align: 0
   Segment part 163. ROOT      Intra module refs:   Segment part 162
     -------------------------------------------------------------------------
 CODE
@@ -6679,7 +6679,7 @@ NEAR_I
   Segment part 165. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DE8 - 00000DF3 (0xc bytes), align: 0
+  Relative segment, address: DATA 00000CF8 - 00000D03 (0xc bytes), align: 0
   Segment part 164. ROOT      Intra module refs:   CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::ErrorMainCycle()
@@ -6690,10 +6690,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xStatusLedNotifyerControl
-                                   00000DE8 
+                                   00000CF8 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DF4 - 00000DF5 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000D04 - 00000D05 (0x2 bytes), align: 0
   Segment part 167. ROOT      Intra module refs:   Segment part 166
     -------------------------------------------------------------------------
 CODE
@@ -6709,7 +6709,7 @@ NEAR_I
   Segment part 169. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000DF6 - 00000E01 (0xc bytes), align: 0
+  Relative segment, address: DATA 00000D06 - 00000D11 (0xc bytes), align: 0
   Segment part 168. ROOT      Intra module refs:   CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeSet(uint8_t)
                                                    CPss21::ErrorMainCycle()
@@ -6721,10 +6721,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xBuzzerNotifyerControl
-                                   00000DF6 
+                                   00000D06 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E02 - 00000E03 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000D12 - 00000D13 (0x2 bytes), align: 0
   Segment part 171. ROOT      Intra module refs:   Segment part 170
     -------------------------------------------------------------------------
 CODE
@@ -6740,7 +6740,7 @@ NEAR_I
   Segment part 173. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E04 - 00000E0F (0xc bytes), align: 0
+  Relative segment, address: DATA 00000D14 - 00000D1F (0xc bytes), align: 0
   Segment part 172. ROOT      Intra module refs:   CPss21::MainFsm()
                                                    CPss21::TestMainCycle()
                                                    Segment part 174
@@ -6748,10 +6748,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xTestModeNotifyerControl
-                                   00000E04 
+                                   00000D14 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E10 - 00000E11 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000D20 - 00000D21 (0x2 bytes), align: 0
   Segment part 175. ROOT      Intra module refs:   Segment part 174
     -------------------------------------------------------------------------
 CODE
@@ -6775,7 +6775,7 @@ NEAR_I
   Segment part 177. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E12 - 00000E1C (0xb bytes), align: 0
+  Relative segment, address: DATA 00000D22 - 00000D2C (0xb bytes), align: 0
   Segment part 176. ROOT      Intra module refs:   CPss21::LinkControlErrorMainCycle()
                                                    CPss21::MainFsm()
                                                    CPss21::ModbusDeviceControl(uint8_t *, uint16_t, uint16_t)
@@ -6786,14 +6786,14 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xModbusRtuLinkControl
-                                   00000E12 
+                                   00000D22 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E1D - 00000E1E (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000D2D - 00000D2E (0x2 bytes), align: 0
   Segment part 179. ROOT      Intra module refs:   Segment part 178
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E1F - 00000E1F (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000D2F - 00000D2F (0x1 bytes), align: 0
   Segment part 180. ROOT      Intra module refs:   CPss21::AlarmTypeChange(uint8_t)
                                                    CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeReceipt()
@@ -6802,11 +6802,11 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiCommonAlarmType
-                                   00000E1F        CPss21::GetCommonAlarmType() (Alarm)
+                                   00000D2F        CPss21::GetCommonAlarmType() (Alarm)
                                                    CPss21::SetCommonAlarmType(uint8_t) (Alarm)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E20 - 00000E20 (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000D30 - 00000D30 (0x1 bytes), align: 0
   Segment part 181. ROOT      Intra module refs:   CPss21::AlarmTypeChange(uint8_t)
                                                    CPss21::AlarmTypeErrorChange()
                                                    CPss21::AlarmTypeReceipt()
@@ -6815,10 +6815,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_uiCommonAlarmTypePrevious
-                                   00000E20 
+                                   00000D30 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E21 - 00000E29 (0x9 bytes), align: 0
+  Relative segment, address: DATA 00000D31 - 00000D39 (0x9 bytes), align: 0
   Segment part 182. ROOT      Intra module refs:   CPss21::CreateDevices()
                                                    CPss21::ModulesInteraction(uint8_t)
                                                    CPss21::SearchModules()
@@ -6829,10 +6829,10 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xDeviceConfigSearch
-                                   00000E21        CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
+                                   00000D31        CModbus::Programming(uint8_t *, uint8_t *, uint16_t) (modbus)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E2A - 00000E3D (0x14 bytes), align: 0
+  Relative segment, address: DATA 00000D3A - 00000D4D (0x14 bytes), align: 0
   Segment part 183. ROOT      Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::GetTimeoutModbusRtuLinkControl()
                                                    CPss21::KeyStateProcessing()
@@ -6841,72 +6841,72 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xDeviceConfiguration
-                                   00000E2A        CAlarmDfa::Fsm() (Alarm)
+                                   00000D3A        CAlarmDfa::Fsm() (Alarm)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E3E - 00000E45 (0x8 bytes), align: 0
+  Relative segment, address: DATA 00000D4E - 00000D55 (0x8 bytes), align: 0
   Segment part 184. ROOT      Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::ModbusRtuLinkControlInProgress()
                                                    CPss21::SetModeModbusRtuLinkControlInProgress(bool)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xDeviceState
-                                   00000E3E 
+                                   00000D4E 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E46 - 00000E4C (0x7 bytes), align: 0
+  Relative segment, address: DATA 00000D56 - 00000D5C (0x7 bytes), align: 0
   Segment part 185. ROOT      Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::ModbusDefaultInit()
                                                    CPss21::ModbusInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xModbusSettings
-                                   00000E46        CUart::Init(uint32_t, uint8_t, uint8_t, uint8_t, uint8_t *, uint8_t *) (Platform)
+                                   00000D56        CUart::Init(uint32_t, uint8_t, uint8_t, uint8_t, uint8_t *, uint8_t *) (Platform)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000E4D - 00000F0C (0xc0 bytes), align: 0
+  Relative segment, address: DATA 00000D5D - 00000E1C (0xc0 bytes), align: 0
   Segment part 186. ROOT      Intra module refs:   CPss21::AlarmsProcessing()
                                                    CPss21::ConfigurationInit()
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CPss21::m_apxAlarmDfa   00000E4D 
+           CPss21::m_apxAlarmDfa   00000D5D 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000F0D - 00000F10 (0x4 bytes), align: 0
+  Relative segment, address: DATA 00000E1D - 00000E20 (0x4 bytes), align: 0
   Segment part 187. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_apxErrorAlarmDfa
-                                   00000F0D 
+                                   00000E1D 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000F11 - 00000F12 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000E21 - 00000E22 (0x2 bytes), align: 0
   Segment part 188. ROOT      Intra module refs:   CPss21::GetErrorAlarmState(uint8_t)
                                                    CPss21::Init()
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_auiErrorAlarmDataArray
-                                   00000F11 
+                                   00000E21 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000F13 - 00000F22 (0x10 bytes), align: 0
+  Relative segment, address: DATA 00000E23 - 00000E32 (0x10 bytes), align: 0
   Segment part 189. ROOT      Intra module refs:   CPss21::DiscreteOutputControlClear()
                                                    CPss21::DiscreteOutputsSet(uint8_t *, uint8_t)
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_axDiscreteOutputControl
-                                   00000F13 
+                                   00000E23 
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000F23 - 00000F3A (0x18 bytes), align: 0
+  Relative segment, address: DATA 00000E33 - 00000E4A (0x18 bytes), align: 0
   Segment part 190. ROOT      Intra module refs:   CPss21::ConfigurationInit()
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_xDiscreteOutputDataBase
-                                   00000F23 
+                                   00000E33 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00006858 - 0000686D (0x16 bytes), align: 1
@@ -6921,7 +6921,7 @@ NEAR_I
   Segment part 192. ROOT      Intra module refs:   __sti__routine()
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 00000F3B - 000010BA (0x180 bytes), align: 0
+  Relative segment, address: DATA 00000E4B - 00000FCA (0x180 bytes), align: 0
   Segment part 191. ROOT      Intra module refs:   <Unnamed 11>
                                                    CPss21::ActiveAlarmWindowOff(uint8_t)
                                                    CPss21::ActiveAlarmWindowOn(uint8_t)
@@ -6937,20 +6937,20 @@ NEAR_Z
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_axAlarmWindowControl
-                                   00000F3B        CPss21::GetAlarmWindowControlPointer(uint8_t) (Alarm)
+                                   00000E4B        CPss21::GetAlarmWindowControlPointer(uint8_t) (Alarm)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 000010BB - 000010BC (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000FCB - 00000FCC (0x2 bytes), align: 0
   Segment part 194. ROOT      Intra module refs:   Segment part 193
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 000010BD - 000010EC (0x30 bytes), align: 0
+  Relative segment, address: DATA 00000FCD - 00000FFC (0x30 bytes), align: 0
   Segment part 195. ROOT      Intra module refs:   CPss21::GetDiscreteInputsBadState(uint8_t)
                                                    CPss21::InitAllocationContext(TMemoryAllocationContext &)
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            CPss21::m_aucDiscreteInputsBadState
-                                   000010BD 
+                                   00000FCD 
     -------------------------------------------------------------------------
 NEAR_F
   Relative segment, address: CODE 000008B8 - 000008BB (0x4 bytes), align: 0
@@ -7483,11 +7483,11 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 000010ED - 000010ED (0x1 bytes), align: 0
+  Relative segment, address: DATA 00000FFD - 00000FFD (0x1 bytes), align: 0
   Segment part 197. ROOT 
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           uiMapTestCounter        000010ED 
+           uiMapTestCounter        00000FFD 
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 00007E84 - 000080D3 (0x250 bytes), align: 1
@@ -8177,7 +8177,7 @@ CODE
                calls indirect
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 000010EE - 000010EF (0x2 bytes), align: 0
+  Relative segment, address: DATA 00000FFE - 00000FFF (0x2 bytes), align: 0
   Segment part 3.             Intra module refs:   Segment part 10
                                                    __call_dtors
                                                    __record_needed_destruction
@@ -9462,11 +9462,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 NEAR_Z
-  Relative segment, address: DATA 000010F0 - 000010F1 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00001000 - 00001001 (0x2 bytes), align: 0
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __iar_New_hand          000010F0        operator new(unsigned int) (?newop_0)
+           __iar_New_hand          00001000        operator new(unsigned int) (?newop_0)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?newop_0
@@ -9638,7 +9638,7 @@ CODE
            __near_GetMemChunk      0000885A        __near_findmem (?xxmemxmalloc)
     -------------------------------------------------------------------------
 NEAR_Z
-  Relative segment, address: DATA 000010F2 - 000010F3 (0x2 bytes), align: 0
+  Relative segment, address: DATA 00001002 - 00001003 (0x2 bytes), align: 0
   Segment part 3.             Intra module refs:   __near_GetMemChunk
 
     -------------------------------------------------------------------------
@@ -9691,12 +9691,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 NEAR_Z
-  Relative segment, address: DATA 000010F4 - 000010F7 (0x4 bytes), align: 0
+  Relative segment, address: DATA 00001004 - 00001007 (0x4 bytes), align: 0
   Segment part 3.             Intra module refs:   __near_findmem
                                                    malloc
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __near_Aldata           000010F4        free (?xxmemxfree)
+           __near_Aldata           00001004        free (?xxmemxfree)
     -------------------------------------------------------------------------
 CODE
   Relative segment, address: CODE 0000896A - 000089E1 (0x78 bytes), align: 1
@@ -9788,7 +9788,7 @@ CSTACK               DATA          00000100 - 000002FF         200   dse    0
 NEAR_HEAP            DATA          00000300 - 000006FF         400   dse    0
 RSTACK               DATA          00000700 - 0000073F          40   dse    0
 NEAR_I               DATA          00000740 - 0000079F          60   rel    0
-NEAR_Z               DATA          000007A0 - 000010F7         958   rel    0
+NEAR_Z               DATA          000007A0 - 00001007         868   rel    0
 
                 ****************************************
                 *                                      *
@@ -9797,7 +9797,7 @@ NEAR_Z               DATA          000007A0 - 000010F7         958   rel    0
                 ****************************************
 
  35 594 bytes of CODE memory (+              8 range fill )
-  4 088 bytes of DATA memory (+ 105 absolute )
+  3 848 bytes of DATA memory (+ 105 absolute )
 
 Errors: none
 Warnings: none

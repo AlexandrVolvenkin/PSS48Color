@@ -687,8 +687,6 @@ int16_t CModbus::PollProgramming(uint8_t *puiRequest, uint8_t *puiResponse, uint
     int8_t uiSlave = puiRequest[uiOffset - 1];
     int8_t uiFunctionCode = puiRequest[uiOffset];
 
-//        uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
-
     if (CDataStore::GetFsmEvent() == CDataStore::WRITE_OK_FSM_EVENT)
     {
         uiLength = ResponseBasis(uiSlave, uiFunctionCode, puiResponse);
@@ -798,7 +796,6 @@ int16_t CModbus::Reply(uint8_t *puiRequest, uint8_t *puiResponse, uint16_t uiFra
 
     m_uiMessageLength = uiLength;
     return uiLength;
-//    return SendMessage(puiResponse, uiLength);
 }
 
 //-----------------------------------------------------------------------------------------------------

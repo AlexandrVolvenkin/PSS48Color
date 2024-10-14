@@ -21,9 +21,6 @@
 //-----------------------------------------------------------------------------------------------------
 int main()
 {
-//    uint8_t uiTempData = 0;
-//    uiTempData = sizeof(struct TDevConfig);
-
     CPss21::SetFsmState(CPss21::START);
 
     while(1)

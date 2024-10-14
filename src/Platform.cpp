@@ -19,11 +19,6 @@ CUart::CUart()
 
 }
 
-//    uint16_t CUart::m_nuiRxBuffByteCounter;
-//    uint8_t CUart::m_auiIntermediateBuff[UART_INTERMEDIATE_BUFF_LENGTH];
-//    bool CUart::m_bfByteIsReceived;
-//    bool CUart::m_bfRxBuffOverflow;
-
 //-----------------------------------------------------------------------------------------------------
 CUart::CUart(volatile uint8_t *ubrrh, volatile uint8_t *ubrrl,
              volatile uint8_t *ucsra, volatile uint8_t *ucsrb,
@@ -214,10 +209,7 @@ int16_t CUart::Read(uint8_t *puiDestination, uint16_t uiLength)
         {
             puiDestination[i] = m_auiIntermediateBuff[i];
         }
-//        if (CPss21::m_auiReceiveMessageBuff[1] == 0x46 && CPss21::m_auiReceiveMessageBuff[5] == 0x0a)
-//        {
-//        m_nuiRxBuffByteCounter = m_nuiRxBuffByteCounter;
-//        }
+
         uint8_t uiCounter = m_nuiRxBuffByteCounter;
         m_nuiRxBuffByteCounter = 0;
 
