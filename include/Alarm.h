@@ -67,6 +67,7 @@ public:
 
     CAlarmDfa();
     virtual ~CAlarmDfa();
+    virtual uint8_t DiscreteSignalStateCheck(void);
     virtual void Fsm(void);
 
     void SetDiscreteStateIndex(uint8_t uiDiscreteStateIndex)
@@ -100,8 +101,8 @@ private:
     uint8_t m_auiLinkedDiscreteOutputs[DISCRETE_OUTPUT_MODULE_MAX_NUMBER];
     // »сточник дискретного сигнала.
     uint8_t m_uiDiscreteStateIndex;
-    // »сточник данных достоверности дискретного сигнала.
-    uint8_t m_uiDiscreteInputsBadStateIndex;
+//    // »сточник данных достоверности дискретного сигнала.
+//    uint8_t m_uiDiscreteInputsBadStateIndex;
 };
 //-----------------------------------------------------------------------------------------------------
 
